@@ -1,0 +1,82 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+%\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphicx}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{Stata} \rhead{mhodds}
+\chead{}
+
+\begin{document}
+
+\section*{Mantel-Haenszel Methods - \texttt{mhodds}}
+
+\begin{verbatim}
+
+  Overview:  The "mhodds" command is used to obtain summaries and inference
+             for case-control or cross-sectional designs.  It calculates an
+             estimate of the odds ratio (disease & exposure) for each level 
+             of a stratifying variable.  
+             
+             A test for the common odds ratio, and an estimate of the common 
+             odds ratio are given.  In addition, a test of homogeneity 
+             of the odds ratios is computed.
+
+             One key advantage of "mhodds" is the ability to control for
+             multiple stratifying variables.
+
+
+  Usage:     "mhodds Dvar Evar, by(Svar)"
+             Where - Dvar is the disease variable (1=disease, 0=control)
+                     Evar is the exposure variable (1=exposed, 0=unexposed)
+                     Svar is the stratifying variable (multiple levels)
+
+
+  Summaries: The "mhodds" command returns the stratum specific odds ratio,
+             a test for each stratum specific odds ratio, a confidence interval
+             for each stratum specific odds ratio, and an adjusted, or common
+             odds ratio estimate, test, and confidence interval.
+             
+\end{verbatim}
+\newpage
+\section*{Mantel-Haenszel Methods - \texttt{cc}}
+
+\begin{verbatim}
+
+Overview:  The "cc" command is used to obtain summaries and inference
+             for case-control or cross-sectional designs.  Using the
+             "by(Svar)" option allows Mantel-Haenszel estimates to be 
+             obtained.
+
+
+  Usage:     "cc Dvar Evar, by(Svar)"
+             Where - Dvar is the disease variable (1=disease, 0=control)
+                     Evar is the exposure variable (1=exposed, 0=unexposed)
+                     Svar is the stratifying variable (multiple levels)
+
+
+  Summaries: The "cc" command returns the stratum specific odds ratio and
+             confidence interval, the Mantel-Haenszel weights, the crude
+             odds ratio and the adjusted odds ratio.  In addition, both 
+             a test of homogeneity of odds ratios, and the Mantel-Haenszel
+             test for the common odds ratio are computed.
+
+\end{verbatim}
+\end{document}             
