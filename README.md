@@ -1,4 +1,4 @@
-Tutorial Proposal: Applied Machine Learning and Efficient Model Selection with mlr
+Applied Machine Learning and Efficient Model Selection with mlr
 =====================================================
 - Bernd Bischl, Michel Lang
 - Department of Statistics, TU Dortmund University
@@ -38,14 +38,16 @@ experiments and meta analysis.
 - Online tutorial: https://berndbischl.github.io/mlr/tutorial/html/
 
 ### Detailed Outline
-• Very brief intro to applied machine learning
-• Data handling and machine learning tasks
-• Classification, regression, clustering and survival modeling with mlr
-• Performance evaluation and resampling
-• Visual model analysis
-• Parallelization and high-performance computing
-• Model selection and hyper-parameter tuning
-• Interfacing the OpenML server with mlr
+1. Very brief intro to applied machine learning
+2. Data handling and machine learning tasks
+3. Classification, regression, clustering and survival modeling with mlr
+4. Performance evaluation and resampling
+5. Visual model analysis
+6. Parallelization and high-performance computing
+7.  Model selection and hyper-parameter tuning
+8.  Interfacing the OpenML server with mlr
+  
+
 Background knowledge required Basic knowledge of R and machine learning
 Potential attendees Anybody from academia or industry with an interest in
 modern machine learning
