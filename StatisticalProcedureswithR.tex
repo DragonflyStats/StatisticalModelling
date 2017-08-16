@@ -1,0 +1,335 @@
+\documentclass[pdf,default,slideColor,colorBG]{prosper}
+
+
+
+% define a new font called goodfont
+\def\goodfont{\usefont{T1}{pcr}{b}{n}\fontsize{36pt}{40pt}\selectfont\green}
+\renewcommand{\familydefault}{\rmdefault}
+\renewcommand{\rmdefault}{cmr}
+\parindent 0pt
+\parskip 5pt
+
+
+\begin{document}
+
+
+%-----------------------------------------------
+\begin{slide}{Statistical Inference(2)}
+\begin{itemize}
+\item Test for proportions (\texttt{prop.test()})
+    \begin{itemize}
+    \item One sample procedure
+    \item Two sample procedure
+    \end{itemize}
+\item Correlation test (\texttt{cor.test()})
+\item Shapiro-Wilk test (\texttt{shapiro.test()})
+\end{itemize}
+\end{slide}
+
+
+%-----------------------------------------------
+
+\begin{slide}{\texttt{prop.test()}}
+We can also perform a hypothesis test for a population
+proportion, \textit{p}. The \texttt{R} function to carry out such a test is
+prop.test. The parameters are
+\begin{itemize}
+\item \texttt{x} : number of success ( value or vector)
+\item \texttt{n} : sample size (value or vector)
+\item (sample proportion : $\hat{p} = x/n$)
+\item \texttt{p} : Null hypothesis value is 50\%($ H_0: p = 0.5 $)
+\item \texttt{conf.level} : confidence level (default is 95\%)
+\item \texttt{alternative} : relationship in alt. hypothesis (default: two.tailed)
+\end{itemize}
+
+\end{slide}
+
+%-----------------------------------------------
+
+\begin{slide}{\texttt{prop.test() }- one sample}
+Consider this simple example where the population proportion (in other words, the probability of success) is assumed to be 50\%
+\begin{itemize}
+\item 280 successes from 400 trials.
+\item default null hypothesis($ H_0: p = 0.5 $)
+\item default alt. hypothesis($ H_1: p \neq 0.5 $)
+\end{itemize}
+
+\begin{verbatim}
+
+> prop.test(280,400)
+\end{verbatim}
+\end{slide}
+%----------------------------------------
+\begin{slide}{prop.test - one sample}
+\begin{verbatim}
+
+> prop.test(280,400)
+
+    1-sample proportions test
+    with continuity correction
+
+data:  280 out of 400, null probability 0.5
+X-squared = 63.2025, df = 1,
+p-value = 1.865e-15
+alternative hypothesis: 
+    true p is not equal to 0.5
+95 percent confidence interval:
+ 0.6520722 0.7440176
+sample estimates:
+  p
+0.7
+\end{verbatim}
+
+%----------------------------------------
+
+\end{slide}
+
+\begin{slide}{prop.test - one sample}
+\begin{itemize}
+\item can access components (just like a data frame)
+\item Consider both the p-value 
+\item and the confidence interval
+\end{itemize}
+
+\begin{verbatim}
+
+> names(prop.test(280,400))
+[1] "statistic"   "parameter"   "p.value"
+[4] "estimate"    "null.value"  "conf.int"
+[7] "alternative" "method"      "data.name"
+>
+> prop.test(280,400)$p.value
+[1] 1.865115e-15
+\end{verbatim}
+\end{slide}
+%----------------------------------------------
+
+\begin{slide}{prop.test - one sample}
+\begin{itemize}
+\item p.values is <0.0001. 
+\item reject the null hypothesis.
+\item $p$ (i.e. 0.5) not in confidence interval.
+\item validates conclusion.
+\end{itemize}
+
+
+\end{slide}
+
+%----------------------------------------
+
+\begin{slide}{prop.test - null hypothesis}
+Test the null hypothesis that true proportion is 0.65 (i.e. $H_{0}: p = 0.65$)
+\begin{verbatim}
+
+> prop.test(280,400,p=0.65)
+.....
+data:  280 out of 400, null probability 0.65
+X-squared = 4.1786, df = 1, p-value = 0.04094
+alternative hypothesis: 
+    true p is not equal to 0.65
+95 percent confidence interval:
+ 0.6520722 0.7440176
+
+\end{verbatim}
+We reject the null hypothesis (p-value and CI).
+
+\end{slide}
+
+%----------------------------------------------------------
+\begin{slide}{prop.test - confidence interval}
+We can specify the confidence (and significance) level.
+\begin{verbatim}
+> prop.test(280,400,conf.level=0.99)
+.....
+data:  280 out of 400, null probability 0.5
+X-squared = 63.2025, df = 1, 
+p-value = 1.865e-15
+alternative hypothesis:
+    true p is not equal to 0.5
+99 percent confidence interval:
+ 0.6368118 0.7565247
+.....
+\end{verbatim}
+
+\end{slide}
+%---------------------------------------------
+\begin{slide}{prop.test - alternative hypotheses}
+We can specify one tail tests by using the `alternative' parameter.
+\begin{itemize}
+\item alternative ="greater" 
+\item alternative ="less"
+\end{itemize}
+\begin{verbatim}
+
+> prop.test(280,400,p=0.65,
+        alternative="greater")
+        
+> prop.test(280,400,p=0.65,
+        alternative="less")
+\end{verbatim}
+\end{slide}
+
+%---------------------------------------------
+\begin{slide}{prop.test - alternative hypotheses}
+\begin{verbatim}
+
+> prop.test(280,400,p=0.65,
+        alternative="greater")
+.....
+data:  280 out of 400, null probability 0.65
+X-squared = 4.1786, df = 1, p-value =
+0.02047
+alternative hypothesis: 
+    true p is greater than 0.65
+95 percent confidence interval:
+ 0.659785 1.000000
+\end{verbatim}
+We reject the null hypothesis (p-value and CI).
+
+\end{slide}
+%----------------------------------------
+\begin{slide}{prop.test(): two samples}
+
+To compare two samples, create a vector containing the number of successes in each sample, and a vector containing the sample sizes. 
+This will test the null hypothesis $H_0:p_{1}=p_{2}$.
+\begin{verbatim}
+>x.vector <- c( 83, 70 )
+>n.vector<- c( 86, 82 )
+>prop.test(xvec, nvec)
+\end{verbatim}
+\end{slide}
+%----------------------------------------
+\begin{slide}{prop.test(): two samples}
+\begin{verbatim}
+> prop.test(x.vector, n.vector)
+
+        2-sample test for equality 
+
+data:  x.vector out of n.vector
+X-squared = 5.1155, df = 1, p-value = 0.02371
+alternative hypothesis: two.sided
+95 percent confidence interval:
+ 0.01377774 0.20913775
+sample estimates:
+   prop 1    prop 2
+0.9651163 0.8536585 
+\end{verbatim}
+\end{slide}
+
+%----------------------------------------
+\begin{slide}{prop.test(): multiple samples}
+Can use prop.test() for more than 2 samples. The null hypothesis in such a case would be all true proportions are equal. The alternative hypothesis is that at least one has a different true mean.
+\begin{itemize}
+\item Study on cigarette smokers (Fleiss (1981), p. 139)
+\item H0: The null hypothesis is that the four populations from which
+the patients were drawn have the same true proportion of smokers.
+\item H1: The alternative is that this proportion is different in at
+least one of the populations.
+\end{itemize}
+\begin{verbatim}
+>smokers  <- c( 83, 90, 129, 70 )
+>patients <- c( 86, 93, 136, 82 )
+>prop.test(smokers, patients)
+\end{verbatim}
+\end{slide}
+
+
+
+%----------------------------------------
+\begin{slide}{prop.test() - Example}
+
+
+Example: A manufacturer claims that the proportion of
+defective items produced is approximately 4\%. A random sample of
+size 50 is taken, 3 of which are defective. Is the manufacturer's
+claim justified?
+
+\begin{verbatim}
+>prop.test(x=3, n=50, p = 0.04,
+alternative = "two.sided",
+conf.level = 0.95)
+\end{verbatim}
+\end{slide}
+
+%---------------------------------------------------
+\begin{slide}{prop.test() - Example}
+
+\begin{verbatim}
+        1-sample proportions test
+
+data:  3 out of 50, null probability 0.04
+X-squared = 0.1302, df =1, p-value = 0.7182
+alternative hypothesis:
+ true p is not equal to 0.04
+95 percent confidence interval:
+ 0.01562459 0.17541874
+...........
+\end{verbatim}
+\end{slide}
+
+%---------------------------------------------------
+\begin{slide}{cor.test() }
+We can test correlation in bivariate data using the cor.test() function.
+This test can be applied to all correlation coefficients.\\ We will only consider the default type, Pearson's product moment correlation coefficient.\\
+The default null hypothesis for cor.test() is that the correlation coefficient is zero.
+The default alternative is that the correlation coefficient is not zero.
+\begin{verbatim}
+> A<-c(4,5,6,2,5,1,2,7,9)
+> B<-c(4,7,5,3,6,4,2,7,2)
+> cor(A,B)
+[1] 0.2415396
+>cor.test(A,B)
+\end{verbatim}
+
+\end{slide}
+%----------------------------------------------------------
+\begin{slide}{cor.test() }
+
+
+
+\begin{verbatim}
+> cor.test(A,B)
+ Pearson's product-moment correlation
+
+data:  A and B
+t = 0.6586, df = 7, p-value = 0.5312
+alternative hypothesis: 
+    true correlation is not equal to 0
+95 percent confidence interval:
+ -0.5033206  0.7804655
+sample estimates:
+      cor
+0.2415396
+\end{verbatim}
+
+\end{slide}
+%----------------------------------------------------------
+\begin{slide}{cor.test() }
+\begin{itemize}
+\item Conclusions: p-value and CI validate `fail to reject' conclusion.
+\item We can specifythe confidence level and alternative hypothesis as per previous procedures, but null value must be zero.
+\item Can specify other correlation types using `method'.
+\end{itemize}
+
+\end{slide}
+
+%----------------------------------------------------------
+\begin{slide}{Shapiro Wilk Test }
+\begin{itemize}
+\item Used to determine if a data set is normally distributed
+\item Null hypothesis is that it is normally distributed.
+\item Alt. hypothesis is that it is not normally distributed.
+\item Advise using with graphical complement.
+\item Output return test statistic (W) and p-value.
+\end{itemize}
+\begin{verbatim}
+> shapiro.test(A)
+
+        Shapiro-Wilk normality test
+
+data:  A
+W = 0.961, p-value = 0.8085
+\end{verbatim}
+\end{slide}
+\end{document}
+
