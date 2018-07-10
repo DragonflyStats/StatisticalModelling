@@ -1,0 +1,32 @@
+%- http://uk.mathworks.com/help/stats/hat-matrix-and-leverage.html
+
+
+Hat Matrix
+Purpose
+The hat matrix provides a measure of leverage. It is useful for investigating whether one or more observations are outlying with regard to their X values, and therefore might be excessively influencing the regression results.
+
+Definition
+The hat matrix is also known as the projection matrix because it projects the vector of observations, y, onto the vector of predictions, 
+ˆ
+y
+, thus putting the "hat" on y. The hat matrix H is defined in terms of the data matrix X:
+
+H = X(XTX)–1XT
+
+and determines the fitted or predicted values since
+
+ˆ
+y
+=Hy=Xb.
+The diagonal elements of H, hii, are called leverages and satisfy
+
+0≤h
+ii
+≤1
+n
+
+i=1
+h
+ii
+=p,
+where p is the number of coefficients, and n is the number of observations (rows of X) in the regression model. HatMatrix is an n-by-n matrix in the Diagnostics table.

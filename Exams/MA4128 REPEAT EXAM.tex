@@ -1,0 +1,196 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{fancyhdr}
+%\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{MA4128} \rhead{Mr. Kevin O'Brien}
+\chead{Advanced Data Modeling}
+%\input{tcilatex}
+
+\begin{document}
+
+\section*{Attempt All Questions}
+
+
+
+
+\subsection*{Question 1 : Cluster Analysis}
+
+\begin{itemize}
+\item[i.](2 Marks) What is the purpose of a cluster analysis?
+
+\item[ii.](2 Marks)  A discriminant analysis is similar to a cluster analysis; however, there is one fundamental difference.  Explain this difference.
+
+\item[iii.](2 Marks)  Compare and contrast any two linkage methods.
+
+\item[iv.](2 Marks)  What is the difference between a linkage method and a distance measure?
+
+\item[iv.](2 Marks)  Compare and contrast any two linkage methods.
+
+\item[v.](2 Marks)  How do we determine the appropriate number of clusters?  Give two different visualization methods that are used to display the outcome of a cluster analysis.
+%\item[vi.](2 Marks)  Compare and contrast agglomerative and divisive clustering.
+
+\item[vi.](2 Marks)  Compute the Euclidean distance between the following points.
+\[ A = \c(4,7,8,2)\]
+\[ B = \c(5,6,2,6)\]
+
+\item[vii.](2 Marks)  Give one reason why the squared Euclidean Distance may be used in preference to the Euclidean distance.
+
+%\item[7.] Vertical Icicle Plot
+\end{itemize}
+%-----------------------------------------------------------%
+\begin{itemize}
+\item[viii.](2 Marks)  In the context of hierarchical cluster analysis, distinguish between agglomerative clustering and divisive clustering.
+\item[ix.](2 Marks)  What is a vertical icicle plot used for? Give a brief description, supporting your answer with sketches.
+\item[x.](2 Marks)  Explain the difference between Ward's method and k means
+ clustering.
+\end{itemize}
+\newpage
+%\subsection*{Question 3 :k-means cluster analysis}
+%Use two clusters.
+%Illustrate your answer with sketches.
+\subsection*{Question 2a : Dimensionality Reduction}
+The following questions relate to Principal Component Analysis and Factor Analysis
+\begin{itemize}
+
+\item[i.](2 Marks)	What is the purpose of a principal component analysis?
+\item[ii.](3 Mark) Varimax, quartimax and equamax are the commonly used methods in a certain procedure.
+What is this procedure? What is the purpose of the procedure. Which method is the
+most commonly used?
+\item[iii.](5 Marks)	What is meant by the ``true" dimension of the data?  How does an analyst determine the appropriate number of principal components to retain, making reference to three different approaches.
+\item[iv.](2 Marks)	What problems occur if a principal component analysis is carried out on a data matrix where the columns contain measurements on very difference scales?  What can be done to overcome this problem?
+
+\item[v.](2 Marks) The Kaiser-Meyer-Olkin (KMO) statistic is used to measure a certain characteristic of the data. What is this characteristic? Explain how the KMO statistic should be interpreted.
+\item[vi.](1 Marks) Briefly describe the Bartlett Test for Sphericity, with reference to the null and alternative hypotheses, and how those statements relate to the purpose of the test.
+
+
+\end{itemize}
+
+
+%------------------------------------------------------------------ %
+
+\subsection*{Question 2b : Multicollinearity} % 5 Marks
+
+
+
+%http://www.education.umd.edu/EDMS/student/Exams/PrelimCompSpr09.pdf
+The following questions relate to multicollinearity in the context of multiple
+regression analysis.
+\begin{itemize}
+\item[i.](1 Mark) Define multicollinearity.
+\item[ii.](2 Marks) State two ways in which a multiple regression analysis could be affected by severe
+multicollinearity.
+\item[iii.](2 Marks) State two ways of formally diagnosing the severity of multicollinearity, making reference to how both should be used to make decisions about the data.
+%\item[iv.] Describe two statistical methods that can be applied to the data to lessen the effects of
+%severe multicollinearity.
+
+\end{itemize}
+
+
+% Briefly describe what a variable selection procedure is? [1 marks]
+% From the example used in part b, a number of candidate models were fitted to the data. The significance values of the F-tests are tabulated below. Describe the first phase of the backward selection procedure. Which variables will be selected? [6 Marks]
+
+%------------------------------------------------------------------ %
+\newpage
+\subsection*{Question 3a : Discriminant Analysis} % 12 Marks
+% Compare and contrast MANOVA
+
+\begin{itemize}
+\item[i.](2 Marks) What is the purpose of a discriminant analysis?
+\item[ii.](3 Marks) How does discriminant analysis differ from MANOVA?
+\end{itemize}
+
+\subsection*{Question 3b : Linear Models} % 8Marks
+The following questions relate to model selection and validation in the context of multiple
+regression analysis.
+\begin{itemize}
+\item[i.](1 Marks) What is meant by overtting?
+\item[ii.](3 Marks) Compare and contrast the following variable selection procedures (\textit{1 Mark for each}).
+\begin{itemize}
+    \item[a.] Forward Selection
+    \item[b.] Backward Elimination
+    \item[c.] Stepwise Regression
+    \end{itemize}
+\item[iii.](1 Mark) Briefly describe how the Akaike Information Criterion would be used in the context of model selection.
+\end{itemize}
+
+\subsection*{Question 3c : Appraisal of Analytical Systems}
+
+\begin{center}
+\begin{tabular}{|c|c|c|}
+\hline  & Predicted Negative & Predicted Positive \\ 
+\hline Observed Negative & True Negative & False Positive \\ 
+\hline Observed Positive & False Negative & True Positive \\ 
+\hline 
+\end{tabular} 
+\end{center}
+\begin{itemize}
+\item[i.](3 Marks) With reference to the table above, define each of the following appraisal metrics (\textit{1 Mark for each}).
+\begin{itemize}
+    \item[a.] Accuracy
+    \item[b.] Precision
+    \item[c.] Recall
+    \end{itemize}
+\item[ii.](2 Marks) What is the F-score? Explain its function and how it is computed.
+\item[iii.](2 Marks) Define Specificity and Sensitivity. You make reference to previous answers.
+\item[iv.](3 Marks) What is a ROC curve? Explain its function, how it is determined, and the means of interpreting the curve. Support your answer with a sketch.
+\end{itemize}
+%http://www.education.umd.edu/EDMS/student/Exams/PrelimCompSpr09.pdf
+
+\newpage
+
+\subsection*{Question 4a : Missing Data}%10 Marks
+%----GOOD SHAPE
+\begin{itemize}
+\item[i.](2 Marks) What is Missing Data? Discuss the implications of Missing Data in the context of a statistical analysis.
+\item[ii.](3 Marks) Compare and contrast the following types of missing data: Missing At Random, Missing Not At Random, Missing Completely at Random.
+\item[iii.](3 Marks) Discuss some of the traditional techniques for dealing with Missing Data, making reference to the limitations of each.
+%\item[iv.](2 Marks) Briefly describe the technique of Multiple Imputation.
+\end{itemize}
+
+%-----------------------------------------------------------%Q4b Ready
+\subsection*{Question 4b : Logistic Regression} %10 Marks
+\begin{itemize}
+\item[i.](3 Marks) Under what circumstances would you use Logistic Regression?
+\end{itemize}
+%http://www.public.iastate.edu/~stat415/stephenson/exam-sol.pdf
+%Given the equation
+%\bigskip
+
+%The usual assumptions placed on the error terms in ordinary least squares
+%regression are:
+%
+%\begin{itemize}
+%\item independently distributed
+%\item identically distributed (equal variance)
+%\item normally distributed
+%\end{itemize}
+
+\begin{itemize}
+\item[ii.](2 Marks) Suppose that, out of a sample of 100 men and 100 women, 75 men drank alcohol in the last week, while 30 women drank alcohol in the past week. Compute the odds ratio for women to men.
+\item[iii.](3 Marks)
+What is a logit? How can you transform a logit into a probability?
+\item[iv.](2 Marks)
+What is a dummy variable? Explain how it is used in Logistic Regression. Support your answer with an example.
+\item[v.](2 Marks) Describe how the Likelihood Ratio Test is used for variable selection in Logistic Regression.
+\end{itemize}
+
+\end{document} 

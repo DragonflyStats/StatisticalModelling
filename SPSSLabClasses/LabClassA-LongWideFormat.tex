@@ -1,0 +1,49 @@
+%%- http://www.theanalysisfactor.com/wide-and-long-data/
+
+The Wide and Long Data Format for Repeated Measures Data
+One issue in data analysis that feels like it should be obvious, but often isn’t, is setting up your data.
+
+The kinds of issues involved include:
+
+\begin{itemize}
+\item What is a variable?
+\item What is a unit of observation?
+\item Which data should go in each row of the data matrix?
+\end{itemize}
+Answering these practical questions is one of those skills that comes with experience, especially in complicated data sets.
+
+Even so, it’s extremely important. If the data isn’t set up right, the software won’t be able to run any of your analyses.
+
+And in many data situations, you will need to set up the data different ways for different parts of the analyses. This article will outline one of the issues in data set up: using the long vs. the wide data format.
+
+\subsection{The Wide Format}
+
+In the wide format, a subject’s repeated responses will be in a single row, and each response is in a separate column.
+
+For example, in this data set, each county was measured at four time points, once every 10 years starting in 1970. The outcome variable is Jobs, and indicates the number of jobs in each county. There are three predictor variables: Land Area, Natural Amenity (4=no and 3=Yes), and the proportion of the county population in that year that had graduated from college.
+
+Since land area and presence of a natural amenity doesn’t change from decade to decade, those predictors have only one variable per county. But both our outcome, Jobs, and one predictor, College, have different values in each year, so require a different variable (column) for each year.
+
+(click to see larger)
+\subsection{The Long Format}
+
+In the long format, each row is one time point per subject. So each subject (county) will have data in multiple rows. Any variables that don’t change across time will have the same value in all the rows.
+
+You can see the same five counties’ data below in the long format. Each county has four rows of data–one for each year.
+
+All the same information is there; we’re just set up the data differently.
+
+We no longer need four columns for either Jobs or College. Instead, all four values of Jobs for each county are stacked–they’re all in the Jobs column. The same is true for the four values of College.
+
+But to keep track of which observation occurred in which year, we need to add a variable, Year.
+
+You’ll notice that variables that didn’t change from year to year–Land Area and Natural Amenity–have the same value in each of the four rows for each county. It looks strange, but it’s okay to have it this way, and as long as you analyze the data using the correct procedures, it will take into account that these are redundant.
+
+image002
+\subsection{A Comparison of the Two Approaches}
+
+One reason for setting up the data in one format or the other is simply that different analyses require different set ups.
+
+For example, in all software that I know of, the wide format is required for MANOVA and repeated measures procedures.
+
+Many data manipulations are much, much easier as well when data are in the wide format.

@@ -1,0 +1,287 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{array} % and/or
+\usepackage{longtable} % and/or
+\usepackage{colortab} % or
+\usepackage{colortbl}
+\usepackage{arydshln}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{framed}
+\usepackage{amsthm, amsmath}
+%\usepackage[dvips]{graphicx}
+\usepackage{natbib}
+\bibliographystyle{chicago}
+\usepackage{vmargin}
+% left top textwidth textheight headheight
+% headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{22cm}{0.5cm}{0cm}{1cm}{1cm}
+\renewcommand{\baselinestretch}{1.5}
+\pagenumbering{arabic}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{ill}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{notation}{Notation}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\renewcommand{\thenotation}{}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\author{ }
+
+
+\begin{document}
+\author{Kevin O'Brien}
+\title{MA4128 Advanced Data Modelling}
+\maketitle
+
+
+{\Large
+Practical Examination Paper 
+}
+\begin{itemize}
+\item Date : \today     (10:00 am),
+\item The duration of this exam is 75 minutes.
+\item Answer all questions.
+\item \textbf{Write all your answers in this script}, and return it at the end of the examination.
+\item This exam is worth 30\%.
+\item The exam is an `open book' exam. Candidates may use web resources, with the exception of social media websites and sites where dynamic interaction is facilitated.
+\item There is a table of contents on the next page.
+\end{itemize}
+\newpage
+\tableofcontents
+\newpage
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+
+\section{MANOVA and Discriminant Analysis [6 Marks]}  %READY!!
+% MANOVA (4 Marks)
+% Tukey LSD test
+% Difference between two Regions
+% Skull Data - Three Abstracted Variables
+The data give growth measurements on Tammar wallabies (Macropus eugenii). Each line is a set
+of measurements on an animal at a particular time. Most lengths are in tenths of millimetres. The data set for this exercise is \textbf{\texttt{Wallaby3.sav}}
+
+\noindent The \textbf{Fixed Factor} (categorical variable) is:
+\begin{itemize}
+\item 	Loca : Location of animal (G,Ha,Hb,K,X)
+\end{itemize}
+\bigskip
+
+\noindent For this exercise, the \textbf{Dependent Variables} are \textbf{\textit{Ear, Arm, Leg, Weight }}:
+\begin{itemize}
+\item 	Head : Head length,
+\item 	Ear : Ear Length,
+\item 	Arm	: Arm length,
+\item   Weight : Weight in grams.
+\end{itemize}
+\bigskip
+\noindent \textbf{Questions:}
+\begin{itemize}
+\item[a.] Compute the significance value of Wilk's Lambda. Interpret this value [1 Mark]
+\item[b.] For each of the four dependent variables, state the significance value for the test of between-subject effects and interpret these value [1 Marks]
+\item[c.] Use Tukey's Post Hoc test to determine the difference of mean Arm measurement between locations \textbf{\textit{Ha}} and \textbf{\textit{Hb}} , also stating the confidence interval for this difference [1 Mark]
+\item[d.] Use the LSD Post Hoc test to determine the difference of mean Leg measurement between the locations \textbf{\textit{G}} and \textbf{\textit{X}}, and the corresponding significance value. Interpret this significance value [1 Mark] %7 Marks
+\item[e.] Sketch all four of the profile plots. Include in your sketches the values of the mean for each location. [2 Marks] % 8 Marks
+\end{itemize}
+\newpage
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\newpage
+\section{Linear Models [6 Marks] }  %READY!!
+% Linear Models (7 Marks)
+	% Forward Selection
+	% Backward Elimination
+	% Linear Equation (1 Marks)
+	% Multicollineaity (2 Marks)
+
+Data set : Water Usage of Production Plant \textit{\textbf{water.sav}}\\
+
+A production plant cost-control engineer is responsible for cost reduction. One of the costly items in his plant is the amount of water used by the production facilities each month. He decided to investigate water usage by collecting seventeen observations on his plant's water usage and other variables. The variables are listed below(including whether or not they are independent or dependent (IV and DV respectively).
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+Variable	&	Description \\
+Temperature (IV)	&	Average monthly temperate (F)\\
+Production (IV)	&	Amount of production (M pounds)\\
+Days	(IV) &	Number of plant operating days in the month\\
+Persons	(IV) &	Number of persons on the monthly plant payroll\\
+Water (DV)	&	Monthly water usage (gallons)\\
+  \hline
+\end{tabular}
+\end{center}
+\newpage
+
+\begin{itemize}
+%\item[a.] What is the mean and standard deviation of observed values for the Production variables? [1 Mark]
+\item[a.] Compute the Pearson correlation coefficient for the variables Temperature and Production. [1 Mark]
+\item[b.] Using all independent variables, write down the regression equation [1 Mark]
+\item[c.] Compute the adjusted R-squared value for this model [0.5 Marks]
+\item[d.] Write down the confidence intervals for each of the regression coefficients. State whether the coefficient is `significant' or `non-significant'. [1 Mark]
+%\item[e.] Determine the Variance Inflation Factor and Tolerance for each Independent Variable [0.5 Marks] % 5 Marks
+\item[e.] Using Forward Selection, write down in order the Independent Variables that get selected for the final regression model [0.5 Mark]
+%\item[f.] Write down the adjusted R-squared for all intermediate and final regression models [1 Mark] % 7 Marks
+\item[f.] Using all variables selected by forward selection, write down the regression equation [1 Mark] % 8 Marks
+\item[g.] Using Backward Selection, write down in order the Independent Variables that get selected for the final regression model [1 Mark] % 9 Marks
+\end{itemize}
+%Multicollinearity \\
+%Variance inflation factor\\
+%Tolerance\\
+%\begin{itemize}
+%\item Multiple Linear Regression
+%\item Variable Selection Procedures
+%\item Stepwise Regression
+%\end{itemize}
+
+%%--------------------------%
+%\texttt{sampleC.sav}
+%The Data Set is \textbf{\texttt{MLR1.sav}}.
+%The Dependent Variable is \textbf{Response}
+%The Independent Variables are
+%\begin{itemize}
+%\item[1]
+%\item[2]
+%\item[3]
+%\end{itemize}
+%
+%\textbf{Question 1}: Compute the R squared for the first model (one independent variable) and the second model (two independent variables).
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\newpage
+\section{Dimensionality Reduction Techniques [6 Marks]}  %Exam 1 READY!!
+% PCA (5 Marks)
+	% KMO Measure of Sampling Adequacy (1 Mark)
+	% Bartlett Test (1 Mark) ?
+	% Scree Plot (1 Mark)
+	% Eigen Value Threshold (1 Mark)
+           % Varimax Rotation
+           % Interpretation
+The data set lists estimates of the percentage of body fat determined by underwater
+weighing and various body circumference measurements for 252 men.
+For this exercise, use the data set \textbf{\textit{Body.sav}}. Use only the numeric variables in your solution.
+Performing a Principal Component Analysis procedure, answer the following questions.
+\begin{verbatim}
+Dens	 Density determined from underwater weighing
+Fat	 Percent body fat from Siri's (1956) equation
+Age	 Age (years)
+Wgt	 Weight (lbs)
+Hgt	 Height (inches)
+Neck	 Neck circumference (cm)
+Chest	 Chest circumference (cm)
+Abdo	 Abdomen 2 circumference (cm)
+Hip	 Hip circumference (cm)
+Thi	 Thigh circumference (cm)
+Knee	 Knee circumference (cm)
+Anl	 Ankle circumference (cm)
+Bic	 Biceps (extended) circumference (cm)
+Farm	 Forearm circumference (cm)
+Wrist	 Wrist circumference (cm)
+
+\end{verbatim}
+
+
+
+
+
+
+\begin{itemize}
+\item[a.] Implement an un-rotated solution and write down all eigenvalues greater than 1. Perform varimax rotation and write down all eigenvalues greater than 1. [2 Mark]
+\item[b.] State the Kaplan Meyer Olkin (KMO) Measure of Sampling Adequacy. Interpret this value. [1 Mark]
+\item[c.] Draw the Scree-plot. Indicate the relevant locations of the plot with labelled arrows [0.5 Marks]
+\item[d.] For both the unrotated and rotated solutions, what percentage of variance explained for the first three principal components? [0.5 Marks] % 4.5 Marks
+\item[e.] For the unrotated solution, which observed variables are most associated with principal component 4.  Explain your answer [1 Mark]
+\item[f.] For the rotated solution, which observed variables are most associated with Principal component 3.  Explain your answer [1 Mark]
+%\item[g.] (Possible Question for other data sets) Implement a solution using \textbf{\textit{Principal Axis Factoring}}. Write down the eigenvalues, restricting to values greater than one. [1 Mark] %7 Marks
+%\item[h.] (Possible Question for other data sets) Interpret the output for the Bartlett Test for sphericity
+\end{itemize}
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\newpage
+\section{Logistic Regression [6 Marks]}   %READY!!
+% Capital Punishment
+\subsection{Part 1}
+
+For this exercise : The Data Set is \textbf{\texttt{PostNatal.sav}}.
+These are data based on a 5\% sample of all births occurring in Philadelphia in 1990.
+
+\begin{itemize}
+\item Minority = Mother is from an ethnic minority (1=yes, 0=no),
+\item educ = Mother's years of education (0,17),
+\item smoke = Whether mother smoked during pregnancy (1=yes, 0=no),
+\item gestate = Gestational age in weeks, and
+\item grams = Birth weight in grams.
+\item Care = The baby will need Post Natal Care.
+\end{itemize}
+
+\noindent For this exercise \textbf{\textit{Care}} is the dependent variable. \\ The independent variables are \textbf{\texttt{Minor,educ,smoke,gestate}}. \\ Do not use \texttt{\textbf{grams}}.
+
+\newpage
+\begin{itemize}
+\item[a.] Write down the classification table. What is the overall percentage of correct predictions? [1 Mark]
+\item[b.] What is the Odds ratio for the variable \textbf{\textit{smoke}} ? [1 Mark]
+\item[c.] Using forward selection based on the likelihood ratio test, state the independent variable(s) used in the model (and the order in which they are selected, if appropriate). [1 Mark]
+\end{itemize}
+\newpage
+\subsection{Part 2}
+In this exercise use the data set \textbf{\texttt{StepLog.sav}}\\
+Disregard the ID variables. Use the variables \textbf{\texttt{STA}} as the depedent variable, and select all other variables for construction of logistic regression model.
+\begin{itemize}
+\item[d.] Using forward selection based on the likelihood ratio test, state the independent variables used in the model, and the order in which they are selected. [1 Mark]
+\item[e.] For the intermediate and final models, write down the Cox and Snell, and the Nagelkerke R square values. [1 Mark] % 6 Marks
+\item[f.] Using backward selection based on the likelihood ratio test, state the first five independent variables to be removed from the model, and the order in which they are removed [1 Mark]
+\end{itemize}
+%The data set for this question is \texttt{sampleD.sav}
+%
+%Dummy variables
+%Odds Ratio ( exp(B) )
+%confidence intervals for odds ratio
+%optimal collection of predictors
+
+\newpage
+%-----------------------------------------------------------%
+\section{Cluster analysis [6 Marks]} % Exam Ready
+\subsection{Hierarchical Cluster analysis}
+This exercise concerns acid rain (use \textbf{\texttt{AcidRain.sav}}.)
+The columns in the data set represent the precipitation weighted mean concentrations of ions for the year 1986, for 47 sites in the United Kingdom. The data set is structured as follows:
+\begin{itemize}
+\item Site : Site number
+\item Rain : Rain (measured in mm)
+\item H	: H+
+\item SO4 : SO4-2
+\item NO3 : NO3-
+\item NH4 : NH4+
+\item x	: x-coordinate (measured in cm)
+\item y	: y-coordinate (cm)
+\end{itemize}
+Perform a hierarchical clustering solution, based on the Euclidean Distance with Ward's Linkage, using the variables \textbf{\textit{Rain, H, SO4 NO3,  NH4}} only. Standardize all values using `Z-standardization'. Label your cases using the \textbf{\textit{Site}} variable.
+\newpage
+\begin{itemize}
+\item[a.] What is the euclidean distance between sites 4 and 5, and sites 1 and 6, from the proximity matrix.[1 Mark]
+\item[b.] Which two sites are the first pairing to be linked? Simply states the site numbers. [0.5 Mark]
+\item[c.] Determine the cluster membership of site 12 based on a 5 cluster solution. [0.5 Marks]
+\item[d.] Sketch the dendrogram (you may aggregate groups of sites to simplify the sketch i.e. treat several sites as one observation) [2 Marks]
+\end{itemize}
+\newpage
+\subsection{K means Clustering}
+Thsi exercise concerns geographic and economic characteristics of asian countries. For this exercise, use \textbf{asia2.sav}. Use the following variables only for this exercise: \textbf{\texttt{LogArea
+LogPop, LogGDP}}. Label your cases by country.
+\begin{itemize}
+\item[e.] For a 4 cluster solution, write down the initial cluster centres for the \textbf{\texttt{LogGDP}} variable.[1 Mark]
+\item[f.] For a 4 cluster solution, write down the numbers assigned to each cluster. [0.5 Mark]
+\item[g.] To which cluster does Australia belong, based on a 5 cluster solution [0.5 Mark]
+\end{itemize}
+
+\end{document} 

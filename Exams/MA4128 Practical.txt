@@ -1,0 +1,88 @@
+% Joanne O'Hagan
+% The Exchange
+% June 13th to 20th
+% Pub Standards
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+% MANOVA (4 Marks)
+`	% Tukey LSD test
+	% Difference between two Regions
+% PCA (5 Marks)
+	% KMO Measure of Sampling Adequacy (1 Mark)
+	% Bartlett Test (1 Mark) ?
+	% Scree Plot (1 Mark)
+	% Eigen Value Threshold (1 Mark)
+           % Varimax Rotation
+           % Interpretation 
+% Logistic (4 Marks) 
+	% 
+           % Logit ( 1 Mark)
+% Linear Models (7 Marks)
+	% Forward Selection
+	% Backward Elimination
+	% Linear Equation (1 Marks)
+	% Multicollineaity (2 Marks)
+% Discriminant Analysis (3 Marks)
+% K means Cluster Analysis (4 Marks)
+	% Predicted Membership for case no 26
+	% 
+% Hierarchical Cluster Analysis (4 Marks) 
+	%
+	%
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+
+\subsection{Multiple ANOVA (4 Marks)}
+% Skull Data - Three Abstracted Variables
+\begin{itemize}
+\item The categorical variable is \textbf{Region}
+\item The dependent variables are
+\begin{itemize}
+\item[1]
+\item[2]
+\item[3]
+\end{itemize}
+\end{itemize}
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\subsection{Linear Models(5 Marks) }
+% Capital Punishment
+The Data Set is \textbf{\texttt{MLR1.sav}}.
+The Dependent Variable is \textbf{Response}
+The Independent Variables are
+\begin{itemize}
+\item[1]
+\item[2]
+\item[3]
+\end{itemize}
+Compute the R squared for the first model (one independent variable) and the second model (two indepedent variables).
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\subsection{Logistic Models}
+The Data Set is \textbf{\texttt{LOG1.sav}}.
+\begin{itemize}
+\item[1]
+\item[2]
+\item[3]
+\end{itemize}
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\subsection{Discriminant Analysis (3 Marks)}
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+
+
+
+
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+% https://onlinecourses.science.psu.edu/stat505/node/78
+% http://rer.sagepub.com/content/45/4/543.full.pdf
+%http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Missing_Data/Missing.html
+
+% http://www.uvm.edu/~dhowell/StatPages/More_Stuff/Missing_Data/Missing.html
+% http://www.stat.columbia.edu/~gelman/arm/missing.pdf

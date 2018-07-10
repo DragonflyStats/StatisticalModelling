@@ -1,0 +1,28 @@
+What is a link function?
+Learn more about Minitab 17 
+Generalized linear models include a link function that relates the mean of the response to the linear predictors in the model. The general form of the link function follows:
+
+g(μi) = Xi'β
+
+Minitab provides several link functions which allow you to fit a wide variety of response models. You want to choose a link function that fits your data well. You can use goodness-of-fit statistics to compare models that use different link functions. Certain link functions may be used for historical reasons or because they have special meaning in a discipline. For example, an advantage of the logit link function is that it provides an estimate of the odds ratios. Another example is that the probit link function assumes that there is an underlying variable that follows a normal distribution that is classified into categories.
+
+Minitab offers different link functions for different types of response variables.
+
+Models	Name	Link Function, g(μi)
+Binomial, Ordinal, Nominal	logit	ln(μi/(1−μi))
+Binomial, Ordinal	normit (probit)	Φ−1(μi)
+Binomial, Ordinal	gompit (complementary log-log)	ln(−ln(1−μi))
+Poisson	natural log	ln(μi)
+Poisson	square root	√μi
+Poisson	identity	μi
+g(μi)
+link function
+μi
+the mean response of the ith row
+Xi
+the vector of predictor variables for the ith row
+β
+The vector of coefficients associated with the predictors
+Φ−1(·)
+the inverse cumulative distribution function of the normal distribution
+Minitab.comLicense PortalStoreBlog

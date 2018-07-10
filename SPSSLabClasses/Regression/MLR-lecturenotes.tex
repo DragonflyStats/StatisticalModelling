@@ -1,0 +1,423 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+\usepackage{listings}
+\usepackage{framed}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{chngpage}
+%\usepackage{bigints}
+
+\voffset=-1.5cm
+\oddsidemargin=1.5cm
+\textwidth = 490pt
+\setcounter{MaxMatrixCols}{10}
+
+\begin{document}
+\section{Multiple Linear Regression} 
+\large
+\begin{itemize}
+\item Previously we have looked at Simple Linear Regression -  the case of one dependent variable Y explained by \textbf{one} independent variable X. 
+
+\item Multiple regression analysis is an extension of simple regression analysis, as described previously, to applications involving the use of two or more independent variables (predictors) to estimate the value of the dependent variable (response variable).
+
+\item In the case of two independent variables, denoted by X1 and X2, the linear algebraic model is
+\[ Y= \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \epsilon \]
+
+\item The definitions of the above terms are equivalent to the definitions in previous classes for simple regression analysis, except that more than one independent variable is involved in the present case.
+\item 
+Based on sample data, the linear regression equation for the case of two independent variables is
+\[ \hat{Y} = b_0 + b_1 X_1 + b_2 X_2 \]
+\item We refer to $b_0, b_1 , b_2 \ldots$ as \textbf{\textit{regression coefficients}}. These coefficients are estimate for parameter values $\beta_0 , \beta_1 , \beta_2 \ldots$. \\ \textit{No estimation carried out for the random sampling error term $\epsilon$}.
+
+\item The multiple regression equation identifies the best-fitting line based on the method of \textbf{\textit{Ordinary Least Squares}}. In the case of multiple regression analysis, the best-fitting line is a line through n-dimensional space (3-dimensional in the case of two independent variables).
+
+\newpage
+
+\item \textbf{Important:}  we will denote the number of predictor variables (a.k.a independent variables) as $p$. Some resources uses $k$.
+(Be Familiar with Both).
+
+\item The calculations required for determining the values of the parameter estimates in a multiple regression equation and the associated standard error values are quite complex and generally involve matrix algebra. However, computer software, such as \texttt{R}, is widely available for carrying out such calculations.
+\end{itemize}
+\newpage
+
+\subsection{Statistical Assumptions}
+The assumptions of multiple linear regression analysis are similar to those of the simple case involving only one independent variable. For point estimation, the principal assumptions are that
+
+
+\begin{itemize}
+\item[(1)] the dependent variable is a continuous random variable ,
+\item[(2)] the relationship between the several independent variables and the one dependent variable is \textit{linear} (as opposed to quadratic or cubic - this is something we will explore more later).
+\end{itemize}
+
+\noindent Additional assumptions for statistical inference (estimation or hypothesis testing) are that
+\begin{itemize}
+\item[(3)] the variances of the conditional distributions of the dependent variable, given various combinations of values of the independent variables, are all equal (\textit{homoscedascity - something we will look at in a forthcoming lecture}),
+\item[(4)] the conditional distributions of the dependent variable
+are normally distributed (\textit{i.e. Residuals are nomally distributed}),
+\item[(5)] the observed values of the dependent variable are independent of each other. (\textit{Violation of this assumption is called autocorrelation.} - \textit{Again, we will return to this later.})
+\end{itemize}
+%================================================================== %
+% \subsection{Regression Coefficients}
+%Partial regression coefficient (or net regression coefficient). Each of the bi regression coefficients is in fact a partial regression coefficient. A partial regression coefficient is the conditional coefficient given that one or more other independent variables (and their coefficients) are also included in the regression equation.
+%
+%Conceptually, a partial regression coefficient represents the slope of the regression line between the independent variable of interest and the dependent variable given that the other independent variables are included in the model and are thereby statistically “held constant.”
+%
+%(Remark : We will refer to these values as the regression coefficients from now on, rather than as “slopes”. We will retain the phrase "intercept estimate” for the first regression coefficient as that phrasing is used in the R code output.)
+
+%=================================================================== %
+\newpage
+\subsection{Implementing a MLR model using R}
+	Implementing a MLR model in \texttt{R} is quite simple and very similar to fitting an SLR model.
+	All one has to do is to specify the additional predictor variables, using the following structure:
+	\begin{framed}
+	\begin{verbatim}
+	myModel = lm(Y ~ X1 + X2 + .....)
+	\end{verbatim}
+	\end{framed}
+	
+\subsection{Example: Cheese Tasting}
+\begin{itemize}
+\item As an example, we shall use data on the taste of cheese, suggested in \textit{Introduction to the Practice of Statistics by D.S. Moore and G.P. McCabe, (Freeman, 1998)}.
+	
+\item The data give scores for the taste of a cheese (\texttt{Taste}) from 30 different formulations which caused variation in the concentration in the cheese of \textit{acetic acid }(\texttt{Acetic}), \textit{hydrogen sulphide} (\texttt{H2S}) and \textit{lactic acid} (\texttt{Lactic}).
+\item One would wish to model the dependence of the taste score on the concentrations of those three constituents, using the thirty observations.
+\end{itemize}
+
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\linewidth]{images/MLR-CheeseRegressionModel}
+
+\end{figure}
+
+
+
+The fitted model is therefore (using 2 decimal places)
+\begin{framed}
+	\[  TasteEstimate = -28.87 + 0.33Acetic + 3.91H2S + 19.67Lactic \]
+\end{framed}
+Remark: It is acceptable ( in fact preferred ) to write as follows:
+\begin{framed}
+\[  \hat{Y} = -28.87 + 0.33\;X1 + 3.91\;X2 + 19.67\;X3 \]
+\end{framed}
+while stating that Y refers the dependent variable taste and $X_1$,$X_2$ and $X_3$ refer to the three independent variables. (Remember to state which is which).
+
+%=============================================================== %
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1\linewidth]{images/MLR-CheeseRegressionSummary}
+\end{figure}
+%=============================================================== %
+\newpage
+\section{The Coefficient of Determination}
+% \section*{The Coefficient of Determination}
+The coefficient of determination, denoted $R^2$ and and pronounced \textbf{\textit{R squared}}, is a number that indicates how well data fit a statistical model, sometimes simply a line or a curve. It is a statistic used in the context of statistical models whose main purpose is either the prediction of future outcomes or the testing of hypotheses, on the basis of other related information. It provides a measure of how well observed outcomes are replicated by the model, as the proportion of total variation of outcomes explained by the model.
+
+\subsection*{Formula}
+$R^2$ is the proportion of variance in Y explained by a linear function of X.
+\[R^2 = \frac{\sum_i(\hat{Y}_i-\bar{Y})^2}{\sum_i(Y_i-\bar{Y})^2}\]
+
+\bigskip
+\begin{itemize}
+	\item In the case of Simple Linear Regression only, the Coefficient of Determination has the same value as the square of the Pearson Correlation Coefficient. 
+	\item If the Pearson Correlation Coefficent is 0.8, then the Coefficient of Determination is $0.8^2 =  0.64$
+	\item However this is not the case in Multiple Linear Regression. Hence we are not putting too much emphasis on the relationship between the two measures. 
+\end{itemize}
+
+
+\noindent \textbf{Important:} The Coefficient of Determination equation can be expressed in term of \textbf{\textit{Sums of Squares Identities}} that  also appear in the regression ANOVA table.
+
+
+\[R^2 = \frac{SS_\textrm{reg}}{SS_\textrm{tot}} =\left( 1- \frac{SS_\textrm{err}}{SS_\textrm{tot}}\right). \]
+
+\newpage
+\begin{itemize}
+	\item We will use the names ``The coefficient of determination", ``$R^2$" and ``R squared" interchangably.
+\item \textbf{Important} - The coefficient of determination, $R^2$, is a measure of the proportion of variability explained by, or due to the \textbf{linear relationship} in a sample of data. 
+
+\item \textbf{Important} - $R^2$ is a number between zero and one .
+\[ 0 \leq R^2 \leq 1 \] A value close to zero suggests a poor model. A value close to 1 indicates an excellent model
+
+
+\item \textbf{Important} - A very high value of $R^2$ can arise even though the relationship between the dependent and independent variables is \textbf{non-linear}. The fit of a model should never simply be judged from the $R^2$ value. It is advisable to construct a scatterplot to visually assess the relationship.
+
+\item In the case of simple linear regression only (i.e. bivariate data) the coefficient of determination is equivalent to the square of the correlation coefficient of X and Y. 
+
+%\item \textbf{Important} - In the case of MLR, the coefficient of determination is derived from \textit{Sums of Squares Identities} as follows
+%\[ R^2 =  \frac{SSreg}{SStot} \].
+\item The $R^2$ value is presented as part of the output of the \texttt{summary()} command for a fitted model. In the R code output, it is referred to as ``\texttt{multiple R square}". \textit{There is also adjusted R square, which is not going to be a major part of the MA4605 syllabus.}
+\item \textbf{Important }: If given the variance of the sample the dependent variable, while knowing the sample size $n$ - you can quickly compute $SS_{tot}$. Furthermore if you are given a value for $R^2$, you can compute $SS_{reg}$. This will enable you to construct the Regression ANOVA table.
+\end{itemize}
+
+
+\newpage
+\subsection*{Code Output}
+\begin{itemize}
+	\item The coefficient of determination is listed as "\texttt{Multiple R-squared}" in a \texttt{summary} output. 
+	\item Also given on this output is the F Test statistic for the ANOVA table and the corresponding p-value.
+\end{itemize}
+{
+	\large
+\begin{framed}
+	\begin{verbatim}
+	> summary(lm(Abs2 ~Conc))
+	
+	...........
+	
+	Residual standard error: 0.007026 on 5 degrees of freedom
+	Multiple R-squared:  0.9994,    Adjusted R-squared:  0.9993 
+	F-statistic:  8980 on 1 and 5 DF,  p-value: 2.481e-09
+	............
+	\end{verbatim}
+\end{framed}
+}
+
+
+
+\newpage
+\section{ANOVA for Regression}
+An ANOVA-F test can be constructed to test overall (global)
+fit of the linear regression model.
+
+%http://www.math.mcgill.ca/~dstephens/OldCourses/204-2007/Lectures/Lecture20.pdf
+\begin{itemize}
+\item In the ANOVA procedure, a hypothesis test (known as an F test) is used to test for the significance of the \textbf{overall model}. 
+\item That is, it is used to test the null hypothesis that there is no relationship in the
+population between the (several) independent variables taken as a group and the one dependent variable.
+\item Specifically, the null hypothesis states that all of the coefficients in the regression equation for the population are equal to zero. 
+\item Therefore, for the case of several independent variables, or predictors,
+the null hypothesis with respect to the F test is
+\end{itemize}
+
+
+\begin{description}
+	\item[H0:] $E[Y] = \beta_0 $
+	\item[H1:] $E[Y] = \beta_0 + \beta_1\;X_1 + \beta_2\;X_2 + \ldots$
+\end{description}
+
+\begin{itemize}
+\item Under the Null Hypothesis $\beta_1 = \beta_2 = \ldots = 0$. 
+\item The import is that the predictor variables \textbf{collectively} are not useful in predicting values for Y
+(i.e. computing an expected value for Y- denoted $E[Y]$). 
+\item The Alternative Hypothesis expresses the case the using the predictor variables help the predictive capability of the model.
+\end{itemize}
+
+\newpage
+
+\subsection*{The ANOVA Table for Linear Regression }
+\begin{itemize}
+\item	This table is for both the simple and multiple linear regression cases. For simple linear regression, the number of predictor variables is $1$.
+\end{itemize}
+\begin{itemize}
+	\item $SS_\textrm{reg}$ is the regression sum of squares, also called the explained sum of squares
+	\item $SS_\textrm{tot}$ is the total sum of squares (proportional to the variance of the data)
+	\item $SS_\textrm{reg}=\sum_i (\hat{Y}_i-\bar{Y})^2$
+	\item $SS_\textrm{tot}=\sum_i (Y_i-\bar{Y})^2$
+	\item $n$ is the number of obversations.
+	\item $p$ (or sometimes $k$) is the number of predictor variables.
+\end{itemize}
+\bigskip
+
+{
+	\large
+\begin{tabular}{|c|c|c|c|c|}
+	\hline \rule[-2ex]{0pt}{5.5ex} Source & DF & Sum of Squares  & Mean Square  & F \\ 
+	\hline \rule[-2ex]{0pt}{5.5ex} Regression & p & $SS_\textrm{reg}$  & $MS_\textrm{reg}$= $SS_\textrm{reg}$/p & F = $MS_\textrm{reg}$/$MS_\textrm{err}$  \\ 
+	\hline \rule[-2ex]{0pt}{5.5ex} Error & n-p-1 & $SS_\textrm{err}$ & $MS_\textrm{err}$= $SS_\textrm{err}$/(n-p-1) &  \\ 
+	\hline \rule[-2ex]{0pt}{5.5ex} Total & n-1 & $SS_\textrm{tot}$  &  &  \\ 
+	\hline 
+\end{tabular} 
+}
+\noindent \textbf{Remark }
+\begin{itemize}
+	\item $SS_\textrm{tot}$ is related to the sample variance of the response variable as follows:
+	\[ \textrm{var}(Y) =  \frac{SS_\textrm{tot} }{n-1}\]
+	\item In an exam situation, you can expect to be given the sample standard deviation of the response variable
+	\item For example, in the Cheese Tast example, the standard deviation of the response variable \textbf{Taste} is given below. You can determine the sample variance from it.
+\end{itemize}
+
+\begin{framed}
+\begin{verbatim}
+> sd(Taste)
+[1] 16.25538
+> var(Taste)
+[1] 264.2375
+\end{verbatim}
+\end{framed}
+\begin{itemize}
+%\item When the ordinary least-squares criterion is used to determine the best straight line through a
+%single set of data points there is one unique solution, so the calculations involved are relatively
+%straightforward.
+\item Remark: When there is only one independent variable in the regression model, then the ANOVA procedure is
+equivalent to a two-tail t-test directed at the slope ($H0: \beta_1= 0$). Therefore, use of the ANOVA
+procedure is often not required in simple regression analysis in practice, as it doesnt not provide additional information.
+\end{itemize}
+\newpage
+\subsection{Going into More Detail: Separating Variances}
+
+\begin{itemize}
+\item The ANOVA method helps us to choose the best way of plotting a curve from amongst the many that
+are available. Analysis of variance (ANOVA) provides such a method in all cases where we maintain
+the assumption that the errors occur only in the y-direction.
+\item  In such situations there are two sources
+of y-direction variation in a regression model fit.
+\begin{enumerate}
+\item The first is the \textbf{variation due to regression}, i.e. due to the relationship between the variables.
+\item The second is the random experimental error in the y-values, which is called the \textbf{variation about regression}.
+\end{enumerate}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{images/RegressionANOVA-scatterplot}
+\end{figure}
+\item ANOVA is a powerful method for separating two sources of variation in such situations
+\newpage
+
+
+\item \textbf{Important:} If there is no regression effect in the population, then the fitted value (sloped) line differs from the
+mean (horizontal) line purely by chance. \\ It follows that the variance estimate based on the
+differences - called mean square regression (MSR), would be different only by chance from the
+variance estimate based on the residuals called mean square error (MSE).
+\item On the other hand, if there is a regression effect, then the mean square regression is inflated in
+value as compared with the mean square error. \\  the regression line significantly differs from the
+mean (horizontal) line.
+\item The following table presents the standard format for the analysis of variance table that is used to
+test for the significance of an overall regression effect. 
+\item The degrees of freedom $k$ (also denoted $p$) associated with
+MSR in the table is the number of independent variables in the multiple regression equation.
+\item As indicated in the table, the test statistic is the ratio of the two values. The p-value for the test
+statistic is provided in code output.
+\end{itemize}
+\newpage
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.1\linewidth]{images/RegressionANOVA-table}
+
+\end{figure}
+
+The ANOVA table can be obtained for the regression model with the \texttt{anova()
+	} command, when the
+model is specified. Using a data set from last week’s lab:
+\begin{figure}[h!]
+\centering
+\includegraphics[width=1.2\linewidth]{images/RegressionANOVA-Rcode}
+
+\end{figure}
+
+\newpage
+\section{Sample Question ( Q6d Autumn 2008/09 Dr. N Coffey)}
+
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\linewidth]{images/RegressionANOVA-Question-minitab}
+
+\end{figure}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.9\linewidth]{images/RegressionANOVA-minitab}
+
+\end{figure}
+
+
+\newpage
+
+
+\begin{itemize}
+\item Sample size n = 22
+\item For MA4605 2015, you would be told that the sample standard deviation for the response variable Y. For this question : $S_Y = 17.1033$
+\item Number of predictor variables $p  = 3$
+\item $df_1 = p = 3$
+\item $df_2 = n-p-1 = 18$
+\item In general, you will be give the p-values for various possible Test Statistics. All you have to do is select the correct one, and interpret it as not-significant/significant etc. 
+\item Compute the correct Test Statistic, and determine the corresponding $p-$value from a table provided. For this exercise the p-value is $0.000124$. 
+\item In some cases, such as the examples to follow, The $p-$value will be given in the code. Youl will just be asked to verify the corresponding Test Statistic.
+
+\item Express your conclusions on whether or not model is useful from a predictive point of view (i.e regression coefficients are jointly significant).
+\item From the previous example - can you compute the value for ``Multiple R Squared"? (0.67 approx)
+\item From the previous example - is it possible to compute Pearson Correlation coefficients \textbf{directly}.
+\end{itemize}
+\newpage
+%============================================================================%
+\section{The Cheese Taste Data}
+Summary Outputs from this Week's lab (Lab D) exercises. (Note: 30 observations)
+\begin{framed}
+\begin{verbatim}
+> summary(Fit1)
+....
+Call:
+lm(formula = Taste ~ Acetic + H2S
+....
+Coefficients:
+Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -26.940     21.194  -1.271 0.214536    
+Acetic         3.801      4.505   0.844 0.406245    
+H2S            5.146      1.209   4.255 0.000225 ***
+...
+Residual standard error: 10.89 on 27 degrees of freedom
+Multiple R-squared:  0.5822,    Adjusted R-squared:  0.5512 
+F-statistic: 18.81 on 2 and 27 DF,  p-value: 7.645e-06
+\end{verbatim}
+\end{framed}
+\begin{framed}
+\begin{verbatim}
+> summary(Fit2)
+....
+Call:
+lm(formula = Taste ~ Acetic + Lactic)
+....
+Coefficients:
+Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -51.366     21.174  -2.426  0.02223 * 
+Acetic         5.571      4.761   1.170  0.25217   
+Lactic        31.392      8.956   3.505  0.00161 **
+....
+Residual standard error: 11.67 on 27 degrees of freedom
+Multiple R-squared:  0.5203,    Adjusted R-squared:  0.4847 
+F-statistic: 14.64 on 2 and 27 DF,  p-value: 4.936e-05
+\end{verbatim}
+\end{framed}
+\begin{framed}
+\begin{verbatim}
+> summary(Fit3)
+Call:
+lm(formula = Taste ~ H2S + Lactic)
+....
+Coefficients:
+Estimate Std. Error t value Pr(>|t|)   
+(Intercept)  -27.592      8.982  -3.072  0.00481 **
+H2S            3.946      1.136   3.475  0.00174 **
+Lactic        19.887      7.959   2.499  0.01885 * 
+---
+....
+Residual standard error: 9.942 on 27 degrees of freedom
+Multiple R-squared:  0.6517,    Adjusted R-squared:  0.6259 
+F-statistic: 25.26 on 2 and 27 DF,  p-value: 6.551e-07
+\end{verbatim}
+\end{framed}
+\begin{framed}
+	\begin{verbatim}
+> summary(FitAll)
+
+Call:
+lm(formula = Taste ~ Acetic + H2S + Lactic)
+....
+Coefficients:
+Estimate Std. Error t value Pr(>|t|)   
+(Intercept) -28.8768    19.7354  -1.463  0.15540   
+Acetic        0.3277     4.4598   0.073  0.94198   
+H2S           3.9118     1.2484   3.133  0.00425 **
+Lactic       19.6705     8.6291   2.280  0.03108 * 
+....
+Residual standard error: 10.13 on 26 degrees of freedom
+Multiple R-squared:  0.6518,    Adjusted R-squared:  0.6116 
+F-statistic: 16.22 on 3 and 26 DF,  p-value: 3.81e-06
+	\end{verbatim}
+\end{framed}
+\end{document}

@@ -1,0 +1,82 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{enumerate}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode"CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 201113:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{MA4505} \rhead{Kevin O'Brien} \chead{Homework 7  } %\input{tcilatex}
+
+\begin{document}
+%================================================================%
+\subsection*{Homework 7 - Experimental Design}
+
+	\begin{framed}
+		\begin{itemize}
+			\item Deadline : Midnight Friday Week 11
+			\item Submit by Email
+			\item Subject Line : "\textbf{MA405 Homework 7 Submission}" \\ \textit{(Dont not write anything else)}
+		\end{itemize}
+	\end{framed}
+%================================================================%
+\subsubsection*{Task1 One Way ANOVA (4 Marks) }
+\begin{itemize}
+	\item You should each have a data set in the "\texttt{GreenhouseYields}" Folder.
+	\item Is there a significant difference in yield between the treatment groups?
+	\item Include Post-Hoc Tests in your discussion (just pick one and use that - i.e. Tukey's HSD). 
+	\item State which groups are similar. Report and comment on the the Confidence Intervals.
+	\begin{framed}
+	\begin{verbatim}
+	Analyse > Compare Means > One Way ANOVA
+	\end{verbatim}
+	\end{framed}
+\end{itemize}
+\bigskip
+%=======================================================================%
+\subsubsection*{Task 2 Two Way ANOVA (3 Marks) }
+\begin{enumerate}[(i)]
+	\item You should each have a data set in the "\texttt{FuelEfficiency}" Folder.
+	\item The Fixed Factors are: \texttt{CarType} and \texttt{FuelType}.
+%	\item Your Data Set should be similar to the data sets presented in Unit 8 (page 180).
+\item Your output should comprise two tables: \textbf{\textit{Between-Subjects Factors}} and \textbf{\textit{Tests of Between-Subjects Effects}}.
+\end{enumerate}
+	\begin{framed}
+		\begin{verbatim}
+		Analyse > General Linear Model > Univariate
+		\end{verbatim}
+	\end{framed}
+%=======================================================================%
+\newpage
+\subsubsection*{Task 3 Two Way ANOVA with Replicates (3 Marks)}
+\begin{enumerate}[(i)]
+\item You should each have a data set in the "\texttt{Butter}" Folder.
+	\item The Fixed Factors are: \texttt{Processes} and \texttt{Factories}.
+\item Is there any significant difference in ``fat content" between the Processes
+\item Is there any significant difference in ``fat content" between the Factories
+\item Include Post-Hoc Tests in your discussion. State which groups are similar.
+	\item State which groups are similar. Report and comment on the the Confidence Intervals
+\end{enumerate}
+
+
+	\begin{framed}
+		\begin{verbatim}
+		Analyse > General Linear Model > Univariate
+		\end{verbatim}
+	\end{framed}
+\end{document}
+

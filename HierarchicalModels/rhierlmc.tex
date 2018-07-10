@@ -1,0 +1,94 @@
+% - http://www.r-tutor.com/gpu-computing/rbayes/rhierlmc
+
+\section{Hierarchical Linear Model}
+
+Linear regression probably is the most familiar technique in data analysis, but its application is often hamstrung by model assumptions. For instance, if the data has a hierarchical structure, quite often the assumptions of linear regression are feasible only at local levels. We will investigate an extension of the linear model to bi-level hierarchies.
+
+Example
+We borrow an example from Rossi, Allenby and McCulloch (2005) for demonstration. It is based upon a data set called ’cheese’ from the baysem package. The data set contains marketing data of certain brand name processed cheese, such as the weekly sales volume (VOLUME), unit retail price (PRICE), and display activity level (DISP) in various regional retailer accounts. For each account, we can define the following linear regression model of the log sales volume, where β1 is the intercept term, β2 is the display measure coefficient, and β3 is the log price coefficient.
+
+\[
+log(Volume ) = β1 + β2 ∗Display+ β3 ∗ log(Price)+ ϵ
+\]
+The stochastic term ϵ relies on regional market conditions, and we would not expect it to have the same dispersion among retailers. For the same reason, we cannot expect identical regression coefficients for all accounts, or attempt to define a single linear regression model for the entire data set.
+
+Nevertheless, we do expect regression coefficients of the retailer accounts to be related. A common approach to simulate the relationship is the hierarchical linear model, which treats the regression coefficients as random variables of yet another linear regression at the system level.
+
+Problem
+Fit the data set cheese with the hierarchical linear model, and estimate the average impact on sales volumes of the retailers if the unit retail price is to be raised by 5%.
+
+Solution
+Our first task is to divide the data according to regional retailers. The following shows that the RETAILER column has the factor data type, which allow us to extract the entire list of retailer accounts with the levels method.
+\begin{verbatim}
+> library(bayesm) 
+> data(cheese) 
+> str(cheese) 
+’data.frame’:  5555 obs. of  4 variables: 
+ $ RETAILER: Factor w/ 88 levels ... 
+ $ VOLUME  : int  21374 6427 17302 ... 
+ $ DISP    : num  0.162 0.1241 0.102 ... 
+ $ PRICE   : num  2.58 3.73 2.71 2.65 ... 
+ 
+> retailer <− levels(cheese$RETAILER) 
+> nreg <− length(retailer); nreg 
+[1] 88
+\end{verbatim}
+
+Let i to be an integer between 1 and the number of retailer accounts. We define a filter for the i-th account as follows.
+
+    filter <− cheese$RETAILER==retailer[i]
+We now loop through the accounts, and create a list of data items consisting of the X and y components of the linear regression model in each account. The columns of X below contains the intercept placeholder, the display measure, and log price data.
+
+regdata <− NULL 
+for (i in 1:nreg) { 
+    filter <− cheese$RETAILER==retailer[i] 
+    y <− log(cheese$VOLUME[filter]) 
+    X <− cbind(1,      # intercept placeholder 
+            cheese$DISP[filter], 
+            log(cheese$PRICE[filter])) 
+    regdata[[i]] <− list(y=y, X=X) 
+}
+Finally, we wrap the regdata and the iteration parameters in lists, and invoke the rhierLinearModel method of the bayesm package. It takes about half a minute for 2,000 MCMC iterations on an average CPU.
+
+> Data <− list(regdata=regdata) 
+> Mcmc <− list(R=2000) 
+ 
+> system.time( 
++ out <− bayesm::rhierLinearModel( 
++         Data=Data, 
++         Mcmc=Mcmc)) 
+.................... 
+   user  system elapsed 
+ 30.962   0.032  31.024
+We can perform the same MCMC simulation with an identically named method in rpudplus. The same process finishes under 0.5 second. Note the extra output option that we explicitly set to be ’bayesm’ for compatibility.
+
+> library(rpud)    # load rpudplus 
+> system.time( 
++ out <− rpud::rhierLinearModel( 
++         Data=Data, 
++         Mcmc=Mcmc, 
++         output="bayesm")) 
+.................... 
+   user  system elapsed 
+  0.152   0.056   0.212
+Observe that the log price data is in the third column of the X component. Hence we can estimate the log price coefficient from the third component of the second dimension in the betadraw attribute of the MCMC output. We also drop the first 10% samples for burn-in, i.e. 200 MCMC draws, before evaluating the mean of the simulation values.
+
+> beta.3 <− mean(as.vector(out$betadraw[, 3, 201:2000])) 
+> beta.3 
+[1] −2.146
+A 5% increase of the unit price amounts to an increment of log(1.05) in the log price. Therefore the log sales volume will be adjusted by −2.146 ∗ log(1.05). The computation below shows that the sales volume is expected to decrease by 10% on average.
+
+> exp(beta.3 ∗ log(1.05)) 
+[1] 0.9006
+Exercise
+Confirm MCMC convergence in the simulation of the hierarchical linear model of the cheese data set. As a hint, there is a ’coda’ output option in the rpud::rhierLinearModel method for this purpose. Make sure the coda package is installed beforehand.
+Create a plot for the posterior mean of display measures and the matching least square coefficients of the cheese data set as illustrated in Fig 3.6 of Rossi, Allenby and McCulloch (2005). Define the Gibbs priors to be ν = 6 and V = 0.6 ∗ I3. Consult the text for an explanation of the prior parameters. Observe outliers of the least square coefficients.
+PIC
+The cudaBayesreg package employs a hierarchical linear model for analysis of fMRI data. There is sample code in Silva (2010) that creates a brain activity image as below. Replace the cudaMultireg.slice method in the sample code by rpud::rhierLinearModel for the same effect.
+PIC
+Note
+Due to sequential nature of the MCMC algorithm and modest data size, the current implementation of the rpud::rhierLinearModel method is mostly CPU bound. Its only CUDA dependency is the random number generator for MCMC simulation. There is plenty of room for optimization with large data sets.
+
+References
+Peter E. Rossi, Greg M. Allenby and Rob McCulloch, Bayesian Statistics and Marketing (2005), Wiley-Interscience, New York, NY
+Adelino F. da Silva, cudaBayesreg: Bayesian Computation in CUDA (2010), The R Journal, Vol. 2/2, 48-55. URL http://journal.r-project.org/archive/2010-2/RJournal_2010-2_Ferreira da Silva.pdf

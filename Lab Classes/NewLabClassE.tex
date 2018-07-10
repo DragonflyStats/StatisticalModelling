@@ -1,0 +1,157 @@
+download and install an R package
+
+install.pacakges("MethComp")
+install.pacakges("chemCal")
+install.packages("mcreg")
+Packages are collections of R functions, data, and compiled code in a well-defined format. The directory where packages are stored is called the library. R comes with a standard set of packages. 
+
+Others are available for download and installation.
+
+\begin{framed}
+\begin{verbatim}
+library()   # see all packages installed 
+search()    # see packages currently loaded
+\end{verbatim}
+\end{framed}
+
+\subsection{Adding Packages}
+You can expand the types of analyses you do be adding other packages. A complete list of contributed packages is available from CRAN.
+Follow these steps:
+
+Download and install a package (you only need to do this once).
+To use the package, invoke the library(package) command to load it into the current session. 
+(You need to do this once in each session, unless you customize your environment to automatically load it each time.)
+
+On MS Windows:
+Choose Install Packages from the Packages menu.
+Select a CRAN Mirror. (e.g. Ireland)
+Select a package. (e.g. chemCal)
+
+Then use the library(package) function to load it for use. (e.g. library(chemCal))
+
+You can install a package directly using the \texttt{install.packages()} command. Once installed you can directly call the library, using the ibrary command. 
+
+Important - some packages require the more recent version of R to be installed.
+
+\begin{framed}
+\begin{verbatim}
+install.packages("MethComp")
+install.packages("chemCal")
+
+library(MethComp)
+library(chemCal)
+\end{verbatim}
+\end{framed}
+
+chemCal: Calibration functions for analytical chemistry
+
+chemCal provides simple functions for plotting linear calibration functions and estimating standard errors for measurements according to the Handbook of Chemometrics and Qualimetrics: Part A by Massart et al. There are also functions estimating the limit of detection (LOD) and limit of quantification (LOQ). The functions work on model objects from - optionally weighted - linear regression (lm) or robust linear regression (rlm from the MASS package).
+
+
+calplot
+inverse.predict
+lod
+
+\begin{framed}
+\begin{verbatim}
+# get data set and fit linear model
+data(massart97ex3)
+m <- lm(y ~ x, data = massart97ex3)
+
+calplot(m)
+\end{verbatim}
+\end{framed}
+%==================================================================%
+
+\begin{framed}
+\begin{verbatim}
+# This is example 7 from Chapter 8 in Massart et al. (1997)
+# get data set and fit linear model
+data(massart97ex1)
+m <- lm(y ~ x, data = massart97ex1)
+
+inverse.predict(m, 15) 
+inverse.predict(m, 90) 
+inverse.predict(m, rep(90,5)) 
+
+\end{verbatim}
+\end{framed}
+
+%==================================================================%
+
+\begin{framed}
+\begin{verbatim}
+
+data(din32645)
+m <- lm(y ~ x, data = din32645)
+lod(m)
+# The critical value (decision limit, German Nachweisgrenze) can be obtained
+# by using beta = 0.5:
+lod(m, alpha = 0.01, beta = 0.5)
+
+\end{verbatim}
+\end{framed}
+
+
+
+For each of the three three fits models, determine the analysis of variance table.
+( In R code ouput the "total" row is not included. Disregard this row for today.
+
+%===================================================%
+
+To extract the residuals from a fitted model, we use the resid() command, specifying the name of the model.
+
+Recall last week we fitted several models for the Cheeses data set ( run the labD-Setup script again).
+
+Fit2res <- resid(Fit2)
+
+#  Type in "Fit2res" to get a sense of the data.
+
+compute the variance of the Fit2 residauls (use the var command)
+
+plot(Fit2) 
+# Hit Return after inspecting each screen
+
+Four plots are automatically presented but in fact there are six altogether. 
+These plots will indicate influential points. 
+To specify an individual plot to be presented, type each of the following command.
+
+
+plot(Fit2, which=c(1)) 
+plot(Fit2, which=c(2)) 
+plot(Fit2, which=c(3)) 
+plot(Fit2, which=c(4)) 
+plot(Fit2, which=c(5)) 
+plot(Fit2, which=c(6)) 
+
+%===================================================%
+Residuals
+Heteroscedascity ( Non-Constant Variance)
+Influence, outliers, Cooks Distance Leverage,
+The Funnel Effect
+%====================================================%
+Weighted Regression
+Robust Regression
+
+%====================================================%
+Deming Regression ( 20 Minutes )
+%==================================================%
+import CSV
+
+create Data Frame
+
+%==================================================%
+Orthonormal (Deming) Regression
+
+Residuals
+plot the residuals
+compute the variance of the residuals
+
+plot(Fitall)
+
+
+analysis of variance
+
+aov
+
+(anova is a distinct command for determining)

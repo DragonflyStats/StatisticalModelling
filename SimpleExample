@@ -1,0 +1,39 @@
+In a study of a wholesaler’s distribution costs, undertaken with a view to con-
+trolling cost, the volume of goods handled and the overall costs were recorded for one month in
+each of ten depots in a distribution network. The results are presented in the following table
+	Volume 	Costs
+1 	48 	20
+2 	57 	22
+3 	49 	19
+4 	45 	18
+5 	50 	20
+6 	62 	24
+7 	58 	21
+8 	55 	21
+9 	38 	15
+10 	51 	20
+
+> Volume <-c(48,57,49,45,50,62,58,55,38,51)
+> Costs<-c(20,22,19,18,20,24,21,21,15,20)
+> fit1<-lm(Volume~Costs)
+> summary(fit1)
+
+Call:
+lm(formula = Volume ~ Costs)
+
+Residuals:
+    Min      1Q  Median      3Q     Max 
+-3.3000 -0.6462 -0.1077  0.6808  3.8923 
+
+Coefficients:
+            Estimate Std. Error t value Pr(>|t|)    
+(Intercept)  -4.8538     5.4216  -0.895    0.397    
+Costs         2.8077     0.2693  10.425 6.22e-06 ***
+---
+Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+
+DAT30 = c(840,157,584 887, 46, 402, 454 ,36, 780, 203, 832, 328 ,82, 220,
+145,44,33,263, 1901 ,695 ,194, 759 ,319 ,667 ,40 ,556, 436, 30,
+384,246, 1617 ,638, 121 ,150, 294, 562 ,460, 40 ,99 ,304, 129 ,9
+937,735 ,280 ,434, 736, 721 ,76, 710 ,1336, 335 ,1354 ,375, 567,
+139,209, 599, 83, 38, 365, 92)

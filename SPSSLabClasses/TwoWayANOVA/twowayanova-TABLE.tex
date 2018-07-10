@@ -1,0 +1,46 @@
+\documentclass[]{article}
+
+
+\begin{document}
+\LARGE
+\section*{Two Way ANOVA -  No Replicates}
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+	\hline  & B Level 1 & B Level 2 & ..... & B Level $c$ \\ 
+	\hline A Level 1 & .... & .... & ..... & .... \\ 
+	\hline A Level 2 & .... & .... & ..... & .... \\ 
+	\hline ..... & \phantom{spacesp} & \phantom{spacesp} & \phantom{spacesp} & \phantom{spacesp}\\ 
+	\hline A Level $r$ & .... & .... & .... & ..... \\ 
+	\hline 
+\end{tabular} 
+\end{center}
+
+\begin{itemize}
+	\item You will given the variance of row means $S^2_R$ and column means $S^2_C$
+	\item You will also be given the variance of the response variable : $\textrm{var}(Y)$.
+ \item In the formula sheet you will given the formula for the Mean Squares for both treatments, but not the Mean Square for Error.
+\end{itemize}
+
+\begin{center}
+\begin{tabular}{|c|c|c|c|c|}
+	\hline Source & DF & SS & MS & F \\ 
+	\hline TrtA & df$_{A}$= & $SS_{TrtA} = $ & $MS_{TrtA} = $ &  $F_1 = $\\ 
+  &  $r-1$ & $(r-1) \times c \times S^2_R$ & $c \times S^2_R$  & $ \displaystyle{\frac{MS_{TrtA} }{MS_{Error}} }$ \\ \phantom{spaces}&\phantom{spaces} &\phantom{spaces}&\phantom{spaces}& \phantom{spacesp}
+  \\
+	\hline TrtB & df$_{B}$=  & $SS_{TrtB} = $ & $MS_{TrtB}=$& $F_2 = $ \\ 
+		 & $c-1$  & $(c-1) \times r \times S^2_C$ &   $ r \times S^2_C$ & $ \displaystyle{\frac{MS_{TrtB} }{MS_{Error}} }$ \\ &&&& 
+		 \\
+	\hline Error & df$_{Error}$ & $SS_{Error}$ & $MS_{Error}$  &  \\ 
+	\hline Total & $n-1$ & $SS_{Total} $ &  &  \\ 
+\hline 
+\end{tabular} 
+\end{center}
+
+\bigskip
+
+\begin{itemize}
+	\item df$_{Error} = (r-1)\times (c \times 1)$
+	\item $SS_{TrtA} = SS_{TrtA} + SS_{TrtB} + SS_{Error}$
+	\item The total sample size $n=r \times c$
+\end{itemize}
+\end{document}

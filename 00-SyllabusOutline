@@ -1,0 +1,43 @@
+
+### Part A Testing Distributional Assumptions
+
+ - Testing the Assumption of Normality
+ - Shapiro-Wilk Test
+ - Outlier Detection
+ - Grubbs's Test 
+ - Dixon Q Test
+
+### Part B Inference Procedures with Statistical Software
+ 
+ - One Sample, Two Sample and Paired Sample inference Procedures with R
+ - p-values
+ - Interpreting Confidence Intervals
+
+### Part C Review of Corrrelation, SLR and MLR Models
+ - correlation and cor.test()
+ - lm()
+
+
+### Part D Model Validation
+ - Residuals
+ - Cooks Distance
+ - AIC
+ - Influence
+
+### Part E Simple ANOVA Models
+
+ - (this should go after Part F really. This was brought up early to have it covered in time for a midterm).
+ - Simple Calculations
+
+### Part F Advanced Regression Procedures and Method Comparison
+
+### Part G Introduction to Experimental Design
+ - Theory
+ - Two Way ANOVA
+
+### Part H Factorial Designs
+ - (Reduced amount of pen and paper calculations from previous year)s
+
+
+### Part I Statistical Process Control
+ - (Easy topic to finish with)

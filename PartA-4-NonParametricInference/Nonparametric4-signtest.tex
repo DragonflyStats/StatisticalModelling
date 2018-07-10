@@ -1,0 +1,110 @@
+\section{ONE SAMPLE: THE SIGN TEST}
+\begin{itemize}
+\item In statistics, the sign test can be used to test the hypothesis that the difference median is zero between the continuous distributions of two random variables X and Y, in the situation when we can draw paired samples from X and Y. 
+\item It is a non-parametric test which makes very few assumptions about the nature of the distributions under test. 
+\item This means that it has very general applicability but may lack the statistical power of other tests such as the paired-samples t-test or the Wilcoxon signed-rank test.
+\end{itemize}
+
+%============================================================= %
+Contents  [hide] 
+1 Method
+2 Assumptions
+3 Significance testing
+4 See also
+5 References
+Sign Test
+
+A sign test is used to decide whether a binomial distribution has the equal chance of success and failure.
+
+Example
+A soft drink company has invented a new drink, and would like to find out if it will be as popular as the existing favorite drink. For this purpose, its research department arranges 18 participants for taste testing. Each participant tries both drinks in random order before giving his or her opinion.
+
+Problem
+It turns out that 5 of the participants like the new drink better, and the rest prefer the old one. At .05 significance level, can we reject the notion that the two drinks are equally popular?
+
+Solution
+The null hypothesis is that the drinks are equally popular. Here we apply the binom.test function. As the p-value turns out to be 0.096525, and is greater than the .05 significance level, we do not reject the null hypothesis.
+
+> binom.test(5, 18) 
+ 
+        Exact binomial test 
+ 
+data:  5 and 18 
+number of successes = 5, number of trials = 18, 
+p-value = 0.09625 
+alternative hypothesis: true probability of success is not equal to 0.5 
+95 percent confidence interval: 
+ 0.09695 0.53480 
+sample estimates: 
+probability of success 
+               0.27778
+Answer
+At .05 significance level, we do not reject the notion that the two drinks are equally popular.
+%============================================================= %
+\subsection*{Methods}
+Let $p = Pr(X > Y)$, and then test the null hypothesis H0: p = 0.50. In other words, the null hypothesis states that given a random pair of measurements (xi, yi), then xi and yi are equally likely to be larger than the other.
+To test the null hypothesis, independent pairs of sample data are collected from the populations {(x1, y1), (x2, y2), . . ., (xn, yn)}. Pairs are omitted for which there is no difference so that there is a possibility of a reduced sample of m pairs.[3]
+Then let W be the number of pairs for which $y_i − x_i > 0$. 
+
+Assuming that H0 is true, then W follows a binomial distribution $W \sim b(m, 0.5)$.
+\subsection*{Assumptions}
+\begin{itemize}
+\item Let $Z_i = Y_i – X_i$ for i = 1, ... , n.
+\item The differences $Z_i$ are assumed to be independent.
+\item Each $Z_i$ comes from the same continuous population.
+\item The values Xi and Yi represent are ordered (at least the ordinal scale), so the comparisons "greater than", "less than", and "equal to" are meaningful.
+\end{itemize}
+
+%==============================================================================================%
+\subsection*{Significance testing}
+Since the test statistic is expected to follow a binomial distribution, the standard binomial test is used to calculate significance. The normal approximation to the binomial distribution can be used for large sample sizes, m>25.[3]
+
+\begin{itemize}
+\item The left-tail value is computed by Pr(W ≤ w), which is the p-value for the alternative H1: p < 0.50. This alternative means that the X measurements tend to be higher.
+\item The right-tail value is computed by Pr(W ≥ w), which is the p-value for the alternative H1: p > 0.50. This alternative means that the Y measurements tend to be higher.
+\item For a two-sided alternative H1 the p-value is twice the smaller tail-value.
+\end{itemize}
+
+%==============================================================================================%
+The sign test can be used to test a null hypothesis concerning the value of the population median. Therefore,
+it is the nonparametric equivalent to testing a hypothesis concerning the value of the population mean. The
+values in the random sample are required to be at least at the ordinal scale, with no assumptions required about
+the form of the population distribution.
+%------------------------------------------------------------------------------%
+The null and alternative hypotheses can designate either a two-sided or a one-sided test. Where Med
+denotes the population median and Med0 designates the hypothesized value, the null and alternative hypotheses
+for a two-sided test are
+\[H0: Med \neq Med0\]
+\[H1: Med = Med0\]
+%------------------------------------------------------------------------------%
+A plus sign is assigned for each observed sample value that is larger than the hypothesized value of the
+median, and a minus sign is assigned for each value that is smaller than the hypothesized value of the median. If
+a sample value is exactly equal to the hypothesized median, no sign is recorded and the effective sample size is
+thereby reduced. If the null hypothesis regarding the value of the median is true, the number of plus signs should
+approximately equal the number of minus signs. 
+%------------------------------------------------------------------------------%
+Or put another way, the proportion of plus signs (or minus
+signs) should be about 0.50. Therefore, the null hypothesis tested for a two-sided test is H0:p ¼ 0:50, wherep is
+the population proportion of the plus (or the minus) signs. Thus, a hypothesis concerning the value of the
+median in fact is tested as a hypothesis concerning p. If the sample is large, the normal distribution can be used,
+as described in Section 11.4.
+%------------------------------------------------------------------------------%
+See Problem 17.2 for the use of the sign test to test a null hypothesis concerning the population median.
+
+
+%------------------------------------------------------------------------------%
+ONE SAMPLE: THE SIGN TEST
+17.2. It is claimed that the units assembled with a redesigned product assembly system will be greater than
+with the old system, for which the population median is 80 units per workshift. Not giving the benefit of
+the doubt to the redesigned system, formulate the null hypothesis and test it at the 5 percent level of
+significance. The sample data are reported in the first part of Table 17.1.
+The null and alternative hypotheses are
+\[ H0: Med ¼ 80\]
+\[H1: Med . 80\]
+%------------------------------------------------------------------------------%
+Because no assumption is made about the form of the population distribution, a nonparametric test is
+appropriate. Using the sign test, the null and alternative hypotheses in terms of the proportion of plus signs of the
+differences, where d ¼ (X ! 80), are
+H0: p ¼ 0:50
+H1: p . 0:50
+%================================================================================ %

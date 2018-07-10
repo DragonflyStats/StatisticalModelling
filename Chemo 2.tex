@@ -1,0 +1,250 @@
+
+\documentclass{article}
+%\usepackage{amsmath}
+%\accentedsymbol{\dbarA}{\Bar{\Bar{A}}
+\title{Transfer}
+\author{Kevin O'Brien}
+\date{Summer 2009}
+\begin{document}
+
+%------------------------------------------------------------------------ %
+
+\[ \bar{X} \]
+\[\bar{\bar{X}}  \pm \frac{\bar{s}}{c_4\sqrt{n}} \]
+
+
+\[ \bar{s} \pm \frac{c_4\bar{s}}{c_4}\]
+
+\[\bar{R}D3, \bar{R}D4\]
+
+
+%------------------------------------------------------------------------ %
+\Large{
+\subsection*{Factors for Control Charts}
+\begin{tabular}{|c|c|c|c|c|c|c|}
+\hline  
+Sample Size (n) 	&	c4 	&	c5 	&	d2 	&	d3 	&	D3 	&	D4	\\	\hline
+2	&	0.7979	&	0.6028	&	1.128	&	0.853	&	0	&	3.267	\\	
+3	&	0.8862	&	0.4633	&	1.693	&	0.888	&	0	&	2.574	\\	
+4	&	0.9213	&	0.3889	&	2.059	&	0.88	&	0	&	2.282	\\	
+5	&	0.9400	&	0.3412	&	2.326	&	0.864	&	0	&	2.114	\\	
+6	&	0.9515	&	0.3076	&	2.534	&	0.848	&	0	&	2.004	\\	
+7	&	0.9594	&	0.282	&	2.704	&	0.833	&	0.076	&	1.924	\\	
+8	&	0.9650	&	0.2622	&	2.847	&	0.82	&	0.136	&	1.864	\\	
+9	&	0.9693	&	0.2459	&	2.970	&	0.808	&	0.184	&	1.816	\\	
+10	&	0.9727	&	0.2321	&	3.078	&	0.797	&	0.223	&	1.777	\\	
+11	&	0.9754	&	0.2204	&	3.173	&	0.787	&	0.256	&	1.744	\\	
+12	&	0.9776	&	0.2105	&	3.258	&	0.778	&	0.283	&	1.717	\\	
+13	&	0.9794	&	0.2019	&	3.336	&	0.770	&	0.307	&	1.693	\\	
+14	&	0.9810	&	0.1940	&	3.407	&	0.763	&	0.328	&	1.672	\\	
+15	&	0.9823	&	0.1873	&	3.472	&	0.756	&	0.347	&	1.653	\\	
+16	&	0.9835	&	0.1809	&	3.532	&	0.750	&	0.363	&	1.637	\\
+17	&	0.9845	&	0.1754	&	3.588	&	0.744	&	0.378	&	1.622	\\
+18	&	0.9854	&	0.1703	&	3.64	&	0.739	&	0.391	&	1.608	\\
+19	&	0.9862	&	0.1656	&	3.689	&	0.734	&	0.403	&	1.597	\\
+20	&	0.9869	&	0.1613	&	3.735	&	0.729	&	0.415	&	1.585	\\
+21	&	0.9876	&	0.1570	&	3.778	&	0.724	&	0.425	&	1.575	\\
+22	&	0.9882	&	0.1532	&	3.819	&	0.720	&	0.434	&	1.566	\\
+23	&	0.9887	&	0.1499	&	3.858	&	0.716	&	0.443	&	1.557	\\
+24	&	0.9892	&	0.1466	&	3.895	&	0.712	&	0.451	&	1.548	\\
+25	&	0.9896	&	0.1438	&	3.931	&	0.708	&	0.459	&	1.541	\\
+\hline 
+\end{tabular} 
+} % End Large Font
+
+%\begin{framed}
+\begin{verbatim}
+> PCs=c(0.90,0.95,0.975,0.99,0.995)
+> qnorm(PCs)
+[1] 1.281552 1.644854 1.959964 2.326348 2.575829
+\end{verbatim}
+%\end{framed}
+\begin{verbatim}
+> dpois(0:10,lambda=2)
+ [1] 1.353353e-01 2.706706e-01 2.706706e-01 1.804470e-01 9.022352e-02
+ [6] 3.608941e-02 1.202980e-02 3.437087e-03 8.592716e-04 1.909493e-04
+[11] 3.818985e-05
+> 
+> ppois(0:10,lambda=2)
+ [1] 0.1353353 0.4060058 0.6766764 0.8571235 0.9473470
+ [6] 0.9834364 0.9954662 0.9989033 0.9997626 0.9999535
+[11] 0.9999917
+>
+> dpois(0:10,lambda=0.5)
+ [1] 6.065307e-01 3.032653e-01 7.581633e-02 1.263606e-02
+ [5] 1.579507e-03 1.579507e-04 1.316256e-05 9.401827e-07
+ [9] 5.876142e-08 3.264523e-09 1.632262e-10
+>
+> ppois(0:10,lambda=0.5)
+ [1] 0.6065307 0.9097960 0.9856123 0.9982484 0.9998279
+ [6] 0.9999858 0.9999990 0.9999999 1.0000000 1.0000000
+[11] 1.0000000
+\end{verbatim}
+%-----------------------------------------------------------------
+\begin{verbatim}
+> pbinom(0:10,size=100,prob=0.10)
+ [1] 0.0000265614 0.0003216881 0.0019448847 0.0078364871 0.0237110827
+ [6] 0.0575768865 0.1171556154 0.2060508618 0.3208738884 0.4512901654
+[11] 0.5831555123
+>
+> pbinom(0:10,size=100,prob=0.01)
+ [1] 0.3660323 0.7357620 0.9206268 0.9816260 0.9965677 
+ [6] 0.9994655 0.9999289 0.9999918 0.9999992 0.9999999 
+[11] 1.0000000
+>
+> dbinom(0:10,size=100,prob=0.1)
+ [1] 0.0000265614 0.0002951267 0.0016231966 0.0058916025 0.0158745955
+ [6] 0.0338658038 0.0595787289 0.0888952464 0.1148230266 0.1304162771
+[11] 0.1318653468
+\end{verbatim}
+\newpage
+\section{Paired t-test}
+\begin{verbatim}
+> t.test(After,Before,paired=TRUE)
+
+        Paired t-test
+
+data:  After and Before 
+t = 17.4864, df = 7, p-value = 4.924e-07
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ 13.40398 17.59602 
+sample estimates:
+mean of the differences 
+                   15.5 
+\end{verbatim}
+%------------------------------------------------------- %
+\section{Question }
+
+factor A has a positive effect on the
+response at one level of factor B, while at a different level of factor B the effect of
+A is negative. We use the term positive effect here to indicate that the yield or
+response increases as the levels of a given factor increase according to some defined
+order. In the same sense a negative effect corresponds to a decrease in yield for
+increasing levels of the factor.
+Consider, for example, the following data on temperature (factor A at levels t\,
+t2, and t3 in increasing order) and drying time dx, d2, and d3 (also in increasing
+order). The response is percent solids. These data are completely hypothetical
+and given to illustrate a point.
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+
+& d1 &	d2	&	d3	& d4	 \\
+t1 & 34, 32.7 &	30.1, 32.8	&	29.8, 26.7	&	29,28.9	 \\
+t2 & 32, 33.2 &	30.2, 29.8	&	28.7, 28.1	&	27.6,27.8	\\
+t3 & 28.4,29.3	&	27.3,28.9	&	29.7,27.3	&	28.8,29.1	\\
+
+\hline 
+\end{tabular} 
+
+\begin{verbatim}
+Solid=c(
+34.0, 32.7, 32.0, 33.2, 28.4, 29.3, 
+30.1, 32.8, 30.2, 29.8, 27.3, 28.9, 
+29.8, 26.7, 28.7, 28.1, 29.7, 27.3, 
+29.0, 28.9, 27.6, 27.8, 28.8, 29.1)
+
+
+Solid=c(
+34.0, 32.7, 32.0, 33.2, 28.1, 28.0, 
+30.1, 32.8, 30.2, 29.8, 27.3, 27.9, 
+29.8, 26.7, 28.7, 28.1, 31.1, 31.2, 
+29.0, 29.9, 27.6, 27.8, 27.8, 27.1)
+
+
+Temperature = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 3L, 
+3L, 3L, 3L, 3L, 3L, 4L, 4L, 4L, 4L, 4L, 4L), .Label = c("t1", 
+"t2", "t3", "t4"), class = "factor")
+
+
+DryingTime = structure(c(1L, 1L, 2L, 2L, 3L, 3L, 1L, 1L, 2L, 2L, 3L, 3L, 1L, 
+1L, 2L, 2L, 3L, 3L, 1L, 1L, 2L, 2L, 3L, 3L), .Label = c("d1", 
+"d2", "d3"), class = "factor")
+
+Experiment=data.frame(Solid,Temperature,DryingTime)
+interaction.plot(Temperature,DryingTime,Solid)
+Model=aov(Solid~Temperature*DryingTime)
+summary(Model)
+par(font=2)
+interaction.plot(DryingTime, Temperature, Solid,col=c("red","blue","black","green"),font.lab=2,
+font.axis=2,lty=c(1,2,3,4),lwd=2.5)
+\end{verbatim}
+
+
+\newpage
+\begin{verbatim}
+> Model1=aov(Solid~Temperature+DryingTime)
+> summary(Model2)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+Temperature  3  30.48  10.162   3.180 0.0491 *
+DryingTime   2  17.05   8.525   2.668 0.0967 .
+Residuals   18  57.52   3.196                 
+---
+Signif. codes:  0 ?***? 0.001 ?**? 0.01 ?*? 0.05 ?.? 0.1 ? ? 1 
+> 
+> Model2=aov(Solid~Temperature*DryingTime)
+> summary(Model2)
+                       Df Sum Sq Mean Sq F value   Pr(>F)    
+Temperature             3  30.48  10.162  10.951 0.000944 ***
+DryingTime              2  17.05   8.525   9.188 0.003802 ** 
+Temperature:DryingTime  6  46.39   7.732   8.332 0.001026 ** 
+Residuals              12  11.13   0.928                     
+---
+Signif. codes:  0 ?***? 0.001 ?**? 0.01 ?*? 0.05 ?.? 0.1 ? ? 1 
+\end{verbatim}
+\newpage
+\subsection{Statistical Process Control}
+A normally distributed quality characteristic is monitored through the use of control charts. These charts have the 
+following parameters. All charts are in control.
+\begin{tabular}{|c|c|c|c|}
+\hline  & LCL & Centre Line & UCL \\ 
+\hline $\bar{X}$-Chart & 542 & 550 & 558 \\ 
+\hline $R$-Chart & 0 & 8.236 & 16.504 \\ 
+\hline 
+\end{tabular} 
+\begin{itemize}
+\item What sample size is being used?
+\item Estimate the standard deviation of this process.
+\item Compute the control limits for the $s$-chart.
+\end{itemize}
+\subsection{Multiple Linear Regression}
+Explain the term `Multicollinearity'. If Multicollinearity is detected, what are the implications?
+
+\subsection{Experimental Design}
+Explain the term `Blocking' in the context of experimental design.
+
+Fill in the missing values in the ANOVA tables. What is the purpose of this inference procedure, stating clearly the null and 
+alternative hypothesis.
+
+Explain the following terms in the context of experimental design
+factors
+levels of factor
+blocking 
+interaction
+
+
+FabricWear=c(527, 561, 456, 377, 475, 466, 296, 325, 
+621, 664, 426, 476, 561, 540, 301, 235, 
+724, 743, 460, 426, 626, 682, 322, 304) 
+
+Filler = structure(c(1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L, 1L, 
+1L, 2L, 2L, 1L, 1L, 2L, 2L, 1L, 1L, 2L, 2L), .Label = c("F1", 
+"F2"), class = "factor")
+
+Proportion = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 
+2L, 2L, 2L, 3L, 3L, 3L, 3L, 3L, 3L, 3L, 3L), .Label = c("Q1", 
+"Q2", "Q3"), class = "factor")
+
+Surface= structure(c(1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 1L, 1L, 1L, 1L, 2L, 
+2L, 2L, 2L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L), .Label = c("T0", 
+"T1"), class = "factor")
+
+Experiment=data.frame(FabricWear,Filler,Proportion,Surface)
+
+Model1= aov(FabricWear ~ Filler*Proportion*Treatment)
+
+Model2 = aov(FabricWear ~ Filler*Proportion*Treatment - Filler:Proportion:Treatment)
+
+
+\end{document}

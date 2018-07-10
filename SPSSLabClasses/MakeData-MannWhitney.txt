@@ -1,0 +1,12 @@
+M=100000
+collect1=numeric(M);
+collect2=numeric(M);
+collect3=numeric(M);
+
+
+for (i in 1:M){
+collect1[i]=i
+set.seed(i);Diet = round(rnorm(20,2.4,1.2)^2,3);Exercise = round( rnorm(20,2.5,1.5)^2,3)
+collect2[i]=wilcox.test(Diet,Exercise)$statistic
+collect3[i]=wilcox.test(Diet,Exercise)$p.value
+}

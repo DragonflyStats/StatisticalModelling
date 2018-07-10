@@ -1,0 +1,86 @@
+Kruskal-Wallis Test
+
+A collection of data samples are independent if they come from unrelated populations and the samples do not affect each other. Using the Kruskal-Wallis Test, we can decide whether the population distributions are identical without assuming them to follow the normal distribution.
+
+Example
+In the built-in data set named airquality, the daily air quality measurements in New York, May to September 1973, are recorded. The ozone density are presented in the data frame column Ozone.
+
+> head(airquality) 
+  Ozone Solar.R Wind Temp Month Day 
+1    41     190  7.4   67     5   1 
+2    36     118  8.0   72     5   2 
+    .....
+Problem
+Without assuming the data to have normal distribution, test at .05 significance level if the monthly ozone density in New York has identical data distributions from May to September 1973.
+
+Solution
+The null hypothesis is that the monthly ozone density are identical populations. To test the hypothesis, we apply the kruskal.test function to compare the independent monthly data. The p-value turns out to be nearly zero (6.901e-06). Hence we reject the null hypothesis.
+
+> kruskal.test(Ozone ~ Month, data = airquality) 
+ 
+        Kruskal-Wallis rank sum test 
+ 
+data:  Ozone by Month 
+Kruskal-Wallis chi-squared = 29.267, df = 4, p-value = 6.901e-06
+Answer
+At .05 significance level, we conclude that the monthly ozone density in New York from May to September 1973 are nonidentical populations.
+
+
+\section{SEVERAL INDEPENDENT SAMPLES: THE KRUSKAL–WALLIS TEST}
+
+The Kruskal–Wallis test is used to test the null hypothesis that several populations have the same
+medians. As such, it is the nonparametric equivalent of the one-factor completely randomized design of the
+analysis of variance. It is assumed that the several populations have the same form and dispersion for the
+above hypothesis to be applicable, because differences in form or dispersion would also lead to rejection of
+the null hypothesis. The values for the several independent random samples are required to be at least at the
+ordinal scale.
+The several samples are first viewed as one array of values, and each value in this combined group is
+ranked from lowest to highest. For equal values the mean rank is assigned to the tied values. If the null
+hypothesis is true, the average of the ranks for each sample group should be about equal. The test statistic
+calculated is designated H and is based on the sum of the ranks in each of the several random samples, as
+follows:
+
+where N ¼ combined sample size of the several samples
+(note that N does not designate population size in this case)
+Rj ¼ sum of the ranks for the jth sample or treatment group
+nj ¼ number of observations in the jth sample
+Given that the size of each sample group is at least nj " 5 and the null hypothesis is true, the sampling
+distribution of H is approximately distributed as the x
+2 distribution with df ¼ K ! 1, where K is the number
+of treatment or sample groups. The x
+2 value that approximates the critical value of the test statistic is
+always the upper-tail value. This test procedure is analogous to the upper tail of the F distribution being
+used in the analysis of variance.
+For tied ranks the test statistic H should be corrected. The corrected value of the test statistic is designated
+Hc and is computed as follows:
+
+%============================================================%
+\subsection*{Methodology}
+Method[edit]
+Rank all data from all groups together; i.e., rank the data from 1 to N ignoring group membership. Assign any tied values the average of the ranks they would have received had they not been tied.
+The test statistic is given by:
+\[K = (N-1)\frac{\sum_{i=1}^g n_i(\bar{r}_{i\cdot} - \bar{r})^2}{\sum_{i=1}^g\sum_{j=1}^{n_i}(r_{ij} - \bar{r})^2},\] where:
+
+\begin{itemize}
+\item $n_i$ is the number of observations in group i
+\item $r_{ij}$ is the rank (among all observations) of observation j from group i
+\item N is the total number of observations across all groups
+\item \[\bar{r}_{i\cdot} = \frac{\sum_{j=1}^{n_i}{r_{ij}}}{n_i},\]
+\item $\bar{r} =\tfrac 12 (N+1)$ is the average of all the r_{ij}.
+\end{itemize}
+
+If the data contain no ties the denominator of the expression for K is exactly (N-1)N(N+1)/12 and \bar{r}=\tfrac{N+1}{2}. Thus
+
+\begin{align}
+K & = \frac{12}{N(N+1)}\sum_{i=1}^g n_i \left(\bar{r}_{i\cdot} - \frac{N+1}{2}\right)^2 \\ & = \frac{12}{N(N+1)}\sum_{i=1}^g n_i \bar{r}_{i\cdot }^2 -\ 3(N+1).
+\end{align}
+
+\begin{itemize}
+\item The last formula only contains the squares of the average ranks.
+A correction for ties if using the short-cut formula described in the previous point can be made by dividing K by \[1 - \frac{\sum_{i=1}^G (t_i^3 - t_i)}{N^3-N}\], where G is the number of groupings of different tied ranks, and ti is the number of tied values within group i that are tied at a particular value. This correction usually makes little difference in the value of K unless there are a large number of ties.
+\item Finally, the p-value is approximated by $\Pr(\chi^2_{g-1} \ge K)$. If some $n_i$ values are small (i.e., less than 5) the probability distribution of K can be quite different from this chi-squared distribution. If a table of the chi-squared probability distribution is available, the critical value of chi-squared, \chi^2_{\alpha: g-1}, can be found by entering the table at g − 1 degrees of freedom and looking under the desired significance or alpha level.
+\item If the statistic is not significant, then there is no evidence of stochastic dominance between the samples. 
+\item However, if the test is significant then at least one sample stochastically dominates another sample. Therefore, a researcher might use sample contrasts between individual sample pairs, or post hoc tests using Dunn's test, which (1) properly employs the same rankings as the Kruskal-Wallis test, and (2) properly employs the pooled variance implied by the null hypothesis of the Kruskal-Wallis test in order to determine which of the sample pairs are significantly different.
+\item When performing multiple sample contrasts or tests, the Type I error rate tends to become inflated, raising concerns about multiple comparisons.
+\end{itemize}
+

@@ -1,0 +1,108 @@
+%- https://onlinecourses.science.psu.edu/stat504/node/216
+
+6.1 - Introduction to Generalized Linear Models
+Thus far our focus has been on describing interactions or associations between two or three categorical variables mostly via single summary statistics and with significance testing. Models can handle more complicated situations and analyze the simultaneous effects of multiple variables, including mixtures of categorical and continuous variables. For example, the Breslow-Day statistics only works for 2 × 2 × K tables, while log-linear models will allow us to test of homogeneous associations in I × J × K and higher-dimensional tables. We will focus on a special class of models known as the generalized linear models (GLIMs or GLMs in Agresti).
+
+The structural form of the model describes the patterns of interactions and associations. The model parameters provide measures of strength of associations. In models, the focus is on estimating the model parameters. The basic inference tools (e.g., point estimation, hypothesis testing, and confidence intervals) will be applied to these parameters. When discussing models, we will keep in mind:
+
+Objective
+Model structure (e.g. variables, formula, equation)
+Model assumptions
+Parameter estimates and interpretation
+Model fit (e.g. goodness-of-fit tests and statistics)
+Model selection
+For example, recall a simple linear regression model
+
+Objective: model the expected value of a continuous variable, Y, as a linear function of the continuous predictor, X, E(Yi) = β0 + β1xi
+Model structure: Yi = β0 + β1xi + ei
+Model assumptions: Y is is normally distributed, errors are normally distributed, ei ∼ N(0, σ2), and independent, and X is fixed, and constant variance σ2.
+Parameter estimates and interpretation: β^0β^0 is estimate of β0 or the intercept, and β^1β^1 is estimate of the slope, etc... Do you recall, what is the interpretation of the intercept and the slope?
+Model fit: R 2, residual analysis, F-statistic
+Model selection: From a plethora of possible predictors, which variables to include?
+For a review, if you wish, see a handout labeled LinRegExample.doc on modeling average water usage given the amount of bread production, e.g., estimated water production is positively related to the bread production:
+
+\[Water = 2273 + 0.0799 Production\]
+
+\subsection*{Generalized Linear Models (GLMs)}
+ First, let’s clear up some potential misunderstandings about terminology.  The term general linear model (GLM) usually refers to conventional linear regression models for a continuous response variable given continuous and/or categorical predictors. It includes multiple linear regression, as well as ANOVA and ANCOVA (with fixed effects only). The form is yi∼N(xTiβ,σ2),yi∼N(xiTβ,σ2), where xixi contains known covariates and ββ contains the coefficients to be estimated. These models are fit by least squares and weighted least squares using, for example: SAS Proc GLM or R functions lsfit() (older, uses matrices) and lm() (newer, uses data frames).
+
+The term generalized linear model (GLIM or GLM) refers to a larger class of models popularized by McCullagh and Nelder (1982, 2nd edition 1989). In these models, the response variable yiyi is assumed to follow an exponential family distribution with mean μiμi, which is assumed to be some (often nonlinear) function of xTiβxiTβ. Some would call these “nonlinear” because  μiμi is often a nonlinear function of the covariates, but McCullagh and Nelder consider them to be linear, because the covariates affect the distribution of yiyi only through the linear combination xTiβxiTβ.   The first widely used software package for fitting these models was called GLIM. Because of this program, “GLIM” became a well-accepted abbreviation for generalized linear models, as opposed to “GLM” which often is used for general linear models. Today, GLIM’s are fit by many packages, including SAS Proc Genmod and R function glm(). Notice, however, that Agresti uses GLM instead of GLIM short-hand, and we will use GLM. 
+
+The generalized linear models (GLMs) are a broad class of models that include linear regression, ANOVA, Poisson regression, log-linear models etc. The table below provides a good summary of GLMs following Agresti (ch. 4, 2013):
+
+Model	Random	Link	Systematic
+Linear Regression	Normal	Identity	Continuous
+ANOVA	Normal	Identity	Categorical
+ANCOVA	Normal	Identity	Mixed
+Logistic Regression	Binomial	Logit	Mixed
+Loglinear	Poisson	Log	Categorical
+Poisson Regression	Poisson	Log	Mixed
+Multinomial response	Multinomial	Generalized Logit	Mixed
+There are three components to any GLM:
+
+\begin{description}
+\item[Random Component] – refers to the probability distribution of the response variable (Y); e.g. normal distribution for Y in the linear regression, or binomial distribution for Y in the binary logistic regression.  Also called a noise model or error model.  How is random error added to the prediction that comes out of the link function?
+\item[Systematic Component] - specifies the explanatory variables (X1, X2, ... Xk) in the model, more specifically their linear combination in creating the so called linear predictor; e.g., β0 + β1x1 + β2x2 as we have seen in a linear regression, or as we will see in a logistic regression in this lesson.
+\item[Link Function, η or g(μ)] - specifies the link between random and systematic components. It says how the expected value of the response relates to the linear predictor of explanatory variables; e.g., η = g(E(Yi)) = E(Yi) for linear regression, or  η = logit(π) for logistic regression.
+\end{description}
+
+Assumptions:
+
+The data Y1, Y2, ..., Yn are independently distributed, i.e., cases are independent.
+The dependent variable Yi does NOT need to be normally distributed, but it typically assumes a distribution from an exponential family (e.g. binomial, Poisson, multinomial, normal,...)
+GLM does NOT assume a linear relationship between the dependent variable and the independent variables, but it does assume linear relationship between the transformed response in terms of the link function and the explanatory variables; e.g., for binary logistic regression logit(π) = β0 + βX.
+Independent (explanatory) variables can be even the power terms or some other nonlinear transformations of the original independent variables.
+The homogeneity of variance does NOT need to be satisfied. In fact, it is not even possible in many cases given the model structure, and overdispersion (when the observed variance is larger than what the model assumes) maybe present.
+Errors need to be independent but NOT normally distributed.
+It uses maximum likelihood estimation (MLE) rather than ordinary least squares (OLS) to estimate the parameters, and thus relies on large-sample approximations.
+Goodness-of-fit measures rely on sufficiently large samples, where a heuristic rule is that not more than 20% of the expected cells counts are less than 5.
+For a more detailed discussion refer to Agresti(2007), Ch. 3, Agresti (2013), Ch.4, and/or McCullagh & Nelder (1989).
+
+Following are examples of GLM components for models that we are already familiar, such as linear regression, and for some of the models that we will cover in this class, such as logistic regression and log-linear models.
+
+Simple Linear Regression models how mean expected value of a continuous response variable depends on a set of explanatory variables, where index i stands for each data point:
+
+Yi=β0+βxi+ϵiYi=β0+βxi+ϵi
+
+or
+
+E(Yi)=β0+βxiE(Yi)=β0+βxi 
+
+Random component: Y is a response variable and has a normal distribution, and generally we assume errors, ei ~ N(0, σ2).
+Systematic component: X is the explanatory variable (can be continuous or discrete) and is linear in the parameters β0  + βxi . Notice that with a multiple linear regression where we have more than one explanatory variable, e.g., (X1, X2, ... Xk), we would have a linear combination of these Xs in terms of regression parameters β's, but the explanatory variables themselves could be transformed, e.g., X2, or log(X). 
+Link function: Identity Link, η = g(E(Yi)) = E(Yi) --- identity because we are modeling the mean directly; this is the simplest link function.
+Binary Logistic Regression models how binary response variable Y depends on a set of k explanatory variables, X=(X1, X2, ... Xk). 
+
+logit(π)=log(π1−π)=β0+βxi+…+β0+βxk′logit(π)=log(π1−π)=β0+βxi+…+β0+βxk′
+
+which models the log odds of probability of "success" as a function of explanatory variables.
+
+Random component: The distribution of Y is assumed to be Binomial(n,π), where π is a probability of "success". 
+Systematic component: X's are explanatory variables (can be continuous, discrete, or both) and are linear in the parameters, e.g.,  β0 + βxi + ... + β0 + βxk. Again, transformation of the X's themselves are allowed like in linear regression; this holds for any GLM. 
+Link function: Logit link:
+η=logit(π)=log(π1−π)η=logit(π)=log(π1−π)
+More generally, the logit link models the log odds of the mean, and the mean here is π. Binary logistic regression models are also known as logit models when the predictors are all categorical.
+
+Log-linear Model models the expected cell counts as a function of levels of categorical variables, e.g., for a two-way table the saturated model
+
+log(μij)=λ+λAi+λBj+λABijlog(μij)=λ+λiA+λjB+λijAB
+where μij=E(nij) as before are expected cell counts (mean in each cell of the two-way table), A and B represent two categorical variables, and λij's are model parameters, and we are modeling the natural log of the expected counts.
+
+Random component: The distribution of counts, which are the responses, is Poisson
+Systematic component: X's are discrete variables used in cross-classification, and are linear in the parameters λ+λX1i+λX2j+…+λXkk+…λ+λiX1+λjX2+…+λkXk+…
+Link Function: Log link, η = log(μ) --- log because we are modeling the log of the cell means.
+The log-linear models are more general than logit models, and some logit models are equivalent to certain log-linear models. Log-linear model is also equivalent to Poisson regression model when all explanatory variables are discrete. For additional details see Agresti(2007), Sec. 3.3, Agresti (2013), Section 4.3 (for counts), Section 9.2 (for rates), and Section 13.2 (for random effects).
+
+Summary of advantages of GLMs over traditional (OLS) regression
+
+We do not need to transform the response Y to have a normal distribution
+The choice of link is separate from the choice of random component thus we have more flexibility in modeling
+If the link produces additive effects, then we do not need constant variance.
+The models are fitted via Maximum Likelihood estimation; thus optimal properties of the estimators.
+All the inference tools and model checking that we will discuss for log-linear and logistic regression models apply for other GLMs too; e.g., Wald and Likelihood ratio tests, Deviance, Residuals, Confidence intervals, Overdispersion.
+There is often one procedure in a software package to capture all the models listed above, e.g. PROC GENMOD in SAS or glm() in R, etc... with options to vary the three components.
+But there are some limitations of GLMs too, such as,
+
+Linear function, e.g. can have only a linear predictor in the systematic component
+Responses must be independent
+There are ways around these restrictions; e.g., consider analysis for matched data, or use NLMIXED [8] in SAS, or {nlme} [9] package in R, or consider other models, other software packages.

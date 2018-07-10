@@ -1,0 +1,32 @@
+) Explain what is meant by the term Type II error.
+(3 marks)
+(c) A chemist is testing the effect of two catalysts in an industrial process. The following
+model was fitted:
+yi ? a?bxi ?czi ?ei
+
+where xi represents the amount of catalyst 1 during experiment i, zi represents the amount
+of catalyst 2 during experiment i, yi represents the output of experiment i and ei
+is the
+error which is normally distributed with mean 0 and an unknown constant variance.
+Everything is measured in grams. The estimated values were 12.46 for a, 25.18 for b
+and 38.71 for c. Interpret the results in terms of the expected output of the experiment.
+(4 marks)
+
+
+%%- http://web.archive.org/web/20100825194455/http://www.londoninternational.ac.uk/
+%% Question 3
+An experiment is conducted to study how long different digital camera batteries last. The
+aim is to find out whether there is a difference in terms of battery life between four brands
+of batteries using seven different cameras. Each battery was tried once with each camera.
+The time the Brand A battery lasted was 43.86 hours. The times for brands B, C and D were
+41.28, 40.86 and 40 hours respectively. The following is the calculated ANOVA table with
+some entries missing.
+Source degrees of freedom sum of squares mean square F - value
+Cameras 26
+Batteries
+Error
+Total 343
+(a) Complete the table using the information provided above.
+(7 marks)
+(b) Is there a significant difference between the performance of different battery brands?
+(4 marks)

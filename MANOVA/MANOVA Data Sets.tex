@@ -1,0 +1,81 @@
+
+\documentclass[11pt]{article} % use larger type; default would be 10pt
+
+\usepackage{graphicx} % support the \includegraphics command and options
+
+\title{One Wat MANOVA}
+\author{MA4128 Advanced Data Modelling}
+\begin{document}
+
+\section{FleaBeetles}
+
+\begin{itemize}
+\item Data were collected on the genus of flea beetle \textit{Chaetocnema}, which contains three species: concinna (Con), heikertingeri (Hei), and heptapotamica (Hep). \item Measurements were made on the width and angle of the aedeagus of each beetle.
+\end{itemize}
+
+
+\bigskip
+\subsection{Analysis}
+We would like to know if the measurements of width and angle of the aedeagus are different among the three species. To test this we use a multivariate analysis of variance (MANOVA) with the variables Width and Angle as the dependent (Y) variables and the variable Species as the predictor (X) variable. The variable Species is discrete and has three levels.
+
+\bigskip
+\subsection{Results}
+\begin{itemize}
+\item The MANOVA results show that there is a difference between the species when considering both Width and Angle simultaneously as well as when considering Width and Angle individually using univariate ANOVA analyses.
+\item Scheffe post-hoc tests show that for Width all three species are different; however, for Angle the species concinna and heikertingeri are similar with heptapotamica being different from the other two species. 
+\end{itemize}
+
+
+\newpage
+
+\section{Pottery}
+\begin{itemize}
+\item Samples of Romano-British pottery were taken at four sites in the United Kingdom. A chemical analysis of the pottery was performed to measure the percentage of five metal oxides present in each sample. The purpose of the analysis was to determine if different sites produced pottery with different chemical compositions.
+\item Since we have five different measures of chemical composition, we should perform a multivariate analysis of variance (MANOVA) analysis to determine if there is a significant difference between sites considering all five variables simultaneously.
+\item The dependent variables (Y-variables) for the MANOVA are the five chemical variables; the predictor variable (X-variable) is 'Site'.
+\end{itemize}
+
+
+\bigskip
+\subsection{Analysis}
+The MANOVA analysis shows that there is a significant difference between the sites when considering all five measures simultaneously and when considering each individually. This is convincing evidence that a difference exists; however, it does not tell us which group(s) were different from the others. To determine this, we must rely on boxplots and post-hoc tests of each chemical measure across the different sites.
+
+\newpage
+
+\section{Egypt}
+
+This data contains information on Skull Development on human remains found in Egypt.
+
+
+\bigskip
+
+
+ Four measurements were made of male Egyptian skulls from five different time periods ranging from 4000 B.C. to 150 A.D. We wish to analyze the data to determine if there are any differences in the skull sizes between the time periods and if they show any changes with time. The researchers theorize that a change in skull size over time is evidence of the interbreeding of the Egyptians with immigrant populations over the years.
+Because there are four different measurements that characterize skull size, we must use multivariate techniques that allow multiple dependent variables. Our dependent variables are the measurements MB, BH, BL, and NH. The predictor variable is Year.
+
+
+\bigskip
+
+\subsection{Analysis}
+Two different analyses may be performed on these data. If we assume that Year is a discrete predictor variable, then we may analyze the data using multivarite analysis of variance (MANOVA). If we wish to determine if there is a linear trendto the change in skull size, then we treat Year as a continuous predictor variable and analyze the data using multivariate regression.
+
+
+\bigskip
+
+\subsection{Results}
+A MANOVA analysis of the data shows that there is a significant difference between the multivariate measurements of skulls at different time periods at the 1\% level of significance. If we look at the differences of individual measurements across the time periods, MB, BH, and BL all show significant differences at the 5\% level. However, the NH measurement does not differ significantly across the time periods at the 5\% level of significance.
+Hypothesis tests in MANOVA and multivariate regression require that the dependent variables have a multivariate normal distribution. 
+
+
+\bigskip
+
+
+A plot matrix of the dependent variables can be used to inspect univariate and bivariate normality. While this does not prove multivariate normality since it does not check the three and four-dimensional structure of the data, it does provide strong evidence of multivariate normality. Therefore, the hypothesis tests in the two analyses above should be valid.
+
+
+\bigskip
+
+
+In order to simplify the analysis, we can use a principal components analysis to reduce the number of dependent variables. The principal components analysis of the four measurement variables shows that the dimensionality of the dependent variables cannot be reduced; therefore, our analyses above cannot be simplified in this way.
+
+\end{document}

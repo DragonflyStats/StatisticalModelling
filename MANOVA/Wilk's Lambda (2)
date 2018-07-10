@@ -1,0 +1,29 @@
+%--------------------------------------------------------------------------------%
+\subsection{Wilk's Lambda}
+% http://www.blackwellpublishing.com/specialarticles/jcn_9_381.pdf
+
+Wilks' lambda is a test statistic used in multivariate analysis of variance
+(MANOVA) to test whether there are differences between the means of
+identified groups of subjects on a combination of dependent variables. For
+example, in the paper above, the authors test whether the mean score of two
+groups, graduates and diplomates, is the same across eight constructs
+simultaneously. Thus, they are considering eight dependent variables and
+comparing the mean of this combination for two groups.
+
+Wilks' lambda performs, in the multivariate setting, with a combination of
+dependent variables, the same role as the F-test performs in one-way analysis
+of variance. 
+
+Wilks' lambda is a direct measure of the proportion of variance in
+the combination of dependent variables that is unaccounted for by the
+independent variable (the grouping variable or factor). If a large proportion
+of the variance is accounted for by the independent variable then it suggests
+that there is an effect from the grouping variable and that the groups (in this
+case the graduates and diplomates) have different mean values.
+
+Wilks' lambda statistic can be transformed (mathematically adjusted) to a
+statistic which has approximately an F distribution. This makes it easier to
+calculate the P-value. Often authors will present the F-value and degrees of
+freedom, as in the above paper, rather than giving the actual value of Wilks'
+lambda.
+%--------------------------------------------------------------------------------%

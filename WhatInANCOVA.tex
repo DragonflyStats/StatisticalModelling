@@ -1,0 +1,61 @@
+%- http://www.statisticssolutions.com/one-way-ancova/
+What is the One-Way ANCOVA?
+
+ANCOVA is short for Analysis of Covariance.  The analysis of covariance is a combination of an ANOVA and a regression analysis.
+
+In basic terms, the ANCOVA examines the influence of an independent variable on a dependent variable while removing the effect of the covariate factor.  ANCOVA first conducts a regression of the independent variable (i.e., the covariate) on the dependent variable.  The residuals (the unexplained variance in the regression model) are then subject to an ANOVA.  Thus the ANCOVA tests whether the independent variable still influences the dependent variable after the influence of the covariate(s) has been removed.  The One-Way ANCOVA can include more than one covariate, and SPSS handles up to ten.  The ANCOVA model has more than one covariate it is possible to calculate the one-way ANCOVA using contrasts just like in the ANOVA to identify the influence of each covariate.
+
+Click here to get your APA Quantitative Results in Just 1 Hour
+
+The ANCOVA is most useful in that it (1) explains an ANOVA's within-group variance, and (2) controls confounding factors.  Firstly, as explained in the chapter on the ANOVA, the analysis of variance splits the total variance of the dependent variable into:
+
+1.       Variance explained by the independent variable (also called between groups variance)
+
+2.       Unexplained variance (also called within group variance)
+
+The ANCOVA looks at the unexplained variance and tries to explain some of it with the covariate(s).  Thus it increases the power of the ANOVA by explaining more variability in the model.
+Note that just like in regression analysis and all linear models, over-fitting might occur.  That is, the more covariates you enter into the ANCOVA, the more variance it will explain, but the fewer degrees of freedom the model has.  Thus entering a weak covariate into the ANCOVA decreases the statistical power of the analysis instead of increasing it.
+
+Secondly, the ANCOVA eliminates the covariates effect on the relationship between independent and dependent variable that is tested with an ANOVA.  The concept is very similar to the partial correlationanalysis—technically it is a semi-partial regression and correlation.
+
+The One-Way ANCOVA needs at least three variables.  These variables are:
+
+The independent variable, which groups the cases into two or more groups.  The independent variable has to be at least of nominal scale.
+The dependent variable, which is influenced by the independent variable.  It has to be of continuous-level scale (interval or ratio data).  Also, it needs to be homoscedastic and multivariate normal.
+The covariate, or variable that moderates the impact of the independent on the dependent variable.  The covariate needs to be a continuous-level variable (interval or ratio data).  The covariate is sometimes also called confounding factor, or concomitant variable.  The ANCOVA covariate is often a pre-test value or a baseline.
+Typical questions the ANCOVA answers are as follows:
+
+Medicine - Does a drug work? Does the average life expectancy significantly differ between the three groups that received the drug versus the established product versus the control? This question can be answered with an ANOVA.  The ANCOVA allows to additionally control for covariates that might influence the outcome but have nothing to do with the drug, for example healthiness of lifestyle, risk taking activities, or age.
+Sociology - Are rich people happier? Do different income classes report a significantly different satisfaction with life? This question can be answered with an ANOVA.  Additionally the ANCOVA controls for confounding factors that might influence satisfaction with life, for example, marital status, job satisfaction, or social support system.
+Management Studies - What makes a company more profitable? A one, three or five-year strategy cycle? While an ANOVA answers the question above, the ANCOVA controls additional moderating influences, for example company size, turnover, stock market indices.
+The One-Way ANCOVA in SPSS
+
+The One-Way ANCOVA is part of the General Linear Models (GLM) in SPSS.  The GLM procedures in SPSS contain the ability to include 1-10 covariates into an ANOVA model.  Without a covariate the GLM procedure calculates the same results as the ANOVA.  Furthermore the GLM procedure allows specifying random factor models, which are not part of an ANCOVA design.  The levels of measurement need to be defined in SPSS in order for the GLM procedure to work correctly.
+
+The research question for this example is as follows:
+
+Is there a difference in the standardized math test scores between students who passed the exam and students who failed the exam, when we control for reading abilities?
+
+The One-Way ANCOVA can be found in Analyze/General Linear Model/Univariate…
+
+
+
+
+
+This opens the GLM dialog, which allows us to specify any linear model.  For a One-Way-ANCOVA we need to add the independent variable (the factor Exam) to the list of fixed factors.  [Remember that the factor is fixed, if it is deliberately manipulated and not just randomly drawn from a population.  In our ANCOVA example this is the case.  This also makes the ANCOVA the model of choice when analyzing semi-partial correlations in an experiment, instead of the partial correlation analysis which requires random data.]
+
+The Dependent Variable is the Students' math test score, and the covariate is the reading score.
+
+In the dialog boxes Model, Contrasts, and Plots we leave all settings on the default.  The field post hocs is disabled when one or more covariates are entered into the analysis.  If it is of interest, for the factor level that has the biggest influence a contrast can be added to the analysis.  If we want to compare all groups against a specific group, we need to select Simple as the contrast method.  We also need to specify if the first or last group should be the group to which all other groups are compared.  For our example we want to compare all groups against the classroom lecture, thus we add the contrast Exam (Simple) first.
+
+
+
+In the dialog Options… we can specify whether to display additional statistics (e.g., descriptive statistics, parameter estimates, and homogeneity tests), and which level of significance we need.  This dialog also allows us to add post hoc procedures to the one-way ANCOVA.  We can choose between Bonferroni, LSD and Sidak adjustments for multiple comparisons of the covariates.
+
+Output, syntax, and interpretation can be found in our downloadable manual: Statistical Analysis: A Manual on Dissertation Statistics in SPSS (included in our member resources).  Click here to download.
+
+ 
+
+FREE Student Resources
+
+FREE 30 Minute Consultation

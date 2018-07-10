@@ -1,0 +1,10 @@
+
+%------------------------------------------------------%
+Zero intercept models are seldom used in practice. In theory, you would use a zero intercept model if you knew that the model line has to go through 0. For example, if you are modelling GDP against population, presumably when there is 0 population, there is 0 GDP. A zero intercept model would make sense.
+
+Except ... regression models don't usually hold over a wide range of values of the independent variables. The linearity of a GDP by population model is going to break down way before population hits 0 -- imagine one financial model that works both for China and Tuvalu! Makes no sense.
+
+So in practice, we usually let the intercept float and focus on the other parameters. Nevertheless, as a training exercise, it doesn't hurt to get students to go through the math.
+
+@gung's comment has reminded me of another issue here. If an intercept term is included in the model, the least squares estimate of the slope parameter will be unbiased, whether the true value of the intercept is 0 or not. You lose one degree of freedom for error, but that's a small price to pay for the protection against bias.
+

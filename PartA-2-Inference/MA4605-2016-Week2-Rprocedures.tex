@@ -1,0 +1,440 @@
+\documentclass{beamer}
+
+\usepackage{graphicx}
+\usepackage{framed}
+\usepackage{amsmath}
+\usepackage{amssymb}
+\begin{document}
+
+%==================================================%
+\section{Titration Example}
+\begin{frame}
+\frametitle{Titration experiment}
+			
+Four Students, A,B,C and D performing the same experiment five times, hence each yield 5 results.%(Table 1.1 random and systematic errors).
+\medskip			
+\begin{tabular}{|c|ccccc|l|}
+				\hline
+				% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+				& Results  & (ml) &  &  &  &Comment \\ \hline
+				A & 10.08 & 10.11 &10.09 &10.10&10.12 & Precise, biased\\ \hline
+				B & 9.88 &10.14& 10.02 &9.80& 10.21& Imprecise unbiased\\ \hline
+				C & 10.19 &9.79& 9.69 &10.05& 9.78 & Imprecise, biased\\ \hline
+				D & 10.04 &9.98 &10.02 &9.97 &10.04 & Precise, unbiased \\
+				\hline
+\end{tabular}\\
+\end{frame}
+\section{Titration Example}
+%=================================================%
+\begin{frame}
+Consider the 4 students performing the titration
+	experiment 5 times each.
+	The outcome of each trial was expected to be 10.
+	The first student A obtained the following values:1 0.08 , 10.11 ,
+	10.09, 10.10, 10.12 (which we described as precise, but biased)
+	Let us implement this test in R, using the following null and
+	alternative hypotheses:
+	\begin{description}
+	\item[H$_0$:] $\mu = 10$
+	\item[H$_1$:] $\mu$ not equal to 10
+	\end{description}
+\end{frame}
+%=================================================%
+\begin{frame}[fragile]
+	The code is as follows:
+	\begin{verbatim}
+	> X.a= c(10.08 ,10.11 ,10.09,10.10,10.12)
+	>
+	> t.test(X.a,mu=10)
+	The output is as follows:
+	One Sample t-test
+	data: X.a
+	t = 14.1421, df = 4, p-value = 0.0001451
+	alternative hypothesis: true mean is not equal to 10
+	95 percent confidence interval:
+	10.08037 10.11963
+	sample estimates:
+	mean of x
+	\end{verbatim}
+\end{frame}
+%==========================================================================================%
+\begin{frame}
+	\frametitle{Titration experiment}
+	(As an aside - not part of overall lesson plan)	
+	\begin{itemize}
+		\item	Two criteria were used to compare these results, the average value (technically know
+		as a measure of location and the degree of spread (or dispersion). 
+		\item The average value
+		used was the arithmetic mean (usually abbreviated to \emph{the mean}), which is the sum
+		of all the measurements divided by the number of measurements.	
+	\end{itemize}	
+	
+	
+\end{frame}
+%==========================================================================================%
+\begin{frame}
+	\frametitle{Titration experiment}	
+	The mean,$\bar{X}$, of $n$ measurements is given by \[ \bar{X}  = {\sum{x} \over n} \]
+	
+	In Chapter 1 the spread was measured by the difference between the highest and
+	lowest values (i.e. the range). A more useful measure, which utilizes all the values, is the sample
+	standard deviation, $s$, which is defined as follows:
+	
+	The standard deviation, $s$, of $n$ measurements is given by
+	\[s=  \sqrt{ {\sum(x-\bar{X})^2 \over n-1} }  (2.2) \]
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	
+	%Recall the titration experiments from the previous week:
+	\begin{verbatim}
+	A 10.08 10.11 10.09 10.10 10.12
+	B  9.88 10.14 10.02  9.80 10.21
+	C 10.19  9.79  9.69 10.05  9.78
+	D 10.04  9.98 10.02  9.97 10.04
+	\end{verbatim}
+	We shall perform a series of one sample and two sample tests.
+	Recall the true value of the titration experiment in each case is
+	supposed to be 10.
+	First we will consider the case of A’s measurements ( as we did in
+	the previous lecture).
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	The mean and standard deviation of A’s measurements are as
+	follows:
+	\begin{framed}
+		\begin{verbatim}
+		> mean(X.A)
+		[1] 10.1
+		> sd(X.A)
+		[1] 0.01581139
+		\end{verbatim}
+	\end{framed}
+	We will perform two one-tailed tests. To recap, we performed a two
+	tailed test in the previous lecture (i.e. the true mean is equal to
+	zero). To contrast with the one-tailed tests, here is it again, with
+	the alternative specified.
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	\begin{framed}
+		\begin{verbatim}
+		> t.test(X.A, mu=10, alternative = "two.sided")
+		One Sample t-test
+		data: X.A
+		t = 14.1421, df = 4, p-value = 0.0001451
+		alternative hypothesis: 
+		true mean is not equal to 10
+		
+		95 percent confidence interval:
+		10.08037 10.11963
+		sample estimates:
+		mean of x
+		10.1
+		\end{verbatim}
+	\end{framed}
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	We will perform a “greater than” test. The null and alternative are
+	specified as follows:
+	\begin{description}
+		\item[H0:] $μA \leq 10$ True value of population mean is no more than 10
+		\item[H1:] $μA > 10$ True value of population mean is greater than 10.
+	\end{description}
+	
+	
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	\begin{verbatim}
+	> t.test(X.A, mu=10, alternative = "greater")
+	One Sample t-test
+	data: X.A
+	t = 14.1421, df = 4, p-value = 7.256e-05
+	alternative hypothesis: true mean is greater than 10
+	95 percent confidence interval:
+	10.08493 Inf
+	sample estimates:
+	mean of x
+	10.1
+	\end{verbatim}
+\end{frame}
+%============================================================%
+\begin{frame}
+	\frametitle{Review of Inference Procedures}
+	\large
+	In this case, we would reject the null hypothesis, based on the
+	extremely low p-value. There is very convincing evidence to say
+	that the true mean of A’s measurements is greater than 10.
+	(Furthermore there is a systematic upward bias in A’s
+	measurements)
+\end{frame}
+%============================================================%
+\begin{frame}
+	\frametitle{Review of Inference Procedures}
+	\large
+	Now we will perform a “less than” test. The null and alternative are
+	specified as follows:
+	\begin{description}
+		\item[H0:] $\mu_A$ $geq$ 10 True value of population mean is at least 10
+		\item[H1:] $\mu_A$ $<$ 10 True value of population mean is less than 10.
+	\end{description}
+	
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	\begin{verbatim}
+	> t.test(X.A, mu=10, alternative = "less")
+	One Sample t-test
+	data: X.A
+	t = 14.1421, df = 4, p-value = 0.9999
+	
+	alternative hypothesis: true mean is less than 10
+	95 percent confidence interval:
+	-Inf 10.11507
+	sample estimates:
+	mean of x
+	10.1
+	\end{verbatim}
+	
+	In this case, we would fail to reject the null hypothesis, based on
+	the extremely high p-value.
+\end{frame}
+\end{document}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	\noindent \textbf{Example: Two Sample Testing}
+	In the previous class, we discussed the test of equality of population
+	mean for two independent samples.
+	Let us use the measurements from Students A and B. The mean
+	and standard deviation of B’s measurements are as follows:
+	\begin{framed}
+		\begin{verbatim}
+		> mean(X.B)
+		[1] 10.01
+		> sd(X.B)
+		[1] 0.1717556
+		\end{verbatim}
+	\end{framed}
+	The hypotheses can be stated as follows:
+	\begin{description}
+		\item[H0:] $\mu_A =\mu_B $ Population means are equal for students A and B
+		\item[H1:] $\mu_A \neq \mu_B $ Population means are not equal for A and B
+	\end{description}
+	
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	To implement such as test in R, we simply specify both data sets.
+	\begin{framed}
+		\begin{verbatim}
+		> t.test(X.A, X.B)
+		Welch Two Sample t-test
+		data: X.A and X.B
+		t = 1.1668, df = 4.068, p-value = 0.3071
+		alternative hypothesis: true difference in means is not equal to 0
+		95 percent confidence interval:
+		-0.1227643 0.3027643
+		sample estimates:
+		mean of x mean of y
+		10.10 10.01
+		\end{verbatim}
+	\end{framed}
+	Based on the p-value, we fail to reject the null hypothesis.
+	Note the name given to the output of the procedure “ Welch Two
+	Sample t-test”.
+	
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	\begin{itemize}
+		\item There are in fact two different two-sample t-tests that can be
+		implemented in R.
+		\item The test that we have just completed, i.e. the Welch test, does not
+		make the assumption that both data sets have equal variance.
+		\item Conversely, the “Student Two Sample t-test” does make that
+		assumption when performing the test.
+	\end{itemize}
+	
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+	\frametitle{Review of Inference Procedures}
+	\large
+	To perform a Student Two Sample t-test using R, we must
+	additionally specify that the variances are assumed to be equal
+	\begin{framed}
+	\begin{verbatim}
+	> t.test(X.A, X.B, var.equal =TRUE)
+	Two Sample t-test
+	data: X.A and X.B
+	t = 1.1668, df = 8, p-value = 0.2769
+	alternative hypothesis: true difference in means is not equal to 0
+	95 percent confidence interval:
+	-0.0878765 0.2678765
+	sample estimates:
+	mean of x mean of y
+	10.10     10.01
+	\end{verbatim}
+	\end{framed}
+	In this instance, we would come to the same conclusion whether or
+	not we specify the assumption of equal variances.
+	Notice, however, the p-value and confidence intervals are quite
+	different.
+\end{frame}
+%============================================================%
+\begin{frame}
+	\frametitle{Review of Inference Procedures}
+	\large
+	In some instances, it is possible that a null hypothesis would be
+	rejected by one test, but not by the other.
+	
+\end{frame}
+\section{Formal Test for Equality of Variances}
+%============================================================%
+\begin{frame}
+\frametitle{Review of Inference Procedures}
+\large
+\noindent{Formal Test for Equality of Variances}R provides us with a formal test for equality of variances for two
+			samples.\\ \medskip
+			
+			The hypotheses can be stated as follows:
+			\begin{description}
+				\item[H0:] $\sigma^2_A = \sigma^2_B$ Population variances are equal for A and B
+				\item[H1:] $\sigma^2_A \neq \sigma^2_B$ Population variances are not equal for A and B
+			\end{description}
+			
+			
+\end{frame}
+%============================================================%
+\begin{frame}
+			\frametitle{Review of Inference Procedures}
+			\Large
+			Specifically, R considers the ratio of the variances. If two
+			populations have equal variance, then this variance ratio is one.
+			The hypotheses can be re-stated as follows:
+			
+			\begin{description}
+				\item[H0:] $\sigma^2_A / \sigma^2_B = 1 $ Population variances ratio is 1
+				\item[H1:] $\sigma^2_A / \sigma^2_B \neq 1$ Population variances ratio is not 1
+			\end{description}
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+			\frametitle{Review of Inference Procedures}
+			\Large
+			To recap – the variances of A’s and B’s measurements are as
+			follows. Also computed is the ratio of these variances.
+			\begin{framed}
+				\begin{verbatim}
+				> var(X.A)
+				[1] 0.00025
+				> var(X.B)
+				[1] 0.0295
+				> var(X.A)/var(X.B)
+				[1] 0.008474576
+				> var(X.B)/var(X.A)
+				[1] 118
+				\end{verbatim}
+				
+			\end{framed}
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+			\frametitle{Review of Inference Procedures}
+			\Large
+			
+			The test is carried out using the var.test() command.
+			\begin{framed}
+				\begin{verbatim}> var.test(X.A, X.B)
+				F test to compare two variances
+				data: X.A and X.B
+				F = 0.0085, num df = 4, denom df = 4, p-value = 0.0004213
+				alternative hypothesis: true ratio of variances is not equal to 1
+				95 percent confidence interval:
+				0.000882352 0.081394321
+				sample estimates:
+				ratio of variances
+				0.008474576
+				\end{verbatim}
+				
+			\end{framed}
+\end{frame}
+%============================================================%
+\begin{frame}
+			\frametitle{Review of Inference Procedures}
+			\large
+			\noindent \textbf{F-test of equality of variances}
+			\begin{itemize}
+				\item 
+				
+				Here we reject the null hypotheses. The p-value is extremely small.
+				\item It doesn’t matter which order the data sets are specified, other than
+				the fact that it will reciprocate the variance ratio.
+			\end{itemize}
+			
+			The test statistic is
+			
+			\begin{equation} F = \frac{S_X^2}{S_Y^2}\end{equation}
+			
+			has an F-distribution with $n-1$ and $m-1$ degrees of freedom if the null hypothesis of equality of variances is true.
+			
+\end{frame}
+%============================================================%
+\begin{frame}[fragile]
+\frametitle{Review of Inference Procedures}
+\large
+\begin{framed}
+\begin{verbatim}
+				> var.test(X.B, X.A)
+				F test to compare two variances
+				data: X.B and X.A
+				F = 118, num df = 4, denom df = 4, p-value = 0.0004213
+				alternative hypothesis: true ratio of variances is not equal to 1
+				95 percent confidence interval:
+				12.28587 1133.33453
+				sample estimates:
+				ratio of variances
+				118
+\end{verbatim}
+\end{framed}
+Notice the 95\% confidence interval for the variance ratio. We are
+95\% confident that this interval contains the true variance ratio
+			(i.e. we are 95\% confident that the true variance ratio is between
+			12.28 and 1133.33).
+			
+\end{frame}
+%============================================================%
+\begin{frame}
+\frametitle{Review of Inference Procedures}
+\large
+\begin{itemize}
+				\item We can reject the null hypothesis on the basis that the value of 1 is
+				not contained in that interval.
+				\item 	Referring back to the two-sample t test; the first test i.e. the Welch
+				test, did not rely on the equality of variances, so it is the preferred
+				procedure in that case.
+				\item	Summary: before performing a two-sample t test, check to see if
+				the assumption of equal variance is valid.
+\end{itemize}
+\end{frame}
+\end{document}

@@ -1,0 +1,76 @@
+One-way analysis of variance
+One-way analysis of variance looks to see how much of the variation in grouped data comes from differences between the groups, and how much is just random observational error. There can be any number of groups, that may be of different sizes (each group with at least two observations). 
+A typical application of one-way analysis of variance would be to investigate whether three different types of growing conditions make any difference to the yield of an agricultural crop, and if so, how great those differences are. The observations would be the yields of many different experimental plots, grouped according to the growing condition that applied to them.
+
+
+%-------------------------------------------------
+
+\section{Analysis of Variance}
+
+\subsection{Introduction to ANOVA}
+Analysis of variance (ANOVA) is a popular tool that has wide applicability in the sciences. The idea of analysis of
+variance is to investigate how variation in structured data can be split into pieces associated
+with components of that structure. For the next few classes, We look at one-way and two-way
+classifications, providing tests and confidence intervals that are widely used in practice.
+
+
+\subsection{F-test and detecting source of differences}
+We compute the test statistics F = 62=3  20:7 while the $95\%$ quantile of F
+distribution with 3 and 8 degrees of freedom is given as
+\begin{verbatim}
+qf(0.95,3,8)
+# 4.066181
+\end{verbatim}
+We clearly see that the test informs us about a significant difference between
+the means.
+But which means are different? The least significant difference method
+described in Section 3.9:
+We compute the least significant difference s
+p
+2=n  t, where s
+2
+is within
+sample estimate of variance and $t$ is the $97.5\%$ quantile of Student-t
+distribution with h(n  1) degrees of freedom.
+
+\begin{verbatim}
+sqrt(mean(s))*sqrt(2/3)*qt(0.975,8)
+# 3.261182
+m=apply(x,1,mean)
+m
+#[1] 101 102 97 92
+\end{verbatim}
+%----------------------------------------------------------%
+
+\subsection{Degrees of freedom and Sum of Squares (SS)}
+The associated degrees of freedom: for within-sample h(n  1) (in our example $4 \times 2 = 8$), for between-sample
+h  1 (in our example 3).
+Total number of degrees freedom hn  1 and we see
+$hn  1 = h(n  1) + h  1:$
+But there is more then the relation between degrees of freedom. Namely
+\[ SST = SSM + SSR \]
+
+where
+\[ SST = \]
+
+and
+\[ SSM = \]
+
+%----------------------------------------------------------%
+\subsection{Computations in R}
+\begin{verbatim}
+x=c(102,100,101,101,101,104,97,95,99,90,92,94)
+factors=c(rep("A",3),rep("B",3),rep("C",3),rep("D",3))
+res=aov(xfactors)
+anova(res)
+Analysis of Variance Table
+Response: x
+Df Sum Sq Mean Sq F value Pr(>F)
+factors 3 186 62 20.667 0.0004002 ***
+Residuals 8 24 3
+---
+Signif. codes: 0 *** 0.001 ** 0.01 * 0.05 . 0.1 1
+
+\end{verbatim}
+
+%--------------------------------------%

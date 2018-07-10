@@ -1,0 +1,1033 @@
+\documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{graphics}
+\usepackage{framed}
+\usepackage{epsfig}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode"CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 201113:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+\lhead{MA4505} \rhead{Kevin O'Brien} \chead{Review Questions for Midterm
+and EoS Exam } %\input{tcilatex}
+
+\begin{document}
+	\subsection*{Q1. Experimental Design }
+	
+	% Definitions
+	% One Way ANOVA
+	% Checking Assumptions
+	
+	Explain the following terms in the context of experimental design
+	\begin{itemize}
+		\item[i.] (2 marks) levels of a factor.
+		\item[ii.] (2 marks) randomized block design.
+	\end{itemize}
+	
+	%==================================================================%
+	\subsection*{Q2. One-Way ANOVA } %4 Marks
+	Six analysts each made seven determinations of the paracetamol content of the same batch of tablets.
+	The results are shown in the table below. In the last two columns are the sample means and standard deviations for each sample.\\
+	\bigskip
+	
+	\begin{tabular}{|c|ccccccc|c|c|}
+		\hline
+		Group &  & &  &  &  &  &  & $\bar{X}$& $S_{X}$ \\ \hline
+		A & 84.32 & 84.51 & 84.63 & 84.61 & 84.64 & 84.51 & 84.62 & 84.5486 & 0.1209 \\ \hline
+		B & 84.24 & 84.25 & 84.41 & 84.13 & 84.00 & 84.30 & 84.02 & 84.1928 & 0.1416 \\ \hline
+		C & 84.29 & 84.40 & 84.68 & 84.28 & 84.40 & 84.36 & 84.63 & 84.4342 & 0.1459 \\ \hline
+		D & 84.14 & 84.22 & 84.02 & 84.48 & 84.27 & 84.33 & 84.22 & 84.2400 & 0.1583 \\ \hline
+		E & 84.50 & 83.88 & 84.49 & 83.91 & 84.11 & 84.06 & 83.99 & 84.1343 & 0.2749 \\ \hline
+		F & 84.70 & 84.17 & 84.11 & 84.36 & 84.61 & 83.81 & 84.15 & 84.2729 & 0.3324 \\ \hline
+	\end{tabular} 
+	
+
+	
+	
+	\bigskip
+	For the aggregrate sample (all 42 observations) the standard deviation is $0.2334$.
+	
+	\begin{itemize}
+		\item[(i)] (5 Marks) Complete the following One Way Analysis of Variance Table.
+		\item[(ii)] (1 Marks) Describe what is the purpose of this procedure. include a statement of the null and alternative hypothesis in your answer.
+		%	\item[(iii)] (2 Marks) (5 Marks)
+	\end{itemize}
+	\begin{tabular}{|r|c|c|c|c|c|}
+		\hline Source  &\phantom{sp} DF \phantom{sp} & Sum Squares & Mean Square  & \phantom{sp} F \phantom{sp} & p-value  \\ 
+		\hline Between-Groups &  &  &  &  & 0.003941 \\ 
+		\hline Within-Groups &  &  &  &  &  \\ \hline
+		\hline Total &  &  &  &  &  \\ 
+		\hline 
+	\end{tabular} 
+	
+\newpage
+	
+\subsection*{Q3. One Way ANOVA } %4 Marks
+
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1.0\linewidth]{image/Q23Review}
+\end{figure}
+\noindent (Important: For MA4505, Disregard the comment about the \textbf{Sum of Square of the Observations}.)\\
+You are given the additional piece of information , sufficient to construct ANOVA table
+
+{
+	\Large
+	\begin{center}
+		\begin{tabular}{|c|c|c|c||c|} 
+			\hline  & A & B & C & Overall \\ 
+			\hline Mean & 37 & 39& 34 &36 \\ 
+			\hline Std.Dev &  1.5811 & 1.8708 & 2.2111 & 2.8837 \\
+			
+			\hline 
+		\end{tabular}
+	\end{center}
+}
+The p-value for the Test Statistic is 0.00650
+
+\newpage
+\subsection*{Q4. One Way ANOVA }
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{image/Q24review1}
+	
+\end{figure}
+
+\noindent \textbf{Additional Information: }
+\begin{itemize}
+	\item The Variance of the Response Variable is 3.2. (You can ignore the part about “the sum of squares for all 20 obervations”.)
+	\item  Ordinarily you would be given the standard deviation for each sample, and from that, directly compute SSwithin. In this question , use this identity : SStotal = SSbetween + SSwithin.
+	\item  You have been given enough information to compute the Overall Mean.
+	\item  We may not get around to covering the confidence intervals material in MA4605 2015. It will be retained for possible use in future.
+\end{itemize}
+\newpage
+\subsection*{Q5. One Way ANOVA }
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1\linewidth]{image/Q27review1}
+	
+\end{figure}
+\noindent \textbf{Additional Information: }
+\begin{itemize}
+	\item The variance of the response variable is 831.3695. (\textit{You can ignore now some of the information given in the question}) 
+	\item  In this question, use this identity : \textbf{\textit{SStotal = SSbetween + SSwithin}}.
+	\item  You have been given enough information to compute the Overall Mean.
+	\item  We may not get around to covering the confidence intervals material in MA4605 2015. It will be retained for possible use in future.
+\end{itemize}
+\newpage
+\subsection*{Q6. Two Way ANOVA - No Replicates} %4 Marks
+
+Three varieties of potatoes are being compared for yield. The experiment
+was carried out by assigning each variety at random to four of twelve equal size
+plots, one being chosen in each of four locations. The following yields in bushels per 
+plot resulted:
+% A bushel is about 36.4 litres.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.4\linewidth]{image/twowayanova-potato}
+\end{figure}
+\noindent \textbf{Additional Information} 
+
+\begin{itemize}
+	\item The variance of the Row means is : $S^2_{R} = 19.037$. 
+	\item the variance of the Column means is : $S^2_{C} = 3.0625$.	
+	\item Also the overall variance of the 12 observations is $\textrm{Var}(Y) = 21.6363 $. 
+\end{itemize}
+
+\noindent \textbf{Exercise:} Complete the Two Way ANOVA table. You are not required to perform any hypothesis testing.
+\newpage
+
+\subsection*{Q7. Two Way ANOVA }
+Given the following details below, construct the appropriate Two-Way ANOVA Table. \textit{You are not required to do any hypothesis testing.}
+
+\begin{itemize}
+	\item There are 2 factors: A and B. A has 2 levels, while Factor B has 3 levels.
+	\item There are 54 observations in the experiment.
+	\item The variance of the response variable is 174.2075.
+	\item The Sum of Squares for Factors A and B are 451  and  2034 respectively.
+	\item The Sum of Squares for Error is 5745.
+\end{itemize}
+
+\newpage
+
+
+\subsection*{Q8. Two Way ANOVA (no replicates)}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{image/Q26Review1}
+	
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{image/Q26review2}
+	
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{image/Q26review3}
+	
+\end{figure}
+\newpage
+
+\subsection*{Q9. Two Way ANOVA (no replicates)}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{image/Q28Review1}
+	
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{image/Q28Review3}
+	
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.9\linewidth]{image/Q28Review2}
+	
+\end{figure}
+\newpage
+\subsection*{Q10. Two Way ANOVA (with replicates)}
+
+Consider the following experiment (similar to question 28) where there are 5 measurements per treatment group.
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{image/Q29Review}
+\end{figure}
+Complete the following ANOVA table.\\ \bigskip
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{image/Q29Review2}
+\end{figure}\\
+
+
+For the three F test statistics, state the appropriate degrees of freedom for the corresponding critival value. \textit{(You are not required to perform the hypothesis test)}
+\newpage
+\subsection*{Q11. Polynomial Regression / Model Selection}
+
+In an experiment to determine hydrolysable tannins in plants by absorption spectroscopy, the following results from ten samples were obtained and are tabulated below. A simple linear regression model, predicting absorbance values using concentration as the independent variable, was fitted to the data.
+
+
+%%Absorbance= c(0.084, 0.183, 0.326, 0.464, 0.643, 0.707, 0.717, 0.734 ,0.749 ,0.732) ;
+%%Concentration= c(0.123, 0.288, 0.562, 0.921, 1.420, 1.717, 1.921, 2.137 ,2.321, 2.467) ;
+%%plot(Concentration,Absorbance,pch=18,col="red",font.axis=2,font.lab=2)
+%%abline(coef(lm(Absorbance~Concentration)))
+
+%%Conc.Squared = (Concentration^2)
+%%Conc.Cubed = (Concentration^3)
+%%ModelA = lm(Absorbance~Concentration)
+%%ModelB = lm(Absorbance~Concentration+Conc.Squared)
+%%ModelC = lm(Absorbance~Concentration+Conc.Squared+Conc.Cubed)
+
+\begin{center}
+	\begin{tabular}{|c||c|c|c|c|c|}
+		\hline
+		%  % after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+		Sample & 1 & 2 & 3 & 4 & 5 \\ \hline
+		Absorbance & 0.084& 0.183& 0.326& 0.464& 0.643\\
+		Concentration & 0.123& 0.288& 0.562& 0.921& 1.420\\ \hline
+		Sample & 6 & 7 & 8 & 9 & 10 \\ \hline
+		Absorbance & 0.707& 0.717& 0.734 &0.749 &0.732\\
+		Concentration & 1.717& 1.921& 2.137 &2.321&2.467\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{center}
+	\includegraphics[scale=0.55]{images/ExamQ3plot}
+\end{center}
+
+\noindent A Simple Linear regression model and two polynomial models were fitted to the data. Description of all three fitted models are found in the three blocks of \texttt{R} code below. The \emph{Akaike Information Criterion} is listed, for each of the three fitted models.
+
+\begin{itemize}
+	\item[i.] (1 marks) Is the simple linear regression model approach suitable for this study? Explain your answer with reference to the scatter-plot.
+	\item[ii] (3 marks)  Write down the regression equations of each of the three models.
+	
+	\item[iv.] (2 marks) Specify which one of the models you would use. Justify your answer with appropriate statistical values.
+	
+	
+	\item[v.] (2 marks) Using the best fit model, predict a value for absorbance when the concentration level is 1.2 $mg/ml$.
+\end{itemize}
+\newpage
+\begin{itemize}
+	\begin{framed}
+		\item \textbf{Model 1}
+		\begin{verbatim}
+		> summary(Model1)
+		Call:
+		lm(formula = Absorb ~ Conc)
+		...
+		Coefficients:
+		Estimate Std. Error t value Pr(>|t|)
+		(Intercept)    0.14412    0.04721   3.053   0.0158 *
+		Concentration  0.28088    0.02930   9.586 1.16e-05 ***
+		...
+		
+		Residual standard error: 0.07584 on 8 degrees of freedom
+		Multiple R-squared: 0.9199,     Adjusted R-squared: 0.9099
+		F-statistic: 91.89 on 1 and 8 DF,  p-value: 1.163e-05
+		>
+		>AIC(Model1)
+		[1] -19.4343
+		\end{verbatim}
+	\end{framed}
+	\begin{framed}
+		\item \textbf{Model 2}
+		\begin{verbatim}
+		> summary(Model2)
+		Call:
+		lm(formula = Absorb ~ Conc + Conc.Squared)
+		...
+		Coefficients:
+		Estimate Std. Error t value Pr(>|t|)
+		(Intercept)    0.006582   0.008013   0.821    0.439
+		Concentration  0.642935   0.015568  41.299 1.27e-09 ***
+		Conc.Squared  -0.140573   0.005894 -23.851 5.79e-08 ***
+		...
+		Residual standard error: 0.008939 on 7 degrees of freedom
+		Multiple R-squared: 0.999,      Adjusted R-squared: 0.9987
+		F-statistic:  3592 on 2 and 7 DF,  p-value: 2.879e-11
+		>
+		> AIC(Model2)
+		[1] -61.5338
+		\end{verbatim}
+	\end{framed}
+	\newpage
+	
+	\begin{framed}
+		\item \textbf{Model 3}
+		\begin{verbatim}
+		> summary(Model3)
+		
+		Call:
+		lm(formula = Absorb ~ Conc+ Conc.Squared + Conc.Cubed)
+		...
+		...
+		Coefficients:
+		Estimate Std. Error t value Pr(>|t|)
+		(Intercept)    0.013712   0.011629   1.179   0.2830
+		Concentration  0.608682   0.042825  14.213 7.58e-06 ***
+		Conc.Squared  -0.108186   0.038088  -2.840   0.0296 *
+		Conc.Cubed    -0.008196   0.009518  -0.861   0.4223
+		...
+		
+		Residual standard error: 0.009109 on 6 degrees of freedom
+		Multiple R-squared: 0.9991,     Adjusted R-squared: 0.9987
+		F-statistic:  2306 on 3 and 6 DF,  p-value: 1.422e-09
+		>
+		> AIC(Model3)
+		[1] -60.69903
+		\end{verbatim}
+	\end{framed}
+\end{itemize}
+\newpage
+\newpage
+\subsection*{Q12. Model Selection}
+
+\begin{itemize}
+	\item Suppose we have 4 predictor variables :$\{ X_1,X_2,X_3,X_4 \} $\item 
+Use Forward and Backward Selection to Choose the Optimal set of Predictor Variables, based on the AIC metrics listed for each combination of predictor variables listed below.
+\end{itemize}
+{
+	\large
+\begin{center}
+\begin{tabular}{||c|c||c|c||}
+	\hline Variables  & AIC & Variables & AIC \\ \hline
+	\hline    $\{ \emptyset \} $   & 208.75   &  $\{ X_2,X_4 \} $    & 166.97 \\ \hline 
+	\phantom{makespace} & \phantom{makespace} & $\{ X_3,X_4 \} $& 164.16\\
+	\hline    $\{ X_1 \} $     &  169.30   &    &  \\ 
+	\hline    $\{ X_2 \} $     &  190.79   &  $\{ X_1,X_2,X_3 \}$  & 168.40 \\ \hline
+	 $\{ X_3 \} $  & 170.20 &$\{ X_1,X_2,X_4 \} $  & 158.01\\ 
+	\hline    $\{ X_4 \} $      &  166.02   &   $\{ X_1,X_3,X_4 \} $  & 157.55\\ 
+	\hline        &     &    $\{ X_2,X_3,X_4 \} $  & 165.78 \\ 
+	\hline    $\{ X_1,X_2 \} $ &  169.61   &     &  \\ 
+	\hline    $\{ X_1,X_3 \} $ &  167.14   &   $\{ X_1,X_2,X_3,X_4 \} $&  159.55\\ 
+	\hline    $\{ X_1,X_4 \} $ &  156.01   &    &  \\ 
+	\hline $\{ X_2,X_3 \} $ & 166.97 &\phantom{makespace}& \phantom{makespace}\\
+	\hline
+\end{tabular} 
+\end{center}
+}
+\newpage
+\subsection*{Q13. Model Selection}
+Use Forward and Backward Selection to Choose the Optimal set of Predictor Variables
+
+{
+	\large
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|c|c|c|c||}\hline
+			(None)	&	AIC(Fit0)	&	255.4247	&	Mult $R^2$	&	0	&	adj. $R^2$	&	0	\\ \hline
+			Acetic	&	 AIC(FitA)	&	246.6389	&	Mult $R^2$	&	0.3019934	&	adj. $R^2$	&	0.2770646	\\ \hline
+			H2S	&	 AIC(FitB)	&	232.0245	&	Mult $R^2$	&	0.5711615	&	adj. $R^2$	&	0.5558458	\\ \hline
+			Lactic	&	 AIC(FitC)	&	236.8724	&	Mult $R^2$	&	0.4959486	&	adj. $R^2$	&	0.4779468	\\ \hline
+			Acetic, H2S  	&	 AIC(Fit1)	&	233.2438	&	Mult $R^2$	&	0.5821773	&	adj. $R^2$	&	0.5512274	\\ \hline
+			Acetic,Lactic 	&	 AIC(Fit2)	&	237.3884	&	Mult $R^2$	&	0.5202762	&	adj. $R^2$	&	0.4847411	\\ \hline
+			H2S, Lactic	&	 AIC(Fit3)	&	227.7838	&	Mult $R^2$	&	0.6517024	&	adj. $R^2$	&	0.6259025	\\ \hline
+			All Three	&	 AIC(FitAll)	&	229.7775	&	Mult $R^2$	&	0.6517747	&	adj. $R^2$	&	0.6115948	\\ \hline
+			
+		\end{tabular} 
+	\end{center}
+}
+
+%==========================================================%
+\newpage
+\subsection*{Q14. Model Selection}
+
+\begin{itemize}
+\item Suppose we have 5 predictor variables.
+\item Use \textbf{Forward Selection} and \textbf{Backward Selection} to choose the optimal set of Predictor Variables, based on the AIC metric.
+\end{itemize}
+{
+	\large
+	\begin{center}
+\begin{tabular}{|c|c|c|c|}
+	\hline
+$\emptyset$	&	200	&	x1,x2,x3	&	74	\\ \hline
+\phantom{makespace}
+ &	\phantom{makespace}
+ 	&	x1,x2,x4	&	75	\\ \hline
+x1	&	150	&	x1,x2,x5	&	78	\\ \hline
+x2	&	170	&	x1,x3,x4	&	72	\\ \hline
+x3	&	135	&	x1,x3,x5	&	82	\\ \hline
+x4	&	130	&	x1,x4,x5	&	70	\\ \hline
+x5	&	140	&	x2,x3,x4	&	80	\\ \hline
+&		&	x2,x3,x5	&	82	\\ \hline
+x1,x2	&	90	&	x2,x4,x5	&	78	\\ \hline
+x1,x3	&	81	&	x3,x4,x5	&	75	\\ \hline
+x1,x4	&	84	&	\phantom{makespace}
+	&	\phantom{makespace}
+		\\ \hline
+x1,x5	&	78	&	x1,x2,x3,x4	&	83	\\ \hline
+x2,x3	&	87	&	x1,x2,x3,x5	&	130	\\ \hline
+x2,x4	&	78	&	x1,x2,x4,x5	&	104	\\ \hline
+x2,x5	&	87	&	x1,x3,x4,x5	&	101	\\ \hline
+x3,x4	&	85	&	x2,x3,x4,x5	&	89	\\ \hline
+x3,x5	&	88	&		&		\\ \hline
+x4,x5	&	86	&	x1,x2,x3,x4,x5	&	100	\\ \hline
+		\end{tabular} 
+	\end{center}
+}
+%================================================= %
+\newpage
+\subsection*{Q15. Regression ANOVA}
+%-------------------------------End  of Question 2A%
+(4 Marks) Complete the following \textit{Analysis of Variance} Table for a simple linear regression model based on the data provided. The required values are indicated by question marks.
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|} \hline
+		& DF & 	Sum Sq &	Mean Sq &	F value &   	Pr($>$F)    \\ \hline
+		Regression &  ? &	9160239 &	? &	 ? &	$< 2.2e^{-16}$ \\ \hline
+		Error  & 50 &	2134710 &  	?   &            &       \\ \hline
+		Total  & ?  &	? &  	?  &            &       \\ \hline
+	\end{tabular} 
+\end{center}
+
+Once you have completed this table, compute the following
+\begin{itemize}
+	\item (1 Mark) The Pearson correlation coefficient for the response variable Y and the predictor variable X.\textit{ (You may assume that the Pearson Correlation Coefficient is a positive number.)}
+	\item (1 Mark) The sample standard deviation of the response variable Y.
+\end{itemize}
+\newpage
+\subsection*{Q16. Regression ANOVA}
+The mercury level of several tests of sea-water from costal areas was determined by atomic-absorption spectrometry. The results obtained are as follows
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=1.1\linewidth]{image/regressionData}
+\end{figure}
+
+The analysis of the relationship between concentration and absorbance is obtained in R and presented below. 
+\begin{framed}
+	\begin{verbatim}
+	x<-seq(0,100,by=10)
+	y<- c(0.321, 0.834, 1.254, 1.773, 2.237, 2.741, 3.196, 3.678, 
+	4.217, 4.774, 5.261)
+	model<- lm(y~x)
+	summary(model)
+	
+	Call:
+	lm(formula = y ~ x)
+	
+	Coefficients:
+	             Estimate Std. Error t value Pr(>|t|)    
+	(Intercept) 0.2933636  0.0234754   12.50 5.45e-07 
+	x           0.0491982  0.0003968  123.98 7.34e-16 
+	---
+	
+	Residual standard error: 0.04162 on 9 degrees of freedom
+	Multiple R-squared: 0.9994,     Adjusted R-squared: 0.9993 
+	F-statistic: 1.537e+04 on 1 and 9 DF,  p-value: 7.337e-16 
+	
+	confint(model)
+	2.5 %     97.5 %
+	(Intercept) 0.24025851 0.34646876
+	x           0.04830054 0.05009582
+	
+	\end{verbatim}
+\end{framed}
+
+\begin{itemize}
+	\item[(i)] (2 marks)
+	Determine and interpret the slope and the intercept of the regression line.
+	\item[(ii)]  (2 marks) State the 95\% confidence interval for the slope and the intercept coefficients. Interpret this intervals with respect to any relevant hypothesis tests
+	\item[(iii)] (2 marks) Explain in which way is the prediction intervals different from the confidence intervals for fitted values in linear regression?
+	\item[(iv)] (2 Marks) The following piece of \texttt{R} code gives us a statistical metric. What is this metric? What is it used for? How should it be interpreted.
+	
+\end{itemize}
+\begin{framed}
+	\begin{verbatim}
+	> AIC(model)
+	[1] -34.93389	
+	\end{verbatim}
+\end{framed}
+\newpage
+
+\subsection*{Q17. Regression Models}
+\begin{framed}
+	\begin{verbatim}
+	
+	
+	> summary(CheesesModel)
+	
+	Call:
+	lm(formula = Taste ~ Acetic + H2S + Lactic)
+	
+	Residuals:
+	Min      1Q  Median      3Q     Max 
+	-17.390  -6.612  -1.009   4.908  25.449 
+	
+	Coefficients:
+	            Estimate Std. Error t value Pr(>|t|)   
+	(Intercept) -28.8768    19.7354  -1.463  0.15540   
+	Acetic        0.3277     4.4598   0.073  0.94198   
+	H2S           3.9118     1.2484   3.133  0.00425 **
+	Lactic       19.6705     8.6291   2.280  0.03108 * 
+	---
+	Signif. codes:  0 ‘***’ 0.001 ‘**’ 0.01 ‘*’ 0.05 ‘.’ 0.1 ‘ ’ 1
+	
+	Residual standard error: 10.13 on 26 degrees of freedom
+	Multiple R-squared:  0.6518,    Adjusted R-squared:  0.6116 
+	F-statistic: 16.22 on 3 and 26 DF,  p-value: 3.81e-06
+	
+	\end{verbatim}
+\end{framed}
+\begin{itemize}
+	\item[(i)] (2 marks)
+	State the Regression Equation for this model
+	\item[(ii)] (8 marks) For each of the regression coefficients, interpret the test for significance. State the null and laternative hypothesis in each case. State your conclusion to each test.
+%	\item[(iii)] (2 marks) Explain in which way is the prediction intervals different from the confidence intervals for fitted values in linear regression?
+%	\item[(iv)] (2 Marks) The following piece of \texttt{R} code gives us a statistical metric. What is this metric? What is it used for? How should it be interpreted.
+	
+\end{itemize}
+
+\newpage
+
+\subsection*{Q18. Regression Analysis}
+\textit{(MA4505  2015 - just parts 2,3, and 4)}
+\begin{figure}[h!]
+\centering
+\includegraphics[width=0.8\linewidth]{images/ReviewQ18-a}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/ReviewQ18-b}
+\end{figure}
+\newpage
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/ReviewQ18-c}
+\end{figure}
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=0.8\linewidth]{images/ReviewQ18-d}
+\end{figure}
+
+\subsection*{Q19. Assumptions for ANOVA}
+
+The \texttt{R} code and graphical procedures, below and on the following page, are relevant to checking whether the underlying assumptions are met for the ANOVA model in part (b).
+\begin{itemize}
+	\item[i.] (3 marks) What are the assumptions underlying ANOVA?
+	\item[ii.] (4 marks)  Assess the validity of these assumptions for the ANOVA model in the previous question (Question 37).
+	
+\end{itemize}
+\begin{framed}
+	\begin{verbatim}
+	Shapiro-Wilk normality test
+	
+	data:  Residuals
+	W = 0.9719, p-value = 0.3819
+	\end{verbatim}
+\end{framed}
+\begin{framed}
+	\begin{verbatim}
+	Bartlett test of homogeneity of variances
+	
+	data:  Experiment
+	Bartlett's K-squared = 105.9585, df = 1, p-value < 2.2e-16
+	\end{verbatim}
+\end{framed}
+\begin{center}
+	\includegraphics[scale=0.59]{images/ExamQ5boxplot}
+\end{center}
+\newpage
+%qqnorm(resid(Model),pch=18,col="red",font.lab=2,font.axis=2)
+%qqline(resid(Model))
+\begin{center}
+	\includegraphics[scale=0.55]{images/ExamQ5qqplot}
+\end{center}
+\begin{center}
+	\includegraphics[scale=0.55]{images/ExamQ5resid}
+\end{center}
+\newpage
+
+\subsection*{Q20. Statistical Process Control}
+Answer the following questions.
+
+\begin{itemize}
+	\item[i.] (1 marks) What is the purpose of maintaining control charts?
+	\item[ii.] (1 marks) What is the \emph{\textbf{Three Sigma}} rule in the context of statistical process control?
+	%	\item[iii.] (4 marks) Other than applying the \emph{Three Sigma} rule for detecting the presence of an assignable cause, what else do we look for when studying a control chart? Limit your answer to three examples. Support your answer with sketches.
+	\item[iii.] (2 Marks) What is a CUSUM chart? What type of departures from the production target value
+	is this type of chart useful for detecting?
+\end{itemize}
+
+
+\newpage
+\subsection*{Q21. Control Limits }
+Short Question on Calculating Control Limits
+\begin{framed}
+	Exam Paper Formulas for Control Limits
+	\begin{itemize}
+		\item Process Mean
+		
+		
+		
+		\[ \bar{\bar{x}} \pm 3\frac{\bar{s}}{c_4\sqrt{n}}\]
+		\item Process Standard Deviation	
+		\[ \bar{s} \pm 3\frac{c_5\bar{s}}{c_4}\]
+		\item Process Range	
+		\[\left[ \bar{R}D_3, \bar{R}D_4\right]\]
+	\end{itemize}	
+\end{framed}
+\newpage
+
+\subsection*{Q22. Control Charts Arithmetic}
+A normally distributed quality characteristic is monitored through the use of control charts. These charts have the following parameters. All charts are in control.
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline  & LCL & Centre Line & UCL \\
+		\hline $\bar{X}$-Chart & 614 & 620 & 626 \\
+		\hline $R$-Chart & 0 & 8.236 & 18.795 \\ \hline
+	\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item[i.] (2 marks) What sample size is being used for this analysis?
+	\item[ii.] (2 marks) Estimate the mean of the standard deviations $\bar{s}$ for this process.
+	\item[iii.] (2 marks) Compute the control limits for the process standard deviation chart (i.e. the s-chart).
+\end{itemize}
+
+\subsection*{Q23. Control Charts Arithmetic}
+
+A normally distributed quality characteristic is monitored through the use of control charts. These charts have the following parameters. All charts are in control.
+\begin{center}
+	\begin{tabular}{|c|c|c|c|}
+		\hline  & LCL & Centre Line & UCL \\
+		\hline $\bar{X}$-Chart & 542 & 550 & 558 \\
+		\hline $R$-Chart & 0 & 8.236 & 16.504 \\ \hline
+	\end{tabular}
+\end{center}
+
+\begin{itemize}
+	\item[(i.)] (2 marks) What sample size is being used for this analysis?
+	\item[(ii.)](2 marks) Estimate the mean of the standard deviations $\bar{s}$ for this process.
+	\item[(iii.)] (2 marks) Compute the control limits for the process standard deviation chart (i.e. the s-chart).
+\end{itemize}
+
+\subsection*{Q24. Statistical Process Control}
+Answer the following questions.
+
+\begin{itemize}
+	\item[(i)] (1 marks) Differentiate common causes of variation in the quality of process output from assignable causes.
+	\item[(ii.)] (1 marks) What is tampering in the context of statistical process control?
+	\item[(iii.)] (4 marks) Other than applying the \emph{Three Sigma} rule for detecting the presence of an assignable cause, what else do we look for when studying a control chart? Support your answer with sketches.
+\end{itemize}
+
+\subsection*{Q25. Process Capability Indices}
+
+An automobile assembly plant concerned about quality improvement measured sets of five camshafts on twenty occasions throughout the day. The specifications for the process state that the design specification limits at 600$\pm$3mm.
+
+
+\begin{itemize}
+	\item[i.] (2 marks) Determine the \emph{Process Capability Indices} $C_p$ and $C_{pk}$, commenting on the respective values. You may use the \texttt{R} code output on the following page.
+	\item[ii.] (2 marks)  The value of $C_{pm}$ is $1.353$. Explain why there would be a discrepancy between $C_p$ and $C_{pm}$.
+	\item[iii.] (2 marks) Comment on the graphical output of the \emph{Process Capability Analysis}, also presented on the next page.
+\end{itemize}
+
+
+\newpage
+\begin{framed}
+	\begin{verbatim}
+	Process Capability Analysis
+	
+	Call:
+	process.capability(object = obj, spec.limits = c(597, 603))
+	Number of obs = 100          Target = 600
+	Center = 599.548         LSL = 597
+	StdDev = 0.5846948       USL = 603
+	
+	Capability indices:
+	Value   2.5%  97.5%
+	Cp    ...
+	Cp_l  ...
+	Cp_u  ...
+	Cp_k  ...
+	Cpm   1.353  1.134  1.572
+	Exp<LSL 0%   Obs<LSL 0%
+	\end{verbatim}
+\end{framed}
+
+
+
+\begin{center}
+	\includegraphics[scale=0.55]{images/ExamQ4hist}
+\end{center}
+\newpage
+%
+%Lengths = Values
+%
+%obj <- qcc(Lengths, type="xbar")
+%
+%process.capability(obj, spec.limits=c(597,603))
+
+
+\subsection*{Q26. Process Capability Indices} 
+
+An automobile assembly plant concerned about quality improvement measured sets of five camshafts on twenty occasions throughout the day. The specifications for the process state that the design specification limits at 600$\pm$3mm.
+
+
+\begin{itemize}
+	\item[i.] (4 marks) Determine the \emph{Process Capability Indices} $C_p$ and $C_{pk}$, commenting on the respective values. You may use the \texttt{R} code output on the following page.
+	\item[ii.] (2 marks)  The value of $C_{pm}$ is $1.353$. Explain why there would be a discrepancy between $C_p$ and $C_{pm}$.
+	\item[iii.] (2 marks) Comment on the graphical output of the \emph{Process Capability Analysis}, also presented on the next page.
+\end{itemize}
+
+
+\newpage
+\begin{framed}
+	\begin{verbatim}
+	Process Capability Analysis
+	
+	Call:
+	process.capability(object = obj, spec.limits = c(597, 603))
+	Number of obs = 100          Target = 600
+	Center = 599.548         LSL = 597
+	StdDev = 0.5846948       USL = 603
+	
+	Capability indices:
+	Value   2.5%  97.5%
+	Cp    ...
+	Cp_l  ...
+	Cp_u  ...
+	Cp_k  ...
+	Cpm   1.353  1.134  1.572
+	Exp<LSL 0%   Obs<LSL 0%
+	\end{verbatim}
+\end{framed}
+
+
+
+\begin{center}
+	\includegraphics[scale=0.55]{images/ExamQ4hist}
+\end{center}
+\newpage
+%
+%Lengths = Values
+%
+%obj <- qcc(Lengths, type="xbar")
+%
+%process.capability(obj, spec.limits=c(597,603))
+\subsection*{Q27. ANOVA} 
+Three species of tree were grown in a forestry plantation. Not all the
+seedlings survived and so the sample size, $n_i$, were not the same for
+each species. The data shown in the following table are the heights (in
+metres) of growth made in a fixed time.
+
+{
+	\Large
+	\begin{centering}
+		\begin{tabular}{|l|c|l|c|c|}
+			\hline
+			Species & $n_i$ & Observations & Total & $S^2_x$ \\ \hline
+			Pinus & 10 & 4.9 5.1 4.5 5.0 4.1 4.0  & 44.0 & 0.32\\ 
+			Caribea  & & 4.4 4.8 3.8 3.4
+			
+			& &\\  \hline
+			Pinus  & 12 & 4.2 3.5 4.7 4.1 3.9 4.6    &  48.0 & 0.22\\ 
+			Kesiya & & 4.3 3.4 4.0 3.3 3.6 4.4 &&\\  \hline
+			Eucalyptus 
+			& 8 & 5.6 4.6 5.7 6.3 5.4 5.0  & 42.4 & 0.32
+			\\ 
+			Deglupta & & 5.1 4.7
+			&&\\  \hline
+		\end{tabular} 
+	\end{centering}
+}
+
+\begin{itemize}
+	\item The overall mean is 4.48
+	\item The overall variance is 0.543
+\end{itemize}
+
+\begin{itemize}
+	\item Carry out the usual one-way analysis of variance to examine whether
+	there are overall differences between the species. 
+\end{itemize}
+{
+	\large
+	\begin{tabular}{|c|c|c|c|c|c|}
+		\hline Source & DF & SS & MS & F & $p-$values \\ \hline
+		\hline Between & \phantom{ma} ? \phantom{ma} & \phantom{mak} ? \phantom{mak} & \phantom{mak} ? \phantom{mak} & \phantom{mak} ? \phantom{mak} &  $7.69\times10^{-05}$ 	  \\ 
+		\hline Within & \phantom{ma} ? \phantom{ma} &  \phantom{mak} ? \phantom{mak} &  \phantom{mak} ? \phantom{mak}&  \phantom{mak}&  \\ \hline
+		\hline  Total & \phantom{ma} ? \phantom{ma} & \phantom{mak} ? \phantom{mak} &  &  &   \\ 
+		\hline 
+	\end{tabular} 
+}
+\subsection*{Q28. Numeric Transformation of Data} %4 Marks
+
+
+\begin{itemize}
+	\item[(i)] Describe the purpose of transformations
+	\item[(ii)] Describe the process of transformations
+	\item[(iii)] Describe the purpose of Tukey's Ladder (referencing direction and relative strength)
+	\item[(iv)] Give an example of a transformation for various types of skewed data (use Tukey's Ladder, with an example for both directions)
+	\item[(v)] Describe the limitations of transformations
+\end{itemize}
+
+
+%==================================================================%
+\subsection*{Q29- Nelson Rules for Control Charts}
+The \textbf{Nelson Rules} are a set of eight decision rules for detecting ``out-of-control" or non-random conditions on control charts. These rules are applied to a control chart on which the magnitude of some variable is plotted against time. The rules are based on the mean value and the standard deviation of the samples.\\
+
+\begin{itemize}
+	\item[(i)] ($4 \times 3$ Marks) Discuss any four of these rules, and how they would be used to detect ``out of control" processes. Support your answer with sketches.
+\end{itemize}
+
+\bigskip 
+\begin{framed}
+	\noindent \textit{In your answer, you may make reference to the following properties of the Normal Distribution. Consider the random variable $X$ distributed as
+		\[X \sim \mathcal{N}(\mu,\sigma^2)\]
+		where $\mu$ is the mean and $\sigma^2$ is the variance of an random variable $X$.}
+	\begin{itemize}
+		\item $\Pr( \mu - 1\sigma \leq X \leq \mu + 1\sigma ) = 0.6827$
+		\item $\Pr( \mu - 2\sigma \leq X \leq \mu + 2\sigma ) = 0.9545$
+		\item $\Pr( \mu - 3\sigma \leq X \leq \mu + 3\sigma )= 0.9973$
+		
+	\end{itemize}
+\end{framed}
+
+%\subsection*{Question 48 - Tukey's Ladder For Data Transformation}
+%\begin{itemize}
+%%	\item Describe the purpose of transformations
+%%	\item Describe the process of transformations
+%	\item[(i)](1 Mark) Describe the purpose of Tukey's Ladder (referencing direction and relative strength)
+%	\item[(ii)] (2 Marks) Give an example of a transformation for various types of skewed data (use Tukey's Ladder, with an example for both directions)
+%	\item[(iii)] (2 Marks) Describe the limitations of transformations
+%\end{itemize}	
+
+\subsection*{Q30. Regression ANOVA}
+%-------------------------------End  of Question 2A%
+(4 Marks) Complete the following \textit{Analysis of Variance} Table for a simple linear regression model based on the data provided. The required values are indicated by question marks.
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|} \hline
+		& DF & 	Sum Sq &	Mean Sq &	F value &   	Pr($>$F)    \\ \hline
+		Regression &  ? &	9160239 &	? &	 ? &	$< 2.2e^{-16}$ \\ \hline
+		Error  & 50 &	2134710 &  	?   &            &       \\ \hline
+		Total  & ?  &	? &  	?  &            &       \\ \hline
+	\end{tabular} 
+\end{center}
+
+Once you have completed this table, compute the following
+\begin{itemize}
+	\item (1 Mark) The Pearson correlation coefficient for the response variable Y and the predictor variable X.\textit{ (You may assume that the Pearson Correlation Coefficient is a positive number.)}
+	\item (1 Mark) The sample standard deviation of the response variable Y.
+\end{itemize}
+\newpage
+%========================================================================================== %
+\subsection*{Q31. Theory for Inference Procedures (3 Marks)}
+Answer the three short questions. Each correct answer will be awarded 1 mark.
+\begin{itemize}
+	% \item[i.] What is a $p-$value?
+	\item[i.] Briefly describe how $p-$value is used in hypothesis testing
+	\item[ii.] What is meant by a Type I error?
+	\item[iii.] What is meant by a Type II error?
+\end{itemize}
+% -- Part 1 - Theory
+%
+% 1 Mark What is a $p-$value
+% 1 Mark Briefly describe how $p-$value is used in hypothesis testing
+% 1 Mark Type I error
+% 1 Mark Type II error
+% 2 Marks A data set is determined to be not normally distributed. Briefly describe two operations that can typically be performed in this instance.
+% -- Log Transformation
+% -- Test for Outliers
+% 1 Mark Non Parametric Inference
+% -- Marks Tally so far 7 Marks
+
+%\newpage
+\subsection*{Q32. Normal Distribution (6 Marks)} % Normal %6 MARKS
+Assume that the diameter of a critical component is normally distributed with a Mean of 50mm and a Standard Deviation of 2mm. You are required  to estimate the approximate probability of the following measurements occurring on an individual component.
+\begin{itemize}
+	\item [i.](2 Marks)	Between 50 and 51.2mm
+	\item [ii.](2 Marks) Less than 48.5 mm
+	\item [iii.](2 Marks) Between 48.2 and 51.6 mm
+\end{itemize}
+
+\noindent Use the normal tables to determine the probabilities for the above exercises. You are required to show all of your workings.
+
+\subsection*{Q33. Dixon Q Test For Outliers (4 Marks)}
+
+The typing speeds for one group of 12 Engineering students were recorded both at the beginning of year 1 of their studies. The results (in words per minute) are given below:
+
+\begin{center}
+	\begin{tabular}{|c|c|c|c|c|c|c|}
+		\hline
+		% Subject& A& B& C& D& E &F &G &H \\ \hline
+		121 & 146 & 150 &149 &142 &170& 153\\ \hline
+		137 & 161 & 156& 165& 137& 178& 159
+		\\ \hline
+	\end{tabular}
+\end{center}
+Use the Dixon Q-test to determine if the lowest value (121) is an outlier. You may assume a significance level of 5\%.
+%Calculate a 95\% confidence interval for the difference between the mean number of marks obtained by males and females in the population of school leavers as a whole.
+%(7 marks)
+
+\begin{itemize}
+	\item[i.] (1 Mark) Formally state the null hypothesis and the alternative hypothesis.
+	\item[ii.] (1 Mark) Compute the Test Statistic.
+	\item[iii.] (2 Mark) By comparing the Test Statistic to the appropriate Critical Value, state your conclusion for this test.
+\end{itemize}
+
+\subsection*{Q34. Testing Normality (2 Marks)} %4 Marks
+A graphical procedure was carried out to assess whether or not this assumption of normality is valid for data set \texttt{Y}. Consider the Q-Q plot in the figure below.
+
+\begin{center}
+	\includegraphics[scale=0.45]{images/Q5examQQplot}
+\end{center}
+
+\begin{itemize}
+	\item[i.] (1 Mark) Provide a brief description on how to interpret this plot.
+	\item[ii.] (1 Mark) What is your conclusion for this procedure? Justify your answer.
+\end{itemize}
+\newpage
+\subsection*{Q35. Testing Normality (3 Marks)} %4 Marks
+Consider the following inference procedure performed on data set $X$.
+\begin{center}
+	\begin{verbatim}
+	> shapiro.test(X)
+	
+	Shapiro-Wilk normality test
+	
+	data:  X
+	W = 0.9619, p-value = 0.6671
+	
+	\end{verbatim}
+\end{center}
+
+
+\begin{itemize}
+	\item[i.] (1 Mark) Describe what is the purpose of this procedure.
+	\item[ii.] (1 Mark) What is the null and alternative hypothesis?
+	\item[iii.] (1 Mark) Write the conclusion that follows from it.
+\end{itemize}
+
+\subsection*{Q36. Testing For Outliers (6 Marks)}
+\begin{itemize}
+	\item[(i)] (3 Marks) Provide a brief description for three tests from the family of Grubb's  Outliers Tests. Include in your description a statement of the null and alternative hypothesis for each test, any required assumptions and the limitations of these tests.
+	\item[(ii)] (3 Marks) Showing your working, use the Dixon Q Test to test the hypothesis that the maximum value of the following data set is an outlier.
+	\[ 19,22,23,24,25,26,29,38\]
+\end{itemize}
+
+\newpage
+\subsection*{Q37. Testing for Outliers (3 Marks)} %4 Marks
+The following statistical procedure is based on this dataset.
+\begin{center}
+	\begin{tabular}{|cccc|}
+		\hline
+		% after \\: \hline or \cline{col1-col2} \cline{col3-col4} ...
+		6.98 &8.49 &7.97& 6.64\\
+		8.80 &8.48 &5.94& 6.94\\
+		6.89 &7.47 &7.32& 4.01\\
+		\hline
+	\end{tabular}
+\end{center}
+
+\begin{framed}
+	
+	\begin{verbatim}
+	> grubbs.test(x, two.sided=T)
+	
+	Grubbs test for one outlier
+	
+	data:  x
+	G = 2.4093, U = 0.4243, p-value = 0.05069
+	alternative hypothesis: lowest value 4.01 is an outlier
+	\end{verbatim}
+\end{framed}
+
+\begin{itemize}
+	\item[i.] (1 Mark) Describe what is the purpose of this procedure. State the null and alternative hypothesis.
+	\item[ii.] (1 Mark) Write the conclusion that follows from it.
+	\item[iii.] (1 Mark) State any relevant assumptions for this procedure.
+\end{itemize}
+
+\subsection*{Q38. Chi-Square Test (9 Marks)} %4 
+Suppose you conducted a drug trial on a group of animals and you hypothesized that the animals receiving the drug would show increased heart rates compared to those that did not receive the drug. You conduct the study and collect the following data:
+{
+	\large
+	\begin{center}
+		\begin{tabular}{|c|c|c|c|}
+			\hline  & Heart Rate & No Heart Rate  &  \\  
+			& Increased & Increase & Increase \\ 
+			\hline Treated  & 36 & 14 & 50 \\ 
+			\hline Not Treated & 30 & 25 & 55 \\ 
+			\hline  & 66 & 39 & 105 \\ 
+			\hline 
+		\end{tabular} 
+	\end{center}
+}
+\begin{itemize}
+	\item[i.](1 Mark) Formally state the null and alternative hypotheses.
+	\item[ii.] (2 Marks) Compute the cell values expected under the null hypothesis. Show your workings for two cells.
+	\item[iii.](3 Marks) Compute the Test Statistic.
+	\item[iv.](1 Mark) State the appropriate Critical Value for this hypothesis test.
+	\item[v.](2 Marks) Discuss your conclusion to this test, supporting your statement with reference to appropriate values.
+\end{itemize}
+
+%\end{itemize}
+% -- Part 2 - Hypothesis Testing Computation
+%
+% 1 Mark
+% 1 Mark
+%Compute the pooled variance for the aggregate sample
+% 1 Mark Standard Error
+% 1 Mark Test Statistic
+% 1 Mark Appropriate level of significance
+% 1 Mark Appropriate degrees of freedom
+% 1 Mark Appropriate Critical value
+% 1 MArk Discuss your conclusion to this test, supporting your statement with reference to appropriate values.
+
+\newpage
+
+\end{document}

@@ -1,0 +1,37 @@
+The Friedman test is a non-parametric statistical test developed by Milton Friedman.[1][2][3] Similar to the parametric repeated measures ANOVA, it is used to detect differences in treatments across multiple test attempts. The procedure involves ranking each row (or block) together, then considering the values of ranks by columns. Applicable to complete block designs, it is thus a special case of the Durbin test.
+
+Classic examples of use are:
+
+n wine judges each rate k different wines. Are any wines ranked consistently higher or lower than the others?
+n wines are each rated by k different judges. Are the judges' ratings consistent with each other?
+n welders each use k welding torches, and the ensuing welds were rated on quality. Do any of the torches produce consistently better or worse welds?
+The Friedman test is used for one-way repeated measures analysis of variance by ranks. In its use of ranks it is similar to the Kruskal–Wallis one-way analysis of variance by ranks.
+
+Friedman test is widely supported by many statistical software packages.
+
+Contents  [hide] 
+1	Method
+2	Related tests
+3	Post hoc analysis
+4	References
+5	Further reading
+
+%------------------------------------------%
+\subsection{Method}
+Given data \{x_{ij}\}_{n\times k}, that is, a matrix with n rows (the blocks), k columns (the treatments) and a single observation at the intersection of each block and treatment, calculate the ranks within each block. If there are tied values, assign to each tied value the average of the ranks that would have been assigned without ties. Replace the data with a new matrix \{r_{ij}\}_{n \times k} where the entry r_{ij} is the rank of x_{ij} within block i.
+Find the values:
+\[\bar{r}_{\cdot j} = \frac{1}{n} \sum_{i=1}^n {r_{ij}} \]
+\[\bar{r} = \frac{1}{nk}\sum_{i=1}^n \sum_{j=1}^k r_{ij}\]
+\[SS_t = n\sum_{j=1}^k (\bar{r}_{\cdot j} - \bar{r})^2,\]
+\[SS_e = \frac{1}{n(k-1)} \sum_{i=1}^n \sum_{j=1}^k (r_{ij} - \bar{r})^2\]
+The test statistic is given by Q = \frac{SS_t}{SS_e}. Note that the value of Q as computed above does not need to be adjusted for tied values in the data.
+Finally, when n or k is large (i.e. n > 15 or k > 4), the probability distribution of Q can be approximated by that of a chi-squared distribution. In this case the p-value is given by \mathbf{P}(\chi^2_{k-1} \ge Q). If n or k is small, the approximation to chi-square becomes poor and the p-value should be obtained from tables of Q specially prepared for the Friedman test. If the p-value is significant, appropriate post-hoc multiple comparisons tests would be performed.
+\subsection{Related tests}
+When using this kind of design for a binary response, one instead uses the Cochran's Q test.
+Kendall's W is a normalization of the Friedman statistic between 0 and 1.
+The Wilcoxon signed-rank test is a nonparametric test of nonindependent data from only two groups.
+The Skillings–Mack test is a general Friedman-type statistic that can be used in almost any block design with an arbitrary missing-data structure
+\subsection{Post hoc analysis}
+Post-hoc tests were proposed by Schaich and Hamerle (1984)[4] as well as Conover (1971, 1980)[5] in order to decide which groups are significantly different from each other, based upon the mean rank differences of the groups. These procedures are detailed in Bortz, Lienert and Boehnke (2000, pp. 275).[6]
+
+Not all statistical packages support Post-hoc analysis for Friedman's test, but user-contributed code exists that provides these facilities (for example in SPSS,[7] and in R.[8])

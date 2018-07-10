@@ -1,0 +1,234 @@
+\documentclass[12pt, a4paper]{article}
+\usepackage{array} % and/or
+\usepackage{longtable} % and/or
+\usepackage{colortab} % or
+\usepackage{colortbl}
+\usepackage{arydshln}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{framed}
+\usepackage{amsthm, amsmath}
+%\usepackage[dvips]{graphicx}
+\usepackage{natbib}
+\bibliographystyle{chicago}
+\usepackage{vmargin}
+% left top textwidth textheight headheight
+% headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{22cm}{0.5cm}{0cm}{1cm}{1cm}
+\renewcommand{\baselinestretch}{1.5}
+\pagenumbering{arabic}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{ill}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{notation}{Notation}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\renewcommand{\thenotation}{}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\author{ } \date{ }
+
+
+\begin{document}
+\author{Kevin O'Brien}
+\title{MA4128 Sample Paper for Practical Exam }
+\today
+
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+
+\section{MANOVA and Discriminant Analysis (6 Marks)}  %READY!!
+% MANOVA (4 Marks)
+% Tukey LSD test
+% Difference between two Regions
+% Skull Data - Three Abstracted Variables
+The data set for this exercise is \textbf{\textit{cicada.sav}}
+\begin{itemize}
+\item The Fixed Factor (categorical variable) is \textbf{Species}
+\item The dependent variables are \textbf{BW}, \textbf{WL} and \textbf{BL}. (Do not use WW).
+\end{itemize}
+\textbf{Questions:}
+\begin{itemize}
+\item[a.] Compute the significance value of Wilk's Lambda. Interpret this value [1 Mark]
+\item[b.] For each of the three dependent variables, state the significance value for the test of between-subject effects and interpret these value [3 Marks]
+\item[c.] Use Tukey's Post Hoc test to determine the difference of mean BW values between Tredecim and Tredicula, also stating the confidence interval for this difference [1 Mark]
+\item[d.] Use LSD Post Hoc test to determine the difference of mean WL values  between Tredecim and Tredicula, and the corresponding significance value. Interpret this significance value [1.5 Marks] %7 Marks
+\item[e.] Sketch all three of the profile plots. Include in your sketchs the values of the mean for each category. [1.5 Marks] % 8 Marks
+\end{itemize}
+\newpage
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\newpage
+\section{Linear Models [6 Marks] }  %READY!!
+% Linear Models (7 Marks)
+	% Forward Selection
+	% Backward Elimination
+	% Linear Equation (1 Marks)
+	% Multicollineaity (2 Marks)
+
+Data set : Water Usage of Production Plant \textit{\textbf{water.sav}}\\
+
+A production plant cost-control engineer is responsible for cost reduction. One of the costly items in his plant is the amount of water used by the production facilities each month. He decided to investigate water usage by collecting seventeen observations on his plant's water usage and other variables. The variables are (including whether or not they are independent or dependent (IV and DV respectively).
+\begin{center}
+\begin{tabular}{|c|c|}
+  \hline
+Variable	&	Description \\
+Temperature (IV)	&	Average monthly temperate (F)\\
+Production (IV)	&	Amount of production (M pounds)\\
+Days	(IV) &	Number of plant operating days in the month\\
+Persons	(IV) &	Number of persons on the monthly plant payroll\\
+Water (DV)	&	Monthly water usage (gallons)\\
+  \hline
+\end{tabular}
+\end{center}
+
+
+\begin{itemize}
+\item[a.] What is the mean and standard deviation of observed values for the Production variables? [1 Mark]
+\item[b.] Compute the Pearson correlation coefficient for the variables Days and Production. [1 Mark]
+\item[c.] Using all independent variables, write down the regression equation [1 Mark]
+\item[d.] Compute the adjusted R-squared value for this model [0.5 Marks]
+\item[e.] Write down the confidence intervals for each of the regression coefficients. State whether the coefficient is `significant' or `non-significant'. [1 Mark]
+\item[f.] Determine the Variance Inflation Factor and Tolerance for each Independent Variable [0.5 Marks] % 5 Marks
+\item[g.] Using Forward Selection, write down in order the Independent Variables that get selected for the final regression model [1 Mark]
+\item[h.] Write down the adjusted R-squared for all intermediate and final regression models [1 Mark] % 7 Marks
+\item[i.] Using all variables selected by forward selection, write down the regression equation [1 Mark] % 8 Marks
+\item[j.] Using Backward Selection, write down in order the Independent Variables that get selected for the final regression model [1 Mark] % 9 Marks
+\end{itemize}
+%Multicollinearity \\
+%Variance inflation factor\\
+%Tolerance\\
+%\begin{itemize}
+%\item Multiple Linear Regression
+%\item Variable Selection Procedures
+%\item Stepwise Regression
+%\end{itemize}
+
+%%--------------------------%
+%\texttt{sampleC.sav}
+%The Data Set is \textbf{\texttt{MLR1.sav}}.
+%The Dependent Variable is \textbf{Response}
+%The Independent Variables are
+%\begin{itemize}
+%\item[1]
+%\item[2]
+%\item[3]
+%\end{itemize}
+%
+%\textbf{Question 1}: Compute the R squared for the first model (one independent variable) and the second model (two independent variables).
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\newpage
+\section{Dimensionality Reduction Techniques [6 Marks]}  %READY!!
+% PCA (5 Marks)
+	% KMO Measure of Sampling Adequacy (1 Mark)
+	% Bartlett Test (1 Mark) ?
+	% Scree Plot (1 Mark)
+	% Eigen Value Threshold (1 Mark)
+           % Varimax Rotation
+           % Interpretation
+
+For this exercise, use the data set \textbf{\textit{Police.sav}}. Use only the numeric variables in your solution.
+Performing a Principal Component Analysis procedure, answer the following questions. (N.B. Some of the sample questions are not tractable for this particular data set, but are included so as to give a sense of what might come up).
+\begin{itemize}
+\item[a.] Implement an un-rotated solution and write down all eigenvalues greater than 1. Perform varimax rotation and write down all eigenvalues greater than 1. [2 Mark]
+\item[b.] (Possible Question for other data sets)  Write down the KMO statistic. Interpret this statistic. [1 Marks]
+\item[c.] Draw the Scree-plot. Indicate the relevant locations of the plot with labelled arrows [1 Mark]
+\item[d.] What percentage of variance explained for the first four principal components? [1 Mark] % 4.5 Marks
+\item[e.] For the unrotated solution, which observed variables are most associated with Principal components 4 and 5.  Explain your answer [1 Mark] (Hint: suppress values lower than 0.3 in Component Matrix)
+\item[f.] For the rotated solution, which observed variables are most associated with Principal component 3.  Explain your answer [1 Mark] (Hint: suppress values lower than 0.3 in Component Matrix)
+\item[g.] (Possible Question for other data sets) Implement a solution using \textbf{\textit{Principal Axis Factoring}}. Write down the eigenvalues, restricting to values greater than one. [1 Mark] %7 Marks
+\item[h.] (Possible Question for other data sets) Interpret the output for the Bartlett Test for sphericity
+\end{itemize}
+
+
+
+%--------------------------------------------------------------------------------------------------------------------------------------------------%
+\newpage
+\section{Logistic Regression [6 Marks]}   %READY!!
+% Capital Punishment
+The Data Set is \textbf{\texttt{UScrime.sav}}.
+
+Criminologists are interested in the effect of punishment regimes on crime rates. This has been studied using aggregate data on 47 states of the USA for 1960. The data set contains the following columns:
+\begin{center}
+\begin{tabular}{|l|l|}
+  \hline
+Variable	& 	Description\\
+M	&	percentage of males aged 14–24 in total state population\\
+So	&	indicator variable for a southern state\\
+Ed	&	mean years of schooling of the population aged 25 years or over\\
+Po1	&	per capita expenditure on police protection in 1960\\
+Po2	&	per capita expenditure on police protection in 1959\\
+LF	&	labour force participation rate of civilian urban males in the age-group 14-24\\
+M.F	&	number of males per 100 females\\
+Pop	&	state population in 1960 in hundred thousands\\
+NW	&	percentage of nonwhites in the population\\
+U1	&	unemployment rate of urban males 14–24\\
+U2	&	unemployment rate of urban males 35–39\\
+Wealth	&	wealth: median value of transferable assets or family income\\
+Ineq	&	income inequality: percentage of families earning below half the median income\\
+Prob	&	probability of imprisonment: ratio of number of commitments to number of offenses\\
+Time	&	average time in months served by offenders in state prisons before their first release\\
+Crime	&	crime rate: number of offenses per 100,000 population in 1960\\
+  \hline
+\end{tabular}
+\end{center}
+For this exercise \textbf{\textit{So}} is the dependent variable. For parts a to c, use the first six Independent variables (i.e. M to M.F) to construct a logistic regression model.
+\begin{itemize}
+\item[a.]  Write down the classification table. What is the overall percentage of correct predictions? [1 Mark]
+\item[b.] Show how to compute the precision and recall for this table. You may write your answers as fractions only. [2 Marks] % 3Marks
+\item[c.] What is the Odds ratio for the variable \textbf{\textit{Po.2}} ? [1 Mark]
+\end{itemize}
+For the remaining parts, use the all Independent variables to construct your logistic regression model.
+\begin{itemize}
+\item[d.] Using forward selection based on the likelihood ratio test, state the independent variables used in the model, and the order in which they are selected. [1 Mark]
+\item[e.] For the intermediate models only, write down the odds ratio and the confidence interval for these odds ratios. [1 Mark] % 6 Marks
+\item[f.] Using backward selection based on the likelihood ratio test, state the first three independent variables to be removed from the model, and the order in which they are removed [1 Mark]
+\end{itemize}
+
+%The data set for this question is \texttt{sampleD.sav}
+%
+%Dummy variables
+%Odds Ratio ( exp(B) )
+%confidence intervals for odds ratio
+%optimal collection of predictors
+
+\newpage
+%-----------------------------------------------------------%
+\section{Cluster analysis [6 Marks]}
+
+\subsection{Hierarchical Cluster analysis}
+For this exercise, use \textbf{asia.sav}. Use Squared Euclidean Distance, Wards Linkage and Z score standardization for this exercise.
+\begin{itemize}
+\item What is the squared euclidean distance between Burma and Bangladesh, from the proximity matrix.[1 Mark]
+\item Which two countries are the first pairing to be linked? Name the countries and the case numbers. [1 Mark]
+\item Determine the cluster membership of China based on a 5 cluster solution. Name the only other country in this cluster [1 Marks]
+\item Sketch the Dendrogram (you may aggregate groups of countries to simplify the sketch i.e. treat several countries as one observation) [2 Marks]
+\end{itemize}
+\newpage
+\subsection{K means Clustering}
+
+For this exercise, use \textbf{places.sav}. Do not use standardization for this exercise.
+\begin{itemize}
+\item For a 4 cluster solution, write down the initial cluster centres for the variable recreation.[1 Mark]
+\item For a 4 cluster solution, write down the Final cluster centres for the variable Arts.[1 Mark]
+\item For a 5 cluster solution, write down the numbers assigned to each cluster. [1 Mark]
+\item Determine the cluster membership of case 26 based on a 4 cluster solution [0.5 Marks]
+\item Determine the cluster membership of case 36 based on a 5 cluster solution [0.5 Marks]
+\end{itemize}
+
+\end{document} 
