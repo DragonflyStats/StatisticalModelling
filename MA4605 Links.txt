@@ -1,8 +1,0 @@
-2 Way ANOVA
-
-http://personality-project.org/r/r.anova.html
-
-
-CUSUM Charts
-
-http://www.integral-concepts.com/docs/What%20is%20a%20CUSUM%20Chart%20and%20When%20Should%20I%20Use%20One.pdf
