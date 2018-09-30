@@ -1,0 +1,19 @@
+\section*{Monte Carlo Integration}
+
+\subsection{Numerical Quadrature using Pseudo-random numbers}
+They are methods of approximate evaluation opf definite integrals, usually multi-dimensional ones.
+
+\theta has a posterios density $g(\theta |y)$
+
+The posterior mean $h(\theta)$ is given by
+
+\[E[h(\theta)|y]  = \int h(\theta) g(\theta|y) d \theta\]
+
+Suppose we have an independent sample 
+\[ \theta^{1}, theta^{2}, theta^{3}, \ldots, theta^{n}\]
+from posterior density. Then the posterios mean's MC estimate is given by the sample mean
+
+\[ \bar{h}  = \frac{\sum^{m}_{j=1} h(\theta^j) }{m} \]
+
+%=============================================================%
+\end{document}

@@ -1,0 +1,197 @@
+ \documentclass[a4paper,12pt]{article}
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\usepackage{eurosym}
+\usepackage{vmargin}
+\usepackage{amsmath}
+\usepackage{enumerate}
+\usepackage{multicol}
+\usepackage{graphics}
+\usepackage{epsfig}
+\usepackage{framed}
+\usepackage{subfigure}
+\usepackage{fancyhdr}
+
+\setcounter{MaxMatrixCols}{10}
+%TCIDATA{OutputFilter=LATEX.DLL}
+%TCIDATA{Version=5.00.0.2570}
+%TCIDATA{<META NAME="SaveForMode" CONTENT="1">}
+%TCIDATA{LastRevised=Wednesday, February 23, 2011 13:24:34}
+%TCIDATA{<META NAME="GraphicsSave" CONTENT="32">}
+%TCIDATA{Language=American English}
+
+%\pagestyle{fancy}
+\setmarginsrb{20mm}{0mm}{20mm}{25mm}{12mm}{11mm}{0mm}{11mm}
+%\lhead{MA4413 2013} \rhead{Mr. Kevin O'Brien}
+%\chead{Midterm Assessment 1 }
+%\input{tcilatex}
+
+\begin{document}
+
+\section{SPC}
+%------------------------------------------------------------------------ %
+
+\[ \bar{X} \]
+\[\bar{\bar{X}}  \pm \frac{\bar{s}}{c_4\sqrt{n}} \]
+
+
+\[ \bar{s} \pm \frac{c_4\bar{s}}{c_4}\]
+
+\[\bar{R}D3, \bar{R}D4\]
+
+
+
+
+%\begin{framed}
+\begin{verbatim}
+> PCs=c(0.90,0.95,0.975,0.99,0.995)
+> qnorm(PCs)
+[1] 1.281552 1.644854 1.959964 2.326348 2.575829
+\end{verbatim}
+%\end{framed}
+\begin{verbatim}
+> dpois(0:10,lambda=2)
+ [1] 1.353353e-01 2.706706e-01 2.706706e-01 1.804470e-01 9.022352e-02
+ [6] 3.608941e-02 1.202980e-02 3.437087e-03 8.592716e-04 1.909493e-04
+[11] 3.818985e-05
+> 
+> ppois(0:10,lambda=2)
+ [1] 0.1353353 0.4060058 0.6766764 0.8571235 0.9473470
+ [6] 0.9834364 0.9954662 0.9989033 0.9997626 0.9999535
+[11] 0.9999917
+>
+> dpois(0:10,lambda=0.5)
+ [1] 6.065307e-01 3.032653e-01 7.581633e-02 1.263606e-02
+ [5] 1.579507e-03 1.579507e-04 1.316256e-05 9.401827e-07
+ [9] 5.876142e-08 3.264523e-09 1.632262e-10
+>
+> ppois(0:10,lambda=0.5)
+ [1] 0.6065307 0.9097960 0.9856123 0.9982484 0.9998279
+ [6] 0.9999858 0.9999990 0.9999999 1.0000000 1.0000000
+[11] 1.0000000
+\end{verbatim}
+%-----------------------------------------------------------------
+\begin{verbatim}
+> pbinom(0:10,size=100,prob=0.10)
+ [1] 0.0000265614 0.0003216881 0.0019448847 0.0078364871 0.0237110827
+ [6] 0.0575768865 0.1171556154 0.2060508618 0.3208738884 0.4512901654
+[11] 0.5831555123
+>
+> pbinom(0:10,size=100,prob=0.01)
+ [1] 0.3660323 0.7357620 0.9206268 0.9816260 0.9965677 
+ [6] 0.9994655 0.9999289 0.9999918 0.9999992 0.9999999 
+[11] 1.0000000
+>
+> dbinom(0:10,size=100,prob=0.1)
+ [1] 0.0000265614 0.0002951267 0.0016231966 0.0058916025 0.0158745955
+ [6] 0.0338658038 0.0595787289 0.0888952464 0.1148230266 0.1304162771
+[11] 0.1318653468
+\end{verbatim}
+\newpage
+\section{Paired t-test}
+\begin{verbatim}
+> t.test(After,Before,paired=TRUE)
+
+        Paired t-test
+
+data:  After and Before 
+t = 17.4864, df = 7, p-value = 4.924e-07
+alternative hypothesis: true difference in means is not equal to 0 
+95 percent confidence interval:
+ 13.40398 17.59602 
+sample estimates:
+mean of the differences 
+                   15.5 
+\end{verbatim}
+%------------------------------------------------------- %
+\section{Question }
+
+factor A has a positive effect on the
+response at one level of factor B, while at a different level of factor B the effect of
+A is negative. We use the term positive effect here to indicate that the yield or
+response increases as the levels of a given factor increase according to some defined
+order. In the same sense a negative effect corresponds to a decrease in yield for
+increasing levels of the factor.
+Consider, for example, the following data on temperature (factor A at levels t\,
+t2, and t3 in increasing order) and drying time dx, d2, and d3 (also in increasing
+order). The response is percent solids. These data are completely hypothetical
+and given to illustrate a point.
+
+\begin{tabular}{|c|c|c|c|c|}
+\hline
+
+& d1 &	d2	&	d3	& d4	 \\
+t1 & 34, 32.7 &	30.1, 32.8	&	29.8, 26.7	&	29,28.9	 \\
+t2 & 32, 33.2 &	30.2, 29.8	&	28.7, 28.1	&	27.6,27.8	\\
+t3 & 28.4,29.3	&	27.3,28.9	&	29.7,27.3	&	28.8,29.1	\\
+
+\hline 
+\end{tabular} 
+
+% Solid=c(
+% 34.0, 32.7, 32.0, 33.2, 28.1, 28.0, 
+% 30.1, 32.8, 30.2, 29.8, 27.3, 27.9, 
+% 29.8, 26.7, 28.7, 28.1, 31.1, 31.2, 
+% 29.0, 29.9, 27.6, 27.8, 27.8, 27.1)
+
+\begin{verbatim}
+Solid=c(
+34.0, 32.7, 32.0, 33.2, 28.4, 29.3, 
+30.1, 32.8, 30.2, 29.8, 27.3, 28.9, 
+29.8, 26.7, 28.7, 28.1, 29.7, 27.3, 
+29.0, 28.9, 27.6, 27.8, 28.8, 29.1)
+
+
+
+
+
+Temperature = structure(c(1L, 1L, 1L, 1L, 1L, 1L, 2L, 2L, 2L, 2L, 2L, 2L, 3L, 
+3L, 3L, 3L, 3L, 3L, 4L, 4L, 4L, 4L, 4L, 4L), .Label = c("t1", 
+"t2", "t3", "t4"), class = "factor")
+
+
+DryingTime = structure(c(1L, 1L, 2L, 2L, 3L, 3L, 1L, 1L, 2L, 2L, 3L, 3L, 1L, 
+1L, 2L, 2L, 3L, 3L, 1L, 1L, 2L, 2L, 3L, 3L), .Label = c("d1", 
+"d2", "d3"), class = "factor")
+
+Experiment=data.frame(Solid,Temperature,DryingTime)
+interaction.plot(Temperature,DryingTime,Solid)
+Model=aov(Solid~Temperature*DryingTime)
+summary(Model)
+par(font=2)
+interaction.plot(DryingTime, Temperature, Solid,col=c("red","blue","black","green"),font.lab=2,
+font.axis=2,lty=c(1,2,3,4),lwd=2.5)
+\end{verbatim}
+
+
+\newpage
+\begin{verbatim}
+> Model1=aov(Solid~Temperature+DryingTime)
+> summary(Model2)
+            Df Sum Sq Mean Sq F value Pr(>F)  
+Temperature  3  30.48  10.162   3.180 0.0491 *
+DryingTime   2  17.05   8.525   2.668 0.0967 .
+Residuals   18  57.52   3.196                 
+---
+Signif. codes:  0 ?***? 0.001 ?**? 0.01 ?*? 0.05 ?.? 0.1 ? ? 1 
+> 
+> Model2=aov(Solid~Temperature*DryingTime)
+> summary(Model2)
+                       Df Sum Sq Mean Sq F value   Pr(>F)    
+Temperature             3  30.48  10.162  10.951 0.000944 ***
+DryingTime              2  17.05   8.525   9.188 0.003802 ** 
+Temperature:DryingTime  6  46.39   7.732   8.332 0.001026 ** 
+Residuals              12  11.13   0.928                     
+---
+Signif. codes:  0 ?***? 0.001 ?**? 0.01 ?*? 0.05 ?.? 0.1 ? ? 1 
+\end{verbatim}
+
+\subsection{Multiple Linear Regression}
+Explain the term `Multicollinearity'. If Multicollinearity is detected, what are the implications?
+
+
+
+
+
+
+
+\end{document}

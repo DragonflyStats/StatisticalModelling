@@ -1,0 +1,89 @@
+
+
+\subsection{Estimates}
+
+%-----------------------------------------------------------------------------------------%
+
+\newpage
+
+
+
+
+
+
+\section{Training and validation}
+%http://www.jmp.com/support/help/Validation_2.shtml
+Using Validation and Test Data
+
+%When you have sufficient data, you can subdivide your data into three parts called the training, validation, and test data. During the selection process, models are fit on the training data, and the prediction error for the models so obtained is found by using the validation data. This prediction error on the validation data can be used to decide when to terminate the selection process or to decide what effects to include as the selection process proceeds. Finally, once a selected model has been obtained, the test set can be used to assess how the selected model generalizes on data that played no role in selecting the model.
+
+In some cases you might want to use only training and test data. For example, you might decide to use an information criterion to decide what effects to include and when to terminate the selection process. In this case no validation data are required, but test data can still be useful in assessing the predictive performance of the selected model. In other cases you might decide to use validation data during the selection process but forgo assessing the selected model on test data. 
+%Hastie, Tibshirani, and Friedman (2001) note that it is difficult to give a general rule on how many observations you should assign to each role. They note that a typical split might be 50\% for training and 25% each for validation and testing.
+
+
+
+
+\section{Terminology}
+\subsection{Beta (standardised regression coefficients)}
+The beta value is a measure of how strongly each predictor variable influences the
+response variable. The beta is measured in units of standard deviation. For example,
+a beta value of 2.5 indicates that a change of one standard deviation in the predictor
+variable will result in a change of 2.5 standard deviations in the response variable.
+Thus, the higher the beta value the greater the impact of the predictor variable on
+the response variable.
+
+
+The Standardized Beta Coefficients give a measure of the
+contribution of each variable to the model. A large value indicates that a unit change in this predictor variable has a large effect on the criterion variable.
+The t and Sig (p) values give a
+rough indication of the impact of each predictor variable – a big
+absolute t value and small p value suggests that a predictor variable
+is having a large impact on the criterion variable.
+
+
+%-------------------------------------------------------------- %
+
+%------------------------------------------------------------- %
+\newpage
+
+	In ordinary linear regression, the goal is to minimize the sum of
+		the squared vertical distances between the y data values and the
+		corresponding y values on the fitted line. In orthogonal
+		regression the goal is to minimize the orthogonal (perpendicular)
+		distances from the data points to the fitted line.
+		
+		
+		
+		
+		\[ s_{N - 1} = \sqrt {\frac{1}{{N - 1}}\sum\limits_{i = 1}^N {\left( {x_i - \bar x} \right)^2 }
+		} \]
+		
+		
+
+%
+%\subsection{Checking prediction success: using training and validation sets}
+%Another approach is to randomly assign your cases to two datasets. The first, called
+%the training set, is used to calculate the regression.
+%
+%The second is called the validation set. The predicted score is calculated for all the cases in the validation set, but as we
+%already have their actual scores, we can find the residuals and their standard
+%deviation.
+%
+
+
+
+%------------------------------------------------------------%
+
+\subsection{Model Selection}
+
+Model selection is the task of selecting a statistical model from a set of potential models, given data.
+
+%%--------------------------------------------------------------------------- %
+\end{document}
+%
+%
+
+
+%------------------------------------------------------------%
+
+

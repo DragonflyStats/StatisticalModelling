@@ -1,0 +1,393 @@
+\documentclass[12pt, a4paper]{report}
+\usepackage{epsfig}
+\usepackage{subfigure}
+%\usepackage{amscd}
+\usepackage{amssymb}
+\usepackage{amsbsy}
+\usepackage{amsthm}
+%\usepackage[dvips]{graphicx}
+\usepackage{natbib}
+\bibliographystyle{chicago}
+\usepackage{vmargin}
+% left top textwidth textheight headheight
+% headsep footheight footskip
+\setmargins{3.0cm}{2.5cm}{15.5 cm}{22cm}{0.5cm}{0cm}{1cm}{1cm}
+\renewcommand{\baselinestretch}{1.5}
+\pagenumbering{arabic}
+\theoremstyle{plain}
+\newtheorem{theorem}{Theorem}[section]
+\newtheorem{corollary}[theorem]{Corollary}
+\newtheorem{ill}[theorem]{Example}
+\newtheorem{lemma}[theorem]{Lemma}
+\newtheorem{proposition}[theorem]{Proposition}
+\newtheorem{conjecture}[theorem]{Conjecture}
+\newtheorem{axiom}{Axiom}
+\theoremstyle{definition}
+\newtheorem{definition}{Definition}[section]
+\newtheorem{notation}{Notation}
+\theoremstyle{remark}
+\newtheorem{remark}{Remark}[section]
+\newtheorem{example}{Example}[section]
+\renewcommand{\thenotation}{}
+\renewcommand{\thetable}{\thesection.\arabic{table}}
+\renewcommand{\thefigure}{\thesection.\arabic{figure}}
+\title{MA4605}
+\author{ } \date{ }
+
+
+\begin{document}
+\author{Kevin O'Brien}
+\title{MA4605}
+
+\tableofcontents \setcounter{tocdepth}{2}
+%-------------------------------------------------
+
+\chapter{Chemometrics}
+
+
+
+
+
+
+\section{MA4605: ANOVA}
+We compute the test statistics $F = 62/3 \sim 20.7$ while the
+$95\%$ quantile of F distribution with 3 and 8 degrees of freedom
+is given as
+\begin{verbatim}
+>qf(0.95,3,8)
+4.066181
+\end{verbatim}
+
+We clearly see that the test informs us about a significant
+difference between the means. But which means are different?
+
+The least significant difference method described in Section 3.9.
+
+We compute the least significant difference $s \sqrt{2/n} \times
+t$, where $s^{2}$ is within sample estimate of variance and $t$ is
+the $97.5\%$ quantile of Student-$t$ distribution with $h(n-1)$
+degrees of freedom.
+
+\begin{verbatim}
+>sqrt(mean(s))*sqrt(2/3)*qt(0.975,8)
+# 3.261182
+>m=apply(x,1,mean)
+>m
+#[1] 101 102 97 92
+\end{verbatim}
+
+The associated degrees of freedom: for within-sample $h(n - 1)$
+(in our example $4 \times 2 = 8$), for between-sample $h - 1$ (in
+our example 3). Total number of degrees freedom $hn-1$ and we see
+$hn - 1 = h(n-1) + h - 1$.
+
+But there is more then the relation between degrees of freedom.
+Namely SST = SSM + SSR; where
+
+WRONG
+\begin{eqnarray}
+SST = \sum_{j}\sum_{j}(x-\bar{x})^2\\
+SSM= \sum_{j}\sum_{j}(x-\bar{x})^2\\
+SSE = \sum_{j}\sum_{j}(x-\bar{x})^2\\
+\end{eqnarray}
+
+
+\begin{verbatim}
+x=c(102,100,101,101,101,104,97,95,99,90,92,94)
+factors=c(rep("A",3),rep("B",3),rep("C",3),rep("D",3))
+res=aov(x˜factors) anova(res)
+
+Analysis of Variance Table Response:
+
+x   Df Sum Sq Mean Sq   F value Pr(>F) factors 3 186 62
+20.6670.0004002 *** Residuals 8 24 3
+---
+Signif. codes: 0 *** 0.001 ** 0.01 * 0.05 . 0.1 1
+\end{verbatim}
+\newpage
+
+
+It is often convienent to express the regression analysis using
+ANOVA table. The following equation is the basis for such
+representation
+
+It is often shortened to SST = SSLR + SSR; where SST is referred
+
+to as the total sum of squares, SSLR is the sum of squares due to
+linear regression (within regression), SSR is the sum of squares
+due to residuals (outside regression).
+
+
+
+
+\section{Testing Normality}
+An assessment of the normality of data is a prerequisite for many statistical tests as normal data is an underlying assumption in parametric testing. There are two main methods of assessing normality - graphically and numerically.
+
+
+%------------------------------------------------------------------------%
+\chapter{Linear Models}
+\section{Multiple Linear Regression}
+\section{Variable Selection Procedures}
+
+\begin{verbatim}
+           Coefficients  Std Error    t Stat      P-value
+Intercept  0.002107      0.004787     0.440144    0.678209
+Conc       0.025164      0.000266     94.76047    2.48E-09
+\end{verbatim}
+
+Intercept and Slope estimates are the coefficient.
+
+\begin{itemize}
+\item Akaike Information Criterion
+\item Multicollinearity
+\end{itemize}
+
+$95\%$ confidence interval for slope
+\begin{itemize}
+\item Estimate of Slope     = 	0.025164
+\item Std. Error for slope 	= 	0.000266 from \texttt{R} output
+\item Quantiles (given) 	=	-2.57 	for Lower bound
+				            =   2.57  	for Upper bound
+
+\item Lower bound		=	0.025164 + (-2.57)( 0.000266)
+				=	0.0243
+`
+\item Upper bound		=	0.025164 + (2.57)( 0.000266)
+				=	0.0257
+
+\item Confidence Interval = [0.0243, 0.0257]
+\end{itemize}
+%------------------------------------------------------------------------%
+
+
+
+
+
+
+
+
+
+
+
+%------------------------------------------------------------------------------------------------%
+
+\section{Example: Poisson}
+
+A computer server breaks down on average once every three months.
+
+\begin{itemize}
+\item What is the probability that the server breaks down three times in a quarter?
+\item What is the probability that a server breaks down exactly five times in one year?
+\end{itemize}
+
+
+
+
+\section{Sample size Estimation}
+For a certain variable, the standard deviation in a large population is equal to 12.5.
+How big a sample is needed to be 95\% sure that the sample mean is within 1.5 units of the population mean?
+
+
+For a certain variable, the standard deviation in a large population is equal to 8.5.
+How big a sample is needed to be 90\% sure that the sample mean is within 1.5
+units of the population mean?
+
+
+
+%---------------------------------------------------------------------------------------------------Inference%
+\chapter{Statistical Inference}
+
+\section{Confidence Interval examples}
+
+\subsection{Example}
+A random sample of 15 observations is taken from a normally distributed population
+of values. The sample mean is 94.2 and the sample variance is 24.86.
+Calculate a 99\% confidence interval for the population mean.
+
+
+\subsubsection{Solution}
+$t_(14,0.005) = 2.977$
+99\% CI is $94.2 \pm 2.977 \sqrt{24.86/15}$ \\i.e. $94.2 \pm 3.83$ \\i.e. $(90.37,98.03)$
+
+
+\subsection{Example 1: paired T test}
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+  \hline
+X & 5.20 & 5.15 & 5.17 & 5.16 & 5.19 & 5.15\\
+Y & 5.20 & 5.15 & 5.17 & 5.16 & 5.19 & 5.15\\
+  \hline
+\end{tabular}
+
+
+\subsection{Example 2}
+
+Seven measurements of the pH of a buffer solution gave the
+following results:
+
+\begin{tabular}{|c|c|c|c|c|c|c|}
+  \hline
+5.12 & 5.20 & 5.15 & 5.17 & 5.16 & 5.19 & 5.15\\
+  \hline
+\end{tabular}
+
+Task 1: Calculate the 95\% confidence limits for the true pH
+utilizing $R$.
+
+
+Solution. We are using Student t distribution with six degrees of
+freedom and the following code gives us the confidence interval
+for this problem.
+\begin{verbatim}
+>x <- c(5.12, 5.20, 5.15, 5.17, 5.16, 5.19, 5.15)
+>n =length(x)
+>alpha =0.05
+>stderr =sd(x)/sqrt(n)
+>LB=mean(x)+qt(alpha/2,6)* stderr
+>UB=mean(x)+qt(1-alpha/2,6)* stderr
+>LB
+#[1] 5.137975
+>UB
+#[1]5.187739
+\end{verbatim}
+
+
+\subsubsection{example}
+A survey of study habits wishes to determine whether the mean
+study hours completed by women at a particular college is higher
+than for men at the same college. A sample of $n_1$ = 10 women and
+$n_2$ = 12 men were taken, with mean hours of study $\bar{x}_1$ =
+120 and $\bar{x}_2$ = 105 respectively. The standard deviations
+were known to be $\sigma_1$ = 28 and $\sigma_2$ = 35.
+
+The hypothesis being tested is:
+
+\begin{eqnarray}
+H_{0}: \mu_1 = \mu_2\qquad \qquad (\mu_1 - \mu_2= 0)\\
+H_{a}: \mu_1 \neq \mu_2 \qquad \qquad (\mu_1 - \mu_2 \neq 0)
+\end{eqnarray}
+
+In $R$, the test statistic is calculated using:
+
+\begin{verbatim}
+xbar1 <- 120
+xbar2 <- 105
+sd1 <- 28
+sd2 <- 35
+n1 <- 10
+n2 <-12
+TS <- ( (xbar1 - xbar2) - (0) )/sqrt( (sd1^2/n1) + (sd2^2/n2) )
+TS
+[1] 1.116536
+\end{verbatim}
+Now need to calculate the critical value or the p-value.
+
+
+The critical value can be looked up using qnorm. Since this is a
+one-tailed test and there is a > sign in $H_1$:
+
+\begin{verbatim}
+qnorm(0.95)
+[1] 1.644854
+\end{verbatim}
+
+Since the test statistic is less than the critical value ( 1.116536 < 1:645 )there is not enough evidence to reject $H_0$
+and conclude that the population mean hours study for women is
+not higher than the population mean hours study for men.
+
+
+The p-value is determined using pnorm.
+
+Careful! Remember pnorm
+gives the probability of getting a value LESS than the value specified. We want the probability of getting a value greater than
+the test statistic.
+\begin{verbatim}
+1-pnorm(1.116536) # OR pnorm(1.116536, lower.tail=FALSE)
+[1] 0.1320964
+\end{verbatim}
+\newpage
+
+
+
+
+\subsection{Example}
+Suppose that 9 bags of salt granules are selected from the supermarket
+shelf at random and weighed. The weights in grams are 812.0, 786.7, 794.1,
+791.6, 811.1, 797.4, 797.8, 800.8 and 793.2. Give a 95\% confidence interval for the
+mean of all the bags on the shelf. Assume the population is normal.
+
+
+Here we have a random sample of size n = 9. The mean is 798.30. The sample
+variance is $s^2 = 72.76$, which gives a sample standard deviation $s = 8.53$.
+
+The upper 2.5\% point of the Student's $t$ distribution with n-1 (= 9-1 = 8) degrees of freedom is 2.306.
+
+The 95\% confidence interval is therefore from \\
+$(798.30 - 2.306 \times (8.53/\sqrt{9}), 798.30 + 2.306 \times (8.53/\sqrt{9})$\\
+which is\\
+$(798.30 - 6.56, 798.30 + 6.56) = (791.74, 804.86)$\\
+It is sometimes more useful to write this as $798.30 \pm 6.56$.
+
+Note that even if we do not assume the population is normal (that assumption is
+never really true) the Central Limit Theorem might suggest that the confidence interval
+is nearly right. A larger confidence would increase the length of the interval, so we
+trade off increased certainty of coverage against a longer interval.
+
+\subsection{Example}
+Ten soldiers visit the rifle range on two different weeks. The first
+week their scores are:
+67 24 57 55 63 54 56 68 33 43
+The second week they score
+70 38 58 58 56 67 68 77 42 38
+Give a 95\% confidence interval for the improvement in scores from week one to
+week two.
+
+
+\subsubsection{Answer}
+
+
+This is a case of paired samples, for the scores are repeated observations for each
+soldier, and there is good reason to think that the soldiers will differ from each other
+in their shooting skill. So we work with the individual differences between the scores.
+We shall have to assume that the pairwise differences are a random sample from a
+normal distribution.
+
+The differences are:
+
+3 14 1 3 -7 13 12 9 9 -5
+
+
+Effectively we now have a single sample of size 10, and want a 95\% confidence
+interval for the mean of the population from which these differences are drawn. For
+this we use a Student's $t$ interval. The sample mean of the differences is 5.2, and
+$s^2$ = 54.84. So $s = 7.41$, and the 95\% $t$ interval for the difference in the means is
+$5.2 - 2.26(7.41)/\sqrt{10},  5.2 + 2.26(7.41)/\sqrt{10} = (.0.1, 10.5)$.
+
+\subsection{Example} A sample of 50 households in one community
+shows that 10 of them are watching a TV special on the national
+economy. In a second community, 15 of a random sample of 50
+households are watching the TV special. We test the hypothesis
+that the overall proportion of viewers in the two communities does
+not differ, using the 1 percent level of significance, as follows:
+
+\subsection{2 sided test}
+A two-sided test is used when we are concerned about a possible
+deviation in either direction from the hypothesized value of the
+mean. The formula used to establish the critical values of the
+sample mean is similar to the formula for determining confidence
+limits for estimating the population mean, except that the
+hypothesized value of the population mean m0 is the reference
+point rather than the sample mean.
+
+
+
+
+
+
+
+%------------------------------------------------%
+%\newpage
+%\addcontentsline{toc}{section}{Bibliography}
+%\bibliography{MA4125bib}
+\end{document} 
