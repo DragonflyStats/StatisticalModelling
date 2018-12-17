@@ -1,0 +1,46 @@
+descriptiveTable Summary stats table-maker for regression users
+
+#### Description
+
+rockchalk::summarize does the numerical calculations
+
+#### Usage
+
+descriptiveTable(object, stats = c("mean", "sd", "min", "max"), digits = 4,
+probs = c(0, 0.5, 1), varLabels, ...)
+16 descriptiveTable
+Arguments
+object A fitted regression or an R data.frame, or any other object type that does not fail
+in codemodel.frame(object).
+stats Default is a vector c("mean", "sd", "min", "max"). Other stats reported by
+rockchalk::summarize should work fine as well
+digits 2 decimal points is default
+probs Probability cut points to be used in the calculation of summaries of numeric
+variables. Default is c(0, 0.5, 1), meaning min, median, max.
+varLabels A named vector of variables labels, as in outreg function. Format is c("oldname"="newlabel").
+... Other arguments passed to rockchalk::summarizeNumerics and summarizeFactors.
+Details
+This is, roughly speaking, doing the right thing, but not in a clever way. For the categorical variables,
+the only summary is proportions.
+Value
+a character matrix
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
+
+#### Examples
+
+dat <- genCorrelatedData2(1000, means=c(10, 10, 10), sds = 3,
+stde = 3, beta = c(1, 1, -1, 0.5))
+dat$xcat1 <- factor(sample(c("a", "b", "c", "d"), 1000, replace=TRUE))
+dat$xcat2 <- factor(sample(c("M", "F"), 1000, replace=TRUE), levels = c("M", "F"),
+labels = c("Male", "Female"))
+dat$y <- dat$y + contrasts(dat$xcat1)[dat$xcat1, ] %*% c(0.1, 0.2, 0.3)
+m4 <- lm(y ~ x1 + x2 + x3 + xcat1 + xcat2, dat)
+m4.desc <- descriptiveTable(m4)
+m4.desc
+## Following may cause scientific notation, want to avoid.
+dat <- genCorrelatedData2(1000, means=c(10, 100, 400),
+sds = c(3, 10, 20), stde = 3, beta = c(1, 1, -1, 0.5))
+m5 <- lm(y ~ x1 + x2 + x3, dat)
+m5.desc <- descriptiveTable(m5, digits = 4)
+m5.desc
