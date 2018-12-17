@@ -1,0 +1,31 @@
+formatSummarizedFactors
+Prints out the contents of an object created by summarizeFactors in
+the style of base::summary
+
+#### Description
+
+An object with class "summarizedFactors" is the input. Such an object should be created with the
+function rockchalk::summarizeFactors. Each element in that list is then organized for printing in a
+tabular summary. This should look almost like R’s own summary function, except for the additional
+information that these factor summaries include.
+
+#### Usage
+
+formatSummarizedFactors(x, ...)
+Arguments
+x A summarizedFactors object produced by summarizeFactors
+... optional arguments. Only value currently used is digits, which defaults to 2.
+Value
+A table of formatted output
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+See Also
+summarize, summarizeFactors, formatSummarizedNumerics
+
+#### Examples
+
+dat <- data.frame(xcat1 = gl(10, 3), xcat2 = gl(5, 6))
+summarizeFactors(dat, maxLevels = 8)
+formatSummarizedFactors(summarizeFactors(dat))
+20 formatSummarizedNumerics
+
