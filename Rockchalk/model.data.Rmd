@@ -1,0 +1,22 @@
+
+model.data Create a "raw" (UNTRANSFORMED) data frame equivalent to the
+input data that would be required to fit the given model.
+
+#### Description
+
+This is a generic method. Unlike model.frame and model.matrix, this does not return transformed
+variables. It deals with regression formulae that have functions like poly(x, d) in them. It differentiates
+x from d in those expressions. And it also manages log(x + 10). The default method works
+for standarad R regression models like lm and glm.
+
+#### Usage
+
+model.data(model, ...)
+Arguments
+model A fitted regression model in which the data argument is specified. This function
+will fail if the model was not fit with the data option.
+... Arguments passed to implementing methods.
+Value
+A data frame
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
