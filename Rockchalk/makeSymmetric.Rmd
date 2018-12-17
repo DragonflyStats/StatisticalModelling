@@ -1,0 +1,55 @@
+makeSymmetric Create Symmetric Matrices, possibly covariance or correlation matrices,
+or check a matrix for symmetry and serviceability.
+
+#### Description
+
+Check X and do the right thing. If X is a matrix, check that it is a valid for the intended purpose
+(symmetric or correlation or covariance). If X a single value, use that to fill up a matrix. If it is
+a vector, try to use it as a vech to fill the lower triangle. If d is supplied as an integer, use that as
+desired size.
+
+#### Usage
+
+makeSymmetric(X, d = NULL, diag = NULL, corr = FALSE, cov = FALSE)
+Arguments
+X A single value, a vector (a vech), or a matrix
+d Optional. An integer, the desired number of rows (or columns). Don’t specify
+this argument if X is already a matrix. Only required if X is an integer and diag
+is not supplied. Otherwise, the function tries to deduce desired size of output
+from X (as a vech) and diag.
+diag Values for the diagonal. This is important because it alters the way X is interpreted.
+If diag is not provided, then X is understood to include diagonal
+elements.
+corr TRUE or FALSE: Should we construct a correlation matrix
+cov TRUE or FALSE: Should this be a covariance matrix?
+Value
+A d x d matrix
+42 makeVec
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+
+#### Examples
+
+makeSymmetric(X = 3, d = 4)
+makeSymmetric(X = 3, d = 4, diag = c(99, 98, 97, 96))
+makeSymmetric(c(1,2,3))
+makeSymmetric(c(1,2,3), d = 5)
+makeSymmetric(c(0.8,0.4, 0.2), cov = TRUE)
+makeSymmetric(c(0.8,0.4, 0.2), cov = TRUE, diag = c(44, 55, 66))
+makeVec makeVec for checking or creating vectors
+
+#### Description
+
+This is a convenience for handling function arguments. If x is a single value, it makes a vector of
+length d in which all values are equal to x. If x is a vector, check that its length is d.
+
+#### Usage
+
+makeVec(x = NULL, d = NULL)
+Arguments
+x A single value or a vector
+d An integer, the desired size of the vector
+Value
+A vector of length d
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
