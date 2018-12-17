@@ -1,0 +1,29 @@
+
+dir.create.unique Create a uniquely named directory. Appends number & optionally
+date to directory name.
+
+#### Description
+
+Checks if the requested directory exists. If so, will create new directory name. My favorite method
+is to have the target directory with a date-based subdirectory, but set usedate as FALSE if you don’t
+like that. Arguments showWarnings, recursive, and mode are passed along to R’s dir.create, which
+does the actual work here.
+
+#### Usage
+
+dir.create.unique(path, usedate = TRUE, showWarnings = TRUE,
+recursive = TRUE, mode = "0777")
+Arguments
+path A character string for the base name of the directory.
+usedate TRUE or FALSE: Insert YYYYMMDD information?
+showWarnings default TRUE. Show warnings? Will be passed on to dir.create
+recursive default TRUE. Will be passed on to dir.create
+mode Default permissions on unix-alike systems. Will be passed on to dir.create
+Details
+Default response to dir = "../output/" fixes the directory name like this, "../output/20151118-1/"
+because usedate is assumed TRUE. If usedate = FALSE, then output names will be like "../output-
+1/", "../output-2/", and so forth.
+Value
+a character string with the directory name
+Author(s)
+Paul E Johnson <pauljohn@ku.edu>
