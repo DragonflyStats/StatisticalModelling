@@ -1,0 +1,160 @@
+genCorrelatedData3 Generate correlated data for simulations (third edition)
+
+#### Description
+
+This is a revision of genCorrelatedData2. The output is a data frame that has columns for the
+predictors along with an error term, the linear predictor, and the observed value of the outcome
+variable. The new features are in the user interface. It has a better way to specify beta coefficients.
+It is also more flexible in the specification of the names of the predictor columns.
+
+#### Usage
+
+genCorrelatedData3(formula, N = 100, means = c(x1 = 50, x2 = 50, x3 = 50),
+sds = 10, rho = 0, stde = 1, beta = c(0, 0.15, 0.1, -0.1),
+intercept = FALSE, col.names, verbose = FALSE, ..., distrib = rnorm)
+Arguments
+formula a text variable, e.g., "y ~ 1 + 2*x1". Use ":" to create squared and interaction
+terms, "y ~ 1 + 2*x1 + 1.1*x1:x1 + 0.2*x1:x2". Multi-way interactions
+are allowed, eg "y ~ 1 + 2*x1 + .4*x2 + .1*x3 + 1.1*x1:x1 + 0.2*x1:x2:x3".
+Note author can specify any order of interation.
+26 genCorrelatedData3
+N sample size
+means averages of predictors, can include names c(x1 = 10, x2 = 20) that will be used
+in the data.frame result.
+sds standard deviations, 1 (common value for all variables) or as many elements as
+in means.
+rho correlations, can be 1 or a vech for a correlation matrix
+stde The scale of the error term. If distrib=rnorm, stde is the standard deviation of
+the error term. If the user changes the distribution, this is a scale parameter that
+may not be equal to the standard deviation. For example, distrib=rlogist has
+a scale parameter such that a value of stde implies the error’s standard deviation
+will be stde  pi=sqrt(3).
+beta slope coefficients, use either this or formula, not both. It is easier (less error
+prone) to use named coefficients, but (for backwards compatability with
+genCorrelatedData2) names are not required. If named, use "Intercept" for
+the intercept coefficient, and use variable names that match the xmeans vector.
+Un-named coefficients follow same rules as in genCorrelatedData2. The first
+(1 + p) values are for the intercept and p main effects. With 3 predictors and no
+squares or interactions, specify four betas corresponding to c(Intercept, x1, x2, x3).
+The squared and interaction terms may follow. The largest possible model would
+correspond to c(Intercept, x1, x2, x3, x1:x1,x1:x2, x1:x3, x2:x2, x2:x3, x3:x3).
+Squares and interactions fill in a "lower triangle". The unnamed beta vector can
+be terminated with the last non-zero coefficient, the function will insert 0’s for
+the coefficients at the end of the vector.
+intercept TRUE or FALSE. Should the output data set include a column of 1’s. If beta is
+an unnamed vector, should the first element be treated as an intercept?
+col.names Can override names in means vector
+verbose TRUE for diagnostics
+... extra arguments, ignored for now. We use that to ignore unrecognized parameters.
+distrib An R random data generating function. Default is rnorm. Also rlogis or any
+other two-parameter location/scale distribution will work. Special configuration
+allows rt. See details.
+Details
+The enhanced methods for authors to specify a data-generating process are as follows. Either way
+will work and the choice between the methods is driven by the author’s convenience.
+• 1. Use the formula argument as a quoted string: "1 + 2.2 * x1 + 2.3 * x2 + 3.3 * x3 + 1.9 * x1:x2".
+The "*" represents multiplication of coefficient times variable, and the colon ":" has same
+meaning but it is used for products of variables.
+• 2. Use the beta argument with parameter names, beta = c("Intercept" = 1, x1 = 2.2, x2 = 2.3, x3 = 3.3, "x1:where the names are the same as the names of the variables in the formula. Names of the variables
+in the formula or the beta vector should be used also in either the means parameter or
+the col.names parameter.
+genCorrelatedData3 27
+The error distribution can be specified. Default is normal, with draws provided by R’s rnorm. All
+error models assume E[e] = 0 and the scale coefficient is the parameter stde. Thus, the default
+setup’s error will be drawn from rnorm(N, 0, stde). Any two parameter "location" and "scale"
+distribution should work as well, as long as the first coefficient is location (because we set that
+as 0 in all cases) and the second argument is scale. For example, distrib=rlogis, will lead to
+errors drawn from rlogis(N, 0, stde). Caution: in rlogis, the scale parameter is not the same as
+standard deviation.
+The only one parameter distribution currently supported is the T distribution. If user specifies
+distrib=rt, then the stde is passed through to the parameter df. Note that if increasing the stde
+parameter will cause the standard deviation of rt to get smaller. df=1 implies sd = 794.6; df=2
+implies sd = 3.27; df=3 implies 1.7773.
+Methods to specify error distributions in a more flexible way need to be considered.
+Value
+a data frame
+Author(s)
+Paul Johnson <pauljohn@ku.edu> and Gabor Grothendieck <ggrothendieck@gmail.com>
+
+#### Examples
+
+set.seed(123123)
+## note: x4 is an unused variable in formula
+X1a <-
+genCorrelatedData3("y ~ 1.1 + 2.1 * x1 + 3 * x2 + 3.5 * x3 + 1.1 * x1:x3",
+N = 1000, means = c(x1 = 1, x2 = -1, x3 = 3, x4 = 1),
+sds = 1, rho = 0.4, stde = 5)
+lm1a <- lm(y ~ x1 + x2 + x3 + x1:x3, data = X1a)
+## note that normal errors have std.error. close to 5
+summary(lm1a)
+attr(X1a, "beta")
+attr(X1a, "formula")
+## Demonstrate name beta vector method to provide named arguments
+set.seed(123123)
+X2 <- genCorrelatedData3(N = 1000, means = c(x1 = 1, x2 = -1, x3 = 3, x4 = 1),
+sds = 1, rho = 0.4,
+beta = c("Intercept" = 1.1, x1 = 2.1, x2 = 3,
+x3 = 3.5, "x1:x3" = 1.1),
+intercept = TRUE, stde = 5)
+attr(X2, c("beta"))
+attr(X2, c("formula"))
+head(X2)
+lm2 <- lm(y ~ x1 + x2 + x3 + x1:x3, data = X2)
+summary(lm2)
+## Equivalent with unnamed beta vector. Must carefully count empty
+## spots, fill in 0's when coefficient is not present. This
+## method was in genCorrelated2. Order of coefficents is
+## c(intercept, x1, ..., xp, x1:x1, x1:x2, x1:xp, x2:x2, x2:x3, ..., )
+28 genCorrelatedData3
+## filling in a lower triangle.
+set.seed(123123)
+X3 <- genCorrelatedData3(N = 1000, means = c(x1 = 1, x2 = -1, x3 = 3, x4 = 1),
+sds = 1, rho = 0.4,
+beta = c(1.1, 2.1, 3, 3.5, 0, 0, 0, 1.1),
+intercept = TRUE, stde = 5)
+attr(X3, c("beta"))
+attr(X3, c("formula"))
+head(X3)
+lm3 <- lm(y ~ x1 + x2 + x3 + x1:x3, data = X3)
+summary(lm3)
+## Same with more interesting variable names in the means vector
+X3 <- genCorrelatedData3(N = 1000,
+means = c(friend = 1, enemy = -1, ally = 3, neutral = 1),
+sds = 1, rho = 0.4,
+beta = c(1.1, 2.1, 3, 3.5, 0, 0, 0, 1.1),
+intercept = TRUE, stde = 5)
+head(X3)
+attr(X3, c("beta"))
+X3 <- genCorrelatedData3(N = 1000, means = c(x1 = 50, x2 = 50, x3 = 50),
+sds = 10, rho = 0.4,
+beta = c("Intercept" = .1, x1 = .01, x2 = .2, x3 = .5,
+"x1:x3" = .1))
+lm3 <- lm(y ~ x1 + x2 + x3 + x1:x3, data = X3)
+## Names via col.names argument: must match formula
+X2 <- genCorrelatedData3("y ~ 1.1 + 2.1 * educ + 3 * hlth + 3 * ses + 1.1 * educ:ses",
+N = 100, means = c(50, 50, 50, 20),
+sds = 10, rho = 0.4, col.names = c("educ", "hlth", "ses", "wght"))
+str(X2)
+X3 <- genCorrelatedData3("y ~ 1.1 + 2.1 * educ + 3 * hlth + 3 * ses + 1.1 * educ:ses",
+N = 100, means = c(50, 50, 50, 20),
+sds = 10, rho = 0.4, col.names = c("educ", "hlth", "ses", "wght"),
+intercept = TRUE)
+str(X3)
+## note the logistic errors have residual std.error approximately 5 * pi/sqrt(3)
+X1b <-
+genCorrelatedData3("y ~ 1.1 + 2.1 * x1 + 3 * x2 + 3.5 * x3 + 1.1 * x1:x3",
+N = 1000, means = c(x1 = 1, x2 = -1, x3 = 3),
+sds = 1, rho = 0.4, stde = 5, distrib = rlogis)
+lm1b <- lm(y ~ x1 + x2 + x3 + x1:x3, data = X1b)
+summary(lm1b)
+## t distribution is very sensitive for fractional df between 1 and 2 (recall
+## stde parameter is passed through to df in rt.
+X1c <-
+genCorrelatedData3("y ~ 1.1 + 2.1 * x1 + 3 * x2 + 3.5 * x3 + 1.1 * x1:x3",
+genX 29
+N = 1000, means = c(x1 = 1, x2 = -1, x3 = 3),
+sds = 1, rho = 0.4, stde = 1.2, distrib = rt)
+lm1c <- lm(y ~ x1 + x2 + x3 + x1:x3, data = X1c)
+summary(lm1c)
+
+
