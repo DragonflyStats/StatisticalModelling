@@ -1,0 +1,68 @@
+formatSummarizedNumerics
+Reformat numeric summarize output as one column per variable, similar
+to R summary
+
+#### Description
+
+The summarizeNumeric function returns a data frame with the variable names on the rows and
+summary statistics (mean, median, std. deviation) in the columns.This transposes and abbreviates
+the information to look more like R summary.
+
+#### Usage
+
+formatSummarizedNumerics(x, ...)
+Arguments
+x numeric summaries from summarize function
+... Other arguments, such as digits
+Value
+An R table object
+Author(s)
+Paul Johnson
+
+#### Examples
+
+set.seed(21234)
+X <- matrix(rnorm(10000), ncol = 10, dimnames = list(NULL, paste0("xvar", 1:10)))
+Xsum <- summarize(X)
+Xsum$numerics
+formatSummarizedNumerics(Xsum$numerics)
+formatSummarizedNumerics(Xsum$numerics, digits = 5)
+Xsum.fmt <- formatSummarizedNumerics(Xsum$numerics)
+str(Xsum.fmt)
+genCorrelatedData 21
+genCorrelatedData Generates a data frame for regression analysis
+
+#### Description
+
+The output is a data frame (x1, x2, y) with user-specified correlation between x1 and x2. The y
+(output) variable is created according to the equation
+y = beta1 + beta2  x1 + beta3  x2 + beta4  x1  x2 + e:
+The arguments determine the scales of the X matrix, the random error, and the slope coefficients.
+
+#### Usage
+
+genCorrelatedData(N = 100, means = c(50, 50), sds = c(10, 10), rho = 0,
+stde = 1, beta = c(0, 0.2, 0.2, 0))
+Arguments
+N Number of cases desired
+means 2-vector of means for x1 and x2
+sds 2-vector of standard deviations for x1 and x2
+rho Correlation coefficient for x1 and x2
+stde standard deviation of the error term in the data generating equation
+beta beta vector of at most 4 coefficients for intercept, slopes, and interaction
+Details
+The vector (x1,x2) is drawn from a multivariate normal distribution in which the expected value
+(argument means). The covariance matrix of X is built from the standard deviations (sds) and the
+specified correlation between x1 and x2 (rho). It is also necessary to specify the standard deviation
+of the error term (stde) and the coefficients of the regression equation (beta).
+
+#### Examples
+
+## 1000 observations of uncorrelated x1 and x2 with no
+## interaction between x1 and x2
+dat <- genCorrelatedData(N=1000, rho=0, beta=c(1, 1.0, -1.1, 0.0))
+mcGraph1(dat$x1, dat$x2, dat$y, theta=20, phi=8,
+ticktype="detailed", nticks=10)
+m1 <- lm(y ~ x1 + x2, data = dat)
+plotPlane(m1, plotx1 = "x1", plotx2 = "x2")
+22 genCorrelatedData2
