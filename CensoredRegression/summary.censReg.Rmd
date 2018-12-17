@@ -1,0 +1,41 @@
+summary.censReg Summary Results of Censored Regression Models
+Description
+These methods prepare and print summary results for censored regression models.
+
+#### Usage
+<pre><code>
+
+## S3 method for class 'censReg'
+summary( object, ... )
+## S3 method for class 'summary.censReg'
+print( x, logSigma = TRUE, digits = 4, ... )
+Arguments
+object object of class "censReg" (returned by censReg).
+x object of class "summary.censReg" (returned by summary.censReg).
+logSigma logical value indicating whether the variance(s) of the model should be printed
+logarithmized.
+digits positive integer specifiying the minimum number of significant digits to be printed
+(passed to printCoefmat).
+... currently not used.
+Value
+summary.censReg returns an object of class "summary.censReg" inheriting from class "summary.maxLik".
+The returned object contains the same components as objects returned by summary.maxLik and additionally
+the following components:
+call the matched call.
+nObs a vector containing 4 integer values: the total number of observations, the number
+of left-censored observations, the number of uncensored observations, and
+the number of right-censored observations.
+Author(s)
+Arne Henningsen
+See Also
+censReg, coef.summary.censReg, and coef.censReg
+summary.censReg 9
+<
+#### Examples
+
+## Kleiber & Zeileis ( 2008 ), page 142
+data( "Affairs", package = "AER" )
+estResult <- censReg( affairs ~ age + yearsmarried + religiousness +
+occupation + rating, data = Affairs )
+summary( estResult )
+```
