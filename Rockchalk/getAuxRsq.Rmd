@@ -1,0 +1,18 @@
+getAuxRsq retrieves estimates of the coefficient of determination from a list of
+regressions
+
+#### Description
+
+Asks each regression model in a list for a summary and then reports the R-squares.
+
+#### Usage
+
+getAuxRsq(auxRegs)
+Arguments
+auxRegs a list of fitted regression objects
+getDeltaRsquare 31
+Value
+a numeric vector of the same length as auxRegs.
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+
