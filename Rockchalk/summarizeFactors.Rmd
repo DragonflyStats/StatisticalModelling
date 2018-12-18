@@ -1,0 +1,78 @@
+
+summarizeFactors Extracts non-numeric variables, calculates summary information, including
+entropy as a diversity indicator.
+summarizeFactors 117
+
+#### Description
+
+This function finds the non- numeric variables and ignores the others. (See summarizeNumerics
+for a function that handles numeric variables.) It then treats all non-numeric variables as if they
+were factors, and summarizes each. The main benefits from this compared to R's default summary
+are 1) more summary information is returned for each variable (entropy estimates ofdispersion), 2)
+the columns in the output are alphabetized. To prevent alphabetization, use alphaSort = FALSE.
+
+#### Usage
+<pre><code>
+
+
+summarizeFactors(dat = NULL, maxLevels = 5, alphaSort = TRUE,
+stats = c("entropy", "normedEntropy", "nobs", "nmiss"), digits = 2)
+
+</code></pre>
+#### Arguments
+
+dat A data frame
+maxLevels The maximum number of levels that will be reported.
+alphaSort If TRUE (default), the columns are re-organized in alphabetical order. If FALSE,
+they are presented in the original order.
+stats Default is c("nobs", "nmiss", "entropy","normedEntropy").
+digits Default 2.
+
+#### Details
+
+Entropy is one possible measure of diversity. If all outcomes are equally likely, the entropy is
+maximized, while if all outcomes fall into one possible category, entropy is at its lowest values. The
+lowest possible value for entropy is 0, while the maximum value is dependent on the number of
+categories. Entropy is also called Shannonâs information index in some fields of study (Balch, 2000
+; Shannon, 1949 ).
+Concerning the use of entropy as a diversity index, the user might consult Balch(). For each possible
+outcome category, let p represent the observed proportion of cases. The diversity contribution of
+each category is -p * log2(p). Note that if p is either 0 or 1, the diversity contribution is 0. The sum
+of those diversity contributions across possible outcomes is the entropy estimate. The entropy value
+is a lower bound of 0, but there is no upper bound that is independent of the number of possible
+categories. If m is the number of categories, the maximum possible value of entropy is -log2(1/m).
+Because the maximum value of entropy depends on the number of possible categories, some scholars
+wish to re-scale so as to bring the values into a common numeric scale. The normed entropy
+is calculated as the observed entropy divided by the maximum possible entropy. Normed entropy
+takes on values between 0 and 1, so in a sense, its values are more easily comparable. However,
+the comparison is something of an illusion, since variables with the same number of categories will
+always be comparable by their entropy, whether it is normed or not.
+Warning: Variables of class POSIXt will be ignored. This will be fixed in the future. The function
+works perfectly well with numeric, factor, or character variables. Other more elaborate structures
+are likely to be trouble.
+Value
+A list of factor summaries
+118 summarizeNumerics
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+References
+Balch, T. (2000). Hierarchic Social Entropy: An Information Theoretic Measure of Robot Group
+Diversity. Auton. Robots, 8(3), 209-238.
+Shannon, Claude. E. (1949). The Mathematical Theory of Communication. Urbana: University of
+Illinois Press.
+See Also
+summarizeNumerics
+
+#### Examples
+```{r}
+
+
+set.seed(21234)
+x <- runif(1000)
+xn <- ifelse(x < 0.2, 0, ifelse(x < 0.6, 1, 2))
+xf <- factor(xn, levels=c(0,1,2), labels("A","B","C"))
+dat <- data.frame(xf, xn, x)
+summarizeFactors(dat)
+##see help for summarize for more 
+#### Examples
+```{r}
