@@ -1,0 +1,152 @@
+
+pctable Creates a cross tabulation with counts and percentages
+
+#### Description
+
+This function is pronounced "presentable"! The original purpose was to create a particular kind
+of cross tabulation that I ask for in class: counts with column percentages. Requests from users
+have caused a bit more generality to be built into the function. Now, optionally, it will provide row
+percents. This is a generic function. Most users will find the formula method most convenient. Use
+the colpct and rowpct 
+</code></pre>
+#### Arguments
+ to indicate if column or row percentages are desired.
+I suggest most users will use the formula method for this. Running a command like this will,
+generally, do the right thing:
+tab <- pctable(y ~ x, data = dat)
+There is also a method that will work with characters representing variable names.
+tab <- pctable("y", "x", data = dat)
+Running the function should write a table in the output console, but it also creates an object (tab).
+That object can be displayed in a number of ways.
+A summary method is provided, so one could look at different representations of the same table.
+summary(tab, rowpct = TRUE, colpct = FALSE)
+or
+summary(tab, rowpct = TRUE, colpct = TRUE)
+Tables that include only row or column percentages will be compatible with the html and latex
+exporters in the excellent tables package.
+The method pctable.default is the calculator, I donât expect many users will need to call it directly.
+The formula method is the recommended method for users. Run pctable(myrow ~ mycol, data = dat).
+In an earlier version, I gave different advice, so please adjust your 
+#### Usage
+<pre><code>
+
+.
+The character method exists only for variety. It accepts character strings rather than a formula to
+define the columns that should be plotted. The method used most often for most users should be the
+formula method.
+pctable 75
+
+#### Usage
+<pre><code>
+
+
+pctable(rv, ...)
+## Default S3 method:
+pctable(rv, cv, rvlab = NULL, cvlab = NULL,
+colpct = TRUE, rowpct = FALSE, rounded = FALSE, ...)
+## S3 method for class 'formula'
+pctable(formula, data = NULL, rvlab = NULL,
+cvlab = NULL, colpct = TRUE, rowpct = FALSE, rounded = FALSE, ...)
+## S3 method for class 'character'
+pctable(rv, cv, data = NULL, rvlab = NULL,
+cvlab = NULL, colpct = TRUE, rowpct = FALSE, rounded = FALSE, ...)
+
+</code></pre>
+#### Arguments
+
+rv A row variable name
+... Other 
+</code></pre>
+#### Arguments
+. So far, the most likely additional 
+</code></pre>
+#### Arguments
+ are to be passed
+along to the table function, such as "exclude", "useNA", or "dnn" (which will
+override the rvlab and cvlab 
+</code></pre>
+#### Arguments
+ provided by some methods). Some
+methods will also pass along these 
+</code></pre>
+#### Arguments
+ to model.frame, "subset" "xlev",
+"na.action", "drop.unused.levels".
+cv Column variable
+rvlab Optional: row variable label
+cvlab Optional: col variable label
+colpct Default TRUE: are column percentags desired in the presentation of this result?
+rowpct Default FALSE: are row percentages desired in the presentation of this result
+rounded Default FALSE, rounds to 10âs for privacy purposes.
+formula A two sided formula.
+data A data frame.
+
+#### Details
+
+Please bear in mind the following. The output object is a list of tables of partial information, which
+are then assembled in various ways by the print method (print.pctable). A lovely table will appear
+on the screen, but the thing itself has more information and a less beautiful structure.
+A print method is supplied. For any pctable object, it is possible to run follow-ups like
+print(tab, rowpct = TRUE, colpct = FALSE)
+The method print.pctable(tab) assembles the object into (my opinion of) a presentable form.
+The print method has argumnets rowpct and colpct that determine which percentages are included
+in the presentation.
+When using character 
+</code></pre>
+#### Arguments
+, the row variable rv rowvar must be a quoted string if the user
+intends the method pctable.character to be dispatched. The column variable cv may be a string or
+just a variable name (which this method will coerce to a string).
+76 pctable
+Value
+A list with tables (count, column percent, row percent) as well as a copy of the call.
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
+See Also
+tabular and the CrossTable function in gmodels package.
+
+#### Examples
+```{r}
+
+
+dat <- data.frame(x = gl(4, 25),
+y = sample(c("A", "B", "C", "D", "E"), 100, replace= TRUE))
+pctable(y ~ x, dat)
+pctable(y ~ x, dat, exclude = NULL)
+pctable(y ~ x, dat, rvlab = "My Outcome Var", cvlab = "My Columns")
+pctable(y ~ x, dat, rowpct = TRUE, colpct = FALSE)
+pctable(y ~ x, dat, rowpct = TRUE, colpct = TRUE)
+pctable(y ~ x, dat, rowpct = TRUE, colpct = TRUE, exclude = NULL)
+tab <- pctable(y ~ x, dat, rvlab = "Outcome", cvlab = "Predictor")
+dat <- data.frame(x1 = gl(4, 25, labels = c("Good", "Bad", "Ugly", "Indiff")),
+x2 = gl(5, 20, labels = c("Denver", "Cincy", "Baltimore", "NY", "LA")),
+y = sample(c("A", "B", "C", "D", "E"), 100, replace= TRUE))
+tab <- pctable(y ~ x1, data = dat, rvlab = "my row label",
+subset = dat$x1 %in% c("Good", "Bad"),
+drop.unused.levels = TRUE)
+tab <- pctable(y ~ x1, data = dat, rvlab = "my row label",
+subset = dat$x1 %in% c("Good", "Bad"))
+pctable("y", "x1", dat)
+pctable("y", x1, dat)
+tab <- pctable(y ~ x2, data = dat, rvlab = "A Giant Variable")
+summary(tab, rowpct = TRUE, colpct = FALSE)
+tabsum <- summary(tab)
+## if user has tables package, can push out to latex or html
+if (require(tables) & require(Hmisc)){
+tabsumtab <- tables::as.tabular(tabsum)
+Hmisc::html(tabsumtab)
+fn <- tempfile(pattern = "file", tmpdir = tempdir(),
+fileext = ".html")
+Hmisc::html(tabsumtab, file = fn)
+print(paste("The file saved was named", fn, "go get it."))
+if (interactive()) browseURL(fn)
+## go get the fn file if you want to import it in document
+## Now LaTeX output
+## have to escape the percent signs
+tabsumtab <- apply(tabsumtab, 1:2, function(x) {gsub("%", "\\\\%", x) })
+fn2 <- tempfile(pattern = "file", tmpdir = tempdir(),
+fileext = ".tex")
+Hmisc::latex(tabsumtab, file = fn2)
+perspEmpty 77
+print(paste("The file saved was named", fn2, "go get it."))
+}
