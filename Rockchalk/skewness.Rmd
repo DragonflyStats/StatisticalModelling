@@ -1,0 +1,36 @@
+skewness Calculate skewness
+
+#### Description
+
+Skewness is a summary of the symmetry of a distributionâs probability density function. In a Normal
+distribution, the skewness is 0, indicating symmetry about the expected value.
+
+#### Usage
+<pre><code>
+skewness(x, na.rm = TRUE, unbiased = TRUE)
+</code></pre>
+#### Arguments
+
+* ``x``:   A numeric variable (vector)
+na.rm default TRUE. Should missing data be removed?
+unbiased default TRUE. Should the denominator of the variance estimate be divided by
+N-1?
+
+#### Details
+
+If na.rm = FALSE and there are missing values, the mean and variance are undefined and this
+function returns NA.
+The skewness may be calculated with the small-sample bias-corrected estimate of the standard deviation.
+It appears somewhat controversial whether this is necessary, hence the argument unbiased
+is provided. Set unbiased = FALSE if it is desired to have the one recommended by NIST, for example.
+According to the US NIST, http://www.itl.nist.gov/div898/handbook/eda/section3/
+eda35b.htm, skewness is defined as the mean of cubed deviations divided by the cube of the standard
+deviation.
+mean((x - mean(x))^3) skewness = ___________________ sd(x)^3
+where sd(x) is calculated with the denominator N, rather than N-1. This is the Fisher-Pearson
+coefficient of skewness, they claim. The unbiased variant uses the standard deviation divisor (N-1)
+to bias-correct the standard deviation.
+Value
+A scalar value or NA
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
