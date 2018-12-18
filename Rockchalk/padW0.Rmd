@@ -1,0 +1,39 @@
+
+padW0 Pad with 0âs.
+
+#### Description
+
+Sometimes we receive this c(1, 22, 131) and we need character variables of the same size, such as
+c("001", "022", "131"). This happens if a user has mistakenly converted a zip code (US regional
+identifier) like "00231" to a number. This function converts the number back to a 0 padded string.
+
+#### Usage
+<pre><code>
+
+
+padW0(x)
+
+</code></pre>
+#### Arguments
+
+* ``x``:   A numeric variable.
+
+#### Details
+
+This works differently if the number provided is an integer, or a character string. Integers are left
+padded with the character "0". A character string will be left-padded with blanks.
+Value
+A character string vector padded with 0âs
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
+74 pctable
+
+#### Examples
+```{r}
+
+
+x <- c(1 , 11, 22, 121, 14141, 31)
+(xpad <- padW0(x))
+x <- rpois(7, lambda = 11)
+(xpad <- padW0(x))
+x <- c("Alabama", "Iowa", "Washington")
