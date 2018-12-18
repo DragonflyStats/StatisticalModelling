@@ -1,3 +1,12 @@
+---
+title: "``lazyCov``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
 
 lazyCov Create covariance matrix from correlation and standard deviation information
 
@@ -8,24 +17,22 @@ may be lazy because the correlation and standard deviation infomation may be sup
 of formats.
 
 #### Usage
-
+<pre><code>
 lazyCov(Rho, Sd, d)
-Arguments
-Rho Required. May be a single value (correlation common among all variables), a
-vector of the lower triangular values (vech) of a correlation matrix, or a symmetric
-matrix of correlation coefficients.
-Sd Required. May be a single value (standard deviation common among all variables)
-or a vector of standard deviations, one for each variable.
-d Optional. Number of rows or columns. lazyCov may be able to deduce the
-required dimension of the final matrix from the input. However, when the user
-supplies only a single value for both Rho and Sd, d is necessary.
-Value
+</code></pre>
+
+#### Arguments
+* ``Rho``: Required. May be a single value (correlation common among all variables), a vector of the lower triangular values (vech) of a correlation matrix, or a symmetric matrix of correlation coefficients.
+* ``Sd``: Required. May be a single value (standard deviation common among all variables) or a vector of standard deviations, one for each variable.
+* ``d``: Optional. Number of rows or columns. lazyCov may be able to deduce the required dimension of the final matrix from the input. However, when the user supplies only a single value for both Rho and Sd, d is necessary.
+
+#### Value
 covariance matrix.
 Author(s)
 <pauljohn@ku.edu>
 
 #### Examples
-
+```{r}
 ##correlation 0.8 for all pairs, standard deviation 1.0 of each
 lazyCov(Rho = 0.8, Sd = 1.0, d = 3)
 ## supply a vech (lower triangular values in a column)
@@ -35,7 +42,8 @@ lazyCov(Rho = c(0.1, 0.2, 0.3), Sd = c(1.0, 2.2, 3.3))
 newRho <- lazyCor(c(0.5, 0.6, 0.7, -0.1, 0.1, 0.2))
 lazyCov(Rho = newRho, Sd = 1.0)
 lazyCov(Rho = newRho, Sd = c(3, 4, 5, 6))
-40 magRange
+```
+
 lmAuxiliary Estimate leave-one-variable-out regressions
 
 #### Description
@@ -43,11 +51,16 @@ lmAuxiliary Estimate leave-one-variable-out regressions
 This is a convenience for analysis of multicollinearity in regression.
 
 #### Usage
-
+<pre><code>
 lmAuxiliary(model)
-Arguments
+</code></pre>
+
+####  Arguments
+
 model a fitted regression model
-Value
+
+####   Value
 a list of fitted regressions, one for each omitted variable.
-Author(s)
+
+####  Author(s)
 Paul E. Johnson <pauljohn@ku.edu>

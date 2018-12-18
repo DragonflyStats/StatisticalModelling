@@ -1,4 +1,13 @@
-kurtosis 37
+---
+title: "Rockchalk"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
 kurtosis Calculate excess kurtosis
 
 #### Description
@@ -12,16 +21,17 @@ FALSE, in which case the uncentered kurtosis is returned.
 
 #### Usage
 
+<pre><code>
 kurtosis(x, na.rm = TRUE, excess = TRUE, unbiased = TRUE)
-Arguments
-x A numeric variable (vector)
-na.rm default TRUE. If na.rm = FALSE and there are missing values, the mean and
-variance are undefined and this function returns NA.
-excess default TRUE. If true, function returns excess kurtosis (kurtosis -3). If false, the
-return is simply kurtosis as defined above.
-unbiased default TRUE. Should the denominator of the variance estimate be divided by
-N-1, rather than N?
-Details
+</code></pre>
+
+#### Arguments
+* x A numeric variable (vector)
+* na.rm default TRUE. If na.rm = FALSE and there are missing values, the mean and variance are undefined and this function returns NA.
+* excess default TRUE. If true, function returns excess kurtosis (kurtosis -3). If false, the return is simply kurtosis as defined above.
+* unbiased default TRUE. Should the denominator of the variance estimate be divided by N-1, rather than N?
+
+#### Details
 If kurtosis is smaller than 3 (or excess kurtosis is negative), the tails are "thinner" than the normal
 distribution (there is lower chance of extreme deviations around the mean). If kurtosis is greater
 than 3 (excess kurtosis positive), then the tails are fatter (observations can be spread more widely
@@ -30,7 +40,8 @@ The kurtosis may be calculated with the small-sample bias-corrected estimate of 
 unbiased = FALSE if this is not desired. It appears somewhat controversial whether this is necessary.
 According to the US NIST, http://www.itl.nist.gov/div898/handbook/eda/section3/
 eda35b.htm, kurtosis is defined as
-kurtosis = (mean((x 􀀀 mean(x))4))=var(x)2
+
+$$kurtosis = (mean((x 􀀀 mean(x))4))=var(x)2$$
 where var(x) is calculated with the denominator N, rather than N 􀀀 1.
 A distribution is said to be leptokurtic if it is tightly bunched in the center (spiked) and there are
 long tails. The long tails reflect the probability of extreme values.

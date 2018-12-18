@@ -138,20 +138,31 @@ addLines Superimpose regression lines on a plotted plane
 
 The 
 #### Examples
+```{r}
+
  will demonstrate the intended 
 #### Usage
+<pre><code>
+
 .
 
 #### Usage
+<pre><code>
+
 
 addLines(to = NULL, from = NULL, col, lwd = 2, lty = 1)
-Arguments
+
+</code></pre>
+#### Arguments
+
 to a 3d plot object produced by plotPlane
 from output from a plotSlopes or plotCurves function (class="rockchalk")
 col color of plotted lines (default: "red")
-lwd line width of added lines (default: 2)
+* ``lwd``:  line width of added lines (default: 2)
 lty line type of added lines (default: 1)
-Details
+
+#### Details
+
 From an educational stand point, the objective is to assist with the student’s conceptualization of
 the two and three dimensional regression relationships.
 Value
@@ -161,6 +172,8 @@ Paul E. Johnson <pauljohn@ku.edu>
 addLines 5
 
 #### Examples
+```{r}
+
 
 ##library(rockchalk)
 set.seed(12345)
@@ -194,7 +207,8 @@ plotPlane(m1, plotx1 = "x1", plotx2 = "x2", ticktype = "detailed",
 npp = 10, linesFrom = m1ps)
 ## Need to think more on whether dotted lines from ps object should
 ## be converted to solid lines in plotPlane.
-6 centerNumerics
+```
+
 centerNumerics Find numeric columns, center them, re-name them, and join them with
 the original data.
 
@@ -208,21 +222,22 @@ If standardize=TRUE, then the result will have columns c("x1","x2","x3","x1cs","
 where "cs" indicate "centered and scaled".
 
 #### Usage
+<pre><code>
+
 
 centerNumerics(data, center, standardize = FALSE)
-Arguments
-data Required. data frame or matrix.
-center Optional. If nc is NOT supplied, then all numeric columns in data will be centered
-(possiblly scaled). Can be specified in 2 formats. 1) Vector of column
-names that are to be centered, 2) Vector named elements giving values of means
-to be used in centering. Values must be named, as in c("x1" = 17, "x2" = 44).
+
+</code></pre>
+#### Arguments
+
+* data Required. data frame or matrix.
+* center Optional. If nc is NOT supplied, then all numeric columns in data will be centered (possiblly scaled). Can be specified in 2 formats. 1) Vector of column names that are to be centered, 2) Vector named elements giving values of means to be used in centering. Values must be named, as in c("x1" = 17, "x2" = 44).
 (possibly scaled).
-standardize Default FALSE. If TRUE, the variables are first mean-centered, and then divided
-by their standard deviations (scaled). User can supply a named vector of scale
-values by which to divide each variable (otherwise sd is used). Vector must have
-same names and length as center argument. Variables can be entered in any
-order (will be resorted inside function).
-Value
+
+* standardize Default FALSE. If TRUE, the variables are first mean-centered, and then divided
+by their standard deviations (scaled). User can supply a named vector of scale values by which to divide each variable (otherwise sd is used). Vector must have same names and length as center argument. Variables can be entered in any order (will be resorted inside function).
+
+#### Value
 A data frame with 1) All original columns 2) additional columns with centered/scaled data, variables
 renamed "c" or "cs" to indicate the data is centered or centered and scaled. Attributes "centers" and
 "scales" are created for "record keeping" on centering and scaling values.
@@ -230,6 +245,8 @@ Author(s)
 <pauljohn@ku.edu>
 
 #### Examples
+```{r}
+
 
 set.seed(12345)
 dat <- data.frame(x1=rnorm(100, m = 50), x2 = rnorm(100, m = 50),
@@ -256,6 +273,8 @@ standardize = c("x2" = 5, "x1" = 7))
 head(datc5)
 summarize(datc5)
 attributes(datc5)
+```
+
 centralValues Central Tendency estimates for variables
 
 #### Description
@@ -265,20 +284,26 @@ data frame and returns a new data frame with one row in which the mean or mode o
 is reported.
 
 #### Usage
-
+<pre><code>
 centralValues(x)
-Arguments
+</code></pre>
+#### Arguments
+
 x a data frame
-Value
+
+#### Value
 a data frame with the same variables and one row, the summary indicators.
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
+```{r}
+
 
 myDat <- data.frame(x=rnorm(100), y=rpois(100,l=4), z = cut(rnorm(100), c(-10,-1,0,10)))
 centralValues(myDat)
-8 cheating
+```
+
 cheating Cheating and Looting in Japanese Electoral Politics
 
 #### Description
@@ -288,16 +313,23 @@ Nyblade and Steven Reed. The Stata data file provided by the authors included ma
 variables that have been omitted. Within R, these can be easily re-contructed by users.
 
 #### Usage
+<pre><code>
+
 
 data(cheating)
+</code></pre>
+
 Format
 data.frame: 16623 obs. on 27 variables
-Details
+
+#### Details
+
 Special thanks to NyBlade and Reed for permission to repackage this data. Also special thanks to
 them for creating an especially transparent variable naming scheme.
 The data set includes many columns for variables that can easily be re-constructed from the columns
 that are provided here. While Stata users might need to manually create ’dummy variables’ and
 interactions, R users generally do not do that manually.
+
 These variables from the original data set were omitted:
 Dummy variables for the year variable: c("yrd1", "yrd2", ..., "yrd17", "yrd18")
 Dummy variables for the ku variable: c("ku1", "ku2", ..., "ku141", "ku142")
@@ -308,6 +340,7 @@ Constructed product variables: c("actualratiosq", "viabsq", "viab_candcamp_divm"
 "candothercampminusm", "predratiosq", "absviab")
 Mean centered variables: constr2 <- c("viab_candcampminusm", "viab_candothercampminusm",
 "viabsq_candothercampminusm", "viabsq_candcampminusm")
+
 In the end, we are left with these variables:
 [1] "ku" [2] "prefecture" [3] "dist" [4] "year" [5] "yr" [6] "cdnr" [7] "jiban" [8] "cheating" [9]
 "looting" [10] "actualratio" [11] "viab" [12] "inc" [13] "cons" [14] "ur" [15] "newcand" [16] "jwins"
@@ -318,11 +351,14 @@ Paul E. Johnson <pauljohn@ku.edu>, on behalf of Benjamin Nyblade and Steven Reed
 checkIntFormat 9
 Source
 http://faculty.arts.ubc.ca/bnyblade/publications.html.
-References
+
+#### References
 Benjamin Nyblade and Steven Reed, "Who Cheats? Who Loots? Political Competition and Corruption
 in Japan, 1947-1993." American Journal of Political Science 52(4): 926-41. October 2008.
 
 #### Examples
+```{r}
+
 
 require(rockchalk)
 data(cheating)
@@ -334,22 +370,29 @@ predictOMatic(table1model2, interval = "confidence")
 ## The publication used "rare events logistic", which I'm not bothering
 ## with here because I don't want to invoke additional imported packages.
 ## But the ordinary logit results are proof of concept.
+```
+
 checkIntFormat A way of checking if a string is a valid file name.
 
 #### Description
 
-A copy from R’s grDevices:::checkIntFormat because it is not exported there
+A copy from R's grDevices:::checkIntFormat because it is not exported there
 
 #### Usage
-
+<pre><code>
 checkIntFormat(s)
-Arguments
+</code></pre>
+#### Arguments
+
 s An integer
 Value
 logical: TRUE or FALSE
 Author(s)
 R Core Development Team
-10 combineLevels
+
+
+
+
 checkPosDef Check a matrix for positive definitness
 
 #### Description
@@ -358,15 +401,22 @@ Uses eigen to check positive definiteness. Follows example used in MASS package 
 and Brian D. Ripley
 
 #### Usage
+<pre><code>
+
 
 checkPosDef(X, tol = 1e-06)
-Arguments
+
+</code></pre>
+#### Arguments
+
 X A matrix
 tol Tolerance (closeness to 0 required to declare failure)
 Value
 TRUE or FALSE
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
+
+
 combineLevels recode a factor by "combining" levels
 
 #### Description
@@ -376,9 +426,14 @@ currently coded with levels c("Male","Female","Man", "M"), and the user needs to
 redundant levels for males, this is the function to use! This is a surprisingly difficult problem in R.
 
 #### Usage
+<pre><code>
+
 
 combineLevels(fac, levs, newLabel = "combinedLevels")
-Arguments
+
+</code></pre>
+#### Arguments
+
 fac An R factor variable, either ordered or not.
 levs The levels to be combined. Users may specify either a numerical vector of
 level values, such as c(1,2,3), to combine the first three elements of level(fac),
@@ -387,19 +442,25 @@ or they may specify level names. This can be done as a character vector of
 be provided as a subset of the output from levels, such as levels(fac)[1:3].
 newLabel A character string that represents the label of the new level to be created when
 levs values are combined.
-cutByQuantile 11
-Details
+
+
+
+#### Details
+
 If the factor is an ordinal factor, then levels may be combined only if they are adjacent. A factor
 with levels c("Lo","Med","Hi","Extreme") allows us to combine responses "Lo" and "Med", while
 it will NOT allow us to combine "Lo" with "Hi".
 A non-ordered factor can be reorganized to combine any values, no matter what positions they
 occupy in the levels vector.
-Value
+
+#### Value
 A new factor variable, with unused levels removed.
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
+```{r}
+
 
 x <- c("M","A","B","C","A","B","A","M")
 x <- factor(x)
@@ -419,6 +480,9 @@ z2a <- combineLevels(z, levs = c(1,2), "Good")
 addmargins(table(z2a, z, exclude = NULL))
 z2b <- combineLevels(z, levs = c("A","B"), "AorB")
 addmargins(table(z2b, z, exclude = NULL))
+```
+
+
 cutByQuantile Calculates the "center" quantiles, always including the median, when
 n is odd.
 
@@ -428,19 +492,28 @@ If the numeric variable has fewer than 6 unique observed values, this will send 
 The default return will find dividing points at three quantiles: c(0.25, 0.50, 0.75) If n=4, the dividing
 points will be c(0.20, 0.40, 0.60, 0.80) If n=5, c(0.0, 0.25, 0.50, 0.75, 1.0) Larger n that are odd will
 include 0.5 and evenly spaced points out to proportions 0 and 1.0. Larger n that is even will return
-evenly spaced points calculated by R’s pretty function.
-12 cutBySD
+evenly spaced points calculated by R's pretty function.
+
 
 #### Usage
+<pre><code>
+
 
 cutByQuantile(x, n = 3)
-Arguments
+
+</code></pre>
+#### Arguments
+
 x A numeric vector.
-n The number of quantile points. See details.
+n The number of quantile points. See 
+#### Details
+.
 Value
 A vector
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
+
+
 cutBySD Returns center values of x, the mean, mean-std.dev, mean+std.dev
 
 #### Description
@@ -449,24 +522,28 @@ If the numeric variable has fewer than 6 unique observed values, this will send 
 ByTable.
 
 #### Usage
-
+<pre><code>
 cutBySD(x, n = 3)
-Arguments
-x A numeric variable
-n Should be an odd number 1, 3, 5, or 7. If 2 < n < 5, values that divide the data at
+</code></pre>
+#### Arguments
+
+* ``x``:   A numeric variable
+* n Should be an odd number 1, 3, 5, or 7. If 2 < n < 5, values that divide the data at
 c(m-sd, m, m+sd) are returned. If n > 4, the returned values are c(m-2sd, m-sd,
 m, m+sd, m+2sd).
-Value
+
+#### Value
 A named vector
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
-
+```{r}
 x <- rnorm(100, m = 100, s = 20)
 cutBySD (x, n = 3)
 cutBySD (x, n = 5)
-cutByTable 13
+```
+
 cutByTable Select most frequently occurring values from numeric or categorical
 variables.
 
@@ -477,42 +554,52 @@ order). The names attribute includes information about the percentage of cases t
 the indicated values.
 
 #### Usage
+<pre><code>
+
 
 cutByTable(x, n = 5, pct = TRUE)
-Arguments
-x A numeric or character variable
-n The maximum number of values that may be returned.
-pct Default = TRUE. Include percentage of responses within each category
-Details
+
+</code></pre>
+#### Arguments
+
+* ``x``: A numeric or character variable
+* ``n``: The maximum number of values that may be returned.
+* ``pct``: Default = TRUE. Include percentage of responses within each category
+
+#### Details
+
 This is used by plotSlopes, plotCurves, and other "newdata" making functions.
-Value
+
+#### Value
 A named vector.
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
+
 cutFancy Create an ordinal variable by grouping numeric data input.
 
 #### Description
 
-This is a convenience function for 
-#### Usage
- of R’s cut function. Users can specify cutpoints or category
+This is a convenience function for Usage of R's cut function. Users can specify cutpoints or category
 labels or desired proportions of groups in various ways. In that way, it has a more flexible interface
 than cut. It also tries to notice and correct some common user errors, such as omitting the outer
 boundaries from the probs argument. The returned values are labeled by their midpoints, rather than
 cut’s usual boundaries.
 
 #### Usage
+<pre><code>
+
 
 cutFancy(y, cutpoints = "quantile", probs, categories)
 14 cutFancy
-Arguments
-y The input data from which the categorized variable will be created.
-cutpoints Optional paramter, a vector of thresholds at which to cut the data. If it is not
+
+</code></pre>
+#### Arguments
+
+* ``y``:   The input data from which the categorized variable will be created.
+* cutpoints Optional paramter, a vector of thresholds at which to cut the data. If it is not
 supplied, the default value cutpoints="quantile" will take effect. Users can
-supplement with probs and/or categories as shown in 
-#### Examples
-.
-probs This is an optional parameter, relevant only when the R function quantile function
+supplement with probs and/or categories as shown in Examples
+* probs This is an optional parameter, relevant only when the R function quantile function
 is used to calculate cutpoints. The length should be number of desired categories
 PLUS ONE, as in c(0, .3, .6, 1). That will create categories that
 represent 1) less than .3, between .3 and .6, and above .6. A common user error
@@ -526,7 +613,9 @@ required if cutpoints="quantile" and probs is not specified. Can also be a vecto
 of names to be used for the categories that are created. If category names are not
 provided, the names for the ordinal variable will be the midpoint of the numeric
 range from which they are constructed.
-Details
+
+#### Details
+
 The dividing points, thought of as "thresholds" or "cutpoints", can be specified in several ways.
 cutFancy will automatically create equally-sized sets of observations for a given number of categories
 if neither probs nor cutpoints is specified. The bare minimum input needed is categories=5,
@@ -540,8 +629,7 @@ will be the numerical midpoints for the outcomes. Perhaps this will deviate from
 which might be ordinal categories name "0", "1", "2", and so forth. The numerically labeled values
 we provide can be used in various ways during the analysis process. Read "?factor" to learn ways
 to convert the ordinal output to other formats. 
-#### Examples
- include various ways of converting the
+Examples include various ways of converting the
 ordinal output to numeric.
 The categories parameter works together with cutpoints. cutpoints allows a character string
 "quantile". If cutpoints is not specified, or if the user specifies a character string cutpoints="quantile",
@@ -556,6 +644,8 @@ Value
 an ordinal vector with attributes "cutpoints" and "props" (proportions)
 
 #### Examples
+```{r}
+
 
 set.seed(234234)
 y <- rnorm(1000, m = 35, sd = 14)
@@ -591,7 +681,7 @@ probs <- c(.3, .6)
 X1a$yord <- cutFancy(X1a$y, probs = probs)
 attributes(X1a$yord)
 table(X1a$yord, exclude = NULL)
-
+```
 
 model.data.default 51
 model.data.default Create a data frame suitable for estimating a model
@@ -601,22 +691,28 @@ model.data.default Create a data frame suitable for estimating a model
 This is the default method. Works for lm and glm fits.
 
 #### Usage
+<pre><code>
+
 
 ## Default S3 method:
 model.data(model, na.action = na.omit, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 model A fitted model
 na.action Defaults to na.omit, so model as it would appear in user workspace is re-created,
 except that rows with missing values are deleted. Changing this argument to
 na.pass will provide the data as it was in the workspace.
 ... Place holder for other arguments, not used at present
-Value
+
+#### Value
 A data frame
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
-
+```{r}
 library(rockchalk)
 ## first, check if model.data works when there is no data argument
 ## This used to fail, now OK
@@ -704,7 +800,7 @@ m3.data <- model.data(m3)
 head(m3.data)
 summarize(m3.data)
 attr(m3.data, "varNamesRHS")
-54 mvrnorm
+
 m4 <- lm(y ~ I(x1) + I(x1^2) + log(x2), data=dat)
 m4.data <- model.data(m4)
 summarize(m4.data)
@@ -724,6 +820,8 @@ head(m6.data)
 dim(m6.data)
 summarize(m5.data)
 attr(m6.data, "varNamesRHS")
+```
+
 mvrnorm Minor revision of mvrnorm (from MASS) to facilitate replication
 
 #### Description
@@ -736,10 +834,15 @@ match exactly. This is done to prevent unexpected and peculiar patterns that are
 altered with MASS package’s mvrnorm.
 
 #### Usage
+<pre><code>
+
 
 mvrnorm(n = 1, mu, Sigma, tol = 1e-06, empirical = FALSE)
-mvrnorm 55
-Arguments
+
+
+</code></pre>
+#### Arguments
+
 n the number of samples ("rows" of data) required.
 mu a vector giving the means of the variables.
 Sigma positive-definite symmetric matrix specifying the covariance matrix of the variables.
@@ -747,7 +850,9 @@ tol tolerance (relative to largest variance) for numerical lack of positive-defi
 in Sigma
 empirical logical. If true, mu and Sigma specify the empirical not population mean and
 covariance matrix.
-Details
+
+#### Details
+
 To assure replication, only a very small change is made. The code in MASS::mvrnorm draws a
 random sample and fills a matrix by column, and that matrix is then decomposed. The change
 implemented here fills that matrix by row and the problem is eliminated.
@@ -757,12 +862,14 @@ diagonal, then just one column of the simulated multivariate normal data will be
 the others are not. This has very troublesome implications for simulations that draw samples of
 various sizes and then base calculations on the separate simulated columns (i.e., some columns are
 identical, others are completely uncorrelated).
-Value
+
+#### Value
 If n = 1 a vector of the same length as mu, otherwise an n by length(mu) matrix with one sample
 in each row.
 Author(s)
 Ripley, B.D. with revision by Paul E. Johnson
-References
+
+#### References
 Venables,W. N. & Ripley, B. D. (2002) Modern Applied Statistics with S. Fourth Edition. Springer,
 New York. ISBN 0-387-95457-0
 See Also
@@ -770,6 +877,8 @@ For an alternative multivariate normal generator function, one which has had thi
 consider using the new versions of rmvnorm in the package mvtnorm.
 
 #### Examples
+```{r}
+
 
 library(MASS)
 library(rockchalk)
@@ -817,6 +926,8 @@ Y0
 Y1
 newdata Create a newdata frame for 
 #### Usage
+<pre><code>
+
  in predict methods
 
 #### Description
@@ -826,38 +937,39 @@ Creates a new data frame from which a model could be re-estimated.
 newdata 57
 
 #### Usage
+<pre><code>
+
 
 newdata(model, predVals, n, ...)
 ## Default S3 method:
 newdata(model = NULL, predVals = NULL, n = 3,
 emf = NULL, divider = "quantile", ...)
-Arguments
-model Required. Fitted regression model
-predVals Predictor Values that deserve investigation. Previously, the argument was called
-"fl". This can be 1) a keyword, one of c("auto", "margins") 2) a vector of variable
-names, which will use default methods for all named variables and the central
-values for non-named variabled, 3) a named vector with predictor variables and
+
+</code></pre>
+#### Arguments
+
+* model Required. Fitted regression model
+* predVals Predictor Values that deserve investigation. Previously, the argument was called
+"fl". This can be 1) a keyword, one of c("auto", "margins") 2) a vector of variable names, which will use default methods for all named variables and the central values for non-named variabled, 3) a named vector with predictor variables and
 divider algorithms, or 4) a full list that supplies variables and possible values.
-Please see details and 
-#### Examples
-.
-n Optional. Default = 3. How many focal values are desired? This value is used
-when various divider algorithms are put to use if the user has specified keywords
+Please see Details  and 
+Examples.
+* n Optional. Default = 3. How many focal values are desired? This value is used when various divider algorithms are put to use if the user has specified keywords
 "default", "quantile", "std.dev." "seq", and "table".
-... Other arguments.
-emf Optional. data frame used to fit model (not a model frame, which may include
-transformed variables like log(x1). Instead, use output from function
-model.data). It is UNTRANSFORMED variables ("x" as opposed to poly(x,2).1
-and poly(x,2).2).
+* ... Other arguments.
+* emf Optional. data frame used to fit model (not a model frame, which may include transformed variables like log(x1). Instead, use output from function model.data). It is UNTRANSFORMED variables ("x" as opposed to poly(x,2).1 and poly(x,2).2).
 divider Default is "quantile". Determines the method of selection. Should be one of
 c("quantile", "std.dev", "seq", "table").
-Details
+
+#### Details
+
 It scans the fitted model, discerns the names of the predictors, and then generates a new data frame.
 It can guess values of the variables that might be substantively interesting, but that depends on the
 user-supplied value of predVals. If not supplied with a predVals argument, newdata returns a data
 frame with one row – the central values (means and modes) of the variables in the data frame that
 was used to fit the model. The user can supply a keyword "auto" or "margins". The function will
 try to do the "right thing."
+
 The predVals can be a named list that supplies specific values for particular predictors. Any legal
 vector of values is allowed. For example, predVals = list(x1 = c(10, 20, 30), x2
 = c(40, 50), xcat = levels(xcat))). That will create a newdata object that has all of the
@@ -868,8 +980,9 @@ to select focal values. The default divider algorithm is an optional argument of
 default is not desired, the user can specify a divider algorithm by character string, either "quantile",
 "std.dev.", "seq", or "table". The user can mix and match algorithms along with requests for specific
 focal values, as in predVals = list(x1 = "quantile", x2 = "std.dev.", x3 = c(10,20, 30), xcat1 <- levels(xcat1))
-58 newdata
-Value
+
+
+#### Value
 A data frame of x values that could be used as the data = argument in the original regression model.
 The attribute "varNamesRHS" is a vector of the predictor variable names.
 Author(s)
@@ -878,6 +991,8 @@ See Also
 predictOMatic
 
 #### Examples
+```{r}
+
 
 library(rockchalk)
 ## Replicate some R classics. The budworm.lg data from predict.glm
@@ -893,6 +1008,9 @@ predictOMatic(budworm.lg)
 predictOMatic(budworm.lg, n = 7)
 predictOMatic(budworm.lg, predVals = c("ldose"), n = 7)
 predictOMatic(budworm.lg, predVals = c(ldose = "std.dev.", sex = "table"))
+```
+
+```{r}
 ## Now make up a data frame with several numeric and categorical predictors.
 set.seed(12345)
 N <- 100
@@ -946,7 +1064,7 @@ interval = "confidence", n = 3))
 getFocal(m0.data$x2, xvals = "std.dev.", n = 5)
 ## Change from quantile to standard deviation divider
 (m0.p5 <- predictOMatic(m0, divider = "std.dev.", n = 5))
-60 newdata
+
 ## Still can specify particular values if desired
 (m0.p6 <- predictOMatic(m0, predVals = list("x1" = c(6,7),
 "xcat1" = levels(m0.data$xcat1))))
@@ -979,7 +1097,7 @@ x2 = quantile(m1.data$x2, na.rm = TRUE), x3 = c(-1,0,1))))
 (m1.p2 <- predictOMatic(m1, divider = "quantile", n = 5))
 (m1.p3 <- predictOMatic(m1, predVals = list(x1 = c(6, 8, 10),
 x2 = median(m1.data$x2, na.rm = TRUE))))
-newdata 61
+
 (m1.p4 <- predictOMatic(m1, predVals = list(x1 = c(6, 8, 10),
 x2 = quantile(m1.data$x2, na.rm = TRUE))))
 (m1.p5 <- predictOMatic(m1))
@@ -990,6 +1108,9 @@ m2 <- lm(y ~ x1 + x2 + x3 + xcat1 + xcat2, data = dat)
 ## has only columns and rows used in model fit
 m2.data <- model.data(m2)
 summarize(m2.data)
+```
+
+```{r}
 ## Check all the margins
 (predictOMatic(m2, interval = "conf"))
 ## Lets construct predictions the "old fashioned way" for comparison
@@ -1001,6 +1122,8 @@ predVals = list(xcat1 = levels(m2.data$xcat1),
 xcat2 = levels(m2.data$xcat2)),
 xcat2 = c("M","D")))
 ## See? same!
+```
+```{r}
 ## Pick some particular values for focus
 m2.new2 <- newdata(m2, predVals = list(x1 = c(1,2,3), xcat2 = c("M","D")))
 ## Ask for predictions
@@ -1017,7 +1140,7 @@ xcat2 = c("M","D")), interval = "conf"))
 (m2.p6 <- predictOMatic(m2, predVals = list(x2 = c(49, 51),
 xcat2 = levels(m2.data$xcat2),
 x1 = plotSeq(dat$x1))))
-62 newdata
+
 plot(y ~ x1, data = m2.data)
 by(m2.p6, list(m2.p6$xcat2), function(x) {
 lines(x$x1, x$fit, col = x$xcat2, lty = as.numeric(x$xcat2))
@@ -1042,6 +1165,9 @@ y2 <- ifelse(rnorm(N) > 0.3, 1, 0)
 dat <- cbind(dat, y2)
 m3 <- glm(y2 ~ x1 + x2 + x3 + xcat1, data = dat, family = binomial(logit))
 summary(m3)
+```
+
+```{r}
 m3.data <- model.data(m3)
 summarize(m3.data)
 (m3.p1 <- predictOMatic(m3, divider = "std.dev."))
@@ -1055,11 +1181,14 @@ xcat1 = c("M","F")), interval = "conf"))
 ## Would like to write a more beautiful print method
 ## for output object, but don't want to obscure structure from user.
 ## for (i in names(m3.p1)){
-outreg 63
+
 ## dns <- cbind(m3.p1[[i]][i], m3.p1[[i]]$fit)
 ## colnames(dns) <- c(i, "predicted")
 ## print(dns)
 ## }
+```
+
+
 outreg Creates a publication quality result table for regression models. Works
 with models fitted with lm, glm, as well as lme4.
 
@@ -1069,6 +1198,8 @@ This provides "markup" that the user is will copy into a LaTeX document. As of r
 can also create HTML markup. The rockchalk vignette demonstrates use of outreg in Sweave.
 
 #### Usage
+<pre><code>
+
 
 outreg(modelList, type = "latex", modelLabels = NULL, varLabels = NULL,
 tight = TRUE, centering = c("none", "siunitx", "dcolumn"),
@@ -1076,20 +1207,18 @@ showAIC = FALSE, float = FALSE, request, runFuns, digits = 3,
 alpha = c(0.05, 0.01, 0.001), SElist = NULL, PVlist = NULL,
 Blist = NULL, title, label, gofNames, print.results = TRUE,
 browse = identical(type, "html") && interactive())
-Arguments
-modelList A regression model or an R list of regression models. Default model names
-will be M1, M2, and so forth. User specified names are allowed, such as
-list("My Model" = m1, "Her Model" = m2). This is the currently recommended
-way to supply model lables. This is less error prone than the use of
-the modelLabels argument.
-type Default = "latex". The alternatives are "html" and "csv"
+
+</code></pre>
+#### Arguments
+
+* ``modelList``: A regression model or an R list of regression models. Default model names
+will be M1, M2, and so forth. User specified names are allowed, such as list("My Model" = m1, "Her Model" = m2). This is the currently recommended way to supply model lables. This is less error prone than the use of the modelLabels argument.
+* ``type`` Default = "latex". The alternatives are "html" and "csv"
 modelLabels This is allowed, but discouraged. A vector of character string variables, one for
 each element in modelList. Will override the names in modelList.
-varLabels To beautify the parameter names printed. Must be a named vector in the format
-c(parmname = "displayName", parmname = "displayName"). Include as many
-parameters as desired, it is not necessary to supply new labels for all of the
-parameters.
-tight Table format. If TRUE, parameter estimates and standard errors are printed in
+* ``varLabels`` To beautify the parameter names printed. Must be a named vector in the format
+c(parmname = "displayName", parmname = "displayName"). Include as many parameters as desired, it is not necessary to supply new labels for all of the parameters.
+* ``tight`` Table format. If TRUE, parameter estimates and standard errors are printed in
 a single column. If FALSE, parameter estimates and standard errors are printed
 side by side.
 centering Default is "none", but may be "siunitx" or "dcolumn". No centering has been
@@ -1100,15 +1229,15 @@ specifies centering=TRUE, the siunitx method will be used. The dcolumn approach
 assumes that the values reported in the column use fewer than 3 integer
 places and 3 decimal places. Additional room is allocated for the significance
 stars.
-showAIC This is a legacy argument, before the request argument was created. If TRUE,
+* showAIC This is a legacy argument, before the request argument was created. If TRUE,
 the AIC estimate is included with the diagnostic values. It has the same effect
 as described by request.
-float Default = FALSE. Include boilerplate for a LaTeX table float, with the tabular
+* float Default = FALSE. Include boilerplate for a LaTeX table float, with the tabular
 markup inside it. Not relevant if type = "html".
-request Extra information to be retrieved from the summary(model) and displayed. This
-must be a vector of named arguments, such as c(adj.r.squared = "adj $R^2$",
+request Extra information to be retrieved from the summary(model) and displayed. This must be a vector of named arguments, such as c(adj.r.squared = "adj $R^2$",
 fstatistic = "F"). The name must be a valid name of the output object, the value
 should be the label the user wants printed in the table. See details.
+
 runFuns A list of functions
 digits Default = 3. How many digits after decimal sign are to be displayed.
 alpha Default = c(0.05, 0.01, 0.001). I think stars are dumb, but enough people have
@@ -1138,8 +1267,10 @@ c("sigma" = "That Estimate I don't understand", "deviance" =
 print.results Default TRUE, marked-up table will be displayed in session. If FALSE, same
 result is returned as an object.
 browse Display the regression model in a browse? Defaults to TRUE if type = "html"
-outreg 65
-Details
+
+
+#### Details
+
 outreg returns a string vector. It is suggested that users should save the outreg result and then use
 cat to save it. That is myMod <- outreg(m1, ...) cat(myMod, file = "myMod.html") or cat(myMod,
 file = "myMod.tex". In version 1.8.66, we write the html file to a temporary location and display it
@@ -1152,14 +1283,16 @@ silently (as suggested in the last few versions), include print.results = TRUE.
 The table includes a minimally sufficient (in my opinion) model summary. It offers parameter
 estimates, standard errors, and minimally sufficient goodness of fit. My tastes tend toward minimal
 tables, but users request more features, and outreg’s interface hass been generalized to allow
-specialized requests. See request and runFuns arguments.
+specialized requests. See request and runFuns arguments
+.
 I don’t want to write a separate table function for every different kind of regression model that exists
 (how exhausting). So I’ve tried to revise outreg() to work with regression functions that follow
 the standard R framework. It is known to work lm and glm, as well as merMod class from lme4,
 but it will try to interact with other kinds of regression models. Those models should have methods
 summary(), coef(), vcov() and nobs(). Package writes should provide those, its not my job.
 Do you want "robust standard errors"? P values calculated according to some alternative logic?
-Go ahead, calculate them in your code, outreg will now accept them as arguments. As of Version
+Go ahead, calculate them in your code, outreg will now accept them as arguments
+. As of Version
 1.8.4, users can provide their own standard errors and/or p-values for each model. Thus, if a model
 answers in the usual way to the standard R request coef(summary(model)), outreg can work if
 users supply standard errors.
@@ -1179,10 +1312,10 @@ For example, runFuns = c("AIC" = "Akaike Criterion", "BIC" = "Schwartz Criterion
 About centering with dcolumn or siunitx. It appears now that results are better with siunitx but
 dcolumn is more familiar to users. The user has the duty to make sure that the document preamble
 includes the correct package, \usepackage{dcolumn} or \usepackage{siunitx}. In this version,
-I have eliminated the need for the user to specify document-wide settings for siunitx. All of the
-details are explicitly written in the header of each tabular. It is done that way to more easily allow
+I have eliminated the need for the user to specify document-wide settings for siunitx. All of the details
+ are explicitly written in the header of each tabular. It is done that way to more easily allow
 user customizations.
-66 outreg
+
 Value
 A character vector, one element per row of the regression table.
 Note
@@ -1194,6 +1327,8 @@ Author(s)
 Paul E. Johnson <<pauljohn@ku.edu>>
 
 #### Examples
+```{r}
+
 
 set.seed(2134234)
 dat <- data.frame(x1 = rnorm(100), x2 = rnorm(100))
@@ -1226,7 +1361,9 @@ ex5 <- outreg(list("Whichever" = m1, "Whatever" = m2),
 title = "Still have showAIC argument, as in previous versions",
 showAIC = TRUE, float = TRUE, centering = "siunitx")
 ex5s <- outreg(list("Whichever" = m1, "Whatever" = m2),
-outreg 67
+```
+
+```{r}
 title = "Still have showAIC argument, as in previous versions",
 showAIC = TRUE, float = TRUE, centering = "siunitx")
 ## Launches HTML browse
@@ -1238,6 +1375,9 @@ showAIC = TRUE, type = "html")
 ## cat(ex5html, file = fn)
 ## browseURL(fn)
 ## Open that HTML file in LibreOffice or MS Word
+```
+
+```{r}
 ex6 <- outreg(list("Whatever" = m1, "Whatever" =m2),
 title = "Another way to get AIC output",
 runFuns = c("AIC" = "Akaike IC"))
@@ -1245,6 +1385,9 @@ cat(ex6)
 ex7 <- outreg(list("Amod" = m1, "Bmod" = m2, "Gmod" = m3),
 title = "My Three Linear Regressions", float = FALSE)
 cat(ex7)
+```
+
+```{r}
 ## A new feature in 1.85 is ability to provide vectors of beta estimates
 ## standard errors, and p values if desired.
 ## Suppose you have robust standard errors!
@@ -1263,13 +1406,16 @@ cat(ex12)
 ex13 <- outreg(list("OLS" = m1, "GLM" = gm1), float = TRUE,
 alpha = c(0.05, 0.01))
 cat(ex13)
+```
+
+```{r}
 ex14 <- outreg(list(OLS = m1, GLM = gm1), float = TRUE,
 request = c(fstatistic = "F"), runFuns = c("BIC" = "BIC"))
 cat(ex14)
 ex15 <- outreg(list(OLS = m1, GLM = gm1), float = TRUE,
 request = c(fstatistic = "F"), runFuns = c("BIC" = "BIC"),
 digits = 5, alpha = c(0.01))
-68 outreg0
+
 ex16 <- outreg(list("OLS 1" = m1, "OLS 2" = m2, GLM = gm1), float = TRUE,
 request = c(fstatistic = "F"),
 runFuns = c("BIC" = "BIC", logLik = "ll"),
@@ -1278,6 +1424,9 @@ ex17 <- outreg(list("Model A" = gm1, "Model B label with Spaces" = m2),
 request = c(fstatistic = "F"),
 runFuns = c("BIC" = "Schwarz IC", "AIC" = "Akaike IC",
 "nobs" = "N Again?"))
+```
+
+```{r}
 ## Here's a fit example from lme4.
 if (require(lme4) && require(car)){
 fm1 <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
@@ -1294,6 +1443,8 @@ SElist = list("OLS Robust SE" = lm1rse), type = "html")
 }
 ## From the glmer 
 #### Examples
+```{r}
+
 
 gm2 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd),
 data = cbpp, family = binomial)
@@ -1316,44 +1467,60 @@ an output object that can be transformed for other purposes.
 outreg0 69
 
 #### Usage
+<pre><code>
+
 
 outreg0(modelList, title, label, modelLabels = NULL, varLabels = NULL,
 tight = TRUE, showAIC = FALSE, float = FALSE, request, runFuns,
 digits = 3, alpha = 0.05)
-Arguments
-modelList A regression model or an R list of regression models. If this is a named list,
+
+</code></pre>
+#### Arguments
+
+* ``modelList``: A regression model or an R list of regression models. If this is a named list,
 the names will be used as column labels, unless the argument modelLabels is
 supplied separately, which will override the names of modelList.
-title A title to be displayed on the top of the LaTeX regression table.
+* ``title``:    A title to be displayed on the top of the LaTeX regression table.
 label A string to be used as a LaTeX label in the table to be created.
 modelLabels A vector of charater string variables, one for each element in modelList. Will
 override the names in modelList.
-varLabels To beautify the parameter names printed. Must be a named vector in the format
+* varLabels To beautify the parameter names printed. Must be a named vector in the format
 c(parmname = "displayName", parmname = "displayName"). Include as many
 parameters as desired, it is not necessary to supply new labels for all of the
 parameters. "displayName" must be valid laTeX. This feature is useful if your
 variable names have any illegal LaTeX characters, such as "$" or "_".
 tight If TRUE, parameter estimates and standard errors are printed in a single column.
 If FALSE, parameter estimates and standard errors are printed side by side.
-showAIC If TRUE, the AIC estimate is included with the diagnostic values
+* showAIC If TRUE, the AIC estimate is included with the diagnostic values
 float Include boilerplate for a table float, with the tabular markup inside it.
 request Extra information to be retrieved from the summary(model) and displayed. This
-must be a vector of named arguments, such as c(adj.r.squared = "adj $R^2$",
+must be a vector of named 
+</code></pre>
+#### Arguments
+, such as c(adj.r.squared = "adj $R^2$",
 fstatistic = "F"). The name must be a valid name of the output object, the value
-should be the label the user wants printed in the table. See details.
+should be the label the user wants printed in the table. See 
+#### Details
+.
 runFuns A list of functions
 digits Default = 3. How many digits after decimal sign are to be displayed.
 alpha Default = 0.05. I think stars are dumb, but enough people have asked me for
 more stars that I’m caving in. Enter c(0.05, 0.01, 0.001) to see what happens.
-Details
+
+#### Details
+
 This provides "markup" that the user is will copy into a LaTeX document. The table is a LaTeX
 tabular environment, which can be enclosed in a table to obtain a "floating," automatically numbered
 LaTeX document environment. The default will create the tabular-inside-a-table, but if only the
 tabular is needed, use the argument float = FALSE. This can be called within Sweave documents.
 The markup generated by the basic 
 #### Usage
+<pre><code>
+
  will generally be presentable as is, while user requests for
-additional details may cause output that needs some hand-editing.
+additional 
+#### Details
+ may cause output that needs some hand-editing.
 A LaTeX tabular object is created, with the floating table markup around it if requested (float =
 TRUE).
 The table include a minimally sufficient (in my opinion) model summary. For any fitted model,
@@ -1369,12 +1536,20 @@ not succeed, however, if the regression model’s summary function does not crea
 holds values in a workable structure (in the same way that lm() and glm() do). Please pressure
 people who write R packages that claim to "do regression" to supply methods to do the basic work
 that we need to compile tables.
-Two types of customization arguments were introduced with rockchalk version 1.7.3. The new
-arguments are request and runFuns. Beta test reports are welcome!
+Two types of customization 
+</code></pre>
+#### Arguments
+ were introduced with rockchalk version 1.7.3. The new
+
+</code></pre>
+#### Arguments
+ are request and runFuns. Beta test reports are welcome!
 The request argument supplies a list of names of summary output elements that are desired. The
 format is a pair, a value to be retrieved and a name to be printed for it. With the lm() regression, for
 example, one might want the output of the F test and the adjusted R-square. An example 
 #### Usage
+<pre><code>
+
  might
 be request = c(adj.r.squared = "adj. $R^2", fstatistic = "F"). The names may be included
 in quotation marks if the user desires to do so: request = c("adj.r.squared" = "adj. $R^2","fstatistic" = "F").
@@ -1383,15 +1558,18 @@ on the right is any valid LaTeX markup that the user desires to display in the f
 table. request terms that generate a single numerical value will generally work fine, while requests
 that ask for more structured information, such as the F test (including the 2 degrees of freedom
 values) are still a work in progress.
+
 The runFuns argument is inspired by a user request: could this include the BIC or other summaries
 that some models report? We have to run the BIC function, and divert the result into the correct
-column of the result table. Any R function, whether supplied with and R package or in the user’s
+column of the result table. Any R function, whether supplied with and R package or in the useR's
 own code, may be used. This is a two-part specification, one representing the function to be run,
 the other representing the name that is desired in the output. For example, it might be runFuns =
 c("AIC" = "Akaike Criterion", "BIC" = "Schwartz Criterion","logLik" = "LL").
-Value
+
+### Value
 None
-Note
+
+### Note
 There are many R packages that can be used to create LaTeX regression tables. memisc, texreg,
 apsrtable, xtables, and rms are some. This "outreg" version was in use in our labs before we were
 aware that those packages were in development. It is not intended as a competitor, it is just a slightly
@@ -1400,6 +1578,8 @@ Author(s)
 Paul E. Johnson <<pauljohn@ku.edu>>
 
 #### Examples
+```{r}
+
 
 set.seed(2134234)
 dat <- data.frame(x1 = rnorm(100), x2 = rnorm(100))
@@ -1459,13 +1639,20 @@ outreg2HTML Convert LaTeX output from outreg to HTML markup
 This function is deprecated. Instead, please use outreg(type = "html")
 
 #### Usage
+<pre><code>
+
 
 outreg2HTML(outreg, filename)
-Arguments
+
+</code></pre>
+#### Arguments
+
 outreg output from outreg
 filename A file name into which the regression markup is to be saved. Should end in
 .html.
-Details
+
+#### Details
+
 This will write the html on the screen, but if a filename argument is supplied, it will write a file.
 One can then open or insert the file into Libre Office or other popular "word processor" programs.
 Value
@@ -1474,6 +1661,8 @@ Author(s)
 Paul E. Johnson <<pauljohn@ku.edu>>
 
 #### Examples
+```{r}
+
 
 dat <- genCorrelatedData2(means = c(50,50,50,50,50,50),
 sds = c(10,10,10,10,10,10), rho = 0.2, beta = rnorm(7), stde = 50)
@@ -1505,11 +1694,18 @@ c("001", "022", "131"). This happens if a user has mistakenly converted a zip co
 identifier) like "00231" to a number. This function converts the number back to a 0 padded string.
 
 #### Usage
+<pre><code>
+
 
 padW0(x)
-Arguments
-x a numeric variable.
-Details
+
+</code></pre>
+#### Arguments
+
+* ``x``:   A numeric variable.
+
+#### Details
+
 This works differently if the number provided is an integer, or a character string. Integers are left
 padded with the character "0". A character string will be left-padded with blanks.
 Value
@@ -1519,6 +1715,8 @@ Paul Johnson <pauljohn@ku.edu>
 74 pctable
 
 #### Examples
+```{r}
+
 
 x <- c(1 , 11, 22, 121, 14141, 31)
 (xpad <- padW0(x))
@@ -1533,7 +1731,10 @@ This function is pronounced "presentable"! The original purpose was to create a 
 of cross tabulation that I ask for in class: counts with column percentages. Requests from users
 have caused a bit more generality to be built into the function. Now, optionally, it will provide row
 percents. This is a generic function. Most users will find the formula method most convenient. Use
-the colpct and rowpct arguments to indicate if column or row percentages are desired.
+the colpct and rowpct 
+</code></pre>
+#### Arguments
+ to indicate if column or row percentages are desired.
 I suggest most users will use the formula method for this. Running a command like this will,
 generally, do the right thing:
 tab <- pctable(y ~ x, data = dat)
@@ -1551,6 +1752,8 @@ The method pctable.default is the calculator, I don’t expect many users will n
 The formula method is the recommended method for users. Run pctable(myrow ~ mycol, data = dat).
 In an earlier version, I gave different advice, so please adjust your 
 #### Usage
+<pre><code>
+
 .
 The character method exists only for variety. It accepts character strings rather than a formula to
 define the columns that should be plotted. The method used most often for most users should be the
@@ -1558,6 +1761,8 @@ formula method.
 pctable 75
 
 #### Usage
+<pre><code>
+
 
 pctable(rv, ...)
 ## Default S3 method:
@@ -1569,12 +1774,27 @@ cvlab = NULL, colpct = TRUE, rowpct = FALSE, rounded = FALSE, ...)
 ## S3 method for class 'character'
 pctable(rv, cv, data = NULL, rvlab = NULL,
 cvlab = NULL, colpct = TRUE, rowpct = FALSE, rounded = FALSE, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 rv A row variable name
-... Other arguments. So far, the most likely additional arguments are to be passed
+... Other 
+</code></pre>
+#### Arguments
+. So far, the most likely additional 
+</code></pre>
+#### Arguments
+ are to be passed
 along to the table function, such as "exclude", "useNA", or "dnn" (which will
-override the rvlab and cvlab arguments provided by some methods). Some
-methods will also pass along these arguments to model.frame, "subset" "xlev",
+override the rvlab and cvlab 
+</code></pre>
+#### Arguments
+ provided by some methods). Some
+methods will also pass along these 
+</code></pre>
+#### Arguments
+ to model.frame, "subset" "xlev",
 "na.action", "drop.unused.levels".
 cv Column variable
 rvlab Optional: row variable label
@@ -1584,7 +1804,9 @@ rowpct Default FALSE: are row percentages desired in the presentation of this re
 rounded Default FALSE, rounds to 10’s for privacy purposes.
 formula A two sided formula.
 data A data frame.
-Details
+
+#### Details
+
 Please bear in mind the following. The output object is a list of tables of partial information, which
 are then assembled in various ways by the print method (print.pctable). A lovely table will appear
 on the screen, but the thing itself has more information and a less beautiful structure.
@@ -1593,7 +1815,10 @@ print(tab, rowpct = TRUE, colpct = FALSE)
 The method print.pctable(tab) assembles the object into (my opinion of) a presentable form.
 The print method has argumnets rowpct and colpct that determine which percentages are included
 in the presentation.
-When using character arguments, the row variable rv rowvar must be a quoted string if the user
+When using character 
+</code></pre>
+#### Arguments
+, the row variable rv rowvar must be a quoted string if the user
 intends the method pctable.character to be dispatched. The column variable cv may be a string or
 just a variable name (which this method will coerce to a string).
 76 pctable
@@ -1605,6 +1830,8 @@ See Also
 tabular and the CrossTable function in gmodels package.
 
 #### Examples
+```{r}
+
 
 dat <- data.frame(x = gl(4, 25),
 y = sample(c("A", "B", "C", "D", "E"), 100, replace= TRUE))
@@ -1655,23 +1882,34 @@ Creates a persp plot without drawing anything in the interior. Does equivalent o
 for persp.
 
 #### Usage
+<pre><code>
+
 
 perspEmpty(x1, x2, y, x1lab = "x1", x2lab = "x2", ylab = "y", x1lim,
 x2lim, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 x1 data for the first horizontal axis, an R vector
 x2 data for the second horizontal axis, an R vector
 y data for the vertical axis, an R vector
 x1lab label for the x1 axis, (the one called "xlab" inside persp)
 x2lab label for the x2 axis, (the one called "ylab" inside persp)
-ylab label for the y (vertical) axis (the one called "zlab" inside persp)
+* ``ylab``:   label for the y (vertical) axis (the one called "zlab" inside persp)
 x1lim Optional: limits for x1 axis (should be a vector with 2 elements)
 x2lim Optional: limits for x2 axis (should be a vector with 2 elements)
-... further arguments that are passed to persp. Please note Please remember that
+... furtherarguments
+ that are passed to persp. Please note Please remember that
 y is the vertical axis, but for persp, that is the one I call x2. Thus dot-dotdot
-arguments including xlab, ylab, zlab, xlim, ylim, and zlim are going to be
+
+</code></pre>
+#### Arguments
+ including xlab, ylab, zlab, xlim, ylim, and zlim are going to be
 ignored.
-Details
+
+#### Details
+
 Regression demonstrations require a blank slate in which points and planes can be drawn. This
 function creates that blank persp canvas for those projects. It is not necessary that x1, x2 and y be
 vectors of the same length, since this function’s only purpose is to plot an empty box with ranges
@@ -1679,10 +1917,10 @@ determined by the input variables. persp calls the 3 axes x, y, and z, but here 
 and y.
 Value
 The perspective matrix that is returned by persp
-78 plot.testSlopes
+
 
 #### Examples
-
+```{r}
 x1 <- 1:10
 x2 <- 41:50
 y <- rnorm(10)
@@ -1690,6 +1928,9 @@ perspEmpty(x1, x2, y)
 res <- perspEmpty(x1, x2, y, ticktype="detailed", nticks=10)
 mypoints1 <- trans3d ( x1, x2, y, pmat = res )
 points( mypoints1, pch = 16, col= "blue")
+```
+
+
 plot.testSlopes Plot testSlopes objects
 
 #### Description
@@ -1699,10 +1940,15 @@ plot illustrating the marginal effect, using the Johnson-Neyman interval calcula
 the "statistically significantly different from zero" slopes.
 
 #### Usage
+<pre><code>
+
 
 ## S3 method for class 'testSlopes'
 plot(x, ..., shade = TRUE, col = rgb(1, 0, 0, 0.1))
-Arguments
+
+</code></pre>
+#### Arguments
+
 x A testSlopes object.
 ... Additional arguments that are ignored currently.
 shade Optional. Create colored polygon for significant regions.
@@ -1718,17 +1964,22 @@ plotCurves Assists creation of predicted value curves for regression models.
 
 Creates a predicted value plot that includes a separate predicted value line for each value of a
 focal variable. The x axis variable is specified by the plotx argument. As of rockchalk 1.7.x, the
-moderator argument, modx, is optional. Think of this a new version of R’s termplot, but it allows
+moderator argument, modx, is optional. Think of this a new version of R's termplot, but it allows
 for interactions. And it handles some nonlinear transformations more gracefully than termplot.
 
 #### Usage
+<pre><code>
+
 
 plotCurves(model, plotx, nx = 40, modx, plotxRange = NULL, n,
 modxVals = NULL, interval = c("none", "confidence", "prediction"),
 plotPoints = TRUE, plotLegend = TRUE, legendTitle = NULL,
 legendPct = TRUE, col = NULL, llwd = 2, opacity = 100,
 envir = environment(formula(model)), ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 model Required. Fitted regression object. Must have a predict method
 plotx Required. String with name of predictor for the x axis
 nx Number of values of plotx at which to calculate the predicted value. Default =
@@ -1754,7 +2005,7 @@ but if you don’t like that, specify your own string here.
 legendPct Default = TRUE. Variable labels print with sample percentages.
 80 plotCurves
 col Optional. A color vector to differentiate the moderator values in the plot. If
-not specified, the R’s builtin palette() will be used. User may supply a vector
+not specified, the R's builtin palette() will be used. User may supply a vector
 of valid color names, either explicitly c("pink","black", "gray70") or implicitly,
 rainbow(10) or gray.colors(5). Color names will be recycled if there are more
 focal values of modx than colors provided.
@@ -1763,10 +2014,18 @@ which will be recycled as necessary.
 opacity Optional, default = 100. A number between 1 and 255. 1 means "transparent"
 or invisible, 255 means very dark. the darkness of confidence interval regions
 envir environment to search for variables.
-... further arguments that are passed to plot or predict. The arguments that are
+... further 
+</code></pre>
+#### Arguments
+ that are passed to plot or predict. The 
+</code></pre>
+#### Arguments
+ that are
 monitored to be sent to predict are c("type", "se.fit", "dispersion", "interval",
 "level", "terms", "na.action").
-Details
+
+#### Details
+
 This is similar to plotSlopes, but it accepts regressions in which there are transformed variables,
 such as "log(x1)". It creates a plot of the predicted dependent variable against one of the numeric
 predictors, plotx. It draws a predicted value line for each value of modx, a moderator variable. The
@@ -1786,6 +2045,8 @@ Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
+```{r}
+
 
 library(rockchalk)
 ## Replicate some R classics. The budworm.lg data from predict.glm
@@ -1863,15 +2124,19 @@ plotCurves(m1, plotx = "x2", modx = "xcat1")
 plotCurves(m1, plotx = "x2", modx = "xcat1", interval = "conf")
 m2 <- lm(y ~ log(x1)*xcat1 + xcat1*(x2 + I(x2^2)), data = dat)
 summary(m2)
+```
+```{r}
 plotCurves(m2, plotx = "x2", modx = "xcat1")
 plotCurves(m2, plotx ="x2", modx = "x1")
 m3a <- lm(y ~ poly(x2, 2) + xcat1, data = dat)
-plotCurves 83
+
 plotCurves(m3a, plotx = "x2")
 plotCurves(m3a, plotx = "x2", modx = "xcat1")
 #OK
 m4 <- lm(log(y+10) ~ poly(x2, 2)*xcat1 + x1, data = dat)
 summary(m4)
+```
+```{r}
 plotCurves(m4, plotx = "x2")
 plotCurves(m4, plotx ="x2", modx = "xcat1")
 plotCurves(m4, plotx = "x2", modx = "x1")
@@ -1880,12 +2145,16 @@ plotCurves(m4, plotx = "x2", modx = "xcat1", modxVals = c("Monster"))
 ##ordinary interaction
 m5 <- lm(y2 ~ x1*x2 + x3 +x4, data = dat)
 summary(m5)
+```
+```{r}
 plotCurves(m5, plotx = "x1", modx = "x2")
 plotCurves(m5, plotx = "x1", modx = "x2", modxVals = c( -2, -1, 0, 1, 2))
 plotCurves(m5, plotx = "x1", modx = "x2", modxVals = c(-2))
 plotCurves(m5, plotx = "x1", modx = "x2", modxVals = "std.dev.")
 plotCurves(m5, plotx = "x1", modx = "x2", modxVals = "quantile")
 plotCurves(m5, plotx = "x3", modx = "x2")
+```
+```{r}
 if(require(carData)){
 mc1 <- lm(statusquo ~ income * sex, data = Chile)
 summary(mc1)
@@ -1894,19 +2163,22 @@ plotCurves(mc1, modx = "sex", plotx = "income")
 plotCurves(mc1, modx = "sex", plotx = "income", modxVals = "M")
 mc2 <- lm(statusquo ~ region * income, data = Chile)
 summary(mc2)
+```
+```{r}
 plotCurves(mc2, modx = "region", plotx = "income")
 plotCurves(mc2, modx = "region", plotx = "income",
 modxVals = levels(Chile$region)[c(1,4)])
 plotCurves(mc2, modx = "region", plotx = "income", modxVals = c("S","M","SA"))
-plotCurves(mc2, modx = "region", plotx = "income", modxVals = c("S","M","SA"),
-interval = "conf")
+plotCurves(mc2, modx = "region", plotx = "income", modxVals = c("S","M","SA"),interval = "conf")
 plotCurves(mc2, modx = "region", plotx = "income", plotPoints = FALSE)
 mc3 <- lm(statusquo ~ region * income + sex + age, data = Chile)
 summary(mc3)
+```
+```{r}
 plotCurves(mc3, modx = "region", plotx = "income")
 mc4 <- lm(statusquo ~ income * (age + I(age^2)) + education + sex + age, data = Chile)
 summary(mc4)
-84 plotFancy
+
 plotCurves(mc4, plotx = "age")
 plotCurves(mc4, plotx = "age", interval = "conf")
 plotCurves(mc4, plotx = "age", modx = "income")
@@ -1916,6 +2188,9 @@ plotCurves(mc4, plotx = "income", modx = "age", n = 8)
 plotCurves(mc4, plotx = "income", modx = "age", modxVals = "std.dev.")
 plotCurves(mc4, modx = "income", plotx = "age", plotPoints = FALSE)
 }
+```
+
+
 plotFancy Regression plots with predicted value lines, confidence intervals, color
 coded interactions
 
@@ -1924,10 +2199,15 @@ coded interactions
 This is the back-end for the functions plotSlopes and plotCurves. Don’t use it directly.
 
 #### Usage
+<pre><code>
+
 
 plotFancy(newdf, olddf, plotx, modx, modxVals, interval, plotPoints, plotLegend,
 legendTitle, col = NULL, llwd = 2, opacity, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 newdf The new data frame with predictors and fit, lwr, upr variables
 olddf A data frame with variables(modxVar, plotxVar, depVar)
 plotx Character string for name of variable on horizontal axis
@@ -1941,7 +2221,10 @@ but if you don’t like that, specify your own string here.
 col requested color scheme for lines and points. One per value of modxVals.
 llwd requested line width, will re-cycle.
 opacity Value in 0, 255 for darkness of interval shading
-... Other arguments passed to plot function.
+... Other 
+</code></pre>
+#### Arguments
+ passed to plot function.
 plotPlane 85
 Value
 col, lty, and lwd information
@@ -1954,15 +2237,19 @@ lm or glm object
 
 This allows user to fit a regression model with many variables and then plot 2 of its predictors
 and the output plane for those predictors with other variables set at mean or mode (numeric or
-factor). This is a front-end (wrapper) for R’s persp function. Persp does all of the hard work, this
+factor). This is a front-end (wrapper) for R's persp function. Persp does all of the hard work, this
 function reorganizes the information for the user in a more readily understood way. It intended as a
-convenience for students (or others) who do not want to fight their way through the details needed
+convenience for students (or others) who do not want to fight their way through the 
+#### Details
+ needed
 to use persp to plot a regression plane. The fitted model can have any number of input variables,
 this will display only two of them. And, at least for the moment, I insist these predictors must be
 numeric variables. They can be transformed in any of the usual ways, such as poly, log, and so
 forth.
 
 #### Usage
+<pre><code>
+
 
 plotPlane(model = NULL, plotx1 = NULL, plotx2 = NULL,
 drawArrows = FALSE, plotPoints = TRUE, npp = 20, x1lab, x2lab, ylab,
@@ -1977,7 +2264,10 @@ x1lim, x2lim, x1floor = 5, x2floor = 5, pch = 1, pcol = "blue",
 plwd = 0.5, pcex = 1, llwd = 0.3, lcol = 1, llty = 1,
 acol = "red", alty = 4, alwd = 0.3, alength = 0.1, linesFrom,
 lflwd = 3, envir = environment(formula(model)), ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 model an lm or glm fitted model object
 plotx1 name of one variable to be used on the x1 axis
 plotx2 name of one variable to be used on the x2 axis
@@ -2008,11 +2298,16 @@ from plotCurves or plotSlopes)
 lflwd line widths for linesFrom highlight lines
 envir environment from whence to grab data
 ... additional parameters that will go to persp
-Details
-Besides a fitted model object, plotPlane requires two additional arguments, plotx1 and plotx2. These
+
+#### Details
+
+Besides a fitted model object, plotPlane requires two additional 
+</code></pre>
+#### Arguments
+, plotx1 and plotx2. These
 are the names of the plotting variables. Please note, that if the term in the regression is something
 like poly(fish,2) or log(fish), then the argument to plotx1 should be the quoted name of the variable
-"fish". plotPlane will handle the work of re-organizing the information so that R’s predict functions
+"fish". plotPlane will handle the work of re-organizing the information so that R's predict functions
 can generate the desired information. This might be thought of as a 3D version of "termplot", with
 a significant exception. The calculation of predicted values depends on predictors besides plotx1
 and plotx2 in a different ways. The sample averages are used for numeric variables, but for factors
@@ -2034,6 +2329,8 @@ See Also
 persp, scatterplot3d, regr2.plot
 
 #### Examples
+```{r}
+
 
 library(rockchalk)
 set.seed(12345)
@@ -2127,14 +2424,23 @@ case, the only effect is to create an evenly-spaced set of values. If length.out
 determines the number of elements in plotSeq.
 
 #### Usage
+<pre><code>
+
 
 plotSeq(x, length.out = length(x))
-Arguments
+
+</code></pre>
+#### Arguments
+
 x an R vector variable
 length.out the number of elements in the desired plotting sequence.
-Details
+
+#### Details
+
 The primary intended 
 #### Usage
+<pre><code>
+
  is for the creation of plotting sequences of numeric variables. It takes
 a variable’s range and the fills in evenly spaced steps. If x is a factor variable, the levels will be
 returned. Uses of this functionality are planned in the future.
@@ -2143,6 +2449,8 @@ See Also
 pretty
 
 #### Examples
+```{r}
+
 
 #Create a quadratic regression
 stde <- 14
@@ -2172,6 +2480,8 @@ of interaction effects for particular values of a moderating variable. The moder
 be continuous or categorical, lines will be plotted for focal values of that variable.
 
 #### Usage
+<pre><code>
+
 
 plotSlopes(model, plotx, ...)
 ## S3 method for class 'lm'
@@ -2180,13 +2490,28 @@ plotxRange = NULL, interval = c("none", "confidence", "prediction"),
 plotPoints = TRUE, plotLegend = TRUE, legendTitle = NULL,
 legendPct = TRUE, col = NULL, llwd = 2, opacity = 100, ...)
 plotSlopes 91
-Arguments
+
+</code></pre>
+#### Arguments
+
 model Required. A fitted Regression
 plotx Required. Name of one predictor from the fitted model to be plotted on horizontal
 axis
-... Additional arguments passed to methods. Often includes arguments that are
-passed to plot. Any arguments that customize plot output, such as lwd, cex, and
-so forth, may be supplied. These arguments intended for the predict method will
+... Additional 
+</code></pre>
+#### Arguments
+ passed to methods. Often includes 
+</code></pre>
+#### Arguments
+ that are
+passed to plot. Any 
+</code></pre>
+#### Arguments
+ that customize plot output, such as lwd, cex, and
+so forth, may be supplied. These 
+</code></pre>
+#### Arguments
+ intended for the predict method will
 be used: c("type", "se.fit", "interval", "level", "dispersion", "terms", "na.action")
 modx Optional. String for moderator variable name. May be either numeric or factor.
 If omitted, a single predicted value line will be drawn.
@@ -2208,7 +2533,7 @@ but if you don’t like that, specify your own string here. legend. Set to FALSE
 user wants to customize a legend after the plot has been drawn.
 legendPct Default = TRUE. Variable labels print with sample percentages.
 col Optional. A color vector for predicted value lines (and intervals if requested).
-If not specified, the R’s builtin palette() will be used. User may supply a vector
+If not specified, the R's builtin palette() will be used. User may supply a vector
 of valid color names, either explicitly c("pink","black", "gray70") or implicitly,
 rainbow(10) or gray.colors(5). Color names will be recycled if there are more
 focal values of modx than colors provided.
@@ -2217,7 +2542,9 @@ vector, which will be recycled as necessary.
 opacity Optional, default = 100. A number between 1 and 255. 1 means "transparent" or
 invisible, 255 means very dark. Determines the darkness of confidence interval
 regions
-Details
+
+#### Details
+
 This function works well with lm models in which the predictor formula includes interactions, but it
 does not work well with nonlinear predictors (log(x) and poly(x)). For that, please use plotCurves.
 plotSlopes is needed only when one wants to create an output object that can be used as input for
@@ -2226,8 +2553,10 @@ testSlopes().
 The argument plotx is the name of the horizontal plotting variable; it must be numeric. The
 argument modx is the moderator variable. It may be either a numeric or a factor variable. As of
 version 1.7, the modx argument may be omitted. A single predicted value line will be drawn. That
-version also introduced the arguments interval and n.
-There are many ways to specify focal values using the arguments modxVals and n. This changed
+version also introduced the arguments
+ interval and n.
+There are many ways to specify focal values using the arguments
+ modxVals and n. This changed
 in rockchalk-1.7.0. If modxVals is omitted, a default algorithm will be used, selecting n values for
 plotting. modxVals may be a vector of values (for a numeric moderator) or levels (for a factor). If
 modxVals is a vector of values, then the argument n is ignored. However, if modxVals is one of the
@@ -2255,6 +2584,8 @@ See Also
 testSlopes plotCurves
 
 #### Examples
+```{r}
+
 
 ## Manufacture some predictors
 set.seed(12345)
@@ -2296,6 +2627,8 @@ m1ts <- testSlopes(m1ps)
 plot(m1ts)
 ### 
 #### Examples
+```{r}
+
  with categorical Moderator variable
 m3 <- lm (y ~ x1 + xcat1, data = dat)
 summary(m3)
@@ -2313,6 +2646,8 @@ m5ps <- plotSlopes(m5, modx = "xcat2", plotx = "x1", interval = "conf")
 testSlopes(m5ps)
 ## Now 
 #### Examples
+```{r}
+
  with real data. How about Chilean voters?
 library(car)
 m6 <- lm(statusquo ~ income * sex, data = Chile)
@@ -2365,12 +2700,17 @@ lm or glm, on either link or response scale.
 This adapts code from predict.glm and predict.lm. I eliminated type = "terms" from consideration.
 
 #### Usage
+<pre><code>
+
 
 predictCI(object, newdata = NULL, type = c("response", "link"),
 interval = c("none", "confidence", "prediction"), dispersion = NULL,
 scale = NULL, na.action = na.pass, level = 0.95, ...)
-Arguments
-object Regression object, class must include glm or lm.
+
+</code></pre>
+#### Arguments
+
+* ``bject``:  o Regression object, class must include glm or lm.
 newdata Data frame including focal values for predictors
 type One of c("response", "link"), defaults to former.
 interval One of c("none", "confidence", "prediction"). "prediction" is defined only for
@@ -2379,12 +2719,17 @@ dispersion Will be estimated if not provided. The variance coefficient of the gl
 scale squared. Dispersion is allowed as an argument in predict.glm.
 scale The square root of dispersion. In an lm, this is the RMSE, called sigma in
 summary.lm.
-na.action What to do with missing values
+* ``na.action``:     What to do with missing values
 level Optional. Default = 0.95. Specify whatever confidence level one desires.
-... Other arguments to be passed to predict
+... Other 
+</code></pre>
+#### Arguments
+ to be passed to predict
 96 predictOMatic
-Details
-R’s predict.glm does not have an interval argument. There are about 50 methods to calculate CIs for
+
+#### Details
+
+R's predict.glm does not have an interval argument. There are about 50 methods to calculate CIs for
 predicted values of GLMs, that’s a major worry. This function takes the simplest route, calculating
 the (fit, lwr, upr) in the linear predictor scale, and then if type= "response", those 3 columns are put
 through linkinv(). This is the same method that SAS manuals suggest they use, same as Ben Bolker
@@ -2408,18 +2753,27 @@ complete newdata objects along with fitted values. The newdata function creates 
 documentation might be helpful in understanding some nuances.
 
 #### Usage
+<pre><code>
+
 
 predictOMatic(model = NULL, predVals = "margins", divider = "quantile",
 n = 5, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 model Required. A fitted regression model. A predict method must exist for that
 model.
 predVals Optional. How to choose predictor values? Can be as simple as a keyword
 "auto" or "margins". May also be very fine-grained detail, including 1) a vector
 of variable names (for which values will be automatically selected) 2) a named
 vector of variable names and divider functions, or 3) a list naming variables and
-values. See details and 
+values. See 
+#### Details
+ and 
 #### Examples
+```{r}
+
 .
 divider An algorithm name from c("quantile", "std.dev", "seq", "table") or a user-provided
 function. This sets the method for selecting values of the predictor. Documentation
@@ -2427,9 +2781,17 @@ for the rockchalk methods can be found in the functions cutByQuantile,
 cutBySD, plotSeq, and cutByTable,.
 predictOMatic 97
 n Default = 5. The number of values for which predictions are sought.
-... Optional arguments to be passed to the predict function. In particular, the arguments
+... Optional 
+</code></pre>
+#### Arguments
+ to be passed to the predict function. In particular, the 
+</code></pre>
+#### Arguments
+
 se.fit and interval are extracted from ... and used to control the output.
-Details
+
+#### Details
+
 If no predVals argument is supplied (same as predVals = "margins", predictOMatic creates a list
 of new data frames, one for each predictor variable. It uses the default divider algorithm (see the
 divider argument) and it estimates predicted values for n different values of the predictor. A model
@@ -2451,12 +2813,14 @@ The user can spcecify divider algoriths to choose focal values, predvals = c(inc
 The dividers provided by the rockchalk package are "quantile", "std.dev.", "seq" and "table". Those
 are discussed more completely in the help for focalVals. The appropriate algorithms will select
 focal values of the predictors and they will supply n values for each in a "mix and match" data
-frame. After rockchalk 1.7.2, the divider argument can also be the name of a function, such as R’s
+frame. After rockchalk 1.7.2, the divider argument can also be the name of a function, such as R's
 pretty.
 Finally, users who want very fine grained control over predictOMatic can supply a named list of predictor
 values. For example, predVals = list(height = c(5.5, 6.0, 6.5),income = c(10, 20, 30, 40, 50), sex = levels(One can also use algorithm names, predVals = list(height = c(5.5, 6.0, 6.5), income = "quantile")
 and so forth. 
 #### Examples
+```{r}
+
  are offered below.
 The variables named in the predVals argument should be the names of the variables in the raw data
 frame, not the names that R creates when it interprets a formula. We want "x", not the transformation
@@ -2484,6 +2848,8 @@ Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
+```{r}
+
 
 library(rockchalk)
 ## Replicate some R classics. The budworm.lg data from predict.glm
@@ -2671,18 +3037,29 @@ print.pctable Display pctable objects
 #### Description
 
 This is not very fancy. Note that the saved pctable object has the information inside it that is required
-to write both column and row percentages. The arguments colpct and rowpct are used to ask for the
+to write both column and row percentages. The 
+</code></pre>
+#### Arguments
+ colpct and rowpct are used to ask for the
 two types.
 
 #### Usage
+<pre><code>
+
 
 ## S3 method for class 'pctable'
 print(x, colpct = TRUE, rowpct = FALSE, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 x A pctable object
 colpct Default TRUE: include column percentages?
 rowpct Default FALSE: include row percentages?
-... Other arguments passed through to print method
+... Other 
+</code></pre>
+#### Arguments
+ passed through to print method
 Value
 A table object for the final printed table.
 Author(s)
@@ -2696,13 +3073,21 @@ Be aware that the unrounded numeric matrix is available as an attribute of the r
 method displays a rounded, character-formatted display of the numeric varibles.
 
 #### Usage
+<pre><code>
+
 
 ## S3 method for class 'summarize'
 print(x, digits, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 x Object produced by summarize
 digits Decimal values to display, defaults as 2.
-... optional arguments for print function.
+... optional 
+</code></pre>
+#### Arguments
+ for print function.
 Value
 x, unchanged Prints objects created by summarize
 print.summary.pctable print method for summary.pctable objects
@@ -2712,12 +3097,20 @@ print.summary.pctable print method for summary.pctable objects
 prints pctab objects. Needed only to deal properly with quotes
 
 #### Usage
+<pre><code>
+
 
 ## S3 method for class 'summary.pctable'
 print(x, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 x a summary.pctable object
-... Other arguments to print method
+... Other 
+</code></pre>
+#### Arguments
+ to print method
 Value
 Nothing is returned
 Author(s)
@@ -2733,13 +3126,22 @@ to create a new rbindFill. This function uses no experimental functions. It does
 functions from packages that are not in base of R, except, of course, for functions in this package.
 
 #### Usage
+<pre><code>
+
 
 rbindFill(...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 ... Data frames
-Details
+
+#### Details
+
 Along the way, I noticed a feature that seems to be a flaw in both rbind and rbind.fill. In the 
 #### Examples
+```{r}
+
 ,
 there is a demonstration of the fact that base R rbind and plyr::rbind.fill both have undesirable
 properties when data sets containing factors and ordered variables are involved. This function introduces
@@ -2752,6 +3154,8 @@ Author(s)
 Paul Johnson
 
 #### Examples
+```{r}
+
 
 set.seed(123123)
 N <- 10000
@@ -2806,6 +3210,8 @@ The data national-level summary indicators of public opinion about the existence
 as well as the national rate of violent crime.
 
 #### Usage
+<pre><code>
+
 
 data(religioncrime)
 Format
@@ -2817,6 +3223,8 @@ Source
 Anonymous researcher who claims the data is real.
 
 #### Examples
+```{r}
+
 
 require(rockchalk)
 data(religioncrime)
@@ -2841,11 +3249,18 @@ removeNULL Remove NULL values variables from a list
 Unlike vectors, lists can hold objects with value NULL. This gets rid of them.
 
 #### Usage
+<pre><code>
+
 
 removeNULL(aList)
-Arguments
+
+</code></pre>
+#### Arguments
+
 aList A list
-Details
+
+#### Details
+
 This version is NOT recursive
 plyr::rbind.fill uses an experimental function that I choose to avoid. This is the "safe" version.
 Value
@@ -2855,6 +3270,8 @@ Author(s)
 Paul Johnson
 
 #### Examples
+```{r}
+
 
 ## Note it is non-recursive, NULL remains in e
 x <- list(a = rnorm(5), b = NULL, c = rnorm(5), d = NULL,
@@ -2874,16 +3291,24 @@ Calculates predicted values of residual centered interaction regressions estimat
 regression framework (lm, glm, etc).
 
 #### Usage
+<pre><code>
+
 
 residualCenter(model)
 ## Default S3 method:
 residualCenter(model)
 ## S3 method for class 'rcreg'
 predict(object, ...)
-Arguments
-model A fitted lm object
+
+</code></pre>
+#### Arguments
+
+* ``model``:  A fitted lm object
 object Fitted residual-centered regression from residualCenter
-... Other named arguments. May include newdata, a dataframe of predictors. That
+... Other named 
+</code></pre>
+#### Arguments
+. May include newdata, a dataframe of predictors. That
 should include values for individual predictor, need not include interactions that
 are constructed by residualCenter. These parameters that will be passed to the
 predict method of the model.
@@ -2903,6 +3328,8 @@ and Product Terms: Implications for Modeling Interactions Among Latent Variables
 Equation Modeling, 13(4), 497-519.
 
 #### Examples
+```{r}
+
 
 set.seed(123)
 x1 <- rnorm(100)
@@ -3007,15 +3434,18 @@ Skewness is a summary of the symmetry of a distribution’s probability density 
 distribution, the skewness is 0, indicating symmetry about the expected value.
 
 #### Usage
-
+<pre><code>
 skewness(x, na.rm = TRUE, unbiased = TRUE)
-112 standardize
-Arguments
-x A numeric variable (vector)
+</code></pre>
+#### Arguments
+
+* ``x``:   A numeric variable (vector)
 na.rm default TRUE. Should missing data be removed?
 unbiased default TRUE. Should the denominator of the variance estimate be divided by
 N-1?
-Details
+
+#### Details
+
 If na.rm = FALSE and there are missing values, the mean and variance are undefined and this
 function returns NA.
 The skewness may be calculated with the small-sample bias-corrected estimate of the standard deviation.
@@ -3040,13 +3470,18 @@ This is brain-dead standardization of all variables in the design matrix. It mim
 SPSS, which standardizes all regressors, even if they represent categorical variables.
 
 #### Usage
+<pre><code>
+
 
 standardize(model)
 ## S3 method for class 'lm'
 standardize(model)
 summarize 113
-Arguments
-model a fitted lm object
+
+</code></pre>
+#### Arguments
+
+* ``model``:  A fitted lm object
 Value
 an lm fitted with the standardized variables
 a standardized regression object
@@ -3056,6 +3491,8 @@ See Also
 meanCenter which will center or re-scale only numberic variables
 
 #### Examples
+```{r}
+
 
 library(rockchalk)
 N <- 100
@@ -3078,14 +3515,21 @@ for those types of variables.
 #### Description
 
 The work is done by the functions summarizeNumerics and summarizeFactors. Please see the
-help pages for those functions for complete details.
+help pages for those functions for complete 
+#### Details
+.
 
 #### Usage
+<pre><code>
+
 
 summarize(dat, alphaSort = FALSE, stats = c("mean", "sd", "skewness",
 "kurtosis", "entropy", "normedEntropy", "nobs", "nmiss"), probs = c(0, 0.5,
 1), digits = 3, ...)
-Arguments
+
+</code></pre>
+#### Arguments
+
 dat A data frame
 alphaSort If TRUE, the columns are re-organized in alphabetical order. If FALSE, they are
 presented in the original order.
@@ -3100,11 +3544,16 @@ probs For numeric variables, is used with the quantile function. The default is
 probs = c(0, .50, 1.0), which are labeled in output as c("min", "med", and "max").
 Set probs = NULL to prevent these in the output.
 digits Decimal values to display, defaults as 2.
-... Optional arguments that are passed to summarizeNumerics and summarizeFactors.
+... Optional 
+</code></pre>
+#### Arguments
+ that are passed to summarizeNumerics and summarizeFactors.
 For numeric variables, one can specify na.rm and unbiased. For discrete variables,
 the key argument is maxLevels, which determines the number of levels
 that will be reported in tables for discrete variables.
-Details
+
+#### Details
+
 The major purpose here is to generate summary data structure that is more useful in subsequent data
 analysis. The numeric portion of the summaries are a data frame that can be used in plots or other
 diagnostics.
@@ -3121,6 +3570,8 @@ Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
+```{r}
+
 
 library(rockchalk)
 set.seed(23452345)
@@ -3198,22 +3649,29 @@ summarizeFactors 117
 
 This function finds the non- numeric variables and ignores the others. (See summarizeNumerics
 for a function that handles numeric variables.) It then treats all non-numeric variables as if they
-were factors, and summarizes each. The main benefits from this compared to R’s default summary
+were factors, and summarizes each. The main benefits from this compared to R's default summary
 are 1) more summary information is returned for each variable (entropy estimates ofdispersion), 2)
 the columns in the output are alphabetized. To prevent alphabetization, use alphaSort = FALSE.
 
 #### Usage
+<pre><code>
+
 
 summarizeFactors(dat = NULL, maxLevels = 5, alphaSort = TRUE,
 stats = c("entropy", "normedEntropy", "nobs", "nmiss"), digits = 2)
-Arguments
+
+</code></pre>
+#### Arguments
+
 dat A data frame
 maxLevels The maximum number of levels that will be reported.
 alphaSort If TRUE (default), the columns are re-organized in alphabetical order. If FALSE,
 they are presented in the original order.
 stats Default is c("nobs", "nmiss", "entropy","normedEntropy").
 digits Default 2.
-Details
+
+#### Details
+
 Entropy is one possible measure of diversity. If all outcomes are equally likely, the entropy is
 maximized, while if all outcomes fall into one possible category, entropy is at its lowest values. The
 lowest possible value for entropy is 0, while the maximum value is dependent on the number of
@@ -3248,6 +3706,8 @@ See Also
 summarizeNumerics
 
 #### Examples
+```{r}
+
 
 set.seed(21234)
 x <- runif(1000)
@@ -3257,6 +3717,8 @@ dat <- data.frame(xf, xn, x)
 summarizeFactors(dat)
 ##see help for summarize for more 
 #### Examples
+```{r}
+
 
 summarizeNumerics Extracts numeric variables and presents an summary in a workable
 format.
@@ -3266,17 +3728,22 @@ format.
 Finds the numeric variables, and ignores the others. (See summarizeFactors for a function that
 handles non-numeric variables). It will provide quantiles (specified probs as well as other summary
 statistics, specified stats. Results are returned in a data frame. The main benefits from
-this compared to R’s default summary are 1) more summary information is returned for each variable
+this compared to R's default summary are 1) more summary information is returned for each variable
 (dispersion), 2) the results are returned in a form that is easy to use in further analysis, 3) the
 variables in the output may be alphabetized.
 
 #### Usage
+<pre><code>
+
 
 summarizeNumerics(dat, alphaSort = FALSE, probs = c(0, 0.5, 1),
 stats = c("mean", "sd", "skewness", "kurtosis", "nobs", "nmiss"),
 na.rm = TRUE, unbiased = TRUE, digits = 2)
 summary.factor 119
-Arguments
+
+</code></pre>
+#### Arguments
+
 dat a data frame or a matrix
 alphaSort If TRUE, the columns are re-organized in alphabetical order. If FALSE, they are
 presented in the original order.
@@ -3306,9 +3773,14 @@ This adapts code from R base summary.factor. It adds the calculation of entropy 
 diversity.
 
 #### Usage
+<pre><code>
+
 
 summary.factor(y)
-Arguments
+
+</code></pre>
+#### Arguments
+
 y a factor (non-numeric variable)
 120 summary.pctable
 Value
@@ -3322,12 +3794,20 @@ summary.pctable Extract presentation from a pctable object
 Creates a column and/or row percent display of a pctable result
 
 #### Usage
+<pre><code>
+
 
 ## S3 method for class 'pctable'
 summary(object, ..., colpct = TRUE, rowpct = FALSE)
-Arguments
+
+</code></pre>
+#### Arguments
+
 object A pctable object
-... Other arguments, currently unused
+... Other 
+</code></pre>
+#### Arguments
+, currently unused
 colpct Default TRUE: should column percents be included
 rowpct Default FALSE: should row percents be included
 Value
@@ -3346,11 +3826,18 @@ for testSlopes objects. It will create an interesting display, but only when the
 is a numeric variable.
 
 #### Usage
+<pre><code>
+
 
 testSlopes(object)
-Arguments
+
+</code></pre>
+#### Arguments
+
 object Output from the plotSlopes function
-Details
+
+#### Details
+
 This function scans the input object to detect the focal values of the moderator variable (the variable
 declared as modx in plotSlopes). Consider a regression with interactions
 y <- b0 + b1*x1 + b2*x2 + b3*(x1*x2) + b4*x3 + ... + error
@@ -3380,6 +3867,8 @@ See Also
 plotSlopes
 
 #### Examples
+```{r}
+
 
 library(rockchalk)
 library(car)
@@ -3425,18 +3914,28 @@ into a correlation matrix.
 #### Description
 
 vech2Corr is a convenience function for creating correlation matrices from a vector of the lower
-triangular values. It checks the arguments to make sure they are consistent with the requirements
+triangular values. It checks the 
+</code></pre>
+#### Arguments
+ to make sure they are consistent with the requirements
 of a correlation matrix. All values must be in [-1, 1], and the number of values specified must be
 correct for a lower triangle.
 
 #### Usage
+<pre><code>
+
 
 vech2Corr(vech)
-Arguments
+
+</code></pre>
+#### Arguments
+
 vech A vector of values for the strictly lower triangle of a matrix. All values must be
 in the [0,1] interval (because they are correlations) and the matrix formed must
 be positive definite.
-Details
+
+#### Details
+
 Use this in combination with the lazyCov function to convert a vector of standard deviations and
 the correlation matrix into a covariance matrix.
 Value
@@ -3448,6 +3947,8 @@ Similar functions exist in many packages, see vec2sm in corpcor, xpnd in MCMCpac
 124 vech2mat
 
 #### Examples
+```{r}
+
 
 v <- c(0.1, 0.4, -0.5)
 vech2Corr(v)
@@ -3462,14 +3963,21 @@ diag, then the vech will fill in the diagonal as well as the strictly lower tria
 (either a number or a vector), then vech is for the strictly lower triangular part. The default value
 for lowerOnly is FALSE, which means that a symmetric matrix will be created. See 
 #### Examples
+```{r}
+
  for
 a demonstration of how to fill in the lower triangle and leave the diagonal and the upper triangle
 empty.
 
 #### Usage
+<pre><code>
+
 
 vech2mat(vech, diag = NULL, lowerOnly = FALSE)
-Arguments
+
+</code></pre>
+#### Arguments
+
 vech A vector
 diag Optional. A single value or a vector for the diagonal. A vech is a strictly lower
 triangluar vech, it does not include diagonal values. diag can be either a single
@@ -3480,6 +3988,8 @@ See Also
 Similar functions exist in many packages, see vec2sm in corpcor, xpnd in MCMCpack
 
 #### Examples
+```{r}
+
 
 x <- 1:6
 vech2mat(x)
@@ -3498,9 +4008,14 @@ is more general, but its documentation is much more difficult to understand. It 
 identical results, albeit phrased as an F test.
 
 #### Usage
+<pre><code>
+
 
 waldt(parm1, parm2, model, model.cov = NULL, digits = getOption("digits"))
-Arguments
+
+</code></pre>
+#### Arguments
+
 parm1 A parameter name, in quotes!
 parm2 Another parameter name, in quotes!
 model A fitted regression model
@@ -3508,7 +4023,9 @@ model.cov Optional, another covariance matrix to use while calculating the test.
 used for robust (or otherwise adjusted) standard errors
 digits How many digits to print? This affects only the on-screen printout. The return
 object is numeric, full precision.
-Details
+
+#### Details
+
 I did this because we have trouble understanding terminology in documentation for more abstract
 functions in other R packages.
 It has an additional feature, it can import robust standard errors to conduct the test.
@@ -3518,6 +4035,8 @@ Author(s)
 Paul Johnson <pauljohn@ku.edu>
 
 #### Examples
+```{r}
+
 
 mdat <- data.frame(x1 = rnorm(100), x2 = rnorm(100))
 stde <- 2

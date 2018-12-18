@@ -1,3 +1,13 @@
+---
+title: "``makeSymmetric``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
 makeSymmetric Create Symmetric Matrices, possibly covariance or correlation matrices,
 or check a matrix for symmetry and serviceability.
 
@@ -9,8 +19,10 @@ a vector, try to use it as a vech to fill the lower triangle. If d is supplied a
 desired size.
 
 #### Usage
-
+<pre><code>
 makeSymmetric(X, d = NULL, diag = NULL, corr = FALSE, cov = FALSE)
+</code></pre>
+
 Arguments
 X A single value, a vector (a vech), or a matrix
 d Optional. An integer, the desired number of rows (or columns). Don’t specify
@@ -29,13 +41,16 @@ Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
-
+```{r}
 makeSymmetric(X = 3, d = 4)
 makeSymmetric(X = 3, d = 4, diag = c(99, 98, 97, 96))
 makeSymmetric(c(1,2,3))
 makeSymmetric(c(1,2,3), d = 5)
 makeSymmetric(c(0.8,0.4, 0.2), cov = TRUE)
 makeSymmetric(c(0.8,0.4, 0.2), cov = TRUE, diag = c(44, 55, 66))
+```
+
+
 makeVec makeVec for checking or creating vectors
 
 #### Description
@@ -44,12 +59,16 @@ This is a convenience for handling function arguments. If x is a single value, i
 length d in which all values are equal to x. If x is a vector, check that its length is d.
 
 #### Usage
-
+<pre><code>
 makeVec(x = NULL, d = NULL)
-Arguments
+</code></pre>
+
+#### Arguments
 x A single value or a vector
 d An integer, the desired size of the vector
-Value
+
+#### Value
 A vector of length d
-Author(s)
+
+#### Author(s)
 Paul E. Johnson <pauljohn@ku.edu>

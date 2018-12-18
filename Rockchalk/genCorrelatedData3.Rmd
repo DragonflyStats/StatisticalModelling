@@ -1,3 +1,13 @@
+---
+title: "Rockchalk"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
 genCorrelatedData3 Generate correlated data for simulations (third edition)
 
 #### Description
@@ -9,27 +19,28 @@ It is also more flexible in the specification of the names of the predictor colu
 
 #### Usage
 
+<pre><code>
 genCorrelatedData3(formula, N = 100, means = c(x1 = 50, x2 = 50, x3 = 50),
 sds = 10, rho = 0, stde = 1, beta = c(0, 0.15, 0.1, -0.1),
 intercept = FALSE, col.names, verbose = FALSE, ..., distrib = rnorm)
-Arguments
-formula a text variable, e.g., "y ~ 1 + 2*x1". Use ":" to create squared and interaction
-terms, "y ~ 1 + 2*x1 + 1.1*x1:x1 + 0.2*x1:x2". Multi-way interactions
-are allowed, eg "y ~ 1 + 2*x1 + .4*x2 + .1*x3 + 1.1*x1:x1 + 0.2*x1:x2:x3".
+</code></pre>
+
+#### Arguments
+formula a text variable, e.g., "y ~ 1 + 2*x1". Use ":" to create squared and interaction terms, "y ~ 1 + 2*x1 + 1.1*x1:x1 + 0.2*x1:x2". Multi-way interactions are allowed, eg "y ~ 1 + 2*x1 + .4*x2 + .1*x3 + 1.1*x1:x1 + 0.2*x1:x2:x3".
 Note author can specify any order of interation.
-26 genCorrelatedData3
-N sample size
-means averages of predictors, can include names c(x1 = 10, x2 = 20) that will be used
+
+* N sample size
+* means averages of predictors, can include names c(x1 = 10, x2 = 20) that will be used
 in the data.frame result.
-sds standard deviations, 1 (common value for all variables) or as many elements as
+* sds standard deviations, 1 (common value for all variables) or as many elements as
 in means.
-rho correlations, can be 1 or a vech for a correlation matrix
-stde The scale of the error term. If distrib=rnorm, stde is the standard deviation of
+* rho correlations, can be 1 or a vech for a correlation matrix
+* stde The scale of the error term. If distrib=rnorm, stde is the standard deviation of
 the error term. If the user changes the distribution, this is a scale parameter that
 may not be equal to the standard deviation. For example, distrib=rlogist has
 a scale parameter such that a value of stde implies the error’s standard deviation
 will be stde  pi=sqrt(3).
-beta slope coefficients, use either this or formula, not both. It is easier (less error
+* beta slope coefficients, use either this or formula, not both. It is easier (less error
 prone) to use named coefficients, but (for backwards compatability with
 genCorrelatedData2) names are not required. If named, use "Intercept" for
 the intercept coefficient, and use variable names that match the xmeans vector.
@@ -41,43 +52,18 @@ correspond to c(Intercept, x1, x2, x3, x1:x1,x1:x2, x1:x3, x2:x2, x2:x3, x3:x3).
 Squares and interactions fill in a "lower triangle". The unnamed beta vector can
 be terminated with the last non-zero coefficient, the function will insert 0’s for
 the coefficients at the end of the vector.
-intercept TRUE or FALSE. Should the output data set include a column of 1’s. If beta is
+* intercept TRUE or FALSE. Should the output data set include a column of 1’s. If beta is
 an unnamed vector, should the first element be treated as an intercept?
 col.names Can override names in means vector
-verbose TRUE for diagnostics
-... extra arguments, ignored for now. We use that to ignore unrecognized parameters.
-distrib An R random data generating function. Default is rnorm. Also rlogis or any
+* verbose TRUE for diagnostics
+* ... extra arguments, ignored for now. We use that to ignore unrecognized parameters.
+* distrib An R random data generating function. Default is rnorm. Also rlogis or any
 other two-parameter location/scale distribution will work. Special configuration
 allows rt. See details.
-Details
-The enhanced methods for authors to specify a data-generating process are as follows. Either way
-will work and the choice between the methods is driven by the author’s convenience.
-• 1. Use the formula argument as a quoted string: "1 + 2.2 * x1 + 2.3 * x2 + 3.3 * x3 + 1.9 * x1:x2".
-The "*" represents multiplication of coefficient times variable, and the colon ":" has same
-meaning but it is used for products of variables.
-• 2. Use the beta argument with parameter names, beta = c("Intercept" = 1, x1 = 2.2, x2 = 2.3, x3 = 3.3, "x1:where the names are the same as the names of the variables in the formula. Names of the variables
-in the formula or the beta vector should be used also in either the means parameter or
-the col.names parameter.
-genCorrelatedData3 27
-The error distribution can be specified. Default is normal, with draws provided by R’s rnorm. All
-error models assume E[e] = 0 and the scale coefficient is the parameter stde. Thus, the default
-setup’s error will be drawn from rnorm(N, 0, stde). Any two parameter "location" and "scale"
-distribution should work as well, as long as the first coefficient is location (because we set that
-as 0 in all cases) and the second argument is scale. For example, distrib=rlogis, will lead to
-errors drawn from rlogis(N, 0, stde). Caution: in rlogis, the scale parameter is not the same as
-standard deviation.
-The only one parameter distribution currently supported is the T distribution. If user specifies
-distrib=rt, then the stde is passed through to the parameter df. Note that if increasing the stde
-parameter will cause the standard deviation of rt to get smaller. df=1 implies sd = 794.6; df=2
-implies sd = 3.27; df=3 implies 1.7773.
-Methods to specify error distributions in a more flexible way need to be considered.
-Value
-a data frame
-Author(s)
-Paul Johnson <pauljohn@ku.edu> and Gabor Grothendieck <ggrothendieck@gmail.com>
 
 #### Examples
 
+```{r}
 set.seed(123123)
 ## note: x4 is an unused variable in formula
 X1a <-
@@ -105,7 +91,9 @@ summary(lm2)
 ## spots, fill in 0's when coefficient is not present. This
 ## method was in genCorrelated2. Order of coefficents is
 ## c(intercept, x1, ..., xp, x1:x1, x1:x2, x1:xp, x2:x2, x2:x3, ..., )
-28 genCorrelatedData3
+```
+
+```{r}
 ## filling in a lower triangle.
 set.seed(123123)
 X3 <- genCorrelatedData3(N = 1000, means = c(x1 = 1, x2 = -1, x3 = 3, x4 = 1),
@@ -151,10 +139,38 @@ summary(lm1b)
 ## stde parameter is passed through to df in rt.
 X1c <-
 genCorrelatedData3("y ~ 1.1 + 2.1 * x1 + 3 * x2 + 3.5 * x3 + 1.1 * x1:x3",
-genX 29
+
 N = 1000, means = c(x1 = 1, x2 = -1, x3 = 3),
 sds = 1, rho = 0.4, stde = 1.2, distrib = rt)
 lm1c <- lm(y ~ x1 + x2 + x3 + x1:x3, data = X1c)
 summary(lm1c)
 
+```
 
+
+Details
+The enhanced methods for authors to specify a data-generating process are as follows. Either way
+will work and the choice between the methods is driven by the author’s convenience.
+• 1. Use the formula argument as a quoted string: "1 + 2.2 * x1 + 2.3 * x2 + 3.3 * x3 + 1.9 * x1:x2".
+The "*" represents multiplication of coefficient times variable, and the colon ":" has same
+meaning but it is used for products of variables.
+• 2. Use the beta argument with parameter names, beta = c("Intercept" = 1, x1 = 2.2, x2 = 2.3, x3 = 3.3, "x1:where the names are the same as the names of the variables in the formula. Names of the variables
+in the formula or the beta vector should be used also in either the means parameter or
+the col.names parameter.
+
+The error distribution can be specified. Default is normal, with draws provided by R’s rnorm. All
+error models assume E[e] = 0 and the scale coefficient is the parameter stde. Thus, the default
+setup’s error will be drawn from rnorm(N, 0, stde). Any two parameter "location" and "scale"
+distribution should work as well, as long as the first coefficient is location (because we set that
+as 0 in all cases) and the second argument is scale. For example, distrib=rlogis, will lead to
+errors drawn from rlogis(N, 0, stde). Caution: in rlogis, the scale parameter is not the same as
+standard deviation.
+The only one parameter distribution currently supported is the T distribution. If user specifies
+distrib=rt, then the stde is passed through to the parameter df. Note that if increasing the stde
+parameter will cause the standard deviation of rt to get smaller. df=1 implies sd = 794.6; df=2
+implies sd = 3.27; df=3 implies 1.7773.
+Methods to specify error distributions in a more flexible way need to be considered.
+Value
+a data frame
+Author(s)
+Paul Johnson <pauljohn@ku.edu> and Gabor Grothendieck <ggrothendieck@gmail.com>
