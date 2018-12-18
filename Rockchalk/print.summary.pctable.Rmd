@@ -1,0 +1,27 @@
+
+print.summary.pctable print method for summary.pctable objects
+
+#### Description
+
+prints pctab objects. Needed only to deal properly with quotes
+
+#### Usage
+<pre><code>
+
+
+## S3 method for class 'summary.pctable'
+print(x, ...)
+
+</code></pre>
+#### Arguments
+
+x a summary.pctable object
+... Other 
+</code></pre>
+#### Arguments
+ to print method
+Value
+Nothing is returned
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
+rbindFill 105
