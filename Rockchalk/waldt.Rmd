@@ -1,0 +1,44 @@
+
+vech2mat Convert a half-vector (vech) into a matrix.
+
+#### Description
+
+Fills a matrix from a vector that represents the lower triangle. If user does not supply a value for
+diag, then the vech will fill in the diagonal as well as the strictly lower triangle. If diag is provided
+(either a number or a vector), then vech is for the strictly lower triangular part. The default value
+for lowerOnly is FALSE, which means that a symmetric matrix will be created. See 
+#### Examples
+```{r}
+
+ for
+a demonstration of how to fill in the lower triangle and leave the diagonal and the upper triangle
+empty.
+
+#### Usage
+<pre><code>
+
+
+vech2mat(vech, diag = NULL, lowerOnly = FALSE)
+
+</code></pre>
+#### Arguments
+
+vech A vector
+diag Optional. A single value or a vector for the diagonal. A vech is a strictly lower
+triangluar vech, it does not include diagonal values. diag can be either a single
+value (to replace all elements along the diagonal) or a vector of the correct length
+to replace the diagonal.
+lowerOnly Default = FALSE.
+See Also
+Similar functions exist in many packages, see vec2sm in corpcor, xpnd in MCMCpack
+
+#### Examples
+```{r}
+
+
+x <- 1:6
+vech2mat(x)
+vech2mat(x, diag = 7)
+vech2mat(x, diag = c(99, 98, 97, 96))
+vech2mat(x, diag = 0, lowerOnly = TRUE)
+waldt 125
