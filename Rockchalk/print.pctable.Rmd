@@ -1,0 +1,59 @@
+
+print.pctable Display pctable objects
+
+#### Description
+
+This is not very fancy. Note that the saved pctable object has the information inside it that is required
+to write both column and row percentages. The 
+</code></pre>
+#### Arguments
+ colpct and rowpct are used to ask for the
+two types.
+
+#### Usage
+<pre><code>
+
+
+## S3 method for class 'pctable'
+print(x, colpct = TRUE, rowpct = FALSE, ...)
+
+</code></pre>
+#### Arguments
+
+x A pctable object
+colpct Default TRUE: include column percentages?
+rowpct Default FALSE: include row percentages?
+... Other 
+</code></pre>
+#### Arguments
+ passed through to print method
+Value
+A table object for the final printed table.
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
+104 print.summary.pctable
+print.summarize print method for output from summarize
+
+#### Description
+
+Be aware that the unrounded numeric matrix is available as an attribute of the returned object. This
+method displays a rounded, character-formatted display of the numeric varibles.
+
+#### Usage
+<pre><code>
+
+
+## S3 method for class 'summarize'
+print(x, digits, ...)
+
+</code></pre>
+#### Arguments
+
+x Object produced by summarize
+digits Decimal values to display, defaults as 2.
+... optional 
+</code></pre>
+#### Arguments
+ for print function.
+Value
+x, unchanged Prints objects created by summarize
