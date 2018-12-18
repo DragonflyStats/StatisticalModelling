@@ -1,0 +1,22 @@
+summary.factor Tabulates observed values and calculates entropy
+
+#### Description
+
+This adapts code from R base summary.factor. It adds the calculation of entropy as a measure of
+diversity.
+
+#### Usage
+<pre><code>
+
+
+summary.factor(y)
+
+</code></pre>
+#### Arguments
+
+y a factor (non-numeric variable)
+120 summary.pctable
+Value
+A list, including the summary table and vector of summary stats if requested.
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
