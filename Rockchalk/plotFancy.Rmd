@@ -1,6 +1,7 @@
 
-plotFancy Regression plots with predicted value lines, confidence intervals, color
-coded interactions
+plotFancy 
+
+Regression plots with predicted value lines, confidence intervals, color coded interactions
 
 #### Description
 
@@ -8,12 +9,10 @@ This is the back-end for the functions plotSlopes and plotCurves. Donât use
 
 #### Usage
 <pre><code>
-
-
 plotFancy(newdf, olddf, plotx, modx, modxVals, interval, plotPoints, plotLegend,
 legendTitle, col = NULL, llwd = 2, opacity, ...)
-
 </code></pre>
+
 #### Arguments
 
 newdf The new data frame with predictors and fit, lwr, upr variables
@@ -29,12 +28,10 @@ but if you donât like that, specify your own string here.
 col requested color scheme for lines and points. One per value of modxVals.
 llwd requested line width, will re-cycle.
 opacity Value in 0, 255 for darkness of interval shading
-... Other 
-</code></pre>
-#### Arguments
- passed to plot function.
-plotPlane 85
-Value
+... Other arguments  passed to plot function.
+
+
+#### Value
 col, lty, and lwd information
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
