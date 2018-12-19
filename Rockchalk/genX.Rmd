@@ -3,53 +3,31 @@ genX Generate correlated data (predictors) for one unit
 #### Description
 
 This is used to generate data for one unit. It is recently re-designed to serve as a building block in
-a multi-level data simulation exercise. The new arguments "unit" and "idx" can be set as NULL to
-remove the multi-level unit and row naming features. This function uses the rockchalk::mvrnorm
-function, but introduces a convenience layer by allowing users to supply standard deviations and
-the correlation matrix rather than the variance.
+a multi-level data simulation exercise. The new arguments "unit" and "idx" can be set as NULL to remove the multi-level unit and row naming features. This function uses the rockchalk::mvrnorm function, but introduces a convenience layer by allowing users to supply standard deviations and the correlation matrix rather than the variance.
 
 #### Usage
-
+<pre><code>
 genX(N, means, sds, rho, Sigma = NULL, intercept = TRUE, col.names = NULL,
 unit = NULL, idx = FALSE)
-Arguments
-N Number of cases desired
-means A vector of means for p variables. It is optional to name them. This implicitly
-sets the dimension of the predictor matrix as N x p. If no names are supplied, the
-automatic variable names will be "x1", "x2", and so forth. If means is named,
+</code></pre>
+
+#### Arguments
+* ``N``: Number of cases desired
+* ``means``: A vector of means for p variables. It is optional to name them. This implicitly sets the dimension of the predictor matrix as N x p. If no names are supplied, the automatic variable names will be "x1", "x2", and so forth. If means is named,
 such as c("myx1" = 7, "myx2" = 13, "myx3" = 44), those names will be come
 column names in the output matrix.
-sds Standard deviations for the variables. If less than p values are supplied, they will
-be recycled.
-rho Correlation coefficient for p variables. Several input formats are allowed (see
-lazyCor). This can be a single number (common correlation among all variables),
-a full matrix of correlations among all variables, or a vector that is interpreted
-as the strictly lower triangle (a vech).
-Sigma P x P variance/covariance matrix.
-intercept Default = TRUE, do you want a first column filled with 1?
-col.names Names supplied here will override column names supplied with the means parameter.
-If no names are supplied with means, or here, we will name variables
-x1, x2, x3, ... xp, with Intercept at front of list if intercept = TRUE.
-unit A character string for the name of the unit being simulated. Might be referred
-to as a "group" or "district" or "level 2" membership indicator.
-idx If set TRUE, a column "idx" is added, numbering the rows from 1:N. If the
-argument unit is not NULL, then idx is set to TRUE, but that behavior can be
-overridded by setting idx = FALSE.
-30 getAuxRsq
-Details
-Today I’ve decided to make the return object a data frame. This allows the possibility of including
-a character variable "unit" within the result. For multi-level models, that will help. If unit is not
-NULL, its value will be added as a column in the data frame. If unit is not null, the rownames
-will be constructed by pasting "unit" name and idx. If unit is not null, then idx will be included as
-another column, unless the user explicitly sets idx = FALSE.
-Value
-A data frame with rownames to specify unit and individual values, including an attribute "unit" with
-the unit’s name.
-Author(s)
-Paul Johnson <pauljohn@ku.edu>
+* ``sds``: Standard deviations for the variables. If less than p values are supplied, they will be recycled.
+* ``rho``: Correlation coefficient for p variables. Several input formats are allowed (see lazyCor). This can be a single number (common correlation among all variables), a full matrix of correlations among all variables, or a vector that is interpreted
+*  as the strictly lower triangle (a vech).
+* Sigma P x P variance/covariance matrix.
+* ``intercept``: Default = TRUE, do you want a first column filled with 1?
+* ``col.names``: Names supplied here will override column names supplied with the means parameter. If no names are supplied with means, or here, we will name variables x1, x2, x3, ... xp, with Intercept at front of list if intercept = TRUE.
+* ``unit``: A character string for the name of the unit being simulated. Might be referred to as a "group" or "district" or "level 2" membership indicator.
+* ``idx``: If set TRUE, a column "idx" is added, numbering the rows from 1:N. If the argument unit is not NULL, then idx is set to TRUE, but that behavior can be overridded by setting idx = FALSE.
+
 
 #### Examples
-
+```{r}
 X1 <- genX(10, means = c(7, 8), sds = 3, rho = .4)
 X2 <- genX(10, means = c(7, 8), sds = 3, rho = .4, unit = "Kansas")
 head(X2)
@@ -63,3 +41,14 @@ head(X5)
 Sigma <- lazyCov(Rho = c(.2, .3, .4, .5, .2, .1), Sd = c(2, 3, 1, 4))
 X6 <- genX(10, means = c(5, 2, -19, 33), Sigma = Sigma, unit = "Winslow_AZ")
 head(X6)
+```
+
+#### Details
+Today I’ve decided to make the return object a data frame. This allows the possibility of including a character variable "unit" within the result. For multi-level models, that will help. If unit is not NULL, its value will be added as a column in the data frame. If unit is not null, the rownames will be constructed by pasting "unit" name and idx. If unit is not null, then idx will be included as
+another column, unless the user explicitly sets idx = FALSE.
+
+#### Value
+A data frame with rownames to specify unit and individual values, including an attribute "unit" with
+the unit’s name.
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
