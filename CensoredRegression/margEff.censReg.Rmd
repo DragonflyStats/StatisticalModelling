@@ -1,9 +1,8 @@
 
 margEff.censReg Marginal Effects in Censored Regression Models
-Description
-The margEff method computes the marginal effects of the explanatory variables on the expected
-value of the dependent variable evaluated. Please note that this functionality is currently not available
-for panel data models.
+
+#### Description
+The ``margEff`` method computes the marginal effects of the explanatory variables on the expected value of the dependent variable evaluated. Please note that this functionality is currently not available for panel data models.
 
 #### Usage
 <pre><code>
@@ -16,42 +15,15 @@ summary( object, ... )
 </code></pre>
 
 #### Arguments
-object argument object of the margEff method must be an object of class "censReg"
-(returned by censReg); argument object of the summary method must be an
-object of class "margEff.censReg" (returned by margEff.censReg).
-xValues vector that specifies the values of the explanatory variables (including the intercept
-if it is included in the model), at which the marginal effects should be
-calculated. The number and order of the elements of this vector must correspond
-to the number and order of the estimated coefficients (without sigma). If this argument
-is NULL (or not specified), argument xValues is set to the mean values
-of the explanatory variables.
-margEff.censReg 7
-calcVCov logical. If TRUE, the approximate variance covariance matrices of the marginal
-effects is calculated and returned as an attribute (see below).
-returnJacobian logical. If TRUE, the Jacobian of the marginal effects with respect to the coefficients
-is returned as an attribute (see below).
-... currently not used.
-Value
-margEff.censReg returns an object of class "margEff.censReg", which is a vector of the marginal
-effects of the explanatory variables on the expected value of the dependent variable evaluated at the
-mean values of the explanatory variables. The returned object has an attribute df.residual, which
-is equal to the degrees of freedom of the residuals.
-If argument calcVCov is TRUE, the object returned by margEff.censReg has an attribute vcov,
-which is a the approximate variance covariance matrices of the marginal effects calculated with the
-Delta method.
-If argument returnJacobian is TRUE, the object returned by margEff.censReghas an attribute
-jacobian, which is the Jacobian of the marginal effects with respect to the coefficients.
-summary.margEff.censReg returns an object of class "summary.margEff.censReg", which is a
-matrix with four columns, where the first column contains the marginal effects, the second column
-contains the standard errors of the marginal effects, the third column contains the corresponding
-t-values, and the fourth columns contains the corresponding P values.
-Author(s)
-Arne Henningsen
-See Also
-censReg, coef.censReg, and summary.censReg
+* object argument object of the margEff method must be an object of class "censReg" (returned by censReg); argument object of the summary method must be an object of class "margEff.censReg" (returned by margEff.censReg).
+* xValues vector that specifies the values of the explanatory variables (including the intercept if it is included in the model), at which the marginal effects should be calculated. The number and order of the elements of this vector must correspond to the number and order of the estimated coefficients (without sigma). If this argument is NULL (or not specified), argument xValues is set to the mean values of the explanatory variables.
+* calcVCov logical. If TRUE, the approximate variance covariance matrices of the marginal effects is calculated and returned as an attribute (see below).
+* returnJacobian logical. If TRUE, the Jacobian of the marginal effects with respect to the coefficients is returned as an attribute (see below).
+* ... currently not used.
+
 
 #### Examples
-
+```{r}
 ## Kleiber & Zeileis ( 2008 ), page 142
 data( "Affairs", package = "AER" )
 estResult <- censReg( affairs ~ age + yearsmarried + religiousness +
@@ -59,4 +31,15 @@ occupation + rating, data = Affairs )
 margEff( estResult )
 summary( margEff( estResult ) )
 margEff( estResult, xValues = c( 1, 40, 4, 2, 4, 4 ) )
-8 summary.censReg
+```
+
+#### Value
+margEff.censReg returns an object of class "margEff.censReg", which is a vector of the marginal effects of the explanatory variables on the expected value of the dependent variable evaluated at the mean values of the explanatory variables. The returned object has an attribute df.residual, which is equal to the degrees of freedom of the residuals.
+If argument calcVCov is TRUE, the object returned by margEff.censReg has an attribute vcov, which is a the approximate variance covariance matrices of the marginal effects calculated with the Delta method.
+If argument returnJacobian is TRUE, the object returned by margEff.censReghas an attribute jacobian, which is the Jacobian of the marginal effects with respect to the coefficients.
+summary.margEff.censReg returns an object of class "summary.margEff.censReg", which is a matrix with four columns, where the first column contains the marginal effects, the second column contains the standard errors of the marginal effects, the third column contains the corresponding t-values, and the fourth columns contains the corresponding P values.
+
+#### Author(s)
+Arne Henningsen
+See Also
+censReg, coef.censReg, and summary.censReg
