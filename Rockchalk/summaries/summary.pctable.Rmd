@@ -1,0 +1,35 @@
+---
+title: "``summary.pctable``"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
+summary.pctable Extract presentation from a pctable object
+
+#### Description
+
+Creates a column and/or row percent display of a pctable result
+
+#### Usage
+<pre><code>
+
+
+## S3 method for class 'pctable'
+summary(object, ..., colpct = TRUE, rowpct = FALSE)
+
+</code></pre>
+#### Arguments
+* object A pctable object
+* ... Other Arguments, currently unused
+* colpct Default TRUE: should column percents be included
+* rowpct Default FALSE: should row percents be included
+
+#### Value
+An object of class summary.pctable
+
+#### Author(s)
+Paul Johnson <pauljohn@ku.edu>
