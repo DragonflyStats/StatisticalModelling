@@ -1,3 +1,12 @@
+---
+title: "standardize"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
 
 standardize Estimate standardized regression coefficients for all variables
 
@@ -19,13 +28,6 @@ summarize 113
 #### Arguments
 
 * ``model``:  A fitted lm object
-Value
-an lm fitted with the standardized variables
-a standardized regression object
-Author(s)
-Paul Johnson <pauljohn@ku.edu>
-See Also
-meanCenter which will center or re-scale only numberic variables
 
 #### Examples
 ```{r}
@@ -45,3 +47,13 @@ m2s <- standardize(m2)
 summary(m2s)
 m2c <- meanCenter(m2)
 summary(m2c)
+
+```
+
+#### Value
+an lm fitted with the standardized variables
+a standardized regression object
+Author(s)
+Paul Johnson <pauljohn@ku.edu>
+See Also
+meanCenter which will center or re-scale only numberic variables
