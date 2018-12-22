@@ -1,6 +1,13 @@
+---
+title: "getFocal "
+output: html_document
+---
 
-32 getFocal
-getFocal Select focal values from an observed variable.
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(lmfor)
+```
+Select focal values from an observed variable.
 
 #### Description
 
@@ -49,14 +56,13 @@ getFocal(x, n = 2)
 #### Details
 This is used in functions like plotSlopes or plotCurves.
 If xvals is not provided, a default divider for numeric variables will be the algorithm "quantile".
-The divider algorithms provided with rockchalk are c("quantile", "std.dev.", "table", "seq"). xvals can also be the name of a user-supplied function, such as R’s pretty(). If the user supplies a vector of possible values, that selection will be checked to make sure all elements are within a slightly expanded range of x. If a value out of range is requested, a warning is issued. Maybe that
-should be an outright error?
-With factor variables, xvals is generally not used because the only implemented divider algorithm is "table" (see cutByTable), which selects the n most frequently observed values. That is the default algorithm. It is legal to specify xvals = "table", but there is no point in doing that. However, xvals
-may take two other formats. It may be a user-specified function that can select levels values from x or it may be a vector of labels (or, names of levels). The purpose of the latter is to check that the requested levels are actually present in the supplied data vector x. If the levels specified are not in the observed variable, then this function stops with an error message.
+The divider algorithms provided with rockchalk are c("quantile", "std.dev.", "table", "seq"). xvals can also be the name of a user-supplied function, such as R’s pretty(). If the user supplies a vector of possible values, that selection will be checked to make sure all elements are within a slightly expanded range of x. If a value out of range is requested, a warning is issued. Maybe that should be an outright error?
+With factor variables, xvals is generally not used because the only implemented divider algorithm is "table" (see cutByTable), which selects the n most frequently observed values. That is the default algorithm. It is legal to specify xvals = "table", but there is no point in doing that. 
+However, xvals may take two other formats. It may be a user-specified function that can select levels values from x or it may be a vector of labels (or, names of levels). The purpose of the latter is to check that the requested levels are actually present in the supplied data vector x. If the levels specified are not in the observed variable, then this function stops with an error message.
 
 #### Value
-A vector.
-A named vector of values.
+* A vector.
+* A named vector of values.
 
 #### Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
