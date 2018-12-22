@@ -1,3 +1,14 @@
+---
+title: "``summary.factor``"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
+
 summary.factor Tabulates observed values and calculates entropy
 
 #### Description
@@ -15,8 +26,8 @@ summary.factor(y)
 #### Arguments
 
 y a factor (non-numeric variable)
-120 summary.pctable
-Value
+
+#### Value
 A list, including the summary table and vector of summary stats if requested.
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
