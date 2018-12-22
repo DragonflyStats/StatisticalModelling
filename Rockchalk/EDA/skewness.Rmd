@@ -1,8 +1,17 @@
+---
+title: "``skewness``"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
 skewness Calculate skewness
 
 #### Description
 
-Skewness is a summary of the symmetry of a distributionâs probability density function. In a Normal distribution, the skewness is 0, indicating symmetry about the expected value.
+Skewness is a summary of the symmetry of a distribution's probability density function. In a Normal distribution, the skewness is 0, indicating symmetry about the expected value.
 
 #### Usage
 
@@ -26,7 +35,7 @@ It appears somewhat controversial whether this is necessary, hence the argument 
 
 According to the US NIST, http://www.itl.nist.gov/div898/handbook/eda/section3/eda35b.htm, skewness is defined as the mean of cubed deviations divided by the cube of the standard deviation.
 
-mean((x - mean(x))^3) skewness = ___________________ sd(x)^3
+$$mean((x - mean(x))^3) skewness = ___________________ sd(x)^3$$
 where sd(x) is calculated with the denominator N, rather than N-1. This is the Fisher-Pearson coefficient of skewness, they claim. The unbiased variant uses the standard deviation divisor (N-1) to bias-correct the standard deviation.
 
 #### Value
