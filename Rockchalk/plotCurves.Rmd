@@ -3,87 +3,40 @@ plotCurves Assists creation of predicted value curves for regression models.
 
 #### Description
 
-Creates a predicted value plot that includes a separate predicted value line for each value of a
-focal variable. The x axis variable is specified by the plotx argument. As of rockchalk 1.7.x, the
-moderator argument, modx, is optional. Think of this a new version of R's termplot, but it allows
-for interactions. And it handles some nonlinear transformations more gracefully than termplot.
+Creates a predicted value plot that includes a separate predicted value line for each value of a focal variable. The x axis variable is specified by the plotx argument. As of rockchalk 1.7.x, the moderator argument, modx, is optional. Think of this a new version of R's termplot, but it allows for interactions. And it handles some nonlinear transformations more gracefully than termplot.
 
 #### Usage
 <pre><code>
 
-
-plotCurves(model, plotx, nx = 40, modx, plotxRange = NULL, n,
-modxVals = NULL, interval = c("none", "confidence", "prediction"),
-plotPoints = TRUE, plotLegend = TRUE, legendTitle = NULL,
-legendPct = TRUE, col = NULL, llwd = 2, opacity = 100,
+plotCurves(model, plotx, nx = 40, modx, plotxRange = NULL, n, modxVals = NULL, interval = c("none", "confidence", "prediction"),
+plotPoints = TRUE, plotLegend = TRUE, legendTitle = NULL, legendPct = TRUE, col = NULL, llwd = 2, opacity = 100,
 envir = environment(formula(model)), ...)
 
 </code></pre>
+
 #### Arguments
 
-model Required. Fitted regression object. Must have a predict method
-plotx Required. String with name of predictor for the x axis
-nx Number of values of plotx at which to calculate the predicted value. Default =
-40.
-modx Optional. String for moderator variable name. May be either numeric or factor.
-plotxRange Optional. If not specified, the observed range of plotx will be used to determine
-the axis range.
-n Optional. Number of focal values of modx, used by algorithms specified by
-modxVals; will be ignored if modxVals supplies a vector of focal values.
-modxVals Optional. A vector of focal values for which predicted values are to be plotted.
-May also be a character string to select an algorithm ("quantile","std.dev." or
-"table"), or a user-supplied function to select focal values (a new method similar
-to getFocal). If modx is a factor, currently, the only available algorithm is
-"table" (see getFocal.factor.
-interval Optional. Intervals provided by the predict.lm may be supplied, either "conf"
-(95 interval for the estimated conditional mean) or "pred" (95 interval for observed
-values of y given the rest of the model).
-plotPoints Optional. TRUE or FALSE: Should the plot include the scatterplot points along
-with the lines.
+* model Required. Fitted regression object. Must have a predict method
+* plotx Required. String with name of predictor for the x axis
+* nx Number of values of plotx at which to calculate the predicted value. Default = 40.
+* modx Optional. String for moderator variable name. May be either numeric or factor.
+* plotxRange Optional. If not specified, the observed range of plotx will be used to determine the axis range.
+n Optional. Number of focal values of modx, used by algorithms specified by modxVals; will be ignored if modxVals supplies a vector of focal values.
+* modxVals Optional. A vector of focal values for which predicted values are to be plotted. May also be a character string to select an algorithm ("quantile","std.dev." or "table"), or a user-supplied function to select focal values (a new method similar
+to getFocal). If modx is a factor, currently, the only available algorithm is "table" (see getFocal.factor.
+interval Optional. Intervals provided by the predict.lm may be supplied, either "conf" (95 interval for the estimated conditional mean) or "pred" (95 interval for observed values of y given the rest of the model).
+* plotPoints Optional. TRUE or FALSE: Should the plot include the scatterplot points along with the lines.
 plotLegend Optional. TRUE or FALSE: Should the default legend be included?
-legendTitle Optional. Youâll get an automatically generated title, such as "Moderator: modx",
-but if you donât like that, specify your own string here.
-legendPct Default = TRUE. Variable labels print with sample percentages.
-80 plotCurves
-col Optional. A color vector to differentiate the moderator values in the plot. If
-not specified, the R's builtin palette() will be used. User may supply a vector
-of valid color names, either explicitly c("pink","black", "gray70") or implicitly,
-rainbow(10) or gray.colors(5). Color names will be recycled if there are more
-focal values of modx than colors provided.
-llwd Optional. Line widths for predicted values. Can be single value or a vector,
-which will be recycled as necessary.
-opacity Optional, default = 100. A number between 1 and 255. 1 means "transparent"
-or invisible, 255 means very dark. the darkness of confidence interval regions
-envir environment to search for variables.
-... further 
-</code></pre>
-#### Arguments
- that are passed to plot or predict. The 
-</code></pre>
-#### Arguments
- that are
-monitored to be sent to predict are c("type", "se.fit", "dispersion", "interval",
+* legendTitle Optional. Youâll get an automatically generated title, such as "Moderator: modx", but if you donât like that, specify your own string here.
+* legendPct Default = TRUE. Variable labels print with sample percentages.
+* col Optional. A color vector to differentiate the moderator values in the plot. If not specified, the R's builtin palette() will be used. User may supply a vector of valid color names, either explicitly c("pink","black", "gray70") or implicitly,
+rainbow(10) or gray.colors(5). Color names will be recycled if there are more focal values of modx than colors provided.
+llwd Optional. Line widths for predicted values. Can be single value or a vector, which will be recycled as necessary.
+opacity Optional, default = 100. A number between 1 and 255. 1 means "transparent" or invisible, 255 means very dark. the darkness of confidence interval regions envir environment to search for variables.
+* ... further arguments that are passed to plot or predict. The arguments
+ that are monitored to be sent to predict are c("type", "se.fit", "dispersion", "interval",
 "level", "terms", "na.action").
 
-#### Details
-
-This is similar to plotSlopes, but it accepts regressions in which there are transformed variables,
-such as "log(x1)". It creates a plot of the predicted dependent variable against one of the numeric
-predictors, plotx. It draws a predicted value line for each value of modx, a moderator variable. The
-moderator may be a numeric or categorical moderator variable.
-The user may designate which particular values of the moderator are used for calculating the predicted
-value lines. That is, modxVals = c( 12,22,37) would draw lines for values 12, 22, and
-37 of the moderator. User may instead supply a character string to choose one of the built in algorithms.
-The default algorithm is "quantile", which will select n values that are evenly spaced along
-the modx axis. The algorithm "std.dev" will select the mean of modx (m) and then it will select
-values that step away from the mean in standard deviation sd units. For example, if n = 3, the focal
-values will m, m - sd, am + sd.
-Value
-A plot is created as a side effect, a list is returned including 1) the call, 2) a newdata object that
-includes information on the curves that were plotted, 3) a vector modxVals, the values for which
-curves were drawn.
-Author(s)
-Paul E. Johnson <pauljohn@ku.edu>
 
 #### Examples
 ```{r}
@@ -100,23 +53,20 @@ SF.numdead = c(1, 4, 9, 13, 18, 20, 0, 2, 6, 10, 12, 16))
 df$SF.numalive = 20 - df$SF.numdead
 budworm.lg <- glm(cbind(SF.numdead, SF.numalive) ~ sex*ldose, data = df,
 family = binomial)
-plotCurves(budworm.lg, plotx = "ldose", modx = "sex", interval = "confidence",
-ylim = c(0, 1))
+plotCurves(budworm.lg, plotx = "ldose", modx = "sex", interval = "confidence", ylim = c(0, 1))
 ## See infert
-model2 <- glm(case ~ age + parity + education + spontaneous + induced,
-data = infert, family = binomial())
+model2 <- glm(case ~ age + parity + education + spontaneous + induced, data = infert, family = binomial())
 ## Curvature so slight we can barely see it
-model2pc1 <- plotCurves(model2, plotx = "age", modx = "education",
-interval = "confidence", ylim = c(0, 1))
-model2pc2 <- plotCurves(model2, plotx = "age", modx = "education",
-modxVals = levels(infert$education)[1],
-interval = "confidence", ylim = c(0, 1))
-model2pc2 <- plotCurves(model2, plotx = "age", modx = "education",
-modxVals = levels(infert$education)[c(2,3)],
+model2pc1 <- plotCurves(model2, plotx = "age", modx = "education", interval = "confidence", ylim = c(0, 1))
+model2pc2 <- plotCurves(model2, plotx = "age", modx = "education", modxVals = levels(infert$education)[1],
 interval = "confidence", ylim = c(0, 1))
 model2pc2 <- plotCurves(model2, plotx = "age", modx = "education",
 modxVals = levels(infert$education)[c(2,3)],
+interval = "confidence", ylim = c(0, 1))
+model2pc2 <- plotCurves(model2, plotx = "age", modx = "education", modxVals = levels(infert$education)[c(2,3)],
 ylim = c(0, 1), type = "response")
+```
+```{r}
 ## Manufacture some data
 set.seed(12345)
 N <- 500
@@ -130,7 +80,6 @@ dat$xcat1n <- with(dat, contrasts(xcat1)[xcat1, ])
 dat$xcat2n <- with(dat, contrasts(xcat2)[xcat2, ])
 stde <- 2
 dat$y <- with(dat, 0.03 + 11.5 * log(x1) * contrasts(dat$xcat1)[dat$xcat1] +
-82 plotCurves
 0.1 * x2 + 0.04 * x2^2 + stde*rnorm(N))
 stde <- 1
 dat$y2 <- with(dat, 0.03 + 0.1 * x1 + 0.1 * x2 + 0.25 * x1 * x2 + 0.4 * x3 -
@@ -142,6 +91,9 @@ stde <- 8
 dat$y4 <- with(dat, 3 + 0.5 * x1 +
 contrasts(dat$xcat2)[dat$xcat2, ] %*% c(0.1, -0.2, 0.3, 0.05) +
 stde * rnorm(N))
+```
+
+```{r}
 ## Curvature with interaction
 m1 <- lm(y ~ log(x1)*xcat1 + x2 + I(x2^2), data=dat)
 summary(m1)
@@ -230,3 +182,22 @@ plotCurves(mc4, plotx = "income", modx = "age", modxVals = "std.dev.")
 plotCurves(mc4, modx = "income", plotx = "age", plotPoints = FALSE)
 }
 ```
+#### Details
+
+This is similar to plotSlopes, but it accepts regressions in which there are transformed variables,
+such as "log(x1)". It creates a plot of the predicted dependent variable against one of the numeric
+predictors, plotx. It draws a predicted value line for each value of modx, a moderator variable. The
+moderator may be a numeric or categorical moderator variable.
+The user may designate which particular values of the moderator are used for calculating the predicted
+value lines. That is, modxVals = c( 12,22,37) would draw lines for values 12, 22, and
+37 of the moderator. User may instead supply a character string to choose one of the built in algorithms.
+The default algorithm is "quantile", which will select n values that are evenly spaced along
+the modx axis. The algorithm "std.dev" will select the mean of modx (m) and then it will select
+values that step away from the mean in standard deviation sd units. For example, if n = 3, the focal
+values will m, m - sd, am + sd.
+Value
+A plot is created as a side effect, a list is returned including 1) the call, 2) a newdata object that
+includes information on the curves that were plotted, 3) a vector modxVals, the values for which
+curves were drawn.
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
