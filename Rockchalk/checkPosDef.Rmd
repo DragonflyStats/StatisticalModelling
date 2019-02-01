@@ -1,0 +1,23 @@
+checkPosDef Check a matrix for positive definitness
+
+#### Description
+
+Uses eigen to check positive definiteness. Follows example used in MASS package byW. N. Venables
+and Brian D. Ripley
+
+#### Usage
+<pre><code>
+
+
+checkPosDef(X, tol = 1e-06)
+
+</code></pre>
+#### Arguments
+
+X A matrix
+tol Tolerance (closeness to 0 required to declare failure)
+Value
+TRUE or FALSE
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+
