@@ -1,0 +1,67 @@
+centerNumerics Find numeric columns, center them, re-name them, and join them with
+the original data.
+
+#### Description
+
+The meanCentered regression function requires centered-inputs when calculations are predicted.
+For comparison with ordinary regression, it is convenient to have both centered and the original data
+side-by-side. This function handles that. If the input data has columns c("x1","x2","x3"), then the
+centered result will have columns c("x1","x2","x3","x1c","x2c","x3c"), where "c" indicates "meancentered".
+If standardize=TRUE, then the result will have columns c("x1","x2","x3","x1cs","x2cs","x3cs"),
+where "cs" indicate "centered and scaled".
+
+#### Usage
+<pre><code>
+
+
+centerNumerics(data, center, standardize = FALSE)
+
+</code></pre>
+#### Arguments
+
+* data Required. data frame or matrix.
+* center Optional. If nc is NOT supplied, then all numeric columns in data will be centered (possiblly scaled). Can be specified in 2 formats. 1) Vector of column names that are to be centered, 2) Vector named elements giving values of means to be used in centering. Values must be named, as in c("x1" = 17, "x2" = 44).
+(possibly scaled).
+
+* standardize Default FALSE. If TRUE, the variables are first mean-centered, and then divided
+by their standard deviations (scaled). User can supply a named vector of scale values by which to divide each variable (otherwise sd is used). Vector must have same names and length as center argument. Variables can be entered in any order (will be resorted inside function).
+
+#### Value
+A data frame with 1) All original columns 2) additional columns with centered/scaled data, variables
+renamed "c" or "cs" to indicate the data is centered or centered and scaled. Attributes "centers" and
+"scales" are created for "record keeping" on centering and scaling values.
+Author(s)
+<pauljohn@ku.edu>
+
+#### Examples
+```{r}
+
+
+set.seed(12345)
+dat <- data.frame(x1=rnorm(100, m = 50), x2 = rnorm(100, m = 50),
+x3 = rnorm(100, m = 50), y = rnorm(100),
+x4 = gl(2, 50, labels = c("Male","Female")))
+
+datc1 <- centerNumerics(dat)
+head(datc1)
+summarize(datc1)
+datc2 <- centerNumerics(dat, center=c("x1", "x2"))
+head(datc2)
+summarize(datc2)
+attributes(datc2)
+datc3 <- centerNumerics(dat, center = c("x1" = 30, "x2" = 40))
+head(datc3)
+summarize(datc3)
+attributes(datc3)
+datc4 <- centerNumerics(dat, center=c("x1", "x2"), standardize = TRUE)
+head(datc3)
+summarize(datc4)
+attributes(datc4)
+datc5 <- centerNumerics(dat, center=c("x1"=30, "x2"=40),
+standardize = c("x2" = 5, "x1" = 7))
+head(datc5)
+summarize(datc5)
+attributes(datc5)
+```
+
+
