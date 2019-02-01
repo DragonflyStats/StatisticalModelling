@@ -21,21 +21,19 @@ envir = environment(formula(model)), ...)
 * nx Number of values of plotx at which to calculate the predicted value. Default = 40.
 * modx Optional. String for moderator variable name. May be either numeric or factor.
 * plotxRange Optional. If not specified, the observed range of plotx will be used to determine the axis range.
-n Optional. Number of focal values of modx, used by algorithms specified by modxVals; will be ignored if modxVals supplies a vector of focal values.
+* n Optional. Number of focal values of modx, used by algorithms specified by modxVals; will be ignored if modxVals supplies a vector of focal values.
 * modxVals Optional. A vector of focal values for which predicted values are to be plotted. May also be a character string to select an algorithm ("quantile","std.dev." or "table"), or a user-supplied function to select focal values (a new method similar
-to getFocal). If modx is a factor, currently, the only available algorithm is "table" (see getFocal.factor.
-interval Optional. Intervals provided by the predict.lm may be supplied, either "conf" (95 interval for the estimated conditional mean) or "pred" (95 interval for observed values of y given the rest of the model).
+to getFocal). If modx is a factor, currently, the only available algorithm is "table" (see getFocal.factor).
+* interval Optional. Intervals provided by the predict.lm may be supplied, either "conf" (95 interval for the estimated conditional mean) or "pred" (95 interval for observed values of y given the rest of the model).
 * plotPoints Optional. TRUE or FALSE: Should the plot include the scatterplot points along with the lines.
-plotLegend Optional. TRUE or FALSE: Should the default legend be included?
-* legendTitle Optional. Youâll get an automatically generated title, such as "Moderator: modx", but if you donât like that, specify your own string here.
+* plotLegend Optional. TRUE or FALSE: Should the default legend be included?
+* legendTitle Optional. You'll get an automatically generated title, such as "Moderator: modx", but if you don't like that, specify your own string here.
 * legendPct Default = TRUE. Variable labels print with sample percentages.
 * col Optional. A color vector to differentiate the moderator values in the plot. If not specified, the R's builtin palette() will be used. User may supply a vector of valid color names, either explicitly c("pink","black", "gray70") or implicitly,
 rainbow(10) or gray.colors(5). Color names will be recycled if there are more focal values of modx than colors provided.
-llwd Optional. Line widths for predicted values. Can be single value or a vector, which will be recycled as necessary.
-opacity Optional, default = 100. A number between 1 and 255. 1 means "transparent" or invisible, 255 means very dark. the darkness of confidence interval regions envir environment to search for variables.
-* ... further arguments that are passed to plot or predict. The arguments
- that are monitored to be sent to predict are c("type", "se.fit", "dispersion", "interval",
-"level", "terms", "na.action").
+* llwd Optional. Line widths for predicted values. Can be single value or a vector, which will be recycled as necessary.
+* opacity Optional, default = 100. A number between 1 and 255. 1 means "transparent" or invisible, 255 means very dark. the darkness of confidence interval regions envir environment to search for variables.
+* ... further arguments that are passed to plot or predict. The arguments that are monitored to be sent to predict are c("type", "se.fit", "dispersion", "interval", "level", "terms", "na.action").
 
 
 #### Examples
@@ -54,6 +52,8 @@ df$SF.numalive = 20 - df$SF.numdead
 budworm.lg <- glm(cbind(SF.numdead, SF.numalive) ~ sex*ldose, data = df,
 family = binomial)
 plotCurves(budworm.lg, plotx = "ldose", modx = "sex", interval = "confidence", ylim = c(0, 1))
+```
+```{r}
 ## See infert
 model2 <- glm(case ~ age + parity + education + spontaneous + induced, data = infert, family = binomial())
 ## Curvature so slight we can barely see it
@@ -122,7 +122,8 @@ summary(m2)
 plotCurves(m2, plotx = "x2", modx = "xcat1")
 plotCurves(m2, plotx ="x2", modx = "x1")
 m3a <- lm(y ~ poly(x2, 2) + xcat1, data = dat)
-
+```
+```{r}
 plotCurves(m3a, plotx = "x2")
 plotCurves(m3a, plotx = "x2", modx = "xcat1")
 #OK
