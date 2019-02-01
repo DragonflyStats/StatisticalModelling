@@ -1,0 +1,32 @@
+cutByTable Select most frequently occurring values from numeric or categorical
+variables.
+
+#### Description
+
+The "n" most frequently occurring values are returned, sorted by frequency of occurrence (in descending
+order). The names attribute includes information about the percentage of cases that have
+the indicated values.
+
+#### Usage
+<pre><code>
+
+
+cutByTable(x, n = 5, pct = TRUE)
+
+</code></pre>
+#### Arguments
+
+* ``x``: A numeric or character variable
+* ``n``: The maximum number of values that may be returned.
+* ``pct``: Default = TRUE. Include percentage of responses within each category
+
+#### Details
+
+This is used by plotSlopes, plotCurves, and other "newdata" making functions.
+
+#### Value
+A named vector.
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+
+
