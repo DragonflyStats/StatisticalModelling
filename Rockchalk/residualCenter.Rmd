@@ -1,4 +1,16 @@
-``residualCenter``: 
+
+---
+
+title: "``rockchalk::residualCentere``"
+output: html_document
+---
+
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
 
 Calculates a "residual-centered" interaction regression.
 
@@ -22,16 +34,6 @@ predict(object, ...)
 * ... Other named arguments
 . May include newdata, a dataframe of predictors. That should include values for individual predictor, need not include interactions that are constructed by residualCenter. These parameters that will be passed to the predict method of the model.
 
-#### Value
-a regression model of the type as the input model, with the exception that the residualCentered predictor is used in place of the original interaction. The return model includes new variable centeringRegressions:
-a list including each of the intermediate regressions that was calculated in order to create the residual centered interaction terms. These latter objects may be necessary for diagnostics and to calculate predicted values for hypothetical values of the inputs. If there are no interactive terms, then NULL is returned.
-
-#### Author(s)
-Paul E. Johnson <pauljohn@ku.edu>
-References
-Little, T. D., Bovaird, J. A., & Widaman, K. F. (2006). On the Merits of Orthogonalizing Powered
-and Product Terms: Implications for Modeling Interactions Among Latent Variables. Structural
-Equation Modeling, 13(4), 497-519.
 
 #### Examples
 ```{r}
@@ -132,3 +134,15 @@ summary(m1rc)
 newdf <- apply(dat, 2, summary)
 newdf <- as.data.frame(newdf)
 predict(m1rc, newdata=newdf)
+
+
+#### Value
+a regression model of the type as the input model, with the exception that the residualCentered predictor is used in place of the original interaction. The return model includes new variable centeringRegressions:
+a list including each of the intermediate regressions that was calculated in order to create the residual centered interaction terms. These latter objects may be necessary for diagnostics and to calculate predicted values for hypothetical values of the inputs. If there are no interactive terms, then NULL is returned.
+
+#### Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+References
+Little, T. D., Bovaird, J. A., & Widaman, K. F. (2006). On the Merits of Orthogonalizing Powered
+and Product Terms: Implications for Modeling Interactions Among Latent Variables. Structural
+Equation Modeling, 13(4), 497-519.
