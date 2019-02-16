@@ -1,18 +1,17 @@
-addLines Superimpose regression lines on a plotted plane
+---
+title: "``rockchalk::addLines``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
 
 #### Description
 
-The 
-#### Examples
-```{r}
-
- will demonstrate the intended 
-#### Usage
-<pre><code>
-
-.
-
-#### Usage
+addLines superimposes regression lines on a plotted plane. The examples will demonstrate the intended usage.
 <pre><code>
 
 
@@ -21,21 +20,13 @@ addLines(to = NULL, from = NULL, col, lwd = 2, lty = 1)
 </code></pre>
 #### Arguments
 
-to a 3d plot object produced by plotPlane
-from output from a plotSlopes or plotCurves function (class="rockchalk")
-col color of plotted lines (default: "red")
+* to a 3d plot object produced by plotPlane
+* from output from a plotSlopes or plotCurves function (class="rockchalk")
+* col color of plotted lines (default: "red")
 * ``lwd``:  line width of added lines (default: 2)
-lty line type of added lines (default: 1)
+* lty line type of added lines (default: 1)
 
-#### Details
 
-From an educational stand point, the objective is to assist with the student’s conceptualization of
-the two and three dimensional regression relationships.
-Value
-NULL, nothing, nicht, nada.
-Author(s)
-Paul E. Johnson <pauljohn@ku.edu>
-addLines 5
 
 #### Examples
 ```{r}
@@ -76,3 +67,12 @@ npp = 10, linesFrom = m1ps)
 ```
 
 
+#### Details
+
+From an educational stand point, the objective is to assist with the student’s conceptualization of
+the two and three dimensional regression relationships.
+Value
+NULL, nothing, nicht, nada.
+Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+addLines 5
