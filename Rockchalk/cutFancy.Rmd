@@ -1,9 +1,18 @@
-cutFancy Create an ordinal variable by grouping numeric data input.
+---
+title: "``rockchalk::cutFancy ``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
+Create an ordinal variable by grouping numeric data input.
 
 #### Description
 
-This is a convenience function for Usage of R's cut function. Users can specify cutpoints or category labels or desired proportions of groups in various ways. In that way, it has a more flexible interface
-than cut. It also tries to notice and correct some common user errors, such as omitting the outer boundaries from the probs argument. The returned values are labeled by their midpoints, rather than
+This is a convenience function for Usage of R's cut function. Users can specify cutpoints or category labels or desired proportions of groups in various ways. In that way, it has a more flexible interface than cut. It also tries to notice and correct some common user errors, such as omitting the outer boundaries from the probs argument. The returned values are labeled by their midpoints, rather than
 cut’s usual boundaries.
 
 #### Usage
@@ -15,49 +24,14 @@ cutFancy(y, cutpoints = "quantile", probs, categories)
 #### Arguments
 
 * ``y``:   The input data from which the categorized variable will be created.
-* cutpoints Optional paramter, a vector of thresholds at which to cut the data. If it is not supplied, the default value cutpoints="quantile" will take effect. Users can
-supplement with probs and/or categories as shown in Examples
-* probs This is an optional parameter, relevant only when the R function quantile function is used to calculate cutpoints. The length should be number of desired categories
-PLUS ONE, as in c(0, .3, .6, 1). That will create categories that represent 1) less than .3, between .3 and .6, and above .6. A common user error
+* cutpoints Optional paramter, a vector of thresholds at which to cut the data. If it is not supplied, the default value cutpoints="quantile" will take effect. Users can supplement with probs and/or categories as shown in Examples
+* probs This is an optional parameter, relevant only when the R function quantile function is used to calculate cutpoints. The length should be number of desired categories PLUS ONE, as in c(0, .3, .6, 1). That will create categories that represent 1) less than .3, between .3 and .6, and above .6. A common user error
 is to specify only the internal divider values, such as probs = c(.3,.6). To
-anticipate and correct that error, this function will insert the lower limit of 0 and
-the upper limit of 1 if they are not already present in probs.
-categories Can be a number to designate the number of sub-groups created, or it can be a
-vector of names used. If cutpoints and probs are not specified, the parameter
-categories should be an integer to specify how many data groups to create.It is
-required if cutpoints="quantile" and probs is not specified. Can also be a vector
-of names to be used for the categories that are created. If category names are not
-provided, the names for the ordinal variable will be the midpoint of the numeric
+anticipate and correct that error, this function will insert the lower limit of 0 and the upper limit of 1 if they are not already present in probs.
+* categories Can be a number to designate the number of sub-groups created, or it can be a vector of names used. If cutpoints and probs are not specified, the parameter categories should be an integer to specify how many data groups to create.It is
+required if cutpoints="quantile" and probs is not specified. Can also be a vector of names to be used for the categories that are created. If category names are not provided, the names for the ordinal variable will be the midpoint of the numeric
 range from which they are constructed.
 
-#### Details
-
-The dividing points, thought of as "thresholds" or "cutpoints", can be specified in several ways.
-cutFancy will automatically create equally-sized sets of observations for a given number of categories
-if neither probs nor cutpoints is specified. The bare minimum input needed is categories=5,
-for example, to ask for 5 equally sized groups. More user control can be had by specifying either
-cutpoints or probs. If cutpoints is not specified at all, or if cutpoints="quantile", then probs
-can be used to specify the proportions of the data points that are to fall within each range. On the
-other hand, one can specify cutpoints = "quantile" and then probs will be used to specify the
-proportions of the data points that are to fall within each range.
-If categories is not specified, the category names will be created. Names for ordinal categories
-will be the numerical midpoints for the outcomes. Perhaps this will deviate from your expectation,
-which might be ordinal categories name "0", "1", "2", and so forth. The numerically labeled values
-we provide can be used in various ways during the analysis process. Read "?factor" to learn ways
-to convert the ordinal output to other formats. 
-Examples include various ways of converting the
-ordinal output to numeric.
-The categories parameter works together with cutpoints. cutpoints allows a character string
-"quantile". If cutpoints is not specified, or if the user specifies a character string cutpoints="quantile",
-then the probs would be used to determine the cutpoints. However, if probs is not specified, then
-the categories argument can be used. If cutpoints="quantile", then
-• if categories is one integer, then it is interpreted as the number of "equally sized" categories
-to be created, or
-• categories can be a vector of names. The length of the vector is used to determine the
-number of categories, and the values are put to use as factor labels.
-descriptiveTable 15
-Value
-an ordinal vector with attributes "cutpoints" and "props" (proportions)
 
 #### Examples
 ```{r}
@@ -99,4 +73,32 @@ attributes(X1a$yord)
 table(X1a$yord, exclude = NULL)
 ```
 
+#### Details
+
+The dividing points, thought of as "thresholds" or "cutpoints", can be specified in several ways.
+cutFancy will automatically create equally-sized sets of observations for a given number of categories
+if neither probs nor cutpoints is specified. The bare minimum input needed is categories=5,
+for example, to ask for 5 equally sized groups. More user control can be had by specifying either
+cutpoints or probs. If cutpoints is not specified at all, or if cutpoints="quantile", then probs
+can be used to specify the proportions of the data points that are to fall within each range. On the
+other hand, one can specify cutpoints = "quantile" and then probs will be used to specify the
+proportions of the data points that are to fall within each range.
+If categories is not specified, the category names will be created. Names for ordinal categories
+will be the numerical midpoints for the outcomes. Perhaps this will deviate from your expectation,
+which might be ordinal categories name "0", "1", "2", and so forth. The numerically labeled values
+we provide can be used in various ways during the analysis process. Read "?factor" to learn ways
+to convert the ordinal output to other formats. 
+Examples include various ways of converting the
+ordinal output to numeric.
+The categories parameter works together with cutpoints. cutpoints allows a character string
+"quantile". If cutpoints is not specified, or if the user specifies a character string cutpoints="quantile",
+then the probs would be used to determine the cutpoints. However, if probs is not specified, then
+the categories argument can be used. If cutpoints="quantile", then
+• if categories is one integer, then it is interpreted as the number of "equally sized" categories
+to be created, or
+• categories can be a vector of names. The length of the vector is used to determine the
+number of categories, and the values are put to use as factor labels.
+descriptiveTable 15
+Value
+an ordinal vector with attributes "cutpoints" and "props" (proportions)
 
