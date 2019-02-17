@@ -1,56 +1,34 @@
+---
+title: "rockchalk"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
 mvrnorm Minor revision of mvrnorm (from MASS) to facilitate replication
 
 #### Description
 
-This is the mvrnorm function from the MASS package (Venables and Ripley, 2002), with one small
-modification to facilitate replication of random samples. The aim is to make sure that, after the seed
-is reset, the first rows of generated data are identical no matter what value is chosen for n. The one
-can draw 100 observations, reset the seed, and then draw 110 observations, and the first 100 will
-match exactly. This is done to prevent unexpected and peculiar patterns that are observed when n is
-altered with MASS package’s mvrnorm.
+This is the mvrnorm function from the MASS package (Venables and Ripley, 2002), with one small modification to facilitate replication of random samples. The aim is to make sure that, after the seed is reset, the first rows of generated data are identical no matter what value is chosen for n. The one can draw 100 observations, reset the seed, and then draw 110 observations, and the first 100 will match exactly. This is done to prevent unexpected and peculiar patterns that are observed when n is altered with MASS package’s mvrnorm.
 
 #### Usage
 <pre><code>
 
-
 mvrnorm(n = 1, mu, Sigma, tol = 1e-06, empirical = FALSE)
 
-
 </code></pre>
+
 #### Arguments
 
-n the number of samples ("rows" of data) required.
-mu a vector giving the means of the variables.
-Sigma positive-definite symmetric matrix specifying the covariance matrix of the variables.
-tol tolerance (relative to largest variance) for numerical lack of positive-definiteness
-in Sigma
-empirical logical. If true, mu and Sigma specify the empirical not population mean and
-covariance matrix.
+* ``n``: the number of samples ("rows" of data) required.
+* ``mu``: a vector giving the means of the variables.
+* ``Sigma``: positive-definite symmetric matrix specifying the covariance matrix of the variables.
+* ``tol``: tolerance (relative to largest variance) for numerical lack of positive-definiteness in Sigma
+* ``empirical``: logical. If true, mu and Sigma specify the empirical not population mean and covariance matrix.
 
-#### Details
 
-To assure replication, only a very small change is made. The code in MASS::mvrnorm draws a
-random sample and fills a matrix by column, and that matrix is then decomposed. The change
-implemented here fills that matrix by row and the problem is eliminated.
-Some peculiarities are noticed when the covariance matrix changes from a diagonal matrix to a
-more general symmetric matrix (non-zero elements off-diagonal). When the covariance is strictly
-diagonal, then just one column of the simulated multivariate normal data will be replicated, but
-the others are not. This has very troublesome implications for simulations that draw samples of
-various sizes and then base calculations on the separate simulated columns (i.e., some columns are
-identical, others are completely uncorrelated).
-
-#### Value
-If n = 1 a vector of the same length as mu, otherwise an n by length(mu) matrix with one sample
-in each row.
-Author(s)
-Ripley, B.D. with revision by Paul E. Johnson
-
-#### References
-Venables,W. N. & Ripley, B. D. (2002) Modern Applied Statistics with S. Fourth Edition. Springer,
-New York. ISBN 0-387-95457-0
-See Also
-For an alternative multivariate normal generator function, one which has had this fix applied to it,
-consider using the new versions of rmvnorm in the package mvtnorm.
 
 #### Examples
 ```{r}
@@ -88,6 +66,9 @@ mySD <- c(0.5, 0.5, 0.5, 1.5, 1.5)
 myCov <- lazyCov(Rho = myR, Sd = mySD)
 set.seed(12345)
 X0 <- MASS::mvrnorm(n=10, mu = rep(0, 5), Sigma = myCov)
+```
+
+```{r}
 ## create a smaller data set, starting at same position
 set.seed(12345)
 X1 <- MASS::mvrnorm(n=5, mu = rep(0, 5), Sigma = myCov)
@@ -95,9 +76,33 @@ X0
 X1
 ##' set.seed(12345)
 Y0 <- rockchalk::mvrnorm(n=10, mu = rep(0, 5), Sigma = myCov)
+```
+
+```{r}
 ## create a smaller data set, starting at same position
 set.seed(12345)
 Y1 <- rockchalk::mvrnorm(n=5, mu = rep(0, 5), Sigma = myCov)
 Y0
 Y1
 ```
+
+
+#### Details
+
+To assure replication, only a very small change is made. The code in MASS::mvrnorm draws a random sample and fills a matrix by column, and that matrix is then decomposed. The change implemented here fills that matrix by row and the problem is eliminated.
+Some peculiarities are noticed when the covariance matrix changes from a diagonal matrix to a
+more general symmetric matrix (non-zero elements off-diagonal). When the covariance is strictly diagonal, then just one column of the simulated multivariate normal data will be replicated, but the others are not. This has very troublesome implications for simulations that draw samples of various sizes and then base calculations on the separate simulated columns (i.e., some columns are identical, others are completely uncorrelated).
+
+
+#### Value
+If n = 1 a vector of the same length as mu, otherwise an n by length(mu) matrix with one sample
+in each row.
+Author(s)
+Ripley, B.D. with revision by Paul E. Johnson
+
+#### References
+Venables,W. N. & Ripley, B. D. (2002) Modern Applied Statistics with S. Fourth Edition. Springer,
+New York. ISBN 0-387-95457-0
+See Also
+For an alternative multivariate normal generator function, one which has had this fix applied to it,
+consider using the new versions of rmvnorm in the package mvtnorm.
