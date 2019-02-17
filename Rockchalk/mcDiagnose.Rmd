@@ -1,5 +1,5 @@
 ---
-title: "Rockchalk"
+title: "Rockchalk::mcDiagnose "
 output: html_document
 ---
 
@@ -8,7 +8,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(rockchalk)
 ```
 
-mcDiagnose Multi-collinearity diagnostics
+Multi-collinearity diagnostics
 
 #### Description
 
@@ -17,8 +17,9 @@ Conducts a series of checks for multicollinearity.
 #### Usage
 
 mcDiagnose(model)
-Arguments
-model a fitted regression model
+
+#### Arguments
+* model a fitted regression model
 
 #### Examples
 ```{r}
@@ -58,7 +59,8 @@ m3 <- lm(y3 ~ x1 + poly(x2,2) + log(x1) + z1, dat)
 summary(m3)
 ```
 
-Value
+#### Value
 a list of the "auxiliary regressions" that were fitted during the analysis
-Author(s)
+
+#### Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
