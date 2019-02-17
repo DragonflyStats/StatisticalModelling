@@ -1,4 +1,14 @@
-checkIntFormat A way of checking if a string is a valid file name.
+---
+title: "``rockchalk::checkIntFormat``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
+ A way of checking if a string is a valid file name.
 
 #### Description
 
