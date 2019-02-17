@@ -1,5 +1,15 @@
+---
+title: "``rockchalk::summarize ``"
+output: html_document
+---
 
-summarize Sorts numeric from discrete variables and returns separate summaries for those types of variables.
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
+Sorts numeric from discrete variables and returns separate summaries for those types of variables.
 
 
 #### Description
@@ -21,26 +31,13 @@ summarize(dat, alphaSort = FALSE,
 
 * dat A data frame
 * alphaSort If TRUE, the columns are re-organized in alphabetical order. If FALSE, they are presented in the original order.
-* stats A vector of desired summary statistics. Set stats = NULL to omit all stat summaries.
-Legal elements are c("min", "med", "max", "mean", "sd", "var","skewness", "kurtosis", The statistics c("entropy", "normedEntropy") are available only for factor variables, while mean, variance, and so forth will be calculated only for numeric
-variables. "nobs" is the number of observations with non-missing, finite scores
-(not NA, NaN, -Inf, or Inf). "nmiss" is the number of cases with values of
-NA. The default setting for probs will cause c("min", "med", "max") to be
-included, they need not be requested explicitly. To disable them, revise probs.
+* stats A vector of desired summary statistics. Set stats = NULL to omit all stat summaries. Legal elements are c("min", "med", "max", "mean", "sd", "var","skewness", "kurtosis", The statistics c("entropy", "normedEntropy") are available only for factor variables, while mean, variance, and so forth will be calculated only for numeric variables. "nobs" is the number of observations with non-missing, finite scores (not NA, NaN, -Inf, or Inf). "nmiss" is the number of cases with values of NA. The default setting for probs will cause c("min", "med", "max") to be included, they need not be requested explicitly. To disable them, revise probs.
 * probs For numeric variables, is used with the quantile function. The default is probs = c(0, .50, 1.0), which are labeled in output as c("min", "med", and "max"). Set probs = NULL to prevent these in the output.
-digits Decimal values to display, defaults as 2.
-* ... Optional arguments
- that are passed to summarizeNumerics and summarizeFactors.
-For numeric variables, one can specify na.rm and unbiased. For discrete variables,
-the key argument is maxLevels, which determines the number of levels
-that will be reported in tables for discrete variables.
-
-
+* digits Decimal values to display, defaults as 2.
+* ... Optional arguments that are passed to summarizeNumerics and summarizeFactors. For numeric variables, one can specify na.rm and unbiased. For discrete variables, the key argument is maxLevels, which determines the number of levels that will be reported in tables for discrete variables.
 
 #### Examples
 ```{r}
-
-
 library(rockchalk)
 set.seed(23452345)
 N <- 100
@@ -122,17 +119,12 @@ formatSummarizedFactors(datsumm[["factors"]], digits = 6, maxLevels = 10)
 
 #### Details
 
-The major purpose here is to generate summary data structure that is more useful in subsequent data
-analysis. The numeric portion of the summaries are a data frame that can be used in plots or other
-diagnostics.
-The term "factors" was used, but "discrete variables" would have been more accurate. The factor
-summaries will collect all logical, factor, ordered, and character variables.
-Other variable types, such as Dates, will be ignored, with a warning.
-Value
+The major purpose here is to generate summary data structure that is more useful in subsequent data analysis. The numeric portion of the summaries are a data frame that can be used in plots or other diagnostics.
+The term "factors" was used, but "discrete variables" would have been more accurate. The factor summaries will collect all logical, factor, ordered, and character variables. Other variable types, such as Dates, will be ignored, with a warning.
+
+#### Value
 Return is a list with two objects 1) output from summarizeNumerics: a data frame with variable
-names on rows and summary stats on columns, 2) output from summarizeFactors: a list with summary
-information about each discrete variable. The display on-screen is governed by a method
-print.summarize.
-summarize 115
-Author(s)
+names on rows and summary stats on columns, 2) output from summarizeFactors: a list with summary information about each discrete variable. The display on-screen is governed by a method print.summarize.
+
+#### Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
