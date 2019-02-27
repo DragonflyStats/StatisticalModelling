@@ -8,15 +8,11 @@ knitr::opts_chunk$set(echo = TRUE)
 library(rockchalk)
 ```
 
- Create predicted values after choosing values of predictors. Can
-demonstrate marginal effects of the predictor variables.
+ Create predicted values after choosing values of predictors. Can demonstrate marginal effects of the predictor variables.
 
 #### Description
 
-It creates "newdata" frames which are passed to predict. The key idea is that each predictor has
-certain focal values on which we want to concentrate. We want a more-or-less easy way to spawn
-complete newdata objects along with fitted values. The newdata function creates those objects, its
-documentation might be helpful in understanding some nuances.
+It creates "newdata" frames which are passed to predict. The key idea is that each predictor has certain focal values on which we want to concentrate. We want a more-or-less easy way to spawn complete newdata objects along with fitted values. The newdata function creates those objects, its documentation might be helpful in understanding some nuances.
 
 #### Usage
 <pre><code>
@@ -25,17 +21,13 @@ predictOMatic(model = NULL, predVals = "margins", divider = "quantile",n = 5, ..
 
 #### Arguments
 
-* model Required. A fitted regression model. A predict method must exist for that model.
-* predVals Optional. How to choose predictor values? Can be as simple as a keyword "auto" or "margins". May also be very fine-grained detail, including 1) a vector of variable names (for which values will be automatically selected) 2) a named
-vector of variable names and divider functions, or 3) a list naming variables and
-values. See details and examples.
+* ``model``: Required. A fitted regression model. A predict method must exist for that model.
+* ``predVals``: Optional. How to choose predictor values? Can be as simple as a keyword "auto" or "margins". May also be very fine-grained detail, including 1) a vector of variable names (for which values will be automatically selected) 2) a named
+vector of variable names and divider functions, or 3) a list naming variables and values. See details and examples.
 
-* divider An algorithm name from c("quantile", "std.dev", "seq", "table") or a user-provided function. This sets the method for selecting values of the predictor. 
-Documentation
-for the rockchalk methods can be found in the functions cutByQuantile, cutBySD, plotSeq, and cutByTable,.
+* ``divider``: An algorithm name from c("quantile", "std.dev", "seq", "table") or a user-provided function. This sets the method for selecting values of the predictor.  Documentation for the rockchalk methods can be found in the functions cutByQuantile, cutBySD, plotSeq, and cutByTable,.
 * n Default = 5. The number of values for which predictions are sought.
-... Optional Arguments
- to be passed to the predict function. In particular, the Arguments
+* ``...``: Optional arguments to be passed to the predict function. In particular, the Arguments
 
 se.fit and interval are extracted from ... and used to control the output.
 
@@ -162,7 +154,8 @@ summarize(m1.data)
 x2 = quantile(m1.data$x2, na.rm = TRUE), x3 = c(-1,0,1))))
 ```
 
-```{r}(m1.p1 <- predictOMatic(m1, divider = "std.dev", n = 5))
+```{r}
+(m1.p1 <- predictOMatic(m1, divider = "std.dev", n = 5))
 (m1.p2 <- predictOMatic(m1, divider = "quantile", n = 5))
 (m1.p3 <- predictOMatic(m1, predVals = list(x1 = c(6, 8, 10),
 x2 = median(m1.data$x2, na.rm = TRUE))))
