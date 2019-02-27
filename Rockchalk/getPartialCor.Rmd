@@ -1,4 +1,14 @@
-getPartialCor Calculates partial correlation coefficients after retrieving data matrix
+---
+title: "``rockchalk::getPartialCor``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(rockchalk)
+```
+
+ Calculates partial correlation coefficients after retrieving data matrix
 froma fitted regression model
 
 #### Description
