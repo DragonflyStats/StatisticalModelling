@@ -1,12 +1,18 @@
+---
+title: "``Rockchalk::rbindFill``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(Rockchalk)
+```
 
 rbindFill Stack together data frames
 
 #### Description
 
-In the end of the code for plyr::rbind.fill, the author explains that is uses an experimental function
-to build the data.frame. I would rather not put any weight on an experimental function, so I sat out
-to create a new rbindFill. This function uses no experimental functions. It does not rely on any
-functions from packages that are not in base of R, except, of course, for functions in this package.
+In the end of the code for plyr::rbind.fill, the author explains that is uses an experimental function to build the data.frame. I would rather not put any weight on an experimental function, so I sat out to create a new rbindFill. This function uses no experimental functions. It does not rely on any functions from packages that are not in base of R, except, of course, for functions in this package.
 
 #### Usage
 <pre><code>
