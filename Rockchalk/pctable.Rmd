@@ -1,7 +1,14 @@
+---
+title: "``Rockchalk::pctable``"
+output: html_document
+---
 
-pctable Creates a cross tabulation with counts and percentages
-
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(Rockchalk)
+``` 
 #### Description
+Creates a cross tabulation with counts and percentages
 
 
 
@@ -24,10 +31,7 @@ cvlab = NULL, colpct = TRUE, rowpct = FALSE, rounded = FALSE, ...)
 #### Arguments
 
 rv A row variable name
-... Other 
-</code></pre>
-#### Arguments
-. So far, the most likely additional 
+... Other arguments. So far, the most likely additional 
 </code></pre>
 #### Arguments
  are to be passed
@@ -37,13 +41,13 @@ methods will also pass along these Arguments
  to model.frame, "subset" "xlev",
 "na.action", "drop.unused.levels".
 cv Column variable
-rvlab Optional: row variable label
-cvlab Optional: col variable label
-colpct Default TRUE: are column percentags desired in the presentation of this result?
-rowpct Default FALSE: are row percentages desired in the presentation of this result
-rounded Default FALSE, rounds to 10âs for privacy purposes.
-formula A two sided formula.
-data A data frame.
+* rvlab Optional: row variable label
+* cvlab Optional: col variable label
+* colpct Default TRUE: are column percentags desired in the presentation of this result?
+* rowpct Default FALSE: are row percentages desired in the presentation of this result
+* rounded Default FALSE, rounds to 10âs for privacy purposes.
+* formula A two sided formula.
+* data A data frame.
 
 #### Examples
 ```{r}
