@@ -1,3 +1,12 @@
+---
+title: "``Rockchalk::waldt``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(Rockchalk)
+```
 
 waldt T-test for the difference in 2 regression parameters
 
