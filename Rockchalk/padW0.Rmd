@@ -1,5 +1,13 @@
+---
+title: "``Rockchalk::padW0``"
+output: html_document
+---
 
-## padW0 
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(Rockchalk)
+```
+
 
 Pad with 0s.
 
@@ -39,5 +47,4 @@ A character string vector padded with 0âs
 
 #### Author(s)
 Paul Johnson <pauljohn@ku.edu>
-74 pctable
 
