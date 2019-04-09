@@ -14,24 +14,27 @@ meanCenter meanCenter
 meanCenter selectively centers or standarizes variables in a regression model.
 
 #### Usage
-
+</pre><code>
 meanCenter(model, centerOnlyInteractors = TRUE, centerDV = FALSE,
 standardize = FALSE, terms = NULL)
 ## Default S3 method:
 meanCenter(model, centerOnlyInteractors = TRUE,
 centerDV = FALSE, standardize = FALSE, terms = NULL)
-Arguments
-model a fitted regression model (presumably from lm)
-centerOnlyInteractors
+</code></pre>
+
+#### Arguments
+
+* ``model``: a fitted regression model (presumably from lm)
+* ``centerOnlyInteractors``:
 Default TRUE. If FALSE, all numeric predictors in the regression data frame
 are centered before the regression is conducted.
-centerDV Default FALSE. Should the dependent variable be centered? Do not set this
+* ``centerDV``: Default FALSE. Should the dependent variable be centered? Do not set this
 option to TRUE unless the dependent variable is a numeric variable. Otherwise,
 it is an error.
-standardize Default FALSE. Instead of simply mean-centering the variables, should they
+* ``standardize``: Default FALSE. Instead of simply mean-centering the variables, should they
 also be "standardized" by first mean-centering and then dividing by the estimated
 standard deviation.
-terms Optional. A vector of variable names to be centered. Supplying this argument
+* ``terms``: Optional. A vector of variable names to be centered. Supplying this argument
 will stop meanCenter from searching for interaction terms that might need to be
 centered.
 
@@ -125,19 +128,19 @@ m4mc3 <- meanCenter(m4, terms = "x1", centerDV = TRUE, standardize = TRUE)
 summary(m4mc3)
 ```
 
-Details
+#### Details
 
-Works with "lm" class objects, objects estimated by glm(). This centers some or all of the the
+Works with "lm" class objects, objects estimated by ``glm()``. This centers some or all of the the
 predictors and then re-fits the original model with the new variables. This is a convenience to researchers
 who are often urged to center their predictors. This is sometimes suggested as a way
 to ameliorate multi-collinearity in models that include interaction terms (Aiken and West, 1991;
 Cohen, et al 2002). Mean-centering may enhance interpretation of the regression intercept, but
 it actually does not help with multicollinearity. (Echambadi and Hess, 2007). This function facilitates
 comparison of mean-centered models with others by calculating centered variables. The
-defaults will cause a regression’s numeric interactive variables to be mean centered. Variations on
+defaults will cause a regression's numeric interactive variables to be mean centered. Variations on
 the arguments are discussed in details.
 
-Suppose the user’s formula that fits the original model is m1 <- lm(y ~ x1*x2 + x3 + x4, data = dat).
+Suppose the user's formula that fits the original model is m1 <- lm(y ~ x1*x2 + x3 + x4, data = dat).
 The fitted model will include estimates for predictors x1, x2, x1:x2, x3 and x4. By default,
 meanCenter(m1) scans the output to see if there are interaction terms of the form x1:x2. If so,
 then x1 and x2 are replaced by centered versions (m1-mean(m1)) and (m2-mean(m2)). The model
@@ -147,7 +150,7 @@ object.
 
 The user can claim control over which variables are centered in several ways. Most directly, by
 specifying a vector of variable names, the user can claim direct control. For example, the argument
-terms=c("x1","x2","x3") would cause 3 predictors to be centered. If one wants all predictors
+``terms=c("x1","x2","x3")`` would cause 3 predictors to be centered. If one wants all predictors
 to be centered, the argument centerOnlyInteractors should be set to FALSE. Please note, this
 WILL NOT center factor variables. But it will find all numeric predictors and center them.
 
@@ -162,7 +165,7 @@ the style of SPSS). meanCenter with standardize = TRUE will only try to standard
 predictors.
 
 To be completely clear, I believe mean-centering is not helpful with the multicollinearity problem.
-It doesn’t help, it doesn’t hurt. Only a misunderstanding leads its proponents to claim otherwise.
+It doesn't help, it doesn't hurt. Only a misunderstanding leads its proponents to claim otherwise.
 This is emphasized in the vignette "rockchalk" that is distributed with this package.
 
 #### Value
@@ -170,12 +173,12 @@ A regression model of the same type as the input model, with attributes represen
 the centered variables.
 Author(s)
 Paul E. Johnson <pauljohn@ku.edu>
-References
+
+#### References
 Aiken, L. S. and West, S.G. (1991). Multiple Regression: Testing and Interpreting Interactions.
 Newbury Park, Calif: Sage Publications.
 Cohen, J., Cohen, P.,West, S. G., and Aiken, L. S. (2002). Applied Multiple Regression/Correlation
 Analysis for the Behavioral Sciences (Third.). Routledge Academic.
 Echambadi, R., and Hess, J. D. (2007). Mean-Centering Does Not Alleviate Collinearity Problems
 in Moderated Multiple Regression Models. Marketing Science, 26(3), 438-445.
-See Also
-standardize residualCenter
+

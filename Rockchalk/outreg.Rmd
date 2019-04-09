@@ -9,7 +9,8 @@ library(rockchalk)
 ```
 
 
- Creates a publication quality result table for regression models. Works with models fitted with lm, glm, as well as lme4.
+* Creates a publication quality result table for regression models.
+* Works with models fitted with lm, glm, as well as lme4.
 
 #### Description
 
@@ -29,45 +30,41 @@ Blist = NULL, title, label, gofNames, print.results = TRUE, browse = identical(t
 #### Arguments
 
 * ``modelList``: A regression model or an R list of regression models. Default model names
-will be M1, M2, and so forth. User specified names are allowed, such as list("My Model" = m1, "Her Model" = m2). This is the currently recommended way to supply model lables. This is less error prone than the use of the modelLabels argument.
+will be M1, M2, and so forth. User specified names are allowed, such as ``list("My Model" = m1, "Her Model" = m2)``. This is the currently recommended way to supply model lables. This is less error prone than the use of the modelLabels argument.
 * ``type`` Default = "latex". The alternatives are "html" and "csv"
-* modelLabels This is allowed, but discouraged. A vector of character string variables, one for each element in modelList. Will override the names in modelList.
+* ``modelLabels``: This is allowed, but discouraged. A vector of character string variables, one for each element in modelList. Will override the names in modelList.
 * ``varLabels`` To beautify the parameter names printed. Must be a named vector in the format
-c(parmname = "displayName", parmname = "displayName"). Include as many parameters as desired, it is not necessary to supply new labels for all of the parameters.
-* ``tight`` Table format. If TRUE, parameter estimates and standard errors are printed in
-a single column. If FALSE, parameter estimates and standard errors are printed
-side by side.
-centering Default is "none", but may be "siunitx" or "dcolumn". No centering has been
-the only way until this version. User feedback requested. Donât forget to insert
-usepackage statment in document preamble for siunitx or dcolumn. If user specifies centering=TRUE, the siunitx method will be used. The dcolumn approach assumes that the values reported in the column use fewer than 3 integer
-places and 3 decimal places. Additional room is allocated for the significance stars.
-* showAIC This is a legacy argument, before the request argument was created. If TRUE,
+``c(parmname = "displayName", parmname = "displayName")``. Include as many parameters as desired, it is not necessary to supply new labels for all of the parameters.
+* ``tight`` Table format. If TRUE, parameter estimates and standard errors are printed in a single column. If FALSE, parameter estimates and standard errors are printed side by side.
+* ``centering`` Default is "none", but may be "siunitx" or "dcolumn". No centering has been
+the only way until this version. User feedback requested. Don't forget to insert usepackage statment in document preamble for siunitx or dcolumn. If user specifies centering=TRUE, the siunitx method will be used. The dcolumn approach assumes that the values reported in the column use fewer than 3 integer places and 3 decimal places. Additional room is allocated for the significance stars.
+* ``showAIC``: This is a legacy argument, before the request argument was created. If TRUE,
 the AIC estimate is included with the diagnostic values. It has the same effect
 as described by request.
-* float Default = FALSE. Include boilerplate for a LaTeX table float, with the tabular
-markup inside it. Not relevant if type = "html".
-request Extra information to be retrieved from the summary(model) and displayed. This must be a vector of named arguments, such as c(adj.r.squared = "adj $R^2$",
-fstatistic = "F"). The name must be a valid name of the output object, the value
+* ``float``: Default = FALSE. Include boilerplate for a LaTeX table float, with the tabular
+markup inside it. Not relevant if ``type = "html"``.
+request Extra information to be retrieved from the summary(model) and displayed. This must be a vector of named arguments, such as ``c(adj.r.squared = "adj $R^2$",
+fstatistic = "F")``. The name must be a valid name of the output object, the value
 should be the label the user wants printed in the table. See details.
 
-* runFuns A list of functions
-* digits Default = 3. How many digits after decimal sign are to be displayed.
-* alpha Default = c(0.05, 0.01, 0.001). I think stars are dumb, but enough people have
+* ``runFuns``: A list of functions
+* ``digits``: Default = 3. How many digits after decimal sign are to be displayed.
+* ``alpha``: Default = c(0.05, 0.01, 0.001). I think stars are dumb, but enough people have
 asked me for more stars that Iâm caving in.
-* SElist Optional. Replacement standard errors. Must be a list of named vectors. outreg
+* ``SElist``: Optional. Replacement standard errors. Must be a list of named vectors. outreg
 uses the R summary to retrieve standard errors, but one might instead want to
 use robust or bootstrapped standard errors. This argument may supply a new SE
 vector for each fitted regression model, but it is also allowed to supply the SE replacement
-for just one of the models. The format should be list("A Model Label"
-= c(0.1, 0.3, 0.4), "Another Model Label" = c(0.4, 0.2, 0.3). On
+for just one of the models. The format should be ``list("A Model Label"
+= c(0.1, 0.3, 0.4), "Another Model Label" = c(0.4, 0.2, 0.3)``. On
 the left, one must use the same names that are used in the modelList argument.
-* PVlist Optional. A list of replacement "p values". It must be a list of named vectors,
+* ``PVlist`` Optional. A list of replacement "p values". It must be a list of named vectors,
 similar in format to SElist. The which the elements are the "p values" that the
 user wants to use for each model.
-* Blist Optional. This is only needed in the rare case where a modelâs parameters cannot
+* ``Blist`` Optional. This is only needed in the rare case where a modelâs parameters cannot
 be discerned from its summary. List must have names for models, and vectors
 slope coefficient. See discussion of SElist and PVlist.
-* title A LaTeX caption for the table. Not relevant if type = "html".
+* ``title`` A LaTeX caption for the table. Not relevant if type = "html".
 * label A string to be used as a LaTeX label in the table to be created. Not relevant if
 type = "html".
 * gofNames Optional pretty names. R regression summaries use names like "sigma" or
@@ -99,6 +96,9 @@ ex1 <- outreg(m1, title = "My One Tightly Printed Regression",
 float = TRUE, print.results = FALSE, centering = "siunitx")
 ## Show markup, Save to file with cat()
 cat(ex1)
+```
+
+```{r}
 ## cat(ex1, file = "ex1.tex")
 ex2 <- outreg(list("Fingers" = m1), tight = FALSE,
 title = "My Only Spread Out Regressions", float = TRUE,
@@ -108,18 +108,24 @@ varLabels = list(x1 = "Billie"),
 title = "My Two Linear Regressions", request = c(fstatistic = "F"),
 print.results = TRUE)
 cat(ex3)
+```
+
+```{r}
 ex4 <- outreg(list("Model A" = m1, "Model B" = m2),
 modelLabels = c("Overrides ModelA", "Overrides ModelB"),
 varLabels = list(x1 = "Billie"),
 title = "Note modelLabels Overrides model names")
 cat(ex4)
+```
+
+```{r}
 ex5 <- outreg(list("Whichever" = m1, "Whatever" = m2),
 title = "Still have showAIC argument, as in previous versions",
 showAIC = TRUE, float = TRUE, centering = "siunitx")
 ex5s <- outreg(list("Whichever" = m1, "Whatever" = m2),
-```
 
-```{r}
+
+
 title = "Still have showAIC argument, as in previous versions",
 showAIC = TRUE, float = TRUE, centering = "siunitx")
 ## Launches HTML browse
@@ -197,10 +203,11 @@ ex19 <- outreg(list("Random Effects" = fm1,
 "OLS" = lm1, "OLS Robust SE" = lm1),
 SElist = list("OLS Robust SE" = lm1rse), type = "html")
 }
+
+```
+```{r}
 ## From the glmer 
 #### Examples
-```{r}
-
 
 gm2 <- glmer(cbind(incidence, size - incidence) ~ period + (1 | herd),
 data = cbpp, family = binomial)
@@ -216,7 +223,7 @@ type = "html")
 #### Details
 
 outreg returns a string vector. It is suggested that users should save the outreg result and then use
-cat to save it. That is myMod <- outreg(m1, ...) cat(myMod, file = "myMod.html") or cat(myMod,
+cat to save it. That is ``myMod <- outreg(m1, ...) cat(myMod, file = "myMod.html")`` or cat(myMod,
 file = "myMod.tex". In version 1.8.66, we write the html file to a temporary location and display it
 in a web browser. Many word processors will not accept a cut-and paste transfer from the browser,
 they will, however, be able to open the html file itself and automatically re-format it in the native

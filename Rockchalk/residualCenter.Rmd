@@ -30,15 +30,12 @@ predict(object, ...)
 #### Arguments
 
 * ``model``:  A fitted lm object
-* object Fitted residual-centered regression from residualCenter
-* ... Other named arguments
-. May include newdata, a dataframe of predictors. That should include values for individual predictor, need not include interactions that are constructed by residualCenter. These parameters that will be passed to the predict method of the model.
+* ``object``: Fitted residual-centered regression from residualCenter
+* ``...``: Other named arguments, may include newdata, a dataframe of predictors. That should include values for individual predictor, need not include interactions that are constructed by ``residualCenter``. These parameters that will be passed to the predict method of the model.
 
 
 #### Examples
 ```{r}
-
-
 set.seed(123)
 x1 <- rnorm(100)
 x2 <- rnorm(100)
@@ -53,6 +50,9 @@ m1RCs <- summary(m1RC)
 ## The stage 1 centering regressions can be viewed as well
 ## lapply(m1RC$rcRegressions, summary)
 ## Verify residualCenter() output against the manual calculation
+```
+
+```{r}
 dat$x1rcx2 <- as.numeric(resid(lm(I(x1*x2) ~ x1 + x2, data = dat)))
 m1m <- lm(y ~ x1 + x2 + x4 + x1rcx2, data=dat)
 summary(m1m)
@@ -64,7 +64,6 @@ m2RCs <- summary(m2RC)
 dat$x2rcx3 <- as.numeric(resid(lm(I(x2*x3) ~ x2 + x3, data = dat)))
 dat$x1rcx3 <- as.numeric(resid(lm(I(x1*x3) ~ x1 + x3, data = dat)))
 dat$x1rcx2rcx3 <- as.numeric( resid(lm(I(x1*x2*x3) ~ x1 + x2 + x3 + x1rcx2 +
-110 residualCenter
 x1rcx3 + x2rcx3 , data=dat)))
 (m2m <- lm(y ~ x1 + x2 + x3+ x4 + x1rcx2 + x1rcx3 + x2rcx3 + x1rcx2rcx3,
 data = dat))
@@ -77,7 +76,9 @@ cbind("residualCenter" = coef(m2RC), "manual" = coef(m2m))
 ### pequodm1s <- summary(pequodm1)
 ### coef(pequodm1s)
 ### }
-### Works with any number of interactions. See:
+```
+
+```{r}
 m3 <- lm(y~ x1*x2*x3*x4, data=dat)
 m3RC <- residualCenter(m3)
 summary(m3RC)
@@ -101,6 +102,9 @@ x2rcx3rcx4, data=dat)))
 x2rcx4 + x3rcx4 + x1rcx2rcx3 + x1rcx2rcx4 + x1rcx3rcx4 +
 x2rcx3rcx4 + x1rcx2rcx3rcx4, data=dat))
 cbind("residualCenter"=coef(m3RC), "manual"=coef(m3m))
+```
+
+```{r}
 ### If you want to fit a sequence of models, as in pequod, can do.
 tm <-terms(m2)
 tmvec <- attr(terms(m2), "term.labels")
@@ -109,12 +113,15 @@ f2 <- tmvec[grep(":.*:", tmvec, invert = TRUE)]
 f3 <- tmvec[grep(":.*:.*:", tmvec, invert = TRUE)]
 ## > f1
 ## [1] "x1" "x2" "x3" "x4"
-skewness 111
+
 ## > f2
 ## [1] "x1" "x2" "x3" "x4" "x1:x2" "x1:x3" "x2:x3"
 ## > f3
 ## [1] "x1" "x2" "x3" "x4" "x1:x2" "x1:x3" "x2:x3"
 ## [8] "x1:x2:x3"
+```
+
+```{r}
 f1 <- lm(as.formula(paste("y","~", paste(f1, collapse=" + "))), data=dat)
 f1RC <- residualCenter(f1)
 summary(f1RC)
@@ -124,6 +131,9 @@ summary(f2RC)
 f3 <- lm(as.formula(paste("y","~", paste(f3, collapse=" + "))), data=dat)
 f3RC <- residualCenter(f3)
 summary(f3RC)
+```
+
+```{r}
 library(rockchalk)
 dat <- genCorrelatedData(1000, stde=5)
 m1 <- lm(y ~ x1 * x2, data=dat)
@@ -134,7 +144,7 @@ summary(m1rc)
 newdf <- apply(dat, 2, summary)
 newdf <- as.data.frame(newdf)
 predict(m1rc, newdata=newdf)
-
+```
 
 #### Value
 a regression model of the type as the input model, with the exception that the residualCentered predictor is used in place of the original interaction. The return model includes new variable centeringRegressions:

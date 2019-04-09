@@ -16,7 +16,7 @@ genCorrelatedData Generates a data frame for regression analysis
 
 The output is a data frame (x1, x2, y) with user-specified correlation between x1 and x2. The y
 (output) variable is created according to the equation
-$$y = beta1 + beta2  x1 + beta3  x2 + beta4  x1  x2 + e:$$
+$$y = \beta_0 \;+\; \beta_1 \times x_1 \;+\; \beta_2 \times x_2 \;+\; \beta_3 \times x_1 \times x_2 \;+\;e:$$
   The arguments determine the scales of the X matrix, the random error, and the slope coefficients.
 
 #### Usage
@@ -26,12 +26,13 @@ genCorrelatedData(N = 100, means = c(50, 50), sds = c(10, 10), rho = 0,
 </code></pre>
   
 #### Arguments
-* N Number of cases desired
-* means 2-vector of means for x1 and x2
-* sds 2-vector of standard deviations for x1 and x2
-* rho Correlation coefficient for x1 and x2
-* stde standard deviation of the error term in the data generating equation
-* beta beta vector of at most 4 coefficients for intercept, slopes, and interaction
+
+* ``N``: Number of cases desired
+* ``means``: 2-vector of means for x1 and x2
+* ``sds``: 2-vector of standard deviations for x1 and x2
+* ``rho``: Correlation coefficient for x1 and x2
+* ``stde``: standard deviation of the error term in the data generating equation
+* ``beta``: beta vector of at most 4 coefficients for intercept, slopes, and interaction
 
 
 #### Examples

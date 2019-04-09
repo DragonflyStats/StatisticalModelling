@@ -1,0 +1,29 @@
+---
+title: "getVIF"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+getVIF Converts the R-square to the variance inflation factor
+
+#### Description
+
+calculates vif = 1/(1-R-square)
+
+#### Usage
+
+getVIF(rsq)
+
+
+#### Arguments
+rsq a vector of real values, presumably fitted R-squares
+
+#### Value
+a vector of vif estimates
+
+#### Author(s)
+Paul E. Johnson <pauljohn@ku.edu>
+

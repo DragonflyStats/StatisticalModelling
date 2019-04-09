@@ -1,5 +1,5 @@
 ---
-title: "``getDeltaRsquare``"
+title: "``rockchalk::getDeltaRsquare``"
 output: html_document
 ---
   
@@ -22,7 +22,7 @@ getDeltaRsquare(model)
 
 
 #### Arguments
-* model a fitted regression model
+* ``model``: a fitted regression model
 
 #### Examples
 
@@ -46,5 +46,6 @@ getDeltaRsquare(m2)
 
 ### Value
 a vector of estimates of the delta R-squares
-Author(s)
+
+#### Author(s)
 Paul E. Johnson <pauljohn@ku.edu>

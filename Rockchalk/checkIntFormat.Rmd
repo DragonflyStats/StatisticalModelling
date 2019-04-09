@@ -12,17 +12,20 @@ library(rockchalk)
 
 #### Description
 
-A copy from R's grDevices:::checkIntFormat because it is not exported there
+A copy from R's ``grDevices:::checkIntFormat`` because it is not exported there
 
 #### Usage
 <pre><code>
 checkIntFormat(s)
 </code></pre>
+
 #### Arguments
 
-s An integer
-Value
+* ``s`` An integer
+
+#### Value
 logical: TRUE or FALSE
-Author(s)
+
+#### Author(s)
 R Core Development Team
 
