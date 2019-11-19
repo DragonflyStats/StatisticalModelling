@@ -1,0 +1,15 @@
+
+stepdata Test Data Set
+
+#### Description 
+
+Test Data Set
+
+####Usage 
+<pre><code>
+stepdata
+</code></pre>
+  
+#### Format 
+
+An object of class data.frame with 20000 rows and 7 columns.

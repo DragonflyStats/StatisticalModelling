@@ -1,0 +1,41 @@
+
+---
+ title: "``ols_pred_rsq``"
+output: html_document
+---
+  
+  ```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+
+### Predicted rsquare
+
+#### Description 
+
+Use predicted rsquared to determine how well the model predicts responses for new observations.
+Larger values of predicted R2 indicate models of greater predictive ability.
+
+####Usage 
+<pre><code>
+  
+  ols_pred_rsq(model)
+
+</code></pre>
+
+#### Arguments 
+  
+*  ``model``: An object of class lm.
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_pred_rsq(model)
+```
+
+#### Value
+Predicted rsquare of the model.
+See Also
+Other influence measures: ols_hadi, ols_leverage, ols_press

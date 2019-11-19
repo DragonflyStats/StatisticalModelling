@@ -1,0 +1,24 @@
+ols_prep_regress_y Regress y on other predictors
+
+#### Description 
+ 
+Regress y on all the predictors except the ith predictor.
+
+####Usage 
+<pre><code>
+
+ols_prep_regress_y(data, i)
+
+ <\code><\pre>
+#### Arguments 
+ 
+data A data.frame.
+i A numeric vector (indicates the predictor in the model).
+40 ols_prep_rstudlev_data
+
+####Examples 
+```{r} 
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+data <- ols_prep_avplot_data(model)
+ols_prep_regress_y(data, 1)
+```

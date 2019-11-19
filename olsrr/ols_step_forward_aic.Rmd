@@ -1,0 +1,71 @@
+---
+title: "``ols_step_both_p ``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Stepwise regression
+
+#### Description 
+ 
+Build regression model from a set of candidate predictor variables by entering and removing predictors
+based on p values, in a stepwise manner until there is no variable left to enter or remove any
+more.
+
+#### Usage 
+<pre><code>
+
+ols_step_both_p(model, ...)
+## Default S3 method:
+ols_step_both_p(model, pent = 0.1, prem = 0.3,
+                details = FALSE, ...)
+## S3 method for class 'ols_step_both_p'
+plot(x, model = NA, ...)
+</code></pre>
+
+#### Arguments
+* model An object of class lm; the model should include all candidate predictor variables.
+* ... Other arguments.
+* pent p value; variables with p value less than pent will enter into the model.
+* prem p value; variables with p more than prem will be removed from the model.
+* details Logical; if TRUE, will print the regression result at each step.
+* x An object of class ols_step_both_p.
+
+#### Examples 
+```{r} 
+# stepwise regression
+model <- lm(y ~ ., data = surgical)
+ols_step_both_p(model)
+# stepwise regression plot
+model <- lm(y ~ ., data = surgical)
+k <- ols_step_both_p(model)
+plot(k)
+# final model
+k$model
+```
+
+#### Value
+ols_step_both_p returns an object of class "ols_step_both_p". An object of class "ols_step_both_p"
+is a list containing the following components:
+* model final model; an object of class lm
+* orders candidate predictor variables according to the order by which they were added or removed from the model method addition/deletion
+* steps total number of steps
+* predictors variables retained in the model (after addition)
+* rsquare coefficient of determination
+* aic akaike information criteria
+* sbc bayesian information criteria
+* sbic sawa’s bayesian information criteria
+* adjr adjusted r-square
+* rmse root mean square error
+* mallows_cp mallow’s Cp
+* indvar predictors
+
+#### Deprecated Function
+ols_stepwise() has been deprecated. Instead use ols_step_both_p().
+
+#### References
+Chatterjee, Samprit and Hadi, Ali. Regression Analysis by Example. 5th ed. N.p.: John Wiley & Sons, 2012. Print.

@@ -1,0 +1,14 @@
+fitness Test Data Set
+
+#### Description 
+
+Test Data Set
+
+####Usage 
+<pre><code>
+  
+  fitness
+
+#### Format 
+
+An object of class data.frame with 31 rows and 7 columns.

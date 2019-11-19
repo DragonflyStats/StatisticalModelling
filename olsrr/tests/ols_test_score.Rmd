@@ -1,0 +1,69 @@
+---
+title: "``ols_test_score``: Score test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+
+
+
+#### Description
+Test for heteroskedasticity under the assumption that the errors are independent and identically
+distributed (i.i.d.).
+
+####Usage 
+<pre><code>
+ols_test_score(model, fitted_values = TRUE, rhs = FALSE, vars = NULL)
+</code></pre>
+
+#### Arguments
+* model An object of class lm.
+* fitted_values Logical; if TRUE, use fitted values of regression model.
+* rhs Logical; if TRUE, specifies that tests for heteroskedasticity be performed for the
+* right-hand-side (explanatory) variables of the fitted regression model.
+* vars Variables to be used for for heteroskedasticity test.
+
+####Examples 
+```{r} 
+
+# model
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+# using fitted values of the model
+ols_test_score(model)
+# using predictors from the model
+ols_test_score(model, rhs = TRUE)
+# specify predictors from the model
+ols_test_score(model, vars = c('disp', 'wt'))
+```
+
+
+
+#### Value
+ols_test_score returns an object of class "ols_test_score". An object of class "ols_test_score"
+is a list containing the following components:
+* score f statistic
+* p p value of score
+* df degrees of freedom
+* fv fitted values of the regression model
+* rhs names of explanatory variables of fitted regression model
+* resp response variable
+* preds predictors
+
+#### Deprecated Function
+ols_score_test() has been deprecated. Instead use ols_test_score().
+
+#### References
+Breusch, T. S. and Pagan, A. R. (1979) A simple test for heteroscedasticity and random coefficient
+variation. Econometrica 47, 1287–1294.
+Cook, R. D. and Weisberg, S. (1983) Diagnostics for heteroscedasticity in regression. Biometrika
+70, 1–10.
+Koenker, R. 1981. A note on studentizing a test for heteroskedasticity. Journal of Econometrics 17:
+  107–112.
+See Also
+Other heteroskedasticity tests: ols_test_bartlett, ols_test_breusch_pagan, ols_test_f
+
+

@@ -1,0 +1,38 @@
+---
+title: "``ols_plot_resid_regressor``"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Residual vs regressor plot
+
+#### Description 
+
+Graph to determine whether we should add a new predictor to the model already containing other predictors. The residuals from the model is regressed on the new predictor and if the plot shows non random pattern, you should consider adding the new predictor to the model.
+
+####Usage 
+<pre><code>
+  
+ols_plot_resid_regressor(model, variable)
+
+</code></pre>
+
+#### Arguments 
+  
+* model An object of class lm.
+* variable New predictor to be added to the model.
+#### Deprecated Function
+ols_rvsr_plot() has been deprecated. Instead use ols_plot_resid_regressor().
+See Also
+[ols_plot_added_variable()], [ols_plot_comp_plus_resid()]
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_plot_resid_regressor(model, drat)
+```

@@ -1,0 +1,38 @@
+---
+title: "``ols_prep_rfsplot_fmdata``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+
+Residual fit spread plot data
+
+#### Description 
+
+Data for generating residual fit spread plot.
+
+####Usage 
+
+<pre><code>
+ols_prep_rfsplot_fmdata(model)
+ols_prep_rfsplot_rsdata(model)
+</code></pre>
+
+#### Arguments 
+  
+*  model An object of class lm.
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_prep_rfsplot_fmdata(model)
+```
+
+```{r}
+ols_prep_rfsplot_rsdata(model)
+```

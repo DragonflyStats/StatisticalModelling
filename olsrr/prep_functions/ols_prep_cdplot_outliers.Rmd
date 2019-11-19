@@ -1,0 +1,32 @@
+---
+title: "``ols_prep_cdplot_outliers``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+Cooks’ d outlier data
+
+#### Description 
+
+Outlier data for cook’s d bar plot.
+
+#### Usage 
+
+<pre><code>
+ols_prep_cdplot_outliers(k)
+</code></pre>
+
+#### Arguments 
+  
+* ``k``: Cooks’ d bar plot data.
+
+#### Examples 
+
+```{r} 
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+k <- ols_prep_cdplot_data(model)
+ols_prep_cdplot_outliers(k)
+```

@@ -1,0 +1,53 @@
+---
+title: "``ols_fpe``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+### Final prediction error
+
+#### Description 
+ 
+Estimated mean square error of prediction.
+
+####Usage 
+<pre><code>
+
+ols_fpe(model)
+
+</code></pre>
+#### Arguments 
+ 
+* ``model``:  An object of class lm.
+
+
+
+####Examples 
+```{r} 
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_fpe(model)
+```
+
+#### Details 
+ 
+Computes the estimated mean square error of prediction for each model selected assuming that the values of the regressors are fixed and that the model is correct.
+MSE((n + p)=n)
+where MSE = SSE=(n 􀀀 p), n is the sample size and p is the number of predictors including the intercept
+
+#### Value
+Final prediction error of the model.
+
+
+#### See Also
+Other model selection criteria: ols_aic, ols_apc, ols_hsp, ols_mallows_cp, ols_msep, ols_sbc,ols_sbic
+
+#### References
+Akaike, H. (1969). “Fitting Autoregressive Models for Prediction.” Annals of the Institute of Statistical
+Mathematics 21:243–247.
+Judge, G. G., Griffiths, W. E., Hill, R. C., and Lee, T.-C. (1980). The Theory and Practice of
+Econometrics. New York: John Wiley & Sons.
+

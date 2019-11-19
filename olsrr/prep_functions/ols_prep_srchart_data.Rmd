@@ -1,0 +1,30 @@
+---
+title: "olsrr"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+ols_prep_srchart_data Standardized residual chart data
+
+#### Description 
+ 
+Generates data for standardized residual chart.
+
+####Usage 
+<pre><code>
+
+ols_prep_srchart_data(model)
+Arguments
+model An object of class lm.
+
+#### Examples 
+
+```{r} 
+
+model <- lm(read ~ write + math + science, data = hsb)
+ols_prep_srchart_data(model)
+```

@@ -1,0 +1,25 @@
+ols_plot_reg_line Simple linear regression line
+
+#### Description 
+ 
+Plot to demonstrate that the regression line always passes through mean of the response and predictor
+variables.
+
+####Usage 
+<pre><code>
+
+ols_plot_reg_line(response, predictor)
+
+</code></pre>
+#### Arguments 
+ 
+response Response variable.
+predictor Predictor variable.
+Deprecated Function
+ols_reg_line() has been deprecated. Instead use ols_plot_reg_line().
+
+####Examples 
+```{r} 
+
+ols_plot_reg_line(mtcars$mpg, mtcars$disp)
+```

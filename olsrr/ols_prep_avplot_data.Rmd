@@ -1,0 +1,34 @@
+---
+title: "``olsrr::ols_prep_avplot_data``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Added variable plot data
+ 
+####Description 
+
+Data for generating the added variable plots.
+
+####Usage 
+<pre><code>
+  
+ols_prep_avplot_data(model)
+
+</code></pre>
+
+#### Arguments 
+  
+* ``model``: An object of class lm.
+
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_prep_avplot_data(model)
+```

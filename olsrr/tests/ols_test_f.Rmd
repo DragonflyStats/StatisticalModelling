@@ -1,0 +1,63 @@
+---
+title: "``ols_test_f`` F test"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+#### Description 
+ 
+Test for heteroskedasticity under the assumption that the errors are independent and identically
+distributed (i.i.d.).
+
+####Usage 
+<pre><code>
+
+ols_test_f(model, fitted_values = TRUE, rhs = FALSE, vars = NULL, ...)
+</code></pre>
+
+#### Arguments
+* model An object of class lm.
+* fitted_values Logical; if TRUE, use fitted values of regression model.
+* rhs Logical; if TRUE, specifies that tests for heteroskedasticity be performed for the right-hand-side (explanatory) variables of the fitted regression model.
+* vars Variables to be used for for heteroskedasticity test.
+* ... Other arguments.
+
+####Examples 
+
+```{r} 
+
+# model
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+# using fitted values
+ols_test_f(model)
+# using all predictors of the model
+ols_test_f(model, rhs = TRUE)
+# using fitted values
+ols_test_f(model, vars = c('disp', 'hp'))
+```
+
+#### Value
+ols_test_f returns an object of class "ols_test_f". An object of class "ols_test_f" is a list
+containing the following components:
+*   f f statistic
+* p p-value of f
+* fv fitted values of the regression model
+* rhs names of explanatory variables of fitted regression model
+* numdf numerator degrees of freedom
+* dendf denominator degrees of freedom
+* vars variables to be used for heteroskedasticity test
+* resp response variable
+* preds predictors
+
+#### Deprecated Function
+ols_f_test() has been deprecated. Instead use ols_test_f().
+
+#### References
+Wooldridge, J. M. 2013. Introductory Econometrics: A Modern Approach. 5th ed. Mason, OH:
+  South-Western.
+ols_test_normality 67
+See Also
+Other heteroskedasticity tests: ols_test_bartlett, ols_test_breusch_pagan, ols_test_score

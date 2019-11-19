@@ -1,0 +1,84 @@
+---
+title: "``ols_step_backward_p``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Stepwise backward regression
+
+#### Description 
+ 
+Build regression model from a set of candidate predictor variables by removing predictors based on p values, in a stepwise manner until there is no variable left to remove any more.
+
+#### Usage 
+
+<pre><code>
+
+ols_step_backward_p(model, ...)
+## Default S3 method:
+ols_step_backward_p(model, prem = 0.3, details = FALSE, ...)
+## S3 method for class 'ols_step_backward_p'
+plot(x, model = NA, ...)
+
+</code></pre>
+
+#### Arguments
+* ``model``: An object of class lm; the model should include all candidate predictor variables.
+* ``...``: Other inputs.
+* ``prem``: p value; variables with p more than prem will be removed from the model.
+* ``details``: Logical; if TRUE, will print the regression result at each step.
+* ``x``: An object of class ``ols_step_backward_p``.
+
+#### Value
+
+ols_step_backward_p returns an object of class "ols_step_backward_p". 
+
+An object of class "ols_step_backward_p" is a list containing the following components:
+
+* ``model``: final model; an object of class lm
+* ``steps``: total number of steps
+* ``removed``: variables removed from the model
+* ``rsquare``: coefficient of determination
+* ``aic``: akaike information criteria
+* ``sbic``: sawa bayesian information criteria
+* ``sbc``: schwarz bayes information criteria
+* ``adjr``: adjusted r-square
+* ``rmse``: root mean square error
+* ``mallows_cp``: mallow's Cp
+* ``indvar``: predictors
+
+
+
+
+####Examples 
+
+```{r} 
+
+# stepwise backward regression
+model <- lm(y ~ ., data = surgical)
+ols_step_backward_p(model)
+
+# stepwise backward regression plot
+model <- lm(y ~ ., data = surgical)
+k <- ols_step_backward_p(model)
+plot(k)
+
+# final model
+k$model
+
+
+```
+
+#### Deprecated Function
+ols_step_backward() has been deprecated. Instead use ols_step_backward_p().
+
+#### References
+Chatterjee, Samprit and Hadi, Ali. Regression Analysis by Example. 5th ed. N.p.: John Wiley &
+  Sons, 2012. Print.
+See Also
+Other variable selection procedures: ols_step_all_possible, ols_step_backward_aic, ols_step_best_subset,
+ols_step_both_aic, ols_step_forward_aic, ols_step_forward_p

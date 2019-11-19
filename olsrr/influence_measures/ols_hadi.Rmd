@@ -1,0 +1,44 @@
+---
+title: "``ols_hadi``:  Hadi's influence measure"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+
+
+
+#### Description 
+ 
+Measure of influence based on the fact that influential observations in either the response variable
+or in the predictors or both.
+
+####Usage 
+<pre><code>
+
+ols_hadi(model)
+
+</code></pre>
+
+#### Arguments 
+ 
+model An object of class lm.
+
+#### Value
+Hadi’s measure of the model.
+
+#### References
+Chatterjee, Samprit and Hadi, Ali. Regression Analysis by Example. 5th ed. N.p.: John Wiley &
+  Sons, 2012. Print.
+See Also
+Other influence measures: ols_leverage, ols_pred_rsq, ols_press
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_hadi(model)
+```

@@ -1,0 +1,55 @@
+---
+title: "``olsrr::ols_plot_cooksd_bar``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+
+
+ Cooks’ D bar plot
+
+#### Description 
+ 
+Bar Plot of cook’s distance to detect observations that strongly influence fitted values of the model.
+
+####Usage 
+<pre><code>
+
+ols_plot_cooksd_bar(model)
+
+</code></pre>
+#### Arguments 
+ 
+model An object of class lm.
+
+#### Details 
+ 
+Cook’s distance was introduced by American statistician R Dennis Cook in 1977. It is used to
+identify influential data points. It depends on both the residual and leverage i.e it takes it account
+both the x value and y value of the observation.
+Steps to compute Cook’s distance:
+  • Delete observations one at a time.
+• Refit the regression model on remaining n 􀀀 1 observations
+• examine how much all of the fitted values change when the ith observation is deleted.
+A data point having a large cook’s d indicates that the data point strongly influences the fitted values.
+Value
+ols_plot_cooksd_bar returns a list containing the following components:
+  outliers a tibble with observation number and cooks distance that exceed threshold
+threshold threshold for classifying an observation as an outlier
+Deprecated Function
+ols_cooksd_barplot() has been deprecated. Instead use ols_plot_cooksd_bar().
+
+#### See Also 
+
+[ols_plot_cooksd_chart()]
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_plot_cooksd_bar(model)
+```

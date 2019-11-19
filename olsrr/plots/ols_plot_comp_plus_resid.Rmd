@@ -1,0 +1,38 @@
+ols_plot_comp_plus_resid
+Residual plus component plot
+
+#### Description 
+ 
+The residual plus component plot indicates whether any non-linearity is present in the relationship
+between response and predictor variables and can suggest possible trans
+#### Format 
+ions for linearizing
+the data.
+
+####Usage 
+<pre><code>
+
+ols_plot_comp_plus_resid(model)
+
+</code></pre>
+#### Arguments 
+ 
+model An object of class lm.
+Deprecated Function
+ols_rpc_plot() has been deprecated. Instead use ols_plot_comp_plus_resid().
+References
+Chatterjee, Samprit and Hadi, Ali. Regression Analysis by Example. 5th ed. N.p.: John Wiley &
+  Sons, 2012. Print.
+Kutner, MH, Nachtscheim CJ, Neter J and Li W., 2004, Applied Linear Statistical Models (5th
+                                                                                        edition). Chicago, IL., McGraw Hill/Irwin.
+
+#### See Also 
+
+[ols_plot_added_variable()], [ols_plot_resid_regressor()]
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_plot_comp_plus_resid(model)
+```

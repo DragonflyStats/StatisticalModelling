@@ -1,0 +1,42 @@
+---
+title: "``ols_plot_resid_pot``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+ols_plot_resid_pot Potential residual plot
+
+#### Description 
+ 
+Plot to aid in classifying unusual observations as high-leverage points, outliers, or a combination of both.
+
+####Usage 
+<pre><code>
+ols_plot_resid_pot(model)
+</code></pre>
+
+#### Arguments 
+ 
+* model : An object of class lm.
+
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_plot_resid_pot(model)
+```
+
+#### Deprecated Function
+ols_potrsd_plot() has been deprecated. Instead use ols_plot_resid_pot().
+
+#### References
+* Chatterjee, Samprit and Hadi, Ali. Regression Analysis by Example. 5th ed. N.p.: John Wiley & Sons, 2012. Print.
+
+#### See Also 
+
+[ols_plot_hadi()]

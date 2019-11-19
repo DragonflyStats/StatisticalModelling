@@ -1,0 +1,20 @@
+hsb : High School and Beyond
+
+#### Description 
+
+Test Data Set
+
+####Usage 
+<pre><code>
+hsb
+</code></pre>
+
+#### Format 
+
+An object of class data.frame with 200 rows and 15 columns.
+
+
+```{r}
+head{hsb}
+
+```

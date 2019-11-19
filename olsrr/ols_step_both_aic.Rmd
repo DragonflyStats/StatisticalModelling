@@ -1,0 +1,67 @@
+---
+title: "``ols_step_both_aic``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+ Stepwise AIC regression
+
+#### Description 
+ 
+Build regression model from a set of candidate predictor variables by entering and removing predictors based on akaike information criteria, in a stepwise manner until there is no variable left to enter or remove any more.
+
+####Usage 
+<pre><code>
+
+ols_step_both_aic(model, details = FALSE)
+## S3 method for class 'ols_step_both_aic'
+plot(x, ...)
+</code></pre>
+
+#### Arguments
+* model An object of class lm.
+* details Logical; if TRUE, details of variable selection will be printed on screen.
+* x An object of class ols_step_both_aic.
+* ... Other arguments.
+
+
+####Examples 
+```{r} 
+## Not run:
+# stepwise regression
+model <- lm(y ~ ., data = stepdata)
+ols_step_both_aic(model)
+# stepwise regression plot
+model <- lm(y ~ ., data = stepdata)
+k <- ols_step_both_aic(model)
+plot(k)
+# final model
+k$model
+## End(Not run)
+```
+
+#### Value
+ols_step_both_aic returns an object of class "ols_step_both_aic". An object of class "ols_step_both_aic"
+is a list containing the following components:
+* model model with the least AIC; an object of class lm
+* predictors variables added/removed from the model
+* method addition/deletion
+* aics akaike information criteria
+* ess error sum of squares
+* rss regression sum of squares
+* rsq rsquare
+* arsq adjusted rsquare
+* steps total number of steps
+
+#### Deprecated Function
+ols_stepaic_both() has been deprecated. Instead use ``ols_step_both_aic()``.
+
+#### References
+Venables,W. N. and Ripley, B. D. (2002) Modern Applied Statistics with S. Fourth edition. Springer.
+ols_step_both_p 57
+See Also
+Other variable selection procedures: ols_step_all_possible, ols_step_backward_aic, ols_step_backward_p,
+ols_step_best_subset, ols_step_forward_aic, ols_step_forward_p

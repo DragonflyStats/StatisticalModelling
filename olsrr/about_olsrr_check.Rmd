@@ -1,0 +1,117 @@
+Package ‘olsrr’
+November 22, 2018
+Type Package
+Title Tools for Building OLS Regression Models
+Version 0.5.2
+
+####
+#### Description 
+ Tools designed to make it easier for users, particularly beginner/intermediate R users
+to build ordinary least squares regression models. Includes comprehensive regression output,
+heteroskedasticity tests, collinearity diagnostics, residual diagnostics, measures of influence,
+model fit assessment and variable selection procedures.
+Depends R(>= 3.3)
+Imports car, checkmate, cli, clisymbols, crayon, dplyr, ggplot2, gh,
+glue, goftest, graphics, gridExtra, magrittr, nortest, purrr,
+Rcpp, recipes (>= 0.1.4), rlang, shiny, stringr, tibble, tidyr
+Suggests caret, covr, descriptr, grid, haven, jsonlite, knitr,
+lubridate, readr, readxl, rmarkdown, scales, shinyBS,
+shinythemes, testthat, tools, vdiffr
+License MIT + file LICENSE
+URL https://olsrr.rsquaredacademy.com/,
+https://github.com/rsquaredacademy/olsrr
+BugReports https://github.com/rsquaredacademy/olsrr/issues
+Encoding UTF-8
+LazyData true
+VignetteBuilder knitr
+RoxygenNote 6.1.1
+LinkingTo Rcpp
+NeedsCompilation yes
+Author Aravind Hebbali [aut, cre]
+Maintainer Aravind Hebbali <hebbali.aravind@gmail.com>
+  Repository CRAN
+Date/Publication 2018-11-22 17:30:03 UTC
+1
+2 R topics documented:
+  R topics documented:
+  auto            . 3
+cement            4
+fitness            4
+hsb            . . 4
+olsrr            . 5
+ols_aic            5
+ols_apc           . . . 6
+ols_coll_diag           7
+ols_correlations          . . . 9
+ols_deps           . . . 10
+ols_fpe            11
+ols_hadi           . . . 12
+ols_hsp           . . . 12
+ols_launch_app          . . . 13
+ols_leverage           . 14
+ols_mallows_cp          . . . 14
+ols_msep           . . 15
+ols_plot_added_variable         . . 16
+ols_plot_comp_plus_resid         . 18
+ols_plot_cooksd_bar          19
+ols_plot_cooksd_chart         . . . 20
+ols_plot_dfbetas          . . . 21
+ols_plot_dffits           22
+ols_plot_diagnostics          23
+ols_plot_hadi           23
+ols_plot_obs_fit          . . . 24
+ols_plot_reg_line          . . 25
+ols_plot_resid_box          . 25
+ols_plot_resid_fit          . . 26
+ols_plot_resid_fit_spread         . . 27
+ols_plot_resid_hist          . 28
+ols_plot_resid_lev          . . 29
+ols_plot_resid_pot          . . 29
+ols_plot_resid_qq          
+ols_plot_resid_regressor         . . 31
+ols_plot_resid_stand          31
+ols_plot_resid_stud          . 32
+ols_plot_resid_stud_fit         . . . 33
+ols_plot_response         
+ols_pred_rsq           . 35
+ols_prep_avplot_data          35
+ols_prep_cdplot_data          36
+ols_prep_cdplot_outliers         . . 36
+ols_prep_dfbeta_data          37
+ols_prep_dfbeta_outliers         . . 37
+ols_prep_dsrvf_data         
+auto 3
+ols_prep_outlier_obs          38
+ols_prep_regress_x          . 39
+ols_prep_regress_y          . 39
+ols_prep_rfsplot_fmdata         
+ols_prep_rstudlev_data         . . . 40
+ols_prep_rvsrplot_data         . . . 41
+ols_prep_srchart_data          41
+ols_prep_srplot_data         
+ols_press           . . 42
+ols_pure_error_anova          43
+ols_regress           . 45
+ols_sbc           . . . 47
+ols_sbic           
+ols_step_all_possible          49
+ols_step_all_possible_betas         . 50
+ols_step_backward_aic         . . . 51
+ols_step_backward_p          53
+ols_step_best_subset          54
+ols_step_both_aic         
+ols_step_both_p          . . . 57
+ols_step_forward_aic          59
+ols_step_forward_p          . 60
+ols_test_bartlett          . . . 62
+ols_test_breusch_pagan         . . . 63
+ols_test_correlation          . 65
+ols_test_f           . . 66
+ols_test_normality          . . 67
+ols_test_score           68
+ols_update           . . 69
+rivers            70
+rvsr_plot_shiny          . . . 70
+stepdata           . . . 71
+surgical           . . . 71
+Index 72

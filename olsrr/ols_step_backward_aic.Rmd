@@ -1,0 +1,69 @@
+---
+title: "``ols_step_backward_aic``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+ Stepwise AIC backward regression
+
+#### Description 
+ 
+Build regression model from a set of candidate predictor variables by removing predictors based
+on akaike information criterion, in a stepwise manner until there is no variable left to remove any
+more.
+
+####Usage 
+<pre><code>
+
+ols_step_backward_aic(model, ...)
+## Default S3 method:
+ols_step_backward_aic(model, details = FALSE, ...)
+## S3 method for class 'ols_step_backward_aic'
+plot(x, ...)
+</code></pre>
+
+#### Arguments
+* model An object of class lm; the model should include all candidate predictor variables.
+* ... Other arguments.
+* details Logical; if TRUE, will print the regression result at each step.
+* x An object of class ols_step_backward_aic.
+
+
+####Examples 
+
+```{r} 
+# stepwise backward regression
+model <- lm(y ~ ., data = surgical)
+ols_step_backward_aic(model)
+# stepwise backward regression plot
+model <- lm(y ~ ., data = surgical)
+k <- ols_step_backward_aic(model)
+plot(k)
+# final model
+k$model
+```
+
+
+#### Value
+ols_step_backward_aic returns an object of class "ols_step_backward_aic". An object of
+class "ols_step_backward_aic" is a list containing the following components:
+* model model with the least AIC; an object of class lm
+* steps total number of steps
+* predictors variables removed from the model
+* aics akaike information criteria
+* ess error sum of squares
+* rss regression sum of squares
+* rsq rsquare
+* arsq adjusted rsquare
+
+#### Deprecated Function
+ols_stepaic_backward() has been deprecated. Instead use ols_step_backward_aic().
+References
+Venables,W. N. and Ripley, B. D. (2002) Modern Applied Statistics with S. Fourth edition. Springer.
+See Also
+Other variable selection procedures: ols_step_all_possible, ols_step_backward_p, ols_step_best_subset,
+ols_step_both_aic, ols_step_forward_aic, ols_step_forward_p

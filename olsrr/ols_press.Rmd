@@ -1,0 +1,48 @@
+---
+title: "``ols_press``: PRESS"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+
+
+#### Description 
+ 
+PRESS (prediction sum of squares) tells you how well the model will predict new data.
+
+#### Usage 
+<pre><code>
+
+ols_press(model)
+</code></pre>
+
+#### Arguments
+model An object of class lm.
+
+
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_press(model)
+```
+
+#### Details
+The prediction sum of squares (PRESS) is the sum of squares of the prediction error. Each fitted
+to obtain the predicted value for the ith observation. Use PRESS to assess your model’s predictive
+ability. Usually, the smaller the PRESS value, the better the model’s predictive ability.
+
+#### Value
+Predicted sum of squares of the model.
+ols_pure_error_anova 43
+
+#### References
+Kutner, MH, Nachtscheim CJ, Neter J and Li W., 2004, Applied Linear Statistical Models (5th
+                                                                                        edition). Chicago, IL., McGraw Hill/Irwin.
+See Also
+Other influence measures: ols_hadi, ols_leverage, ols_pred_rsq

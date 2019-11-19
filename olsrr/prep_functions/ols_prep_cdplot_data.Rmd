@@ -1,0 +1,30 @@
+---
+title: "``ols_prep_cdplot_data`` Cook's D plot data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+
+#### Description 
+
+Prepare data for Cook's d bar plot.
+
+####Usage 
+<pre><code>
+ols_prep_cdplot_data(model)
+</code></pre>
+
+#### Arguments 
+  
+* model An object of class lm.
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_prep_cdplot_data(model)
+```

@@ -1,0 +1,23 @@
+---
+title: "``olsrr``: ``ols_launch_app`` "
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+#### Description 
+ 
+Launches shiny app for interactive model building.
+
+####Usage 
+<pre><code>
+ols_launch_app()
+</code></pre>
+
+####Examples 
+
+<pre><code>
+ols_launch_app()
+</code></pre>

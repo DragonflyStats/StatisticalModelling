@@ -1,0 +1,74 @@
+---
+title: "ols_step_forward_p"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Stepwise forward regression
+
+#### Description 
+ 
+Build regression model from a set of candidate predictor variables by entering predictors based on
+p values, in a stepwise manner until there is no variable left to enter any more.
+
+####Usage 
+<pre><code>
+
+ols_step_forward_p(model, ...)
+## Default S3 method:
+ols_step_forward_p(model, penter = 0.3, details = FALSE,
+                   ...)
+## S3 method for class 'ols_step_forward_p'
+plot(x, model = NA, ...)
+</code></pre>
+
+#### Arguments
+* model An object of class lm; the model should include all candidate predictor variables.
+* ... Other arguments.
+* penter p value; variables with p value less than penter will enter into the model details Logical; if TRUE, will print the regression result at each step.
+* x An object of class ols_step_forward_p.
+
+#### Examples 
+
+```{r} 
+
+# stepwise forward regression
+model <- lm(y ~ ., data = surgical)
+ols_step_forward_p(model)
+# stepwise forward regression plot
+model <- lm(y ~ ., data = surgical)
+k <- ols_step_forward_p(model)
+plot(k)
+# final model
+k$model
+```
+
+#### Value
+ols_step_forward_p returns an object of class "ols_step_forward_p". 
+An object of class "ols_step_forward_p" is a list containing the following components:
+* model final model; an object of class lm
+* steps number of steps
+* predictors variables added to the model
+* rsquare coefficient of determination
+* aic akaike information criteria
+* sbc bayesian information criteria
+* sbic sawa’s bayesian information criteria
+* adjr adjusted r-square
+* rmse root mean square error
+* mallows_cp mallow’s Cp
+* indvar predictors
+
+#### Deprecated Function
+ols_step_forward() has been deprecated. Instead use ols_step_forward_p().
+
+#### References
+Chatterjee, Samprit and Hadi, Ali. Regression Analysis by Example. 5th ed. N.p.: John Wiley &
+  Sons, 2012. Print.
+Kutner, MH, Nachtscheim CJ, Neter J and Li W., 2004, Applied Linear Statistical Models (5th                                                                                edition). Chicago, IL., McGraw Hill/Irwin.
+See Also
+Other variable selection procedures: ols_step_all_possible, ols_step_backward_aic, ols_step_backward_p,
+ols_step_best_subset, ols_step_both_aic, ols_step_forward_aic

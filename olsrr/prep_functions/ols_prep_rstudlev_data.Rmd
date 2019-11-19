@@ -1,0 +1,23 @@
+``ols_prep_rstudlev_data``
+
+Studentized residual vs leverage plot data
+
+#### Description 
+
+Generates data for studentized resiudual vs leverage plot.
+
+#### Usage 
+<pre><code>
+ols_prep_rstudlev_data(model)
+<\code><\pre>
+
+#### Arguments 
+  
+* ``model``: An object of class lm.
+
+#### Examples 
+
+```{r} 
+model <- lm(read ~ write + math + science, data = hsb)
+ols_prep_rstudlev_data(model)
+```

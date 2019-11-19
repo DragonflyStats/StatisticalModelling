@@ -1,0 +1,36 @@
+---
+title: "olsrr"
+author: "Kevin O'Brien"
+date: "15 December 2018"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+ols_prep_regress_x Regress predictor on other predictors
+
+####Description 
+
+Regress a predictor in the model on all the other predictors.
+
+####Usage 
+<pre><code>
+  
+  ols_prep_regress_x(data, i)
+
+</code></pre>
+
+#### Arguments 
+  
+  data A data.frame.
+i A numeric vector (indicates the predictor in the model).
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+data <- ols_prep_avplot_data(model)
+ols_prep_regress_x(data, 1)
+```

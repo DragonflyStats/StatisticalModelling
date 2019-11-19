@@ -1,0 +1,39 @@
+---
+title: "``ols_plot_resid_box``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+ols_plot_resid_box Residual box plot
+
+#### Description 
+ 
+Box plot of residuals to examine if residuals are normally distributed.
+
+####Usage 
+<pre><code>
+ols_plot_resid_box(model)
+</code></pre>
+
+#### Arguments 
+* model : An object of class lm.
+
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_plot_resid_box(model)
+```
+
+#### Deprecated Function
+ols_rsd_boxplot() has been deprecated. Instead use ols_plot_resid_box().
+
+#### See Also 
+
+Other residual diagnostics: ols_plot_resid_fit, ols_plot_resid_hist, ols_plot_resid_qq,
+ols_test_correlation, ols_test_normality

@@ -1,0 +1,48 @@
+---
+title: "``ols_plot_resid_stand``"
+output: html_document
+---
+  
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+###  Standardized residual chart
+
+#### Description 
+
+Chart for identifying outliers.
+
+####Usage 
+<pre><code>
+  
+ols_plot_resid_stand(model)
+
+</code></pre>
+
+#### Arguments 
+  
+*  ``model``: An object of class lm.
+
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_plot_resid_stand(model)
+```
+
+#### Details 
+
+Standardized residual (internally studentized) is the residual divided by estimated standard deviation.
+
+#### Value
+``ols_plot_resid_stand`` returns a list containing the following components:
+
+* outliers a tibble with observation number and standardized resiudals that exceed threshold for classifying an observation as an outlier
+* threshold threshold for classifying an observation as an outlier
+
+#### Deprecated Function
+``ols_srsd_chart()`` has been deprecated. Instead use ``ols_plot_resid_stand()``.
+

@@ -1,0 +1,31 @@
+---
+title: "ols_prep_rvsrplot_data"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+Residual vs regressor plot data
+
+#### Description 
+ 
+Data for generating residual vs regressor plot.
+
+####Usage 
+<pre><code>
+
+ols_prep_rvsrplot_data(model)
+
+<\code><\pre>
+
+#### Arguments 
+ 
+* `model`: An object of class lm.
+
+####Examples 
+```{r} 
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_prep_rvsrplot_data(model)
+```

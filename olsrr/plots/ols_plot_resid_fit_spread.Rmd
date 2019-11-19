@@ -1,0 +1,53 @@
+---
+title: "``auto``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+ols_plot_resid_fit_spread
+Residual fit spread plot
+
+#### Description 
+ 
+Plot to detect non-linearity, influential observations and outliers.
+
+####Usage 
+<pre><code>
+
+ols_plot_resid_fit_spread(model)
+ols_plot_fm(model)
+ols_plot_resid_spread(model)
+
+</code></pre>
+#### Arguments 
+ 
+model An object of class lm.
+
+#### Details 
+ 
+Consists of side-by-side quantile plots of the centered fit and the residuals. It shows how much
+variation in the data is explained by the fit and how much remains in the residuals. For inappropriate
+models, the spread of the residuals in such a plot is often greater than the spread of the centered fit.
+Deprecated Function
+ols_rfs_plot(), ols_fm_plot() and ols_rsd_plot() has been deprecated. Instead use ols_plot_resid_fit_spread(),
+ols_plot_fm() and ols_plot_resid_spread().
+References
+Cleveland, W. S. (1993). Visualizing Data. Summit, NJ: Hobart Press.
+
+####Examples 
+```{r} 
+
+# model
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+# residual fit spread plot
+ols_plot_resid_fit_spread(model)
+28 ols_plot_resid_hist
+# fit mean plot
+ols_plot_fm(model)
+# residual spread plot
+ols_plot_resid_spread(model)
+```

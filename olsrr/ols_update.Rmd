@@ -1,0 +1,22 @@
+
+ols_update Update olsrr package
+
+#### Description 
+ 
+Check whether olsrr is up-to-date, and will install after confirmation.
+
+####Usage 
+<pre><code>
+
+ols_update(owner = "rsquaredacademy", repo = "olsrr")
+Arguments
+owner repository owner
+repo name of the package
+70 rvsr_plot_shiny
+
+####Examples 
+ ```{r} 
+
+## Not run:
+ols_update()
+## End(Not run)

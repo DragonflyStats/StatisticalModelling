@@ -1,0 +1,52 @@
+---
+title: "``ols_hsp``: Hocking's Sp"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+
+
+#### Description 
+ 
+Average prediction mean squared error.
+
+####Usage 
+<pre><code>
+ols_hsp(model)
+</code></pre>
+
+#### Arguments 
+ 
+model An object of class lm.
+
+#### Details 
+ 
+Hocking'sSp criterion is an adjustment of the residual sum of Squares. Minimize this criterion.
+MSE=(n 􀀀 p 􀀀 1)
+where MSE = SSE=(n 􀀀 p), n is the sample size and p is the number of predictors including the
+intercept
+
+#### Value
+Hocking'sSp of the model.
+
+#### References
+Hocking, R. R. (1976). The Analysis and Selection of Variables in a Linear Regression. Biometrics
+32:1–50.
+
+#### See Also
+
+Other model selection criteria: ols_aic, ols_apc, ols_fpe, ols_mallows_cp, ols_msep, ols_sbc,
+ols_sbic
+
+####Examples 
+
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_hsp(model)
+```
+

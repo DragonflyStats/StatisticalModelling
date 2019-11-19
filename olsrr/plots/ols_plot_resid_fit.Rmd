@@ -1,0 +1,50 @@
+---
+title: "``ols_plot_resid_fit``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+ Residual vs fitted plot
+
+#### Description 
+ 
+Scatter plot of residuals on the y axis and fitted values on the x axis to detect non-linearity, unequal
+error variances, and outliers.
+
+####Usage 
+<pre><code>
+
+ols_plot_resid_fit(model)
+
+</code></pre>
+#### Arguments 
+ 
+model An object of class lm.
+
+#### Details 
+ 
+Characteristics of a well behaved residual vs fitted plot:
+  • The residuals spread randomly around the 0 line indicating that the relationship is linear.
+• The residuals form an approximate horizontal band around the 0 line indicating homogeneity
+of error variance.
+• No one residual is visibly away from the random pattern of the residuals indicating that there
+are no outliers.
+Deprecated Function
+ols_rvsp_plot() has been deprecated. Instead use ols_plot_resid_fit().
+
+#### See Also 
+
+Other residual diagnostics: ols_plot_resid_box, ols_plot_resid_hist, ols_plot_resid_qq,
+ols_test_correlation, ols_test_normality
+ols_plot_resid_fit_spread 27
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_plot_resid_fit(model)
+```

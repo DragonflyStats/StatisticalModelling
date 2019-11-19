@@ -1,0 +1,65 @@
+---
+title: "``ols_plot_dffits``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+DFFITS plot
+
+#### Description 
+ 
+Plot for detecting influential observations using DFFITs.
+
+####Usage 
+<pre><code>
+
+ols_plot_dffits(model)
+
+</code></pre>
+#### Arguments 
+* model: An object of class lm.
+
+#### Details 
+ 
+DFFIT - difference in fits, is used to identify influential data points. It quantifies the number of standard deviations that the fitted value changes when the ith data point is omitted.
+Steps to compute DFFITs:
+1. Delete observations one at a time.
+2. Refit the regression model on remaining n 􀀀 1 observations
+3. examine how much all of the fitted values change when the ith observation is deleted.
+
+An observation is deemed influential if the absolute value of its DFFITS value is greater than:
+  2
+p
+(p + 1)=(n 􀀀 p 􀀀 1)
+where n is the number of observations and p is the number of predictors including intercept.
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_plot_dffits(model)
+```
+
+
+#### Value
+ols_plot_dffits returns a list containing the following components:
+*  outliers a tibble with observation number and DFFITs that exceed threshold
+* threshold threshold for classifying an observation as an outlier
+
+#### Deprecated Function
+ols_dffits_plot() has been deprecated. Instead use ols_plot_dffits().
+
+#### References
+Belsley, David A.; Kuh, Edwin; Welsh, Roy E. (1980). Regression Diagnostics: Identifying Influential
+Data and Sources of Collinearity.
+Wiley Series in Probability and Mathematical Statistics. New York: John Wiley & Sons. ISBN
+0-471-05856-4.
+ols_plot_diagnostics 23
+
+#### See Also 
+
+[ols_plot_dfbetas()]

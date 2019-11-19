@@ -1,0 +1,66 @@
+---
+title: "``ols_sbc``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+ols_sbc Bayesian information criterion
+
+#### Description 
+ 
+Bayesian information criterion for model selection.
+
+####Usage 
+<pre><code>
+ols_sbc(model, method = c("R", "STATA", "SAS"))
+</code></pre>
+
+#### Arguments
+* ``model``: An object of class lm.
+* ``method``: A character vector; specify the method to compute BIC. Valid options include
+R, STATA and SAS.
+
+
+####Examples 
+```{r} 
+
+# using R computation method
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_sbc(model)
+# using STATA computation method
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_sbc(model, method = 'STATA')
+# using SAS computation method
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_sbc(model, method = 'SAS')
+```
+
+#### Value
+The bayesian information criterion of the model.
+
+#### Details
+SBC provides a means for model selection. Given a collection of models for the data, SBC estimates
+the quality of each model, relative to each of the other models. R and STATA use loglikelihood to
+compute SBC. SAS uses residual sum of squares. Below is the formula in each case:
+
+#### R & STATA
+AIC = 􀀀2(loglikelihood) + ln(n)  2p
+
+#### SAS
+AIC = n  ln(SSE=n) + p  ln(n)
+where n is the sample size and p is the number of model parameters including intercept.
+
+
+
+#### References
+Schwarz, G. (1978). “Estimating the Dimension of a Model.” Annals of Statistics 6:461–464.
+Judge, G. G., Griffiths, W. E., Hill, R. C., and Lee, T.-C. (1980). The Theory and Practice of
+Econometrics. New York: John Wiley & Sons.
+See Also
+Other model selection criteria: ols_aic, ols_apc, ols_fpe, ols_hsp, ols_mallows_cp, ols_msep,
+ols_sbic
+48 ols_sbic

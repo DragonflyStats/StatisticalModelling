@@ -1,0 +1,79 @@
+---
+title: "``ols_regress``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+#### Description 
+ 
+Ordinary least squares regression.
+
+####Usage 
+<pre><code>
+ols_regress(object, ...)
+
+## S3 method for class 'lm'
+ols_regress(object, ...)
+
+</code></pre>
+
+#### Arguments
+* ``object``: An object of class "formula" (or one that can be coerced to that class): a symbolic Description of the model to be fitted or class lm.
+* ``...``: Other inputs.
+
+####Examples 
+ ```{r} 
+
+ols_regress(mpg ~ disp + hp + wt, data = mtcars)
+# if model includes interaction terms set iterm to TRUE
+ols_regress(mpg ~ disp * wt, data = mtcars, iterm = TRUE)
+```
+
+
+#### Value
+``ols_regress`` returns an object of class "ols_regress". An object of class "ols_regress" is a list containing the following components:
+* r square root of rsquare, correlation between observed and predicted values of dependent variable
+* rsq coefficient of determination or r-square
+* adjr adjusted rsquare
+* ``sigma``: root mean squared error
+* cv coefficient of variation
+* mse mean squared error
+* mae mean absolute error
+* ``aic``: akaike information criteria
+* ``sbc``: bayesian information criteria
+* ``sbic``: sawa bayesian information criteria
+* prsq predicted rsquare
+* ``error_df``: residual degrees of freedom
+* model_df regression degrees of freedom
+* total_df total degrees of freedom
+* ess error sum of squares
+* rss regression sum of squares
+* ``tss``: total sum of squares
+* rms regression mean square
+* ``ems``: error mean square
+* f f statistis
+* p p-value for f
+* ``n``: number of predictors including intercept
+* betas betas; estimated coefficients
+* sbetas standardized betas
+std_errors standard errors
+tvalues t values
+pvalues p-value of tvalues
+df degrees of freedom of betas
+conf_lm confidence intervals for coefficients
+title title for the model
+dependent character vector; name of the dependent variable
+* predictors character vector; name of the predictor variables
+* mvars character vector; name of the predictor variables including intercept
+* model input model for ols_regress
+
+#### Interaction Terms
+If the model includes interaction terms, the standardized betas are computed after scaling and centering
+the predictors.
+References
+https://www.ssc.wisc.edu/~hemken/Stataworkshops/stdBeta/Getting
+

@@ -1,0 +1,37 @@
+---
+title: "``ols_step_all_possible_betas``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+All possible regression variable coefficients
+
+#### Description 
+ 
+Returns the coefficients for each variable from each model.
+
+#### Usage 
+<pre><code>
+
+ols_step_all_possible_betas(object, ...)
+</code></pre>
+
+#### Arguments
+* ``object``: An object of class lm.
+* ``...``: Other arguments.
+
+#### Examples 
+
+```{r} 
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_step_all_possible_betas(model)
+```
+#### Value
+``ols_step_all_possible_betas`` returns a tibble containing:
+* ``model_index``: model number
+* ``predictor``: predictor
+* ``beta_coef``: coefficient for the predictor
+

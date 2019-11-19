@@ -1,0 +1,33 @@
+---
+title: "``ols_deps`` : Check olsrr Version"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+#### Description 
+
+Checks the version of olsrr on local, cran, github release and devel.
+
+#### Usage 
+<pre><code>
+ols_deps(owner = "rsquaredacademy", repo = "olsrr")
+<\code><\pre>
+
+#### Arguments 
+* ``owner``: repository owner
+* ``repo``: name of the package
+
+#### Value
+a tibble with package versions
+
+#### Examples 
+```{r} 
+
+## Not run:
+ols_deps()
+## End(Not run)
+```

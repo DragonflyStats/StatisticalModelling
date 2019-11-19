@@ -1,0 +1,69 @@
+---
+title: "``ols_pure_error_anova ``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+``ols_pure_error_anova``: Lack of fit F test
+
+#### Description 
+ 
+Assess how much of the error in prediction is due to lack of model fit.
+
+#### Usage 
+
+<pre><code>
+ols_pure_error_anova(model, ...)
+</code></pre>
+
+#### Arguments
+* model An object of class lm.
+* ... Other parameters.
+
+#### Details
+The residual sum of squares resulting from a regression can be decomposed into 2 components:
+* Due to lack of fit
+* Due to random variation
+If most of the error is due to lack of fit and not just random error, the model should be discarded and a new model must be built.
+
+#### Examples 
+
+```{r} 
+model <- lm(mpg ~ disp, data = mtcars)
+ols_pure_error_anova(model)
+```
+
+#### Value
+``ols_pure_error_anova`` returns an object of class "``ols_pure_error_anova``". 
+An object of class "``ols_pure_error_anova``" is a list containing the following components:
+
+* ``lackoffit``: lack of fit sum of squares
+* ``pure_error``: pure error sum of squares
+* ``rss``: regression sum of squares
+* ``ess``: error sum of squares
+* ``total``: total sum of squares
+* ``rms``: regression mean square
+* ``ems``: error mean square
+* ``lms``: lack of fit mean square
+* ``pms``: pure error mean square
+* ``rf``: f statistic
+* ``lf``: lack of fit f statistic
+* ``pr``: p-value of f statistic
+* ``pl``: p-value pf lack of fit f statistic
+* ``mpred``: tibble containing data for the response and predictor of the model
+* ``df_rss``: regression sum of squares degrees of freedom
+* ``df_ess error``: sum of squares degrees of freedom
+* ``df_lof``: lack of fit degrees of freedom
+* ``df_error``: pure error degrees of freedom
+* ``final``: data.frame; contains computed values used for the lack of fit f test
+* ``resp``: character vector; name of response variable
+* ``preds``: character vector; name of predictor variable
+
+#### Note
+The lack of fit F test works only with simple linear regression. Moreover, it is important that the data contains repeat observations i.e. replicates for at least one of the values of the predictor x. This test generally only applies to datasets with plenty of replicates.
+
+#### References
+Kutner, MH, Nachtscheim CJ, Neter J and Li W., 2004, Applied Linear Statistical Models (5th                                                                                      edition). Chicago, IL., McGraw Hill/Irwin.

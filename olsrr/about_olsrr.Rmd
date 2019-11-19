@@ -1,0 +1,430 @@
+---
+title: "olsrr"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Package ‘olsrr’
+November 22, 2018
+Type Package
+Title Tools for Building OLS Regression Models
+Version 0.5.2
+
+#### Description 
+ Tools designed to make it easier for users, particularly beginner/intermediate R users
+to build ordinary least squares regression models. Includes comprehensive regression output,
+heteroskedasticity tests, collinearity diagnostics, residual diagnostics, measures of influence,
+model fit assessment and variable selection procedures.
+Depends R(>= 3.3)
+Imports car, checkmate, cli, clisymbols, crayon, dplyr, ggplot2, gh,
+glue, goftest, graphics, gridExtra, magrittr, nortest, purrr,
+Rcpp, recipes (>= 0.1.4), rlang, shiny, stringr, tibble, tidyr
+Suggests caret, covr, descriptr, grid, haven, jsonlite, knitr,
+lubridate, readr, readxl, rmarkdown, scales, shinyBS,
+shinythemes, testthat, tools, vdiffr
+License MIT + file LICENSE
+URL https://olsrr.rsquaredacademy.com/,
+https://github.com/rsquaredacademy/olsrr
+BugReports https://github.com/rsquaredacademy/olsrr/issues
+Encoding UTF-8
+LazyData true
+VignetteBuilder knitr
+RoxygenNote 6.1.1
+LinkingTo Rcpp
+NeedsCompilation yes
+Author Aravind Hebbali [aut, cre]
+Maintainer Aravind Hebbali <hebbali.aravind@gmail.com>
+  Repository CRAN
+Date/Publication 2018-11-22 17:30:03 UTC
+1
+2 R topics documented:
+  R topics documented:
+  auto . 3
+cement 4
+fitness 4
+hsb . . 4
+olsrr . 5
+ols_aic 5
+ols_apc . . . 6
+ols_coll_diag 7
+ols_correlations . . . 9
+ols_deps . . . 10
+ols_fpe 11
+ols_hadi . . . 12
+ols_hsp . . . 12
+ols_launch_app . . . 13
+ols_leverage . 14
+ols_mallows_cp . . . 14
+ols_msep . . 15
+ols_plot_added_variable . . 16
+ols_plot_comp_plus_resid . 18
+ols_plot_cooksd_bar 19
+ols_plot_cooksd_chart . . . 20
+ols_plot_dfbetas . . . 21
+ols_plot_dffits 22
+ols_plot_diagnostics 23
+ols_plot_hadi 23
+ols_plot_obs_fit . . . 24
+ols_plot_reg_line . . 25
+ols_plot_resid_box . 25
+ols_plot_resid_fit . . 26
+ols_plot_resid_fit_spread . . 27
+ols_plot_resid_hist . 28
+ols_plot_resid_lev . . 29
+ols_plot_resid_pot . . 29
+ols_plot_resid_qq . . 30
+ols_plot_resid_regressor . . 31
+ols_plot_resid_stand 31
+ols_plot_resid_stud . 32
+ols_plot_resid_stud_fit . . . 33
+ols_plot_response . . 34
+ols_pred_rsq . 35
+ols_prep_avplot_data 35
+ols_prep_cdplot_data 36
+ols_prep_cdplot_outliers . . 36
+ols_prep_dfbeta_data 37
+ols_prep_dfbeta_outliers . . 37
+ols_prep_dsrvf_data . 38
+auto 3
+ols_prep_outlier_obs 38
+ols_prep_regress_x . 39
+ols_prep_regress_y . 39
+ols_prep_rfsplot_fmdata . . 40
+ols_prep_rstudlev_data . . . 40
+ols_prep_rvsrplot_data . . . 41
+ols_prep_srchart_data 41
+ols_prep_srplot_data 42
+ols_press . . 42
+ols_pure_error_anova 43
+ols_regress . 45
+ols_sbc . . . 47
+ols_sbic . . . 48
+ols_step_all_possible 49
+ols_step_all_possible_betas . 50
+ols_step_backward_aic . . . 51
+ols_step_backward_p 53
+ols_step_best_subset 54
+ols_step_both_aic . . 56
+ols_step_both_p . . . 57
+ols_step_forward_aic 59
+ols_step_forward_p . 60
+ols_test_bartlett . . . 62
+ols_test_breusch_pagan . . . 63
+ols_test_correlation . 65
+ols_test_f . . 66
+ols_test_normality . . 67
+ols_test_score 68
+ols_update . . 69
+rivers 70
+rvsr_plot_shiny . . . 70
+stepdata . . . 71
+surgical . . . 71
+Index 72
+
+ols_prep_rfsplot_fmdata
+Residual fit spread plot data
+
+#### Description 
+ 
+Data for generating residual fit spread plot.
+
+####Usage 
+<pre><code>
+
+ols_prep_rfsplot_fmdata(model)
+ols_prep_rfsplot_rsdata(model)
+
+ </code></pre>
+#### Arguments 
+ 
+model An object of class lm.
+
+####Examples 
+ ```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_prep_rfsplot_fmdata(model)
+ols_prep_rfsplot_rsdata(model)
+ols_prep_rstudlev_data
+Studentized residual vs leverage plot data
+
+#### Description 
+ 
+Generates data for studentized resiudual vs leverage plot.
+
+####Usage 
+<pre><code>
+
+ols_prep_rstudlev_data(model)
+
+ <\code><\pre>
+#### Arguments 
+ 
+model An object of class lm.
+ols_prep_rvsrplot_data 41
+
+####Examples 
+ ```{r} 
+
+model <- lm(read ~ write + math + science, data = hsb)
+ols_prep_rstudlev_data(model)
+ols_prep_rvsrplot_ Set
+
+#### Description 
+ 
+Test Data Set
+
+####Usage 
+<pre><code>
+
+rivers
+
+#### Format 
+
+An object of class data.frame with 20 rows and 6 columns.
+rvsr_plot_shiny Residual vs regressors plot for shiny app
+
+#### Description 
+ 
+Graph to determine whether we should add a new predictor to the model already containing other
+predictors. The residuals from the model is regressed on the new predictor and if the plot shows
+non random pattern, you should consider adding the new predictor to the model.
+
+####Usage 
+<pre><code>
+
+rvsr_plot_shiny(model, data, variable)
+
+ <\code><\pre>
+#### Arguments 
+ 
+model An object of class lm.
+data A dataframe or tibble.
+variable Character; new predictor to be added to the model.
+
+####Examples 
+ ```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+rvsr_plot_shiny(model, mtcars, 'drat')
+stepdata 71
+stepdata Test Data Set
+
+#### Description 
+ 
+Test Data Set
+
+####Usage 
+<pre><code>
+
+stepdata
+
+#### Format 
+
+An object of class data.frame with 20000 rows and 7 columns.
+surgical Surgical Unit Data Set
+
+#### Description 
+ 
+A dataset containing data about survival of patients undergoing liver operation.
+
+####Usage 
+<pre><code>
+
+surgical
+
+#### Format 
+function test score
+age age, in years
+gender indicator variable for gender (0 = male, 1 = female)
+alc_mod indicator variable for history of alcohol use (0 = None, 1 = Moderate)
+alc_heavy indicator variable for history of alcohol use (0 = None, 1 = Heavy)
+y Survival Time
+Source
+Kutner, MH, Nachtscheim CJ, Neter J and Li W., 2004, Applied Linear Statistical Models (5th
+                                                                                        edition). Chicago, IL., McGraw Hill/Irwin.
+Index
+Topic datasets
+auto, 3
+cement, 4
+fitness, 4
+hsb, 4
+rivers, 70
+stepdata, 71
+surgical, 71
+auto, 3
+cement, 4
+fitness, 4
+hsb, 4
+ols_aic, 5, 7, 11, 13, 15, 16, 47, 49
+ols_all_subset (ols_step_all_possible),
+49
+ols_all_subset_betas
+(ols_step_all_possible_betas),
+50
+ols_apc, 6, 6, 11, 13, 15, 16, 47, 49
+ols_avplots (ols_plot_added_variable),
+16
+ols_bartlett_test (ols_test_bartlett),
+62
+ols_best_subset (ols_step_best_subset),
+54
+ols_bp_test (ols_test_breusch_pagan), 63
+ols_coll_diag, 7
+ols_cooksd_barplot
+(ols_plot_cooksd_bar), 19
+ols_cooksd_chart
+(ols_plot_cooksd_chart), 20
+ols_corr_test (ols_test_correlation), 65
+ols_correlations, 9
+ols_deps, 10
+ols_dfbetas_panel (ols_plot_dfbetas), 21
+ols_dffits_plot (ols_plot_dffits), 22
+ols_diagnostic_panel
+(ols_plot_diagnostics), 23
+ols_dsrvsp_plot
+(ols_plot_resid_stud_fit), 33
+ols_eigen_cindex (ols_coll_diag), 7
+ols_f_test (ols_test_f), 66
+ols_fm_plot
+(ols_plot_resid_fit_spread), 27
+ols_fpe, 6, 7, 11, 13, 15, 16, 47, 49
+ols_hadi, 12, 14, 35, 43
+ols_hadi_plot (ols_plot_hadi), 23
+ols_hsp, 6, 7, 11, 12, 15, 16, 47, 49
+ols_launch_app, 13
+ols_leverage, 12, 14, 35, 43
+ols_mallows_cp, 6, 7, 11, 13, 14, 16, 47, 49
+ols_msep, 6, 7, 11, 13, 15, 15, 47, 49
+ols_norm_test (ols_test_normality), 67
+ols_ovsp_plot (ols_plot_obs_fit), 24
+ols_plot_added_variable, 16
+ols_plot_comp_plus_resid, 18
+ols_plot_cooksd_bar, 19
+ols_plot_cooksd_chart, 20
+ols_plot_dfbetas, 21
+ols_plot_dffits, 22
+ols_plot_diagnostics, 23
+ols_plot_fm
+(ols_plot_resid_fit_spread), 27
+ols_plot_hadi, 23
+ols_plot_obs_fit, 24
+ols_plot_reg_line, 25
+ols_plot_resid_box, 25, 26, 28, 30, 65, 68
+ols_plot_resid_fit, 26, 26, 28, 30, 65, 68
+ols_plot_resid_fit_spread, 27
+ols_plot_resid_hist, 26, 28, 30, 65, 68
+ols_plot_resid_lev, 29
+ols_plot_resid_pot, 29
+ols_plot_resid_qq, 26, 28, 30, 65, 68
+ols_plot_resid_regressor, 31
+ols_plot_resid_spread
+72
+INDEX 73
+(ols_plot_resid_fit_spread), 27
+ols_plot_resid_stand, 31
+ols_plot_resid_stud, 32
+ols_plot_resid_stud_fit, 33
+ols_plot_response, 34
+ols_potrsd_plot (ols_plot_resid_pot), 29
+ols_pred_rsq, 12, 14, 35, 43
+ols_prep_avplot_data, 35
+ols_prep_cdplot_data, 36
+ols_prep_cdplot_outliers, 36
+ols_prep_dfbeta_data, 37
+ols_prep_dfbeta_outliers, 37
+ols_prep_dsrvf_data, 38
+ols_prep_outlier_obs, 38
+ols_prep_regress_x, 39
+ols_prep_regress_y, 39
+ols_prep_rfsplot_fmdata, 40
+ols_prep_rfsplot_rsdata
+(ols_prep_rfsplot_fmdata), 40
+ols_prep_rstudlev_data, 40
+ols_prep_rvsrplot_data, 41
+ols_prep_srchart_data, 41
+ols_prep_srplot_data, 42
+ols_press, 12, 14, 35, 42
+ols_pure_error_anova, 43
+ols_reg_line (ols_plot_reg_line), 25
+ols_regress, 45
+ols_resp_viz (ols_plot_response), 34
+ols_rfs_plot
+(ols_plot_resid_fit_spread), 27
+ols_rpc_plot
+(ols_plot_comp_plus_resid), 18
+ols_rsd_boxplot (ols_plot_resid_box), 25
+ols_rsd_hist (ols_plot_resid_hist), 28
+ols_rsd_plot
+(ols_plot_resid_fit_spread), 27
+ols_rsd_qqplot (ols_plot_resid_qq), 30
+ols_rsdlev_plot (ols_plot_resid_lev), 29
+ols_rvsp_plot (ols_plot_resid_fit), 26
+ols_rvsr_plot
+(ols_plot_resid_regressor), 31
+ols_sbc, 6, 7, 11, 13, 15, 16, 47, 49
+ols_sbic, 6, 7, 11, 13, 15, 16, 47, 48
+ols_score_test (ols_test_score), 68
+ols_srsd_chart (ols_plot_resid_stand),
+31
+ols_srsd_plot (ols_plot_resid_stud), 32
+ols_step_all_possible, 49, 52, 54, 55, 57,
+60, 61
+ols_step_all_possible_betas, 50
+ols_step_backward
+(ols_step_backward_p), 53
+ols_step_backward_aic, 50, 51, 54, 55, 57,
+60, 61
+ols_step_backward_p, 50, 52, 53, 55, 57, 60,
+61
+ols_step_best_subset, 50, 52, 54, 54, 57,
+60, 61
+ols_step_both_aic, 50, 52, 54, 55, 56, 60, 61
+ols_step_both_p, 57
+ols_step_forward (ols_step_forward_p),
+60
+ols_step_forward_aic, 50, 52, 54, 55, 57,
+59, 61
+ols_step_forward_p, 50, 52, 54, 55, 57, 60,
+60
+ols_stepaic_backward
+(ols_step_backward_aic), 51
+ols_stepaic_both (ols_step_both_aic), 56
+ols_stepaic_forward
+(ols_step_forward_aic), 59
+ols_stepwise (ols_step_both_p), 57
+ols_test_bartlett, 62, 64, 67, 69
+ols_test_breusch_pagan, 62, 63, 67, 69
+ols_test_correlation, 26, 28, 30, 65, 68
+ols_test_f, 62, 64, 66, 69
+ols_test_normality, 26, 28, 30, 65, 67
+ols_test_score, 62, 64, 67, 68
+ols_update, 69
+ols_vif_tol (ols_coll_diag), 7
+olsrr, 5
+olsrr-package (olsrr), 5
+plot.ols_step_all_possible
+(ols_step_all_possible), 49
+plot.ols_step_backward_aic
+(ols_step_backward_aic), 51
+plot.ols_step_backward_p
+(ols_step_backward_p), 53
+plot.ols_step_best_subset
+(ols_step_best_subset), 54
+plot.ols_step_both_aic
+(ols_step_both_aic), 56
+plot.ols_step_both_p (ols_step_both_p),
+57
+plot.ols_step_forward_aic
+(ols_step_forward_aic), 59
+74 INDEX
+plot.ols_step_forward_p
+(ols_step_forward_p), 60
+rivers, 70
+rvsr_plot_shiny, 70
+stepdata, 71
+surgical, 71

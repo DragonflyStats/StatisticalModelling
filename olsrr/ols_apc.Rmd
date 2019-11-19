@@ -1,0 +1,56 @@
+---
+title: "``ols_apc``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Amemiya's prediction criterion
+
+#### Description 
+ 
+Amemiya's prediction error.
+
+####Usage 
+
+<pre><code>
+ols_apc(model)
+</code></pre>
+
+#### Arguments 
+ 
+* ``model``: An object of class lm.
+
+####Examples 
+
+```{r} 
+model1 <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_apc(model1)
+```
+```{r} 
+model2 <- lm(mpg ~ cyl + wt, data = mtcars)
+ols_apc(model2)
+```
+
+#### Details 
+ 
+Amemiya'’'s Prediction Criterion penalizes R-squared more heavily than does adjusted R-squared for each addition degree of freedom used on the right-hand-side of the equation. The higher the better for this criterion.
+\[((n + p)=(n 􀀀 p))(1 􀀀 (R2))\]
+
+where n is the sample size, p is the number of predictors including the intercept and $R^2$ is the coefficient of determination.
+
+#### Value
+Amemiya’s prediction error of the model.
+
+#### References
+Amemiya, T. (1976). Selection of Regressors. Technical Report 225, Stanford University, Stanford,
+CA.
+Judge, G. G., Griffiths, W. E., Hill, R. C., and Lee, T.-C. (1980). The Theory and Practice of
+Econometrics. New York: John Wiley & Sons.
+
+#### See Also
+Other model selection criteria: ols_aic, ols_fpe, ols_hsp, ols_mallows_cp, ols_msep, ols_sbc,
+ols_sbic

@@ -1,0 +1,39 @@
+---
+title: "``olsrr::ols_plot_diagnostics``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Diagnostics panel
+
+#### Description 
+ 
+Panel of plots for regression diagnostics.
+
+####Usage 
+
+<pre><code>
+
+ols_plot_diagnostics(model)
+
+</code></pre>
+
+#### Arguments 
+ 
+* ``model``: An object of class lm.
+
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_plot_diagnostics(model)
+```
+
+#### Deprecated Function: 
+ols_diagnostic_panel() has been deprecated.
+Instead use ols_plot_diagnostics().

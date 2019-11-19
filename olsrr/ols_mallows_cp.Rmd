@@ -1,0 +1,38 @@
+ols_mallows_cp Mallow’s Cp
+
+#### Description 
+ 
+Mallow’s Cp.
+
+#### Usage 
+
+<pre><code>
+ols_mallows_cp(model, fullmodel)
+</code></pre>
+
+#### Arguments 
+* model : An object of class lm.
+* fullmodel : An object of class lm.
+
+
+#### Examples 
+```{r} 
+
+full_model <- lm(mpg ~ ., data = mtcars)
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_mallows_cp(model, full_model)
+```
+#### Details 
+ 
+Mallows’ Cp statistic estimates the size of the bias that is introduced into the predicted responses by having an underspecified model. Use Mallows’ Cp to choose between multiple regression models. Look for models where Mallows’ Cp is small and close to the number of predictors in the model plus the constant (p).
+
+#### Value
+Mallow’s Cp of the model.
+
+#### References
+* Hocking, R. R. (1976). “The Analysis and Selection of Variables in a Linear Regression.” Biometrics 32:1–50.
+* Mallows, C. L. (1973). “Some Comments on Cp.” Technometrics 15:661–675.
+
+#### See Also 
+
+Other model selection criteria: ols_aic, ols_apc, ols_fpe, ols_hsp, ols_msep, ols_sbc, ols_sbic

@@ -1,0 +1,61 @@
+ols_aic Akaike in Format ion criterion
+
+#### Description 
+
+Akaike in
+#### Format 
+ion criterion for model selection.
+
+####Usage 
+<pre><code>
+  
+  ols_aic(model, method = c("R", "STATA", "SAS"))
+
+</code></pre>
+  #### Arguments 
+  
+  model An object of class lm.
+method A character vector; specify the method to compute AIC. Valid options include
+R, STATA and SAS.
+
+#### Details 
+
+AIC provides a means for model selection. Given a collection of models for the data, AIC estimates
+the quality of each model, relative to each of the other models. R and STATA use loglikelihood to
+compute AIC. SAS uses residual sum of squares. Below is the formula in each case:
+  R & STATA
+AIC = 􀀀2(loglikelihood) + 2p
+SAS
+AIC = n  ln(SSE=n) + 2p
+where n is the sample size and p is the number of model parameters including intercept.
+Value
+Akaike in Formation criterion of the model.
+6 ols_apc
+References
+Akaike, H. (1969). “Fitting Autoregressive Models for Prediction.” Annals of the Institute of Statistical
+Mathematics 21:243–247.
+Judge, G. G., Griffiths, W. E., Hill, R. C., and Lee, T.-C. (1980). The Theory and Practice of
+Econometrics. New York: John Wiley & Sons.
+See Also
+Other model selection criteria: ols_apc, ols_fpe, ols_hsp, ols_mallows_cp, ols_msep, ols_sbc,
+ols_sbic
+
+####Examples 
+```{r} 
+
+# using R computation method
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_aic(model)
+```
+
+```{r}
+# using STATA computation method
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_aic(model, method = 'STATA')
+```
+
+```{r}
+# using SAS computation method
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_aic(model, method = 'SAS')
+```

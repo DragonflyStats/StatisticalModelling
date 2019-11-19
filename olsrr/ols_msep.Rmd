@@ -1,0 +1,40 @@
+ols_msep MSEP
+
+#### Description 
+ 
+Estimated error of prediction, assuming multivariate normality.
+
+####Usage 
+<pre><code>
+ols_msep(model)
+</code></pre>
+
+#### Arguments 
+ 
+* model : An object of class lm.
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_msep(model)
+```
+#### Details 
+ 
+Computes the estimated mean square error of prediction assuming that both independent and dependent
+variables are multivariate normal.
+MSE(n + 1)(n 􀀀 2)=n(n 􀀀 p 􀀀 1)
+where MSE = SSE=(n 􀀀 p), n is the sample size and p is the number of predictors including the
+intercept
+
+#### Value
+Estimated error of prediction of the model.
+
+#### References
+* Stein, C. (1960). “Multiple Regression.” In Contributions to Probability and Statistics: Essays in Honor of Harold Hotelling, edited by I. Olkin, S. G. Ghurye, W. Hoeffding, W. G. Madow, and H.
+* B. Mann, 264–305. Stanford, CA: Stanford University Press. Darlington, R. B. (1968). “Multiple Regression in Psychological Research and Practice.” Psychological Bulletin 69:161–182.
+
+#### See Also 
+
+Other model selection criteria: ols_aic, ols_apc, ols_fpe, ols_hsp, ols_mallows_cp, ols_sbc,
+ols_sbic

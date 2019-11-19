@@ -1,0 +1,39 @@
+ols_correlations Part and partial correlations
+
+#### Description 
+
+Zero-order, part and partial correlations.
+
+####Usage 
+<pre><code>
+  
+  ols_correlations(model)
+
+<\code><\pre>
+
+#### Arguments 
+  
+* ``model``: An object of class lm.
+
+#### Details 
+
+``ols_correlations()`` returns the relative importance of independent variables in determining response
+variable. How much each variable uniquely contributes to rsquare over and above that which can be accounted for by the other predictors? Zero order correlation is the Pearson correlation coefficient between the dependent variable and the independent variables. Part correlations indicates how much rsquare will decrease if that variable is removed from the model and partial correlations indicates amount of variance in response variable, which is not estimated by the other independent
+variables in the model, but is estimated by the specific variable.
+
+#### Value
+ols_correlations returns an object of class "ols_correlations". 
+An object of class "ols_correlations" is a data frame containing the following components:
+1. Zero-order zero order correlations
+2. Partial partial correlations
+3. Part part correlations
+
+#### References
+Morrison, D. F. 1976. Multivariate statistical methods. New York: McGraw-Hill.
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_correlations(model)
+```

@@ -1,0 +1,25 @@
+---
+title: "``auto``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+auto Test Data Set
+
+#### Description 
+
+Test Data Set
+
+####Usage 
+<pre><code>
+  
+  auto
+</code></pre>
+
+#### Format 
+
+An object of class tbl_df (inherits from tbl, data.frame) with 74 rows and 11 columns.

@@ -1,0 +1,38 @@
+---
+title: "``ols_plot_resid_qq``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Residual QQ plot
+
+#### Description 
+ 
+Graph for detecting violation of normality assumption.
+
+####Usage 
+<pre><code>
+ols_plot_resid_qq(model)
+</code></pre>
+
+#### Arguments 
+ 
+model An object of class lm.
+
+####Examples 
+
+```{r} 
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_plot_resid_qq(model)
+```
+#### Deprecated Function
+ols_rsd_qqplot() has been deprecated. Instead use ols_plot_resid_qq().
+
+#### See Also 
+
+Other residual diagnostics: ols_plot_resid_box, ols_plot_resid_fit, ols_plot_resid_hist,
+ols_test_correlation, ols_test_normality

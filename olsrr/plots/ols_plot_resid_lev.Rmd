@@ -1,0 +1,38 @@
+---
+title: "``olsrr::ols_plot_resid_lev``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+ Studentized residuals vs leverage plot
+
+#### Description 
+ 
+Graph for detecting outliers and/or observations with high leverage.
+
+####Usage 
+<pre><code>
+
+ols_plot_resid_lev(model)
+
+</code></pre>
+#### Arguments 
+ 
+model An object of class lm.
+Deprecated Function
+ols_rsdlev_plot() has been deprecated. Instead use ols_plot_resid_lev().
+
+#### See Also 
+
+[ols_plot_resid_stud_fit()], [ols_plot_resid_lev()]
+
+####Examples 
+```{r} 
+
+model <- lm(read ~ write + math + science, data = hsb)
+ols_plot_resid_lev(model)
+```

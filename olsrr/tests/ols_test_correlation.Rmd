@@ -1,0 +1,30 @@
+ols_test_correlation 
+
+Correlation test for normality
+
+#### Description
+Correlation between observed residuals and expected residuals under normality.
+
+#### Usage
+<pre><code>
+ols_test_correlation(model)
+</code></pre>
+
+#### Arguments
+* model : An object of class lm.
+
+#### Examples
+
+```{r}
+model <- lm(mpg ~ disp + hp + wt + qsec, data = mtcars)
+ols_test_correlation(model)
+```
+
+#### Value
+Correlation between fitted regression model residuals and expected values of residuals.
+
+#### Deprecated Function
+ols_corr_test() has been deprecated. Instead use ols_test_correlation().
+
+#### See Also
+Other residual diagnostics: ols_plot_resid_box, ols_plot_resid_fit, ols_plot_resid_hist, ols_plot_resid_qq, ols_test_normality

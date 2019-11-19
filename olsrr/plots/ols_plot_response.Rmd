@@ -1,0 +1,40 @@
+---
+title: "``ols_plot_response``"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(olsrr)
+```
+
+Response variable profile
+
+#### Description 
+
+Panel of plots to explore and visualize the response variable.
+
+####Usage 
+
+<pre><code>
+  
+ols_plot_response(model)
+
+</code></pre>
+
+#### Arguments 
+  
+*  ``model``: An object of class lm.
+
+
+####Examples 
+```{r} 
+
+model <- lm(mpg ~ disp + hp + wt, data = mtcars)
+ols_plot_response(model)
+```
+
+#### Deprecated Function
+
+ols_resp_viz() has been deprecated. Instead use ols_plot_response().
+
