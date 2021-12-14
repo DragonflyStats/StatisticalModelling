@@ -1,0 +1,163 @@
+   iccIntraclass Correlation Coefficient (ICC)
+Description
+ This function calculates the intraclass-correlation coefficient (ICC) - sometimes also called variance
+ partition coefficient (VPC) - for mixed effects models. The ICC can be calculated for all models
+ supported by insight::get_variance(). For models fitted with the brms-package, icc() might
+ fail due to the large variety of models and families supported by the brms-package. In such cases,
+ an alternative to the ICC is the variance_decomposition(), which is based on the posterior pre-
+ dictive distribution (see ’Details’).
+
+#### Usage 
+<pre><code>
+
+ icc(model, by_group = FALSE)
+ variance_decomposition(model, re_formula = NULL, robust = TRUE, ci = 0.95, ...)
+Arguments
+ modelA (Bayesian) mixed effects model.
+ by_group Logical, if TRUE, icc() returns the variance components for each random-effects
+  level (if there are multiple levels). See ’Details’.
+ re_formula   Formula containing group-level effects to be considered in the prediction. If
+  NULL (default), include all group-level effects. Else, for instance for nested mod-
+  els, name a specific group-level effect to calculate the variance decomposition
+  for this group-level. See ’Details’ and ?brms::posterior_predict.
+ robust   Logical, if TRUE, the median instead of mean is used to calculate the central
+  tendency of the variances.
+ ci   Credible interval level.
+ ...  Arguments passed down to brms::posterior_predict().
+28  icc
+Details
+  Interpretation: The ICC can be interpreted as “the proportion of the variance explained by
+  the grouping structure in the population”. This index goes from 0, if the grouping conveys no
+  information, to 1, if all observations in a group are identical (Gelman \& Hill, 2007, p. 258). In
+  other word, the ICC “can also be interpreted as the expected correlation between two randomly
+  drawn units that are in the same group” (Hox 2010: 15), although this definition might not apply
+  to mixed models with more complex random effects structures.
+  Calculation: The ICC is calculated by dividing the random effect variance, si2 , by the total
+  variance, i.e. the sum of the random effect variance and the residual variance, s2 .
+  Adjusted and conditional ICC: icc() calculates an adjusted and conditional ICC, which both
+  take all sources of uncertainty (i.e. of all random effects) into account. While the adjusted ICC
+  only relates to the random effects, the conditional ICC also takes the fixed effects variances into
+  account (see Nakagawa et al. 2017 ). Typically, the adjusted ICC is of interest when the analysis
+  of random effects is of interest. icc() returns a meaningful ICC also for more complex random
+  effects structures, like models with random slopes or nested design (more than two levels) and is
+  applicable for models with other distributions than Gaussian. For more details on the computation
+  of the variances, see ?insight::get_variance.
+  ICC for unconditional and conditional models: Usually, the ICC is calculated for the null
+  model ("unconditional model"). However, according to Raudenbush and Bryk (2002) or Rabe-
+  Hesketh and Skrondal (2012) it is also feasible to compute the ICC for full models with covariates
+  ("conditional models") and compare how much, e.g., a level-2 variable explains the portion of
+  variation in the grouping structure (random intercept).
+  ICC for specific group-levels: The proportion of variance for specific levels related to the overall
+  model can be computed by setting by_group = TRUE. The reported ICC is the variance for each
+  (random effect) group compared to the total variance of the model. For mixed models with a
+  simple random intercept, this is identical to the classical (adjusted) ICC.
+  Variance decomposition for brms-models: If model is of class brmsfit, icc() might fail
+  due to the large variety of models and families supported by the brms package. In such cases,
+  variance_decomposition() is an alternative ICC measure. The function calculates a variance
+  decomposition based on the posterior predictive distribution. In this case, first, the draws from the
+  posterior predictive distribution not conditioned on group-level terms (posterior_predict(...,re_formula
+  = NA)) are calculated as well as draws from this distribution conditioned on all random effects (by
+  default, unless specified else in re_formula) are taken. Then, second, the variances for each of
+  these draws are calculated. The "ICC" is then the ratio between these two variances. This is the
+  recommended way to analyse random-effect-variances for non-Gaussian models. It is then pos-
+  sible to compare variances across models, also by specifying different group-level terms via the
+  re_formula-argument.
+  Sometimes, when the variance of the posterior predictive distribution is very large, the variance
+  ratio in the output makes no sense, e.g. because it is negative. In such cases, it might help to use
+  robust = TRUE.
+item_difficulty29
+Value
+ A list with two values, the adjusted and conditional ICC. For variance_decomposition(), a list
+ with two values, the decomposed ICC as well as the credible intervals for this ICC.
+References
+   *  Hox, J. J. (2010). Multilevel analysis: techniques and applications (2nd ed). New York:
+   Routledge.
+   *  Nakagawa, S., Johnson, P. C. D., & Schielzeth, H. (2017). The coefficient of determination R2
+   and intra-class correlation coefficient from generalized linear mixed-effects models revisited
+   and expanded. Journal of The Royal Society Interface, 14(134), 20170213. doi: 10.1098/
+   rsif.2017.0213
+   *  Rabe-Hesketh, S., & Skrondal, A. (2012). Multilevel and longitudinal modeling using Stata
+   (3rd ed). College Station, Tex: Stata Press Publication.
+   *  Raudenbush, S. W., & Bryk, A. S. (2002). Hierarchical linear models: applications and data
+   analysis methods (2nd ed). Thousand Oaks: Sage Publications.
+
+#### Examples
+ if (require("lme4")) {
+   model <- lmer(Sepal.Length ~ Petal.Length + (1 | Species), data = iris)
+   icc(model)
+ }
+ # ICC for specific group-levels
+ if (require("lme4")) {
+   data(sleepstudy)
+   set.seed(12345)
+   sleepstudy$grp <- sample(1:5, size = 180, replace = TRUE)
+   sleepstudy$subgrp <- NA
+   for (i in 1:5) {
+  filter_group <- sleepstudy$grp == i
+  sleepstudy$subgrp[filter_group] <-
+sample(1:30, size = sum(filter_group), replace = TRUE)
+   }
+   model <- lmer(
+  Reaction ~ Days + (1 | grp / subgrp) + (1 | Subject),
+  data = sleepstudy
+   )
+   icc(model, by_group = TRUE)
+ }
+   item_difficulty   Difficulty of Questionnaire Items
+Description
+ Compute various measures of internal consistencies for tests or item-scales of questionnaires.
+30  item_intercor
+
+#### Usage 
+<pre><code>
+
+ item_difficulty(x)
+Arguments
+ xDepending on the function, x may be a matrix as returned by the cor()-function,
+  or a data frame with items (e.g. from a test or questionnaire).
+Details
+ This function calculates the item difficulty, which should range between 0.2 and 0.8. Lower values
+ are a signal for more difficult items, while higher values close to one are a sign for easier items. The
+ ideal value for item difficulty is p + (1 -p) / 2, where p = 1 / max(x). In most cases, the ideal item
+ difficulty lies between 0.5 and 0.8.
+Value
+ A data frame with three columns: The name(s) of the item(s), the item difficulties for each item,
+ and the ideal item difficulty.
+
+#### Examples
+ data(mtcars)
+ x <- mtcars[, c("cyl", "gear", "carb", "hp")]
+ item_difficulty(x)
+   item_intercor Mean Inter-Item-Correlation
+Description
+ Compute various measures of internal consistencies for tests or item-scales of questionnaires.
+
+#### Usage 
+<pre><code>
+
+ item_intercor(x, method = c("pearson", "spearman", "kendall"))
+Arguments
+ xA matrix as returned by the cor()-function, or a data frame with items (e.g.
+  from a test or questionnaire).
+ method   Correlation computation method. May be one of "spearman" (default), "pearson"
+  or "kendall". You may use initial letter only.
+item_reliability 31
+Details
+ This function calculates a mean inter-item-correlation, i.e. a correlation matrix of x will be com-
+ puted (unless x is already a matrix as returned by the cor()-function) and the mean of the sum of
+ all item’s correlation values is returned. Requires either a data frame or a computed cor()-object.
+ “Ideally, the average inter-item correlation for a set of items should be between .20 and .40, suggest-
+ ing that while the items are reasonably homogenous, they do contain sufficiently unique variance
+ so as to not be isomorphic with each other. When values are lower than .20, then the items may not
+ be representative of the same content domain. If values are higher than .40, the items may be only
+ capturing a small bandwidth of the construct.” (Piedmont 2014)
+Value
+ The mean inter-item-correlation value for x.
+References
+ Piedmont RL. 2014. Inter-item Correlations. In: Michalos AC (eds) Encyclopedia of Quality of Life
+ and Well-Being Research. Dordrecht: Springer, 3303-3304. doi: 10.1007/9789400707535_1493
+
+#### Examples
+ data(mtcars)
+ x <- mtcars[, c("cyl", "gear", "carb", "hp")]
+ item_intercor(x)

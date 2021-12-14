@@ -1,0 +1,404 @@
+   Package ‘performance’
+   February 3, 2021
+Type Package
+Title Assessment of Regression Models Performance
+Version 0.7.0
+Maintainer Daniel Lüdecke <d.luedecke@uke.de>
+Description Utilities for computing measures to assess model quality,
+  which are not directly provided by R's 'base' or 'stats' packages. These
+  include e.g. measures like r-squared, intraclass correlation coefficient
+  (Nakagawa, Johnson & Schielzeth (2017) <doi:10.1098/rsif.2017.0213>),
+  root mean squared error or functions to check models for overdispersion,
+  singularity or zero-inflation and more. Functions apply to a large variety of
+  regression models, including generalized linear models, mixed effects models
+  and Bayesian models.
+URL https://easystats.github.io/performance/
+BugReports https://github.com/easystats/performance/issues
+Depends R (>= 3.4)
+Imports insight (>= 0.11.0), bayestestR (>= 0.7.5), stats, utils
+Suggests AER, BayesFactor, betareg, bigutilsr, brms, car,
+  CompQuadForm, correlation, covr, cplm, dbscan, fixest,
+  forecast, ggplot2, gridExtra, glmmTMB, ICS, ICSOutlier, lavaan,
+  lme4, lmtest, loo, Matrix, MASS, metafor, mgcv, mlogit, nlme,
+  nonnest2, ordinal, parallel, parameters, pscl, psych,
+  randomForest, rmarkdown, rstanarm, rstantools, sandwich, see,
+  survey, survival, testthat, tweedie, VGAM, spelling
+License GPL-3
+Encoding UTF-8
+LazyData true
+RoxygenNote 7.1.1
+Language en-US
+Config/testthat/edition 3
+Config/testthat/parallel true
+ 1
+2 R topics documented:
+NeedsCompilation no
+Author Daniel Lüdecke [aut, cre] (<https://orcid.org/0000-0002-8895-3206>),
+ Dominique Makowski [aut, ctb] (<https://orcid.org/0000-0001-5375-9967>),
+ Philip Waggoner [aut, ctb] (<https://orcid.org/0000-0002-7825-7573>),
+ Indrajeet Patil [aut, ctb] (<https://orcid.org/0000-0003-1995-6531>),
+ Mattan S. Ben-Shachar [aut, ctb]
+ (<https://orcid.org/0000-0002-4287-4801>)
+Repository CRAN
+Date/Publication 2021-02-03 19:40:06 UTC
+R topics documented:
+binned_residuals . . . . . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  3
+check_autocorrelation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  4
+check_collinearity . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  5
+check_convergence . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  7
+check_distribution . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . .  9
+check_heteroscedasticity . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 10
+check_homogeneity . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 11
+check_itemscale . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 12
+check_model . . . . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 13
+check_normality . . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 14
+check_outliers . . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 16
+check_overdispersion . . . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 20
+check_singularity . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 21
+check_zeroinflation . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 23
+classify_distribution . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+compare_performance . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 24
+cronbachs_alpha . . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 25
+display.performance_model .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 26
+icc . . . . . . . . . . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 27
+item_difficulty . . . . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 29
+item_intercor . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 30
+item_reliability . . . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 31
+item_split_half . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 32
+looic . . . . . . . . . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 33
+model_performance . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 34
+model_performance.ivreg . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+model_performance.lavaan .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 35
+model_performance.lm . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 37
+model_performance.merMod  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 38
+model_performance.rma . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 39
+model_performance.stanreg .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 40
+performance_accuracy . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 42
+performance_aicc . . . . . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 43
+performance_hosmer . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 44
+performance_logloss . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 45
+ performance_mse . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+ performance_pcp . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 46
+ performance_rmse  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 48
+ performance_roc . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 49
+ performance_rse . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+ performance_score . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 50
+ pp_check . . . . .. . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 52
+ r2 . . . . . . . . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 54
+ r2_bayes . . . . . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 55
+ r2_coxsnell . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 57
+ r2_efron . . . . . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 58
+ r2_kullback . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 59
+ r2_loo . . . . . . .  . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+ r2_mcfadden . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 60
+ r2_mckelvey . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 61
+ r2_nagelkerke . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 62
+ r2_nakagawa . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 63
+ r2_somers . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 64
+ r2_tjur . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 65
+ r2_xu . . . . . . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 65
+ r2_zeroinflated . .   . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 66
+ test_bf . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . . 67
+Index72
+   binned_residuals Binned residuals for logistic regression
+Description
+ Check model quality of logistic regression models.
+
+#### Usage 
+<pre><code>
+
+ binned_residuals(model, term = NULL, n_bins = NULL, ...)
+Arguments
+ model  A glm-object with binomial-family.
+ term   Name of independent variable from x. If not NULL, average residuals for the cate-
+gories of term are plotted; else, average residuals for the estimated probabilities
+of the response are plotted.
+ n_bins Numeric, the number of bins to divide the data. If n_bins = NULL, the square
+root of the number of observations is taken.
+ ...Further argument like size (for point-size) or color (for point-colors).
+4  check_autocorrelation
+Details
+Binned residual plots are achieved by “dividing the data into categories (bins) based on their fitted
+values, and then plotting the average residual versus the average fitted value for each bin.” (Gelman,
+Hill 2007: 97). If the model were true, one would expect about 95% of the residuals to fall inside
+the error bounds.
+If term is not NULL, one can compare the residuals in relation to a specific model predictor. This
+may be helpful to check if a term would fit better when transformed, e.g. a rising and falling pattern
+of residuals along the x-axis (the pattern is indicated by a green line) is a signal to consider taking
+the logarithm of the predictor (cf. Gelman and Hill 2007, pp. 97ff).
+Value
+A data frame representing the data that is mapped to the plot, which is automatically plotted. In case
+all residuals are inside the error bounds, points are black. If some of the residuals are outside the
+error bounds (indicates by the grey-shaded area), blue points indicate residuals that are OK, while
+red points indicate model under- or overfitting for the related range of estimated probabilities.
+Note
+Since binned_residuals() returns a data frame, the default action for the result is printing. How-
+ever, the ‘print()‘-method for binned_residuals() actually creates a plot. For further modifica-
+tions of the plot, use ‘print()‘ and add ggplot-layers to the return values, e.g plot(binned_residuals(model))
++ see::scale_color_pizza().
+References
+Gelman, A., & Hill, J. (2007). Data analysis using regression and multilevel/hierarchical models.
+Cambridge; New York: Cambridge University Press.
+
+#### Examples
+if (require("see")) {
+   model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+   binned_residuals(model)
+}
+  check_autocorrelation Check model for independence of residuals.
+Description
+Check model for independence of residuals, i.e. for autocorrelation of error terms.
+check_collinearity  5
+
+#### Usage 
+<pre><code>
+
+check_autocorrelation(x, ...)
+## Default S3 method:
+check_autocorrelation(x, nsim = 1000, ...)
+Arguments
+xA model object.
+...  Currently not used.
+nsim Number of simulations for the Durbin-Watson-Test.
+Details
+Performs a Durbin-Watson-Test to check for autocorrelated residuals. In case of autocorrelation,
+robust standard errors return more accurate results for the estimates, or maybe a mixed model with
+error term for the cluster groups should be used.
+Value
+Invisibly returns the p-value of the test statistics. A p-value < 0.05 indicates autocorrelated residuals.
+
+#### Examples
+m <- lm(mpg ~ wt + cyl + gear + disp, data = mtcars)
+check_autocorrelation(m)
+  check_collinearityCheck for multicollinearity of model terms
+Description
+check_collinearity() checks regression models for multicollinearity by calculating the variance
+inflation factor (VIF). multicollinearity() is an alias for check_collinearity().
+
+#### Usage 
+<pre><code>
+
+check_collinearity(x, ...)
+multicollinearity(x, ...)
+## Default S3 method:
+check_collinearity(x, verbose = TRUE, ...)
+## S3 method for class 'glmmTMB'
+check_collinearity(
+   x,
+6check_collinearity
+   component = c("all", "conditional", "count", "zi", "zero_inflated"),
+   verbose = TRUE,
+   ...
+)
+Arguments
+xA model object (that should at least respond to vcov(), and if possible, also to
+ model.matrix() - however, it also should work without model.matrix()).
+...  Currently not used.
+verbose  Toggle off warnings or messages.
+componentFor models with zero-inflation component, multicollinearity can be checked
+ for the conditional model (count component, component = "conditional" or
+ component = "count"), zero-inflation component (component = "zero_inflated"
+ or component = "zi") or both components (component = "all"). Following
+ model-classes are currently supported: hurdle, zeroinfl, zerocount, MixMod
+ and glmmTMB.
+Details
+  Multicollinearity: Multicollinearity should not be confused with a raw strong correlation be-
+  tween predictors. What matters is the association between one or more predictor variables, con-
+  ditional on the other variables in the model. In a nutshell, multicollinearity means that once you
+  know the effect of one predictor, the value of knowing the other predictor is rather low. Thus, one
+  of the predictors doesn’t help much in terms of better understanding the model or predicting the
+  outcome. As a consequence, if multicollinearity is a problem, the model seems to suggest that the
+  predictors in question don’t seems to be reliably associated with the outcome (low estimates, high
+  standard errors), although these predictors actually are strongly associated with the outcome, i.e.
+  indeed might have strong effect (McElreath 2020, chapter 6.1 ).
+  Multicollinearity might arise when a third, unobserved variable has a causal effect on each of
+  the two predictors that are associated with the outcome. In such cases, the actual relationship that
+  matters would be the association between the unobserved variable and the outcome.
+  Remember: “Pairwise correlations are not the problem. It is the conditional associations - not
+  correlations - that matter.” (McElreath 2020, p. 169 )
+  Interpretation of the Variance Inflation Factor: The variance inflation factor is a measure to
+  analyze the magnitude of multicollinearity of model terms. A VIF less than 5 indicates a low
+  correlation of that predictor with other predictors. A value between 5 and 10 indicates a moderate
+  correlation, while VIF values larger than 10 are a sign for high, not tolerable correlation of model
+  predictors (James et al. 2013 ). The Increased SE column in the output indicates how much larger
+  the standard error is due to the association with other predictors conditional on the remaining
+  variables in the model.
+  Multicollinearity and Interaction Terms: If interaction terms are included in a model, high
+  VIF values are expected. This portion of multicollinearity among the component terms of an
+  interaction is also called "inessential ill-conditioning", which leads to inflated VIF values that are
+  typically seen for models with interaction terms (Francoeur 2013).
+check_convergence  7
+Value
+A data frame with three columns: The name of the model term, the variance inflation factor and the
+factor by which the standard error is increased due to possible correlation with other terms.
+Note
+There is also a plot()-method implemented in the see-package.
+References
+   *  Francoeur, R. B. (2013). Could Sequential Residual Centering Resolve Low Sensitivity in
+  Moderated Regression? Simulations and Cancer Symptom Clusters. Open Journal of Statis-
+  tics, 03(06), 24–44.
+   *  James, G., Witten, D., Hastie, T., & Tibshirani, R. (eds.). (2013). An introduction to statistical
+  learning: with applications in R. New York: Springer.
+   *  McElreath, R. (2020). Statistical rethinking: A Bayesian course with 
+#### Examples in R and Stan.
+  2nd edition. Chapman and Hall/CRC.
+   *  Vanhove, J. (2019). Collinearity isn’t a disease that needs curing. webpage
+
+#### Examples
+m <- lm(mpg ~ wt + cyl + gear + disp, data = mtcars)
+check_collinearity(m)
+# plot results
+if (require("see")) {
+  x <- check_collinearity(m)
+  plot(x)
+}
+  check_convergence Convergence test for mixed effects models
+Description
+``check_convergence()`` provides an alternative convergence test for merMod-objects.
+
+#### Usage 
+<pre><code>
+
+check_convergence(x, tolerance = 0.001, ...)
+Arguments
+xA merMod-object.
+toleranceIndicates up to which value the convergence result is accepted. The smaller
+ tolerance is, the stricter the test will be.
+...  Currently not used.
+8   check_convergence
+Details
+  Convergence and log-likelihood: Convergence problems typically arise when the model hasn’t
+  converged to a solution where the log-likelihood has a true maximum. This may result in unreli-
+  able and overly complex (or non-estimable) estimates and standard errors.
+  Inspect model convergence: lme4 performs a convergence-check (see ?lme4::convergence),
+  however, as as discussed here and suggested by one of the lme4-authors in this comment, this
+  check can be too strict. ``check_convergence()`` thus provides an alternative convergence test for
+  merMod-objects.
+  Resolving convergence issues: Convergence issues are not easy to diagnose. The help page
+  on ?lme4::convergence provides most of the current advice about how to resolve convergence
+  issues. Another clue might be large parameter values, e.g. estimates (on the scale of the linear
+  predictor) larger than 10 in (non-identity link) generalized linear model might indicate complete
+  separation. Complete separation can be addressed by regularization, e.g. penalized regression or
+  Bayesian regression with appropriate priors on the fixed effects.
+  Convergence versus Singularity: Note the different meaning between singularity and conver-
+  gence: singularity indicates an issue with the "true" best estimate, i.e. whether the maximum
+  likelihood estimation for the variance-covariance matrix of the random effects is positive definite
+  or only semi-definite. Convergence is a question of whether we can assume that the numerical
+  optimization has worked correctly or not.
+Value
+TRUE if convergence is fine and FALSE if convergence is suspicious. Additionally, the convergence
+value is returned as attribute.
+
+#### Examples
+if (require("lme4")) {
+   data(cbpp)
+   set.seed(1)
+   cbpp$x <- rnorm(nrow(cbpp))
+   cbpp$x2 <- runif(nrow(cbpp))
+   model <- glmer(
+ cbind(incidence, size - incidence) ~ period + x + x2 + (1 + x | herd),
+ data = cbpp,
+ family = binomial()
+   )
+   check_convergence(model)
+}
+check_distribution  9
+  check_distributionClassify the distribution of a model-family using machine learning
+Description
+Choosing the right distributional family for regression models is essential to get more accurate
+estimates and standard errors. This function may help to check a models’ distributional family and
+see if the model-family probably should be reconsidered. Since it is difficult to exactly predict the
+correct model family, consider this function as somewhat experimental.
+
+#### Usage 
+<pre><code>
+
+check_distribution(model)
+Arguments
+model   Typically, a model (that should response to residuals()). May also be a nu-
+meric vector.
+Details
+This function uses an internal random forest model to classify the distribution from a model-family.
+Currently, following distributions are trained (i.e. results of check_distribution() may be one of
+the following): "bernoulli", "beta", "beta-binomial", "binomial", "chi", "exponential",
+"F", "gamma", "lognormal", "normal", "negative binomial", "negative binomial (zero-inflated)",
+"pareto", "poisson", "poisson (zero-inflated)", "uniform" and "weibull".
+Note the similarity between certain distributions according to shape, skewness, etc. Thus, the pre-
+dicted distribution may not be perfectly representing the distributional family of the underlying
+fitted model, or the response value.
+There is a plot() method, which shows the probabilities of all predicted distributions, however,
+only if the probability is greater than zero.
+Note
+This function is somewhat experimental and might be improved in future releases. The final deci-
+sion on the model-family should also be based on theoretical aspects and other information about
+the data and the model.
+There is also a plot()-method implemented in the see-package.
+
+#### Examples
+if (require("lme4") && require("parameters") && require("gridExtra")) {
+   data(sleepstudy)
+   model <- lmer(Reaction ~ Days + (Days | Subject), sleepstudy)
+10  check_heteroscedasticity
+   check_distribution(model)
+   plot(check_distribution(model))
+ }
+   check_heteroscedasticity
+ Check model for (non-)constant error variance
+Description
+ Check model for (non-)constant error variance.
+
+#### Usage 
+<pre><code>
+
+ check_heteroscedasticity(x, ...)
+Arguments
+ x   A model object.
+ ... Currently not used.
+Value
+ Invisibly returns the p-value of the test statistics. A p-value < 0.05 indicates a non-constant variance
+ (heteroskedasticity).
+Note
+ There is also a plot()-method implemented in the see-package.
+
+#### Examples
+ m <- lm(mpg ~ wt + cyl + gear + disp, data = mtcars)
+ check_heteroscedasticity(m)
+ # plot results
+ if (require("see")) {
+   x <- check_heteroscedasticity(m)
+   plot(x)
+ }
+check_homogeneity  11
+  check_homogeneity Check model for homogeneity of variances
+Description
+Check model for homogeneity of variances between groups described by independent variables in
+a model.
+
+#### Usage 
+<pre><code>
+
+check_homogeneity(x, method = c("bartlett", "fligner", "levene", "auto"), ...)
+Arguments
+x   A linear model or an ANOVA object.
+method  Name of the method (underlying test) that should be performed to check the
+homogeneity of variances. May either be "levene" for Levene’s Test for Ho-
+mogeneity of Variance, "bartlett" for the Bartlett test (assuming normal dis-
+tributed samples or groups), "fligner" for the Fligner-Killeen test (rank-based,
+non-parametric test), or "auto". In the latter case, Bartlett test is used if the
+model response is normal distributed, else Fligner-Killeen test is used.
+... Arguments passed down to car::leveneTest().
+Value
+Invisibly returns the p-value of the test statistics. A p-value < 0.05 indicates a significant difference
+in the variance between the groups.
+Note
+There is also a plot()-method implemented in the see-package.
+
+#### Examples
+model <- lm(len ~ supp + dose, data = ToothGrowth)
+check_homogeneity(model)
+# plot results
+if (require("see")) {
+  result <- check_homogeneity(model)
+  plot(result)
+}
+12 check_itemscale

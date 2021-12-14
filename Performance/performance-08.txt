@@ -1,0 +1,87 @@
+  check_zeroinflation  Check for zero-inflation in count models
+Description
+check_zeroinflation() checks whether count models are over- or underfitting zeros in the out-
+come.
+
+#### Usage 
+<pre><code>
+
+check_zeroinflation(x, tolerance = 0.05)
+Arguments
+x   Fitted model of class merMod, glmmTMB, glm, or glm.nb (package MASS).
+tolerance   The tolerance for the ratio of observed and predicted zeros to considered as over-
+or underfitting zeros. A ratio between 1 +/- tolerance is considered as OK,
+while a ratio beyond or below this threshold would indicate over- or underfitting.
+Details
+If the amount of observed zeros is larger than the amount of predicted zeros, the model is under-
+fitting zeros, which indicates a zero-inflation in the data. In such cases, it is recommended to use
+negative binomial or zero-inflated models.
+Value
+A list with information about the amount of predicted and observed zeros in the outcome, as well
+as the ratio between these two values.
+
+#### Examples
+if (require("glmmTMB")) {
+   data(Salamanders)
+   m <- glm(count ~ spp + mined, family = poisson, data = Salamanders)
+   check_zeroinflation(m)
+}
+24 compare_performance
+   classify_distribution Machine learning model trained to classify distributions
+Description
+ Mean accuracy and Kappa of 0.86 and 0.85, repsectively.
+
+#### Usage 
+<pre><code>
+
+ classify_distribution
+Format
+ An object of class randomForest.formula (inherits from randomForest) of length 8.
+   compare_performance   Compare performance of different models
+Description
+ compare_performance() computes indices of model performance for different models at once and
+ hence allows comparison of indices across models.
+
+#### Usage 
+<pre><code>
+
+ compare_performance(..., metrics = "all", rank = FALSE, verbose = TRUE)
+Arguments
+ ...  Multiple model objects (also of different classes).
+ metrics  Can be "all", "common" or a character vector of metrics to be computed. See
+  related documentation of object’s class for details.
+ rank Logical, if TRUE, models are ranked according to ’best’ overall model perfor-
+  mance. See ’Details’.
+ verbose  Toggle off warnings.
+Details
+   Ranking Models: When rank = TRUE, a new column Performance_Score is returned. This
+   score ranges from 0% to 100%, higher values indicating better model performance. Note that all
+   score value do not necessarily sum up to 100%. Rather, calculation is based on normalizing all
+   indices (i.e. rescaling them to a range from 0 to 1), and taking the mean value of all indices for
+   each model. This is a rather quick heuristic, but might be helpful as exploratory index.
+   In particular when models are of different types (e.g. mixed models, classical linear models,
+cronbachs_alpha 25
+   logistic regression, ...), not all indices will be computed for each model. In case where an index
+   can’t be calculated for a specific model type, this model gets an NA value. All indices that have
+   any NAs are excluded from calculating the performance score.
+   There is a plot()-method for compare_performance(), which creates a "spiderweb" plot, where
+   the different indices are normalized and larger values indicate better model performance. Hence,
+   points closer to the center indicate worse fit indices (see online-documentation for more details).
+Value
+ A data frame (with one row per model) and one column per "index" (see metrics).
+Note
+ There is also a plot()-method implemented in the see-package.
+
+#### Examples
+ data(iris)
+ lm1 <- lm(Sepal.Length ~   Species, data = iris)
+ lm2 <- lm(Sepal.Length ~   Species + Petal.Length, data = iris)
+ lm3 <- lm(Sepal.Length ~   Species * Petal.Length, data = iris)
+ compare_performance(lm1,   lm2, lm3)
+ compare_performance(lm1,   lm2, lm3, rank = TRUE)
+ if (require("lme4")) {
+m1 <- lm(mpg ~ wt + cyl, data = mtcars)
+m2 <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+m3 <- lmer(Petal.Length ~ Sepal.Length + (1 | Species), data = iris)
+compare_performance(m1, m2, m3)
+ }

@@ -1,0 +1,374 @@
+   performance_accuracy          Accuracy of predictions from model fit
+Description
+     This function calculates the predictive accuracy of linear or logistic regression models.
+
+#### Usage 
+<pre><code>
+
+     performance_accuracy(model, method = c("cv", "boot"), k = 5, n = 1000)
+Arguments
+     model                A linear or logistic regression model. May also be a mixed model.
+     method               Character string, indicating whether crossvalidation (method = "cv") or boot-
+                          strapping (method = "boot") is used to compute the accuracy values.
+     k                    The number of folds for the kfold-crossvalidation.
+     n                    Number of bootstrap-samples.
+
+
+####Details
+
+
+     For linar models, the accuracy is the correlation coefficient between the actual and the predicted
+     value of the outcome. For logistic regression models, the accuracy corresponds to the AUC-value,
+     calculated with the bayestestR::auc()-function.
+     The accuracy is the mean value of multiple correlation resp. AUC-values, which are either com-
+     puted with crossvalidation or non-parametric bootstrapping (see argument method). The standard
+     error is the standard deviation of the computed correlation resp. AUC-values.
+
+Value
+    A list with three values: The Accuracy of the model predictions, i.e. the proportion of accurately
+    predicted values from the model, its standard error, SE, and the Method used to compute the accu-
+    racy.
+
+#### Examples
+```{r}
+    model <- lm(mpg ~ wt + cyl, data = mtcars)
+    performance_accuracy(model)
+    model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+    performance_accuracy(model)
+```	
+	
+  performance_aicc               Compute AIC and second order AIC
+Description
+    Compute the second-order Akaike’s information criterion (AICc). The second-order (or small sam-
+    ple) is a AIC with a correction for small sample sizes. performance_aic() is a small wrapper
+    that returns the AIC. It is a generic function that also works for some models that don’t have a AIC
+    method (like Tweedie models).
+
+#### Usage 
+<pre><code>
+
+    performance_aicc(x, ...)
+    performance_aic(x, ...)
+Arguments
+    x                   A model object.
+    ...                 Currently not used.
+Value
+    Numeric, the AIC or AICc value.
+
+#### Examples
+     m <- lm(mpg ~ wt + cyl + gear + disp, data = mtcars)
+     AIC(m)
+     performance_aicc(m)
+   performance_hosmer             Hosmer-Lemeshow goodness-of-fit test
+Description
+     Check model quality of logistic regression models.
+
+#### Usage 
+<pre><code>
+
+     performance_hosmer(model, n_bins = 10)
+Arguments
+     model                A glm-object with binomial-family.
+     n_bins               Numeric, the number of bins to divide the data.
+
+
+####Details
+
+
+     A well-fitting model shows no significant difference between the model and the observed data, i.e.
+     the reported p-value should be greater than 0.05.
+Value
+     An object of class hoslem_test with following values: chisq, the Hosmer-Lemeshow chi-squared
+     statistic; df, degrees of freedom and p.value the p-value for the goodness-of-fit test.
+
+
+#### Examples
+     model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+     performance_hosmer(model)
+performance_logloss                                                                                 45
+  performance_logloss            Log Loss
+Description
+    Compute the log loss for models with binary outcome.
+
+#### Usage 
+<pre><code>
+
+    performance_logloss(model, verbose = TRUE, ...)
+Arguments
+    model                Model with binary outcome.
+    verbose              Toggle off warnings.
+    ...                  Currently not used.
+
+
+####Details
+
+
+    Logistic regression models predict the probability of an outcome of being a "success" or "failure"
+    (or 1 and 0 etc.). performance_logloss() evaluates how good or bad the predicted probabilities
+    are. High values indicate bad predictions, while low values indicate good predictions. The lower
+    the log-loss, the better the model predicts the outcome.
+Value
+    Numeric, the log loss of model.
+
+
+#### Examples
+```{r}
+    data(mtcars)
+    m <- glm(formula = vs ~ hp + wt, family = binomial, data = mtcars)
+    performance_logloss(m)
+```
+
+   performance_mse               Mean Square Error of Linear Models
+
+Description
+     Compute mean square error of linear models.
+
+#### Usage 
+<pre><code>
+
+     performance_mse(model, ...)
+     mse(model, ...)
+	 
+#### Arguments
+     model                A model.
+     ...                  Arguments passed to or from other methods.
+
+
+####Details
+
+
+     The mean square error is the mean of the sum of squared residuals, i.e. it measures the average of
+     the squares of the errors. Less technically speaking, the mean square error can be considered as the
+     variance of the residuals, i.e. the variation in the outcome the model doesn’t explain. Lower values
+     (closer to zero) indicate better fit.
+Value
+     Numeric, the mean square error of model.
+
+#### Examples
+```{r}
+     data(mtcars)
+     m <- lm(mpg ~ hp + gear, data = mtcars)
+     performance_mse(m)
+```
+	 
+performance_pcp               Percentage of Correct Predictions
+
+#### Description
+
+Percentage of correct predictions (PCP) for models with binary outcome.
+
+#### Usage 
+<pre><code>
+
+     performance_pcp(model, ci = 0.95, method = "Herron", verbose = TRUE)
+performance_pcp                                                                                      47
+Arguments
+    model               Model with binary outcome.
+    ci                  The level of the confidence interval.
+    method              Name of the method to calculate the PCP (see ’
+
+####Details
+
+’). Default is "Herron".
+                        May be abbreviated.
+    verbose             Toggle off warnings.
+
+
+####Details
+
+
+    method = "Gelman-Hill" (or "gelman_hill") computes the PCP based on the proposal from Gel-
+    man and Hill 2017, 99, which is defined as the proportion of cases for which the deterministic
+    prediction is wrong, i.e. the proportion where the predicted probability is above 0.5, although y=0
+    (and vice versa) (see also Herron 1999, 90 ).
+	
+    method = "Herron" (or "herron") computes a modified version of the PCP (Herron 1999, 90-92 ),
+    which is the sum of predicted probabilities, where y=1, plus the sum of 1 - predicted probabilities,
+    where y=0, divided by the number of observations. This approach is said to be more accurate.
+    
+	The PCP ranges from 0 to 1, where values closer to 1 mean that the model predicts the outcome
+    better than models with an PCP closer to 0. In general, the PCP should be above 0.5 (i.e. 50%), the
+    closer to one, the better. Furthermore, the PCP of the full model should be considerably above the
+    null model’s PCP.
+    
+	The likelihood-ratio test indicates whether the model has a significantly better fit than the null-
+    model (in such cases, p < 0.05).
+
+Value
+    A list with several elements: the percentage of correct predictions of the full and the null model,
+    their confidence intervals, as well as the chi-squared and p-value from the Likelihood-Ratio-Test
+    between the full and null model.
+
+
+#### Examples
+
+```{r}
+    data(mtcars)
+    m <- glm(formula = vs ~ hp + wt, family = binomial, data = mtcars)
+    performance_pcp(m)
+    performance_pcp(m, method = "Gelman-Hill")
+```	
+48                                                                                     performance_rmse
+   performance_rmse             Root Mean Squared Error
+Description
+     Compute root mean squared error for (mixed effects) models, including Bayesian regression mod-
+     els.
+
+#### Usage 
+<pre><code>
+
+     performance_rmse(model, normalized = FALSE, verbose = TRUE)
+     rmse(model, normalized = FALSE, verbose = TRUE)
+</code></pre>
+
+Arguments
+     model               A model.
+     normalized          Logical, use TRUE if normalized rmse should be returned.
+     verbose             Toggle off warnings.
+
+
+####Details
+
+
+     The RMSE is the square root of the variance of the residuals and indicates the absolute fit of the
+     model to the data (difference between observed data to model’s predicted values). It can be inter-
+     preted as the standard deviation of the unexplained variance, and is in the same units as the response
+     variable. Lower values indicate better model fit.
+     The normalized RMSE is the proportion of the RMSE related to the range of the response vari-
+     able. Hence, lower values indicate less residual variance.
+Value
+     Numeric, the root mean squared error.
+
+#### Examples
+```{r}    
+	if (require("nlme")) {
+       m <- lme(distance ~ age, data = Orthodont)
+       # RMSE
+       performance_rmse(m, normalized = FALSE)
+       # normalized RMSE
+       performance_rmse(m, normalized = TRUE)
+     }
+	 
+```	 
+performance_roc                                                                                    49
+  performance_roc               Simple ROC curve
+Description
+    This function calculates a simple ROC curves of x/y coordinates based on response and predictions
+    of a binomial model.
+
+#### Usage 
+<pre><code>
+
+    performance_roc(x, ..., predictions, new_data)
+Arguments
+    x                  A numeric vector, representing the outcome (0/1), or a model with binomial
+                       outcome.
+    ...                One or more models with binomial outcome. In this case, new_data is ignored.
+    predictions        If x is numeric, a numeric vector of same length as x, representing the actual
+                       predicted values.
+    new_data           If x is a model, a data frame that is passed to predict() as newdata-argument.
+                       If NULL, the ROC for the full model is calculated.
+Value
+    A data frame with three columns, the x/y-coordinate pairs for the ROC curve (Sensivity and
+    Specifity), and a column with the model name.
+Note
+    There is also a plot()-method implemented in the see-package.
+
+#### Examples
+    library(bayestestR)
+    data(iris)
+    set.seed(123)
+    iris$y <- rbinom(nrow(iris), size = 1, .3)
+    folds <- sample(nrow(iris), size = nrow(iris) / 8, replace = FALSE)
+    test_data <- iris[folds, ]
+    train_data <- iris[-folds, ]
+    model <- glm(y ~ Sepal.Length + Sepal.Width, data = train_data, family = "binomial")
+    performance_roc(model, new_data = test_data)
+    roc <- performance_roc(model, new_data = test_data)
+    area_under_curve(roc$Specifity, roc$Sensivity)
+50                                                                                     performance_score
+     m1 <- glm(y ~ Sepal.Length + Sepal.Width, data = iris, family = "binomial")
+     m2 <- glm(y ~ Sepal.Length + Petal.Width, data = iris, family = "binomial")
+     m3 <- glm(y ~ Sepal.Length + Species, data = iris, family = "binomial")
+     performance_roc(m1, m2, m3)
+   performance_rse             Residual Standard Error for Linear Models
+Description
+     Compute residual standard error of linear models.
+
+#### Usage 
+<pre><code>
+
+     performance_rse(model)
+Arguments
+*`` model``:              A model.
+
+
+####Details
+
+
+     The residual standard error is the square root of the residual sum of squares divided by the residual
+     degrees of freedom.
+Value
+     Numeric, the residual standard error of model.
+
+#### Examples
+```{r}
+     data(mtcars)
+     m <- lm(mpg ~ hp + gear, data = mtcars)
+     performance_rse(m)
+
+```
+performance_score           Proper Scoring Rules
+Description
+     Calculates the logarithmic, quadratic/Brier and spherical score from a model with binary or count
+     outcome.
+
+#### Usage 
+<pre><code>
+
+     performance_score(model, verbose = TRUE)
+performance_score                                                                                      51
+Arguments
+    model                Model with binary or count outcome.
+    verbose              Toggle off warnings.
+
+
+####Details
+
+
+    Proper scoring rules can be used to evaluate the quality of model predictions and model fit. performance_score()
+    calculates the logarithmic, quadratic/Brier and spherical scoring rules. The spherical rule takes val-
+    ues in the interval [0,1], with values closer to 1 indicating a more accurate model, and the loga-
+    rithmic rule in the interval [-Inf,0], with values closer to 0 indicating a more accurate model.
+    For stan_lmer() and stan_glmer() models, the predicted values are based on posterior_predict(),
+    instead of predict(). Thus, results may differ more than expected from their non-Bayesian coun-
+    terparts in lme4.
+Value
+    A list with three elements, the logarithmic, quadratic/Brier and spherical score.
+Note
+    Code is partially based on GLMMadaptive::scoring_rules().
+
+See Also
+    performance_logloss()
+
+#### Examples
+    ## Dobson (1990) Page 93: Randomized Controlled Trial :
+    counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12)
+    outcome <- gl(3, 1, 9)
+    treatment <- gl(3, 3)
+    model <- glm(counts ~ outcome + treatment, family = poisson())
+    performance_score(model)
+    ## Not run:
+    if (require("glmmTMB")) {
+       data(Salamanders)
+       model <- glmmTMB(
+         count ~ spp + mined + (1 | site),
+         zi = ~ spp + mined,
+         family = nbinom2(),
+         data = Salamanders
+       )
+52                                                                                             pp_check
+       performance_score(model)
+     }
+     ## End(Not run)
+ 

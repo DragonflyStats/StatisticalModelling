@@ -1,0 +1,68 @@
+  pp_check  Posterior predictive checks for frequentist models
+Description
+ Posterior predictive checks for frequentist models.
+
+#### Usage 
+<pre><code>
+
+ pp_check(object, ...)
+ ## S3 method for class 'lm'
+ pp_check(object, iterations = 50, check_range = FALSE, re_formula = NULL, ...)
+ posterior_predictive_check(
+   object,
+   iterations = 50,
+   check_range = FALSE,
+   re_formula = NULL,
+   ...
+ )
+</code></pre>
+	 
+Arguments
+ object  A statistical model.
+ ... Passed down to simulate().
+ iterations  The number of draws to simulate/bootstrap.
+ check_range Logical, if TRUE, includes a plot with the minimum value of the original re-
+ sponse against the minimum values of the replicated responses, and the same
+ for the maximum value. This plot helps judging whether the variation in the
+ original data is captured by the model or not (Gelman et al. 2020, pp.163 ). The
+ minimum and maximum values of y should be inside the range of the related
+ minimum and maximum values of yrep.
+ re_formula  Formula containing group-level effects (random effects) to be considered in the
+ simulated data. If NULL (default), condition on all random effects. If NA or ~0,
+ condition on no random effects. See simulate() in lme4.
+
+
+
+####Details
+
+
+Posterior predictive checks means “simulating replicated data under the fitted model and then com-
+paring these to the observed data” (Gelman and Hill, 2007, p. 158). Posterior predictive checks
+can be used to “look for systematic discrepancies between real and simulated data” (Gelman et al.
+2014, p. 169).
+An example how posterior predictive checks can also be used for model comparison is follow-
+ing plot (from Gabry et al. 2019, Figure 6 ):
+The model shown in the right panel (b) can simulate new data that are more similar to the observed
+outcome than the model in the left panel (a). Thus, model (b) is likely to be preferred over model
+(a).
+Value
+A data frame of simulated responses and the original response vector.
+Note
+The default-method, pp_check.default() is in package bayesplot. Thus, performance adds
+pp_check()-methods for different classes and packages (like lm, merMod, glmmTMB, ...). How-
+ever, since it might be that not all model objects that have a simulate() function are covered,
+and those objects probably can’t be passed down to the default-method, there is also a "generic"
+posterior_predictive_check() function, which just calls pp_check.lm(). Thus, every model
+object that has a simulate()-method should work with posterior_predictive_check().
+
+
+#### Examples
+```{r}
+
+library(performance)
+model <- lm(Sepal.Length ~ Species * Petal.Width + Petal.Length, data = iris)
+if (require("ggplot2") && require("see")) {
+  pp_check(model)
+}
+## End(Not run)
+```

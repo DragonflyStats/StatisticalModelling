@@ -1,0 +1,30 @@
+
+   item_split_half   Split-Half Reliability
+Description
+ Compute various measures of internal consistencies for tests or item-scales of questionnaires.
+
+#### Usage 
+<pre><code>
+
+ item_split_half(x, digits = 3)
+Arguments
+* x A matrix or a data frame.
+* digitsAmount of digits for returned values.
+
+####  Details
+ This function calculates the split-half reliability for items in x, including the Spearman-Brown ad-
+ justment. Splitting is done by selecting odd versus even columns in x. A value closer to 1 indicates
+ greater internal consistency.
+
+#### Value
+ A list with two elements: the split-half reliability splithalf and the Spearman-Brown corrected
+ split-half reliability spearmanbrown.
+
+
+
+#### Examples
+```{r}
+	 data(mtcars)
+ x <- mtcars[, c("cyl", "gear", "carb", "hp")]
+ item_split_half(x)
+```	 

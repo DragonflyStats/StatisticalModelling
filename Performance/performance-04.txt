@@ -1,0 +1,56 @@
+   cronbachs_alpha Cronbach’s Alpha for Items or Scales
+Description
+ Compute various measures of internal consistencies for tests or item-scales of questionnaires.
+
+#### Usage 
+<pre><code>
+
+ cronbachs_alpha(x)
+Arguments
+ xA matrix or a data frame.
+26  display.performance_model
+Details
+ The Cronbach’s Alpha value for x. A value closer to 1 indicates greater internal consistency, where
+ usually following rule of thumb is applied to interpret the results: a < 0.5 is unacceptable, 0.5 < a
+ < 0.6 is poor, 0.6 < a < 0.7 is questionable, 0.7 < a < 0.8 is acceptable, and everything > 0.8 is good
+ or excellent.
+Value
+ The Cronbach’s Alpha value for x.
+
+#### Examples
+ data(mtcars)
+ x <- mtcars[, c("cyl", "gear", "carb", "hp")]
+ cronbachs_alpha(x)
+   display.performance_model
+   Print tables in different output formats
+Description
+ Prints tables (i.e. data frame) in different output formats. print_md() is a alias for display(format
+ = "markdown").
+
+#### Usage 
+<pre><code>
+
+ ## S3 method for class 'performance_model'
+ display(object, format = "markdown", digits = 2, ...)
+ ## S3 method for class 'performance_model'
+ print_md(x, digits = 2, ...)
+Arguments
+ object, x An object returned by model_performance() or compare_performance(). or
+   its summary.
+ formatString, indicating the output format. Currently, only "markdown" is supported.
+ digitsNumber of decimal places.
+ ...   Currently not used.
+icc27
+Details
+ display() is useful when the table-output from functions, which is usually printed as formatted
+ text-table to console, should be formatted for pretty table-rendering in markdown documents, or if
+ knitted from rmarkdown to PDF or Word files. See vignette for 
+#### Examples.
+Value
+ A character vector. If format = "markdown", the return value will be a character vector in markdown-
+ table format.
+
+#### Examples
+ model <- lm(mpg ~ wt + cyl, data = mtcars)
+ mp <- model_performance(model)
+ display(mp)

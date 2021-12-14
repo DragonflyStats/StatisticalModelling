@@ -1,0 +1,70 @@
+   model_performance.stanreg
+   Performance of Bayesian Models
+Description
+ Compute indices of model performance for (general) linear models.
+
+#### Usage 
+<pre><code>
+
+ ## S3 method for class 'stanreg'
+ model_performance(model, metrics = "all", verbose = TRUE, ...)
+ ## S3 method for class 'BFBayesFactor'
+ model_performance(
+model,
+metrics = "all",
+verbose = TRUE,
+average = FALSE,
+prior_odds = NULL,
+...
+ )
+Arguments
+ model  Object of class stanreg or brmsfit.
+ metricsCan be "all", "common" or a character vector of metrics to be computed (some
+of c("LOOIC","WAIC","R2","R2_adj","RMSE","SIGMA","LOGLOSS","SCORE")).
+"common" will compute LOOIC, WAIC, R2 and RMSE.
+model_performance.stanreg41
+verboseToggle off warnings.
+...Arguments passed to or from other methods.
+averageCompute model-averaged index? See bayestestR::weighted_posteriors().
+prior_odds Optional vector of prior odds for the models compared to the first model (or the
+   denominator, for BFBayesFactor objects). For data.frames, this will be used
+   as the basis of weighting.
+Details
+Depending on model, following indices are computed:
+   *  ELPD expected log predictive density, see looic
+   *  LOOIC leave-one-out cross-validation (LOO) information criterion, see looic
+   *  WAIC widely applicable information criterion, see ?loo::waic
+   *  R2 r-squared value, see r2
+   *  R2_LOO_adjusted adjusted r-squared, see r2
+   *  RMSE root mean squared error, see performance_rmse
+   *  SIGMA residual standard deviation, see get_sigma()
+   *  LOGLOSS Log-loss, see performance_logloss
+   *  SCORE_LOG score of logarithmic proper scoring rule, see performance_score
+   *  SCORE_SPHERICAL score of spherical proper scoring rule, see performance_score
+   *  PCP percentage of correct predictions, see performance_pcp
+Value
+A data frame (with one row) and one column per "index" (see metrics).
+
+
+#### Examples
+## Not run:
+if (require("rstanarm") && require("rstantools")) {
+  model <- stan_glm(mpg ~ wt + cyl, data = mtcars, chains = 1, iter = 500, refresh = 0)
+  model_performance(model)
+  model <- stan_glmer(
+ mpg ~ wt + cyl + (1 | gear),
+ data = mtcars,
+ chains = 1,
+42  performance_accuracy
+  iter = 500,
+  refresh = 0
+   )
+   model_performance(model)
+ }
+ if (require("BayesFactor") && require("rstantools")) {
+   model <- generalTestBF(carb ~ am + mpg, mtcars)
+   model_performance(model)
+   model_performance(model[3])
+   model_performance(model, average = TRUE)
+ }
+ ## End(Not run)

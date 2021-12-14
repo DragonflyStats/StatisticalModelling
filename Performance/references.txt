@@ -1,0 +1,125 @@
+References
+         • Briggs SR, Cheek JM (1986) The role of factor analysis in the development and evalua-
+           tion of personality scales. Journal of Personality, 54(1), 106-148. doi: 10.1111/j.1467-
+           6494.1986.tb00391.x
+         • Trochim WMK (2008) Types of Reliability. (web)
+References
+       • Archimbaud, A., Nordhausen, K., \& Ruiz-Gazen, A. (2018). ICS for multivariate outlier
+         detection with application to quality control. Computational Statistics & Data Analysis, 128,
+         184–199. doi: 10.1016/j.csda.2018.06.011
+       • Gnanadesikan, R., \& Kettenring, J. R. (1972). Robust estimates, residuals, and outlier detec-
+         tion with multiresponse data. Biometrics, 81-124.
+       • Bollen, K. A., & Jackman, R. W. (1985). Regression diagnostics: An expository treatment of
+         outliers and influential cases. Sociological Methods & Research, 13(4), 510-542.
+       • Cabana, E., Lillo, R. E., \& Laniado, H. (2019). Multivariate outlier detection based on a
+         robust Mahalanobis distance with shrinkage estimators. arXiv preprint arXiv:1904.02596.
+       • Cook, R. D. (1977). Detection of influential observation in linear regression. Technometrics,
+         19(1), 15-18.
+       • Iglewicz, B., & Hoaglin, D. C. (1993). How to detect and handle outliers (Vol. 16). Asq Press.
+       • Leys, C., Klein, O., Dominicy, Y., \& Ley, C. (2018). Detecting multivariate outliers: Use
+         a robust variant of Mahalanobis distance. Journal of Experimental Social Psychology, 74,
+         150-156.
+       • Liu, F. T., Ting, K. M., & Zhou, Z. H. (2008, December). Isolation forest. In 2008 Eighth
+         IEEE International Conference on Data Mining (pp. 413-422). IEEE.
+       • Rousseeuw, P. J., \& Van Zomeren, B. C. (1990). Unmasking multivariate outliers and lever-
+         age points. Journal of the American Statistical association, 85(411), 633-639.
+		 
+References
+        • Bolker B et al. (2017): GLMM FAQ.
+        • Gelman, A., & Hill, J. (2007). Data analysis using regression and multilevel/hierarchical
+           models. Cambridge; New York: Cambridge University Press.
+
+
+References
+        • Bates D, Kliegl R, Vasishth S, Baayen H. Parsimonious Mixed Models. arXiv:1506.04967,
+          June 2015.
+        • Barr DJ, Levy R, Scheepers C, Tily HJ. Random effects structure for confirmatory hypothesis
+          testing: Keep it maximal. Journal of Memory and Language, 68(3):255-278, April 2013.
+        • Matuschek H, Kliegl R, Vasishth S, Baayen H, Bates D. Balancing type I error and power in
+          linear mixed models. Journal of Memory and Language, 94:305-315, 2017.
+        • lme4 Reference Manual, https://cran.r-project.org/package=lme4
+		
+References
+     Bland, J. M., \& Altman, D. G. Statistics notes: Cronbach’s alpha. BMJ 1997;314:572. 10.1136/bmj.314.7080.572
+
+References
+        • Hox, J. J. (2010). Multilevel analysis: techniques and applications (2nd ed). New York:
+          Routledge.
+        • Johnson, P. C. D. (2014). Extension of Nakagawa & Schielzeth’s R2 GLMM to random slopes
+          models. Methods in Ecology and Evolution, 5(9), 944–946. doi: 10.1111/2041210X.12225
+64                                                                                           r2_somers
+        • Nakagawa, S., & Schielzeth, H. (2013). A general and simple method for obtaining R2 from
+          generalized linear mixed-effects models. Methods in Ecology and Evolution, 4(2), 133–142.
+          doi: 10.1111/j.2041210x.2012.00261.x
+        • Nakagawa, S., Johnson, P. C. D., & Schielzeth, H. (2017). The coefficient of determination R2
+          and intra-class correlation coefficient from generalized linear mixed-effects models revisited
+          and expanded. Journal of The Royal Society Interface, 14(134), 20170213. doi: 10.1098/
+          rsif.2017.0213
+		  
+References
+    Carvalho, A. (2016). An overview of applications of proper scoring rules. Decision Analysis 13,
+    223–242. doi: 10.1287/deca.2016.0337
+
+References
+     Hosmer, D. W., & Lemeshow, S. (2000). Applied Logistic Regression. Hoboken, NJ, USA: John
+     Wiley & Sons, Inc. doi: 10.1002/0471722146
+	
+References
+ Spearman C. 1910. Correlation calculated from faulty data. British Journal of Psychology (3): 271-
+ 295. doi: 10.1111/j.20448295.1910.tb00206.x
+ Brown W. 1910. Some experimental results in the correlation of mental abilities. British Journal of
+ Psychology (3): 296-322. doi: 10.1111/j.20448295.1910.tb00207.x
+ 
+References
+        • Gabry, J., Simpson, D., Vehtari, A., Betancourt, M., & Gelman, A. (2019). Visualization in
+          Bayesian workflow. Journal of the Royal Statistical Society: Series A (Statistics in Society),
+          182(2), 389–402. https://doi.org/10.1111/rssa.12378
+        • Gelman, A., & Hill, J. (2007). Data analysis using regression and multilevel/hierarchical
+          models. Cambridge; New York: Cambridge University Press.
+        • Gelman, A., Carlin, J. B., Stern, H. S., Dunson, D. B., Vehtari, A., & Rubin, D. B. (2014).
+          Bayesian data analysis. (Third edition). CRC Press.
+        • Gelman, A., Hill, J., & Vehtari, A. (2020). Regression and Other Stories. Cambridge Univer-
+          sity Press.
+		  
+References
+        • Cox, D. R., Snell, E. J. (1989). Analysis of binary data (Vol. 32). Monographs on Statistics
+          and Applied Probability.
+        • Magee, L. (1990). R 2 measures based on Wald and likelihood ratio joint significance tests.
+          The American Statistician, 44(3), 250-253.
+        • Maddala, G. S. (1986). Limited-dependent and qualitative variables in econometrics (No. 3).
+          Cambridge university press.
+        • Nagelkerke, N. J. (1991). A note on a general definition of the coefficient of determination.
+          Biometrika, 78(3), 691-692.
+
+		  
+References
+        • Byrne, B. M. (1994). Structural equation modeling with EQS and EQS/Windows. Thousand
+          Oaks, CA: Sage Publications.
+        • Tucker, L. R., \& Lewis, C. (1973). The reliability coefficient for maximum likelihood factor
+          analysis. Psychometrika, 38, 1-10.
+        • Schumacker, R. E., \& Lomax, R. G. (2004). A beginner’s guide to structural equation mod-
+          eling, Second edition. Mahwah, NJ: Lawrence Erlbaum Associates.
+model_performance.lm                                                                                37
+        • Fan, X., B. Thompson, \& L. Wang (1999). Effects of sample size, estimation method, and
+          model specification on structural equation modeling fit indexes. Structural Equation Model-
+          ing, 6, 56-83.
+        • Kline, R. B. (2015). Principles and practice of structural equation modeling. Guilford publi-
+          cations.
+		  
+References
+    Gelman, A., Goodrich, B., Gabry, J., & Vehtari, A. (2018). R-squared for Bayesian regression
+    models. The American Statistician, The American Statistician, 1-6.
+References
+        • Herron, M. (1999). Postestimation Uncertainty in Limited Dependent Variable Models. Polit-
+          ical Analysis, 8, 83–98.
+        • Gelman, A., & Hill, J. (2007). Data analysis using regression and multilevel/hierarchical
+          models. Cambridge; New York: Cambridge University Press, 99
+		  
+References
+       • Akaike, H. (1973) Information theory as an extension of the maximum likelihood principle.
+          In: Second International Symposium on Information Theory, pp. 267–281. Petrov, B.N.,
+          Csaki, F., Eds, Akademiai Kiado, Budapest.
+       • Hurvich, C. M., Tsai, C.-L. (1991) Bias of the corrected AIC criterion for underfitted regres-
+          sion and time series models. Biometrika 78, 499–509.
+44                                                                                performance_hosmer
+	

@@ -1,0 +1,435 @@
+54                                                                                                     r2
+   r2                            Compute the model’s R2
+Description
+     Calculate the R2 value for different model objects. Depending on the model, R2, pseudo-R2 or
+     marginal / adjusted R2 values are returned.
+
+#### Usage 
+<pre><code>
+
+     r2(model, ...)
+     ## S3 method for class 'merMod'
+     r2(model, tolerance = 1e-05, ...)
+Arguments
+     model               A statistical model.
+     ...                 Arguments passed down to the related r2-methods.
+     tolerance           Tolerance for singularity check of random effects, to decide whether to com-
+                         pute random effect variances for the conditional r-squared or not. Indicates up
+                         to which value the convergence result is accepted. When r2_nakagawa() re-
+                         turns a warning, stating that random effect variances can’t be computed (and
+                         thus, the conditional r-squared is NA), decrease the tolerance-level. See also
+                         check_singularity.
+Value
+     Returns a list containing values related to the most appropriate R2 for the given model. See the list
+     below:
+        • Logistic models: Tjur’s R2
+        • General linear models: Nagelkerke’s R2
+        • Multinomial Logit: McFadden’s R2
+        • Models with zero-inflation: R2 for zero-inflated models
+        • Mixed models: Nakagawa’s R2
+        • Bayesian models: R2 bayes
+See Also
+     r2_bayes, r2_coxsnell, r2_kullback, r2_loo, r2_mcfadden, r2_nagelkerke, r2_nakagawa,
+     r2_tjur, r2_xu and r2_zeroinflated.
+r2_bayes                                                                                            55
+
+#### Examples
+    model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+    r2(model)
+    if (require("lme4")) {
+      model <- lmer(Sepal.Length ~ Petal.Length + (1 | Species), data = iris)
+      r2(model)
+    }
+  r2_bayes                    Bayesian R2
+Description
+    Compute R2 for Bayesian models. For mixed models (including a random part), it additionally
+    computes the R2 related to the fixed effects only (marginal R2). While r2_bayes() returns a single
+    R2 value, r2_posterior() returns a posterior sample of Bayesian R2 values.
+
+#### Usage 
+<pre><code>
+
+    r2_bayes(model, robust = TRUE, ci = 0.89, verbose = TRUE, ...)
+    r2_posterior(model, ...)
+    ## S3 method for class 'brmsfit'
+    r2_posterior(model, verbose = TRUE, ...)
+    ## S3 method for class 'stanreg'
+    r2_posterior(model, verbose = TRUE, ...)
+    ## S3 method for class 'BFBayesFactor'
+    r2_posterior(model, average = FALSE, prior_odds = NULL, ...)
+Arguments
+    model             A Bayesian regression model (from brms, rstanarm, BayesFactor, etc).
+    robust            Logical, if TRUE, the median instead of mean is used to calculate the central
+                      tendency of the variances.
+    ci                Value or vector of probability of the CI (between 0 and 1) to be estimated.
+    verbose           Toggle off warnings.
+    ...               Arguments passed to r2_posterior().
+    average           Compute model-averaged index? See bayestestR::weighted_posteriors().
+    prior_odds        Optional vector of prior odds for the models compared to the first model (or the
+                      denominator, for BFBayesFactor objects). For data.frames, this will be used
+                      as the basis of weighting.
+56                                                                                            r2_bayes
+Details
+    r2_bayes() returns an "unadjusted" R2 value. See r2_loo to calculate a LOO-adjusted R2, which
+    comes conceptionally closer to an adjusted R2 measure.
+    For mixed models, the conditional and marginal R2 are returned. The marginal R2 considers only
+    the variance of the fixed effects, while the conditional R2 takes both the fixed and random effects
+    into account.
+    r2_posterior() is the actual workhorse for r2_bayes() and returns a posterior sample of Bayesian
+    R2 values.
+Value
+    A list with the Bayesian R2 value. For mixed models, a list with the Bayesian R2 value and the
+    marginal Bayesian R2 value. The standard errors and credible intervals for the R2 values are saved
+    as attributes.
+References
+    Gelman, A., Goodrich, B., Gabry, J., & Vehtari, A. (2018). R-squared for Bayesian regression
+    models. The American Statistician, 1–6. doi: 10.1080/00031305.2018.1549100
+
+#### Examples
+    library(performance)
+    if (require("rstanarm") && require("rstantools")) {
+      model <- stan_glm(mpg ~ wt + cyl, data = mtcars, chains = 1, iter = 500, refresh = 0)
+      r2_bayes(model)
+      model <- stan_lmer(
+         Petal.Length ~ Petal.Width + (1 | Species),
+         data = iris,
+         chains = 1,
+         iter = 500,
+         refresh = 0
+      )
+      r2_bayes(model)
+    }
+    ## Not run:
+    if (require("BayesFactor")) {
+      data(mtcars)
+      BFM <- generalTestBF(mpg ~ qsec + gear, data = mtcars, progress = FALSE)
+      FM <- lm(mpg ~ qsec + gear, data = mtcars)
+      r2_bayes(FM)
+      r2_bayes(BFM[3])
+      r2_bayes(BFM, average = TRUE) # across all models
+r2_coxsnell                                                                                       57
+       # with random effects:
+       mtcars$gear <- factor(mtcars$gear)
+       model <- lmBF(
+         mpg ~ hp + cyl + gear + gear:wt,
+         mtcars,
+         progress = FALSE,
+         whichRandom = c("gear", "gear:wt")
+       )
+       r2_bayes(model)
+    }
+    if (require("brms")) {
+       model <- brms::brm(mpg ~ wt + cyl, data = mtcars)
+       r2_bayes(model)
+       model <- brms::brm(Petal.Length ~ Petal.Width + (1 | Species), data = iris)
+       r2_bayes(model)
+    }
+    ## End(Not run)
+  r2_coxsnell                  Cox & Snell’s R2
+Description
+    Calculates the pseudo-R2 value based on the proposal from Cox & Snell (1989).
+
+#### Usage 
+<pre><code>
+
+    r2_coxsnell(model)
+Arguments
+    model               Model with binary outcome.
+Details
+    This index was proposed by Cox & Snell (1989, pp. 208-9) and, apparently independently, by
+    Magee (1990) ; but had been suggested earlier for binary response models by Maddala (1983).
+    However, this index achieves a maximum of less than 1 for discrete models (i.e. models whose
+    likelihood is a product of probabilities) which have a maximum of 1, instead of densities, which
+    can become infinite (Nagelkerke, 1991).
+Value
+    A named vector with the R2 value.
+58                                                                                              r2_efron
+
+
+#### Examples
+     model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+     r2_coxsnell(model)
+   r2_efron                     Efron’s R2
+Description
+     Calculates Efron’s pseudo R2.
+
+#### Usage 
+<pre><code>
+
+     r2_efron(model)
+Arguments
+     model                Generalized linear model.
+Details
+     Efron’s R2 is calculated by taking the sum of the squared model residuals, divided by the total
+     variability in the dependent variable. This R2 equals the squared correlation between the predicted
+     values and actual values, however, note that model residuals from generalized linear models are not
+     generally comparable to those of OLS.
+Value
+     The R2 value.
+References
+        • Efron, B. (1978). Regression and ANOVA with zero-one data: Measures of residual variation.
+          Journal of the American Statistical Association, 73, 113-121.
+r2_kullback                                                                                   59
+
+#### Examples
+    ## Dobson (1990) Page 93: Randomized Controlled Trial:
+    counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12) #
+    outcome <- gl(3, 1, 9)
+    treatment <- gl(3, 3)
+    model <- glm(counts ~ outcome + treatment, family = poisson())
+    r2_efron(model)
+  r2_kullback                Kullback-Leibler R2
+Description
+    Calculates the Kullback-Leibler-divergence-based R2 for generalized linear models.
+
+#### Usage 
+<pre><code>
+
+    r2_kullback(model, adjust = TRUE)
+Arguments
+    model              A generalized linear model.
+    adjust             Logical, if TRUE (the default), the adjusted R2 value is returned.
+Value
+    A named vector with the R2 value.
+References
+    Cameron, A. C. and Windmeijer, A. G. (1997) An R-squared measure of goodness of fit for some
+    common nonlinear regression models. Journal of Econometrics, 77: 329-342.
+
+#### Examples
+    model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+    r2_kullback(model)
+60                                                                                   r2_mcfadden
+   r2_loo                    LOO-adjusted R2
+Description
+     Compute LOO-adjusted R2.
+
+#### Usage 
+<pre><code>
+
+     r2_loo(model, verbose = TRUE)
+Arguments
+     model            A Bayesian regression model.
+     verbose          Toggle off warnings.
+Details
+     Unlike r2_bayes, which returns an "unadjusted" R2 value, r2_loo() calculates a LOO-adjusted
+     R2, which comes conceptionally closer to an "adjusted" R2 measure.
+Value
+     The LOO-adjusted R2 for model, as numeric value.
+
+#### Examples
+     if (require("rstanarm")) {
+       model <- stan_glm(mpg ~ wt + cyl, data = mtcars, chains = 1, iter = 500, refresh = 0)
+       r2_loo(model)
+     }
+   r2_mcfadden               McFadden’s R2
+Description
+     Calculates McFadden’s pseudo R2.
+
+#### Usage 
+<pre><code>
+
+     r2_mcfadden(model)
+Arguments
+     model            Generalized linear or multinomial logit (mlogit) model.
+r2_mckelvey                                                                                       61
+Value
+    For most models, a list with McFadden’s R2 and adjusted McFadden’s R2 value. For some models,
+    only McFadden’s R2 is available.
+References
+        • McFadden, D. (1987). Regression-based specification tests for the multinomial logit model.
+          Journal of econometrics, 34(1-2), 63-82.
+        • McFadden, D. (1973). Conditional logit analysis of qualitative choice behavior.
+
+#### Examples
+    if (require("mlogit")) {
+      data("Fishing", package = "mlogit")
+      Fish <- mlogit.data(Fishing, varying = c(2:9), shape = "wide", choice = "mode")
+      model <- mlogit(mode ~ price + catch, data = Fish)
+      r2_mcfadden(model)
+    }
+  r2_mckelvey                  McKelvey & Zavoinas R2
+Description
+    Calculates McKelvey & Zavoinas pseudo R2.
+
+#### Usage 
+<pre><code>
+
+    r2_mckelvey(model)
+Arguments
+    model               Generalized linear model.
+Details
+    McKelvey & Zavoinas R2 is based on the explained variance, where the variance of the predicted
+    response is divided by the sum of the variance of the predicted response and residual variance.
+    For binomial models, the residual variance is either pi^2/3 for logit-link and 1 for probit-link.
+    For poisson-models, the residual variance is based on log-normal approximation, similar to the
+    distribution-specific variance as described in ?insight::get_variance.
+Value
+    The R2 value.
+62                                                                                      r2_nagelkerke
+References
+        • McKelvey, R., Zavoina, W. (1975), "A Statistical Model for the Analysis of Ordinal Level
+          Dependent Variables", Journal of Mathematical Sociology 4, S. 103–120.
+
+#### Examples
+     ## Dobson (1990) Page 93: Randomized Controlled Trial:
+     counts <- c(18, 17, 15, 20, 10, 20, 25, 13, 12) #
+     outcome <- gl(3, 1, 9)
+     treatment <- gl(3, 3)
+     model <- glm(counts ~ outcome + treatment, family = poisson())
+     r2_mckelvey(model)
+   r2_nagelkerke              Nagelkerke’s R2
+Description
+     Calculate Nagelkerke’s pseudo-R2.
+
+#### Usage 
+<pre><code>
+
+     r2_nagelkerke(model)
+Arguments
+     model              A generalized linear model, including cumulative links resp. multinomial mod-
+                        els.
+Value
+     A named vector with the R2 value.
+References
+     Nagelkerke, N. J. (1991). A note on a general definition of the coefficient of determination.
+     Biometrika, 78(3), 691-692.
+
+#### Examples
+     model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+     r2_nagelkerke(model)
+r2_nakagawa                                                                                            63
+  r2_nakagawa                  Nakagawa’s R2 for mixed models
+Description
+    Compute the marginal and conditional r-squared value for mixed effects models with complex ran-
+    dom effects structures.
+
+#### Usage 
+<pre><code>
+
+    r2_nakagawa(model, by_group = FALSE, tolerance = 1e-05)
+Arguments
+    model               A mixed effects model.
+    by_group            Logical, if TRUE, returns the explained variance at different levels (if there are
+                        multiple levels). This is essentially similar to the variance reduction approach
+                        by Hox (2010), pp. 69-78.
+    tolerance           Tolerance for singularity check of random effects, to decide whether to com-
+                        pute random effect variances for the conditional r-squared or not. Indicates up
+                        to which value the convergence result is accepted. When r2_nakagawa() re-
+                        turns a warning, stating that random effect variances can’t be computed (and
+                        thus, the conditional r-squared is NA), decrease the tolerance-level. See also
+                        check_singularity.
+Details
+    Marginal and conditional r-squared values for mixed models are calculated based on Nakagawa et
+    al. 2017. For more details on the computation of the variances, see ?insight::get_variance.
+    The marginal r-squared considers only the variance of the fixed effects, while the conditional r-
+    squared takes both the fixed and random effects into account. The random effect variances are
+    actually the mean random effect variances, thus the r-squared value is also appropriate for mixed
+    models with random slopes or nested random effects (see Johnson 2014 ).
+Value
+    A list with the conditional and marginal R2 values.
+
+
+#### Examples
+     if (require("lme4")) {
+       model <- lmer(Sepal.Length ~ Petal.Length + (1 | Species), data = iris)
+       r2_nakagawa(model)
+       r2_nakagawa(model, by_group = TRUE)
+     }
+   r2_somers                    Somers’ Dxy rank correlation for binary outcomes
+Description
+     Calculates the Somers’ Dxy rank correlation for logistic regression models.
+
+#### Usage 
+<pre><code>
+
+     r2_somers(model)
+Arguments
+     model              A logistic regression model.
+Value
+     A named vector with the R2 value.
+References
+     Somers, R. H. (1962). A new asymmetric measure of association for ordinal variables. American
+     Sociological Review. 27 (6).
+
+#### Examples
+     ## Not run:
+     if (require("correlation")) {
+       model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+       r2_somers(model)
+     }
+     ## End(Not run)
+r2_tjur                                                                                              65
+  r2_tjur                        Tjur’s R2 - coefficient of determination (D)
+Description
+     This method calculates the Coefficient of Discrimination D (also known as Tjur’s R2; Tjur, 2009 )
+     for generalized linear (mixed) models for binary outcomes. It is an alternative to other pseudo-R2
+     values like Nagelkerke’s R2 or Cox-Snell R2. The Coefficient of Discrimination D can be read like
+     any other (pseudo-)R2 value.
+
+#### Usage 
+<pre><code>
+
+     r2_tjur(model)
+Arguments
+     model                Binomial Model.
+Value
+     A named vector with the R2 value.
+References
+     Tjur, T. (2009). Coefficients of determination in logistic regression models - A new proposal: The
+     coefficient of discrimination. The American Statistician, 63(4), 366-372.
+
+#### Examples
+     model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+     r2_tjur(model)
+  r2_xu                          Xu’ R2 (Omega-squared)
+Description
+     Calculates Xu’ Omega-squared value, a simple R2 equivalent for linear mixed models.
+
+#### Usage 
+<pre><code>
+
+     r2_xu(model)
+Arguments
+     model                A linear (mixed) model.
+66                                                                                        r2_zeroinflated
+Details
+     r2_xu() is a crude measure for the explained variance from linear (mixed) effects models, which is
+     originally denoted as <U+2126>2 .
+Value
+     The R2 value.
+References
+     Xu, R. (2003). Measuring explained variation in linear mixed effects models. Statistics in Medicine,
+     22(22), 3527–3541. doi: 10.1002/sim.1572
+
+#### Examples
+     model <- lm(Sepal.Length ~ Petal.Length + Species, data = iris)
+     r2_xu(model)
+   r2_zeroinflated              R2 for models with zero-inflation
+Description
+     Calculates R2 for models with zero-inflation component, including mixed effects models.
+
+#### Usage 
+<pre><code>
+
+     r2_zeroinflated(model, method = c("default", "correlation"))
+Arguments
+     model              A model.
+     method             Indicates the method to calculate R2. See ’Details’. May be abbreviated.
+Details
+     The default-method calculates an R2 value based on the residual variance divided by the total vari-
+     ance. For method = "correlation", R2 is a correlation-based measure, which is rather crude. It
+     simply computes the squared correlation between the model’s actual and predicted response.
+Value
+     For the default-method, a list with the R2 and adjusted R2 values. For method = "correlation", a
+     named numeric vector with the correlation-based R2 value.
+test_bf                                                                                                   67
+
+#### Examples
+     if (require("pscl")) {
+        data(bioChemists)
+        model <- zeroinfl(
+          art ~ fem + mar + kid5 + ment | kid5 + phd,
+          data = bioChemists
+        )
+        r2_zeroinflated(model)
+     }

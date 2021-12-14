@@ -1,0 +1,113 @@
+
+
+  model_performance.lm  Performance of Regression Models
+Description
+Compute indices of model performance for regression models.
+
+#### Usage 
+<pre><code>
+
+## S3 method for class 'lm'
+model_performance(model, metrics = "all", verbose = TRUE, ...)
+Arguments
+modelA model.
+metrics  Can be "all", "common" or a character vector of metrics to be computed (some
+ of c("AIC","BIC","R2","RMSE","SIGMA","LOGLOSS","PCP","SCORE")). "common"
+ will compute AIC, BIC, R2 and RMSE.
+verbose  Toggle off warnings.
+...  Arguments passed to or from other methods.
+Details
+Depending on model, following indices are computed:
+   *  AIC Akaike’s Information Criterion, see ?stats::AIC
+   *  BIC Bayesian Information Criterion, see ?stats::BIC
+   *  R2 r-squared value, see r2
+   *  R2_adj adjusted r-squared, see r2
+38   model_performance.merMod
+*  RMSE root mean squared error, see performance_rmse
+*  SIGMA residual standard deviation, see get_sigma()
+*  LOGLOSS Log-loss, see performance_logloss
+*  SCORE_LOG score of logarithmic proper scoring rule, see performance_score
+*  SCORE_SPHERICAL score of spherical proper scoring rule, see performance_score
+*  PCP percentage of correct predictions, see performance_pcp
+Value
+ A data frame (with one row) and one column per "index" (see metrics).
+
+#### Examples
+ model <- lm(mpg ~ wt + cyl, data = mtcars)
+ model_performance(model)
+ model <- glm(vs ~ wt + mpg, data = mtcars, family = "binomial")
+ model_performance(model)
+   model_performance.merMod
+ Performance of Mixed Models
+Description
+ Compute indices of model performance for mixed models.
+
+#### Usage 
+<pre><code>
+
+ ## S3 method for class 'merMod'
+ model_performance(model, metrics = "all", verbose = TRUE, ...)
+Arguments
+ modelA mixed effects model.
+ metrics  Can be "all", "common" or a character vector of metrics to be computed (some
+  of c("AIC","BIC","R2","ICC","RMSE","SIGMA","LOGLOSS","SCORE")). "common"
+  will compute AIC, BIC, R2, ICC and RMSE.
+ verbose  Toggle off warnings.
+ ...  Arguments passed to or from other methods.
+Details
+ This method returns the adjusted ICC only, as this is typically of interest when judging the variance
+ attributed to the random effects part of the model (see also icc).
+ Furthermore, see ’Details’ in model_performance.lm for more details on returned indices.
+model_performance.rma  39
+Value
+A data frame (with one row) and one column per "index" (see metrics).
+
+#### Examples
+if (require("lme4")) {
+  model <- lmer(Petal.Length ~ Sepal.Length + (1 | Species), data = iris)
+  model_performance(model)
+}
+  model_performance.rma Performance of Meta-Analysis Models
+Description
+Compute indices of model performance for meta-analysis model from the metafor package.
+
+#### Usage 
+<pre><code>
+
+## S3 method for class 'rma'
+model_performance(model, metrics = "all", verbose = TRUE, ...)
+Arguments
+model   A rma object as returned by metafor::rma().
+metrics Can be "all" or a character vector of metrics to be computed (some of c("AIC","BIC","I2","H2","TAU
+verbose Toggle off warnings.
+... Arguments passed to or from other methods.
+Details
+  Indices of fit:
+   *  AIC Akaike’s Information Criterion, see ?stats::AIC
+   *  BIC Bayesian Information Criterion, see ?stats::BIC
+   *  I2: For a random effects model, I2 estimates (in percent) how much of the total variability
+  in the effect size estimates can be attributed to heterogeneity among the true effects. For a
+  mixed-effects model, I2 estimates how much of the unaccounted variability can be attributed
+  to residual heterogeneity.
+   *  H2: For a random-effects model, H2 estimates the ratio of the total amount of variability in
+  the effect size estimates to the amount of sampling variability. For a mixed-effects model, H2
+  estimates the ratio of the unaccounted variability in the effect size estimates to the amount of
+  sampling variability.
+   *  TAU2: The amount of (residual) heterogeneity in the random or mixed effects model.
+   *  CochransQ (QE): Test for (residual) Heterogeneity. Without moderators in the model, this
+  is simply Cochran’s Q-test.
+40   model_performance.stanreg
+*  Omnibus (QM): Omnibus test of parameters.
+*  R2: Pseudo-R2-statistic, which indicates the amount of heterogeneity accounted for by the
+moderators included in a fixed-effects model.
+   See the documentation for ?metafor::fitstats.
+Value
+ A data frame (with one row) and one column per "index" (see metrics).
+
+#### Examples
+ if (require("metafor")) {
+   data(dat.bcg)
+   dat <- escalc(measure = "RR", ai = tpos, bi = tneg, ci = cpos, di = cneg, data = dat.bcg)
+   model <- rma(yi, vi, data = dat, method = "REML")
+   model_performance(model)
+ }
