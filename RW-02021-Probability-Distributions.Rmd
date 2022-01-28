@@ -1,0 +1,59 @@
+---
+title: "Probability Distributions with R"
+subtitle: "Introduction to R"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+A power supply unit for a computer component is assumed to follow an exponential distribution with a mean life of 1,400 hours.  What is the probability that the component will:
+--- 
+ i.fail in the first 700 hours?
+ ii. survive more than 1,750 hours?
+ iii. last between 1,050 hours and 1,750 hours?
+
+### Exercise 1
+
+
+```{r}
+
+
+```
+
+---
+
+### Exercise 2
+
+
+```{r}
+
+
+```
+
+---
+
+### Exercise 3
+
+
+```{r}
+
+
+```

@@ -1,0 +1,66 @@
+---
+title: "Statistics with R"
+subtitle: "Introduction to R for Actuarial Students"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+* Introduction to R for Actuarial Students
+
+* CS1B Curriculum
+
+* Introduction to R programming
+* Fundamentals of Statistical Analysis
+* Probability Distributions
+
+* Question 3
+
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+
+#Higher Certificate, Paper III, 2002. Question 3
+
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+
+3. The table below shows the UK Gross Domestic Product (GDP, y) for the years 1989 − 1999, with years also coded as t = year − 1994.  
+The figures are given in units of £bn, and are expressed in 1995 prices. 
+ 
+ 
+Year 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 t -5 -4 -3 -2 -1 0 1 2 3 4 5 y 655.2 659.5 649.8 650.3 665.4 694.6 714.0 732.2 757.9 777.9 794.4 
+ Source:  United Kingdom National Accounts, 2000 edn, table 1.1. 
+
+--- 
+ 
+(i) A model $y = \alpha + \beta t + \varepsilon$ , where ε is a random error term with the usual properties, is proposed for the data. 
+ Obtain least squares estimates of α
+ and β , and calculate r2 (the coefficient of determination).  Also estimate $\sigma^2$, the variance of ε , and obtain estimates of the standard errors of the coefficients α and β . (6) 
+ 
+--- 
+2.  What are "the usual properties" of the errors?  How realistic is the assumption that the errors have these properties?  (You are not expected to describe or conduct any tests.) (2) 
+
+
+---
+ 3.  Interpret the value of r2, and the values of your estimates of $\alpha$ and $\beta$ . (3) 
+ 
+(iv) Draw a time chart of the data and superimpose your estimated function on it. (5) 
+ 
+(v) Use your estimated model to predict GDP in 2000 and 2010, and comment on your predictions in the light of your graph. (4) 
+ 
+ 

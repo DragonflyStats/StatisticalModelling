@@ -1,0 +1,174 @@
+---
+title: "Statistics with R"
+subtitle: "Modelling Data with R - Correlation"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+
+# RW-020016
+
+## Higher Certificate, Module4 - 2013. Question 3
+
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+A manufacturer of luxury cosmetics has recently put a new product on the market. 
+
+This product is initially being offered at a wide range of prices, and the company has 
+made a survey of its sales y (in 100s) and prices x (in £) across a random sample of 
+stores in which it is sold. 
+
+It wishes to examine whether, on the whole, increased price 
+is associated with reduced sales. The results are shown in the following table.
+
+||||||||||||
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Store  |1  |2  |3  |4  |5  |6  |7  |8  |9  |10|
+|Price  x  (£)  |27  |30  |37  |47  |55  |62  |70  |80  |95  |99|
+|Sales  y  (100s)  |110  |79  |69  |48  |51  |44  |29  |32  |26  |30|
+---
+
+#### Exercise 1
+
+Plot the data on a scatter diagram and comment on the relationship, if any, 
+between x and y.
+
+
+```{r}
+
+Price <- c(27, 30, 37, 47, 55, 62, 70, 80, 95, 99)
+Sales <- c(110, 79, 69, 48, 51, 44, 29, 32, 26, 30)
+
+Survey <- data.frame(Price,Sales)
+head(Survey)
+```
+---
+
+<pre><code>
+library(ggplot2)
+
+p <- ggplot(data=Survey, aes(x=Price,y=Sales))
+p <- p + geom_point(pch=18,cex=4,col="black")
+p <- p + theme_bw()
+p
+</code></pre>
+---
+
+
+```{r echo=FALSE, warning=FALSE}
+library(ggplot2)
+
+p <- ggplot(data=Survey, aes(x=Price,y=Sales))
+p <- p + geom_point(pch=18,cex=4,col="black")
+p <- p + theme_bw()
+p
+```
+---
+
+<pre><code>
+p <- ggplot(data=Survey, aes(x=Price,y=Sales))
+p <- p + geom_point(pch=18,cex=4,col="black")
+p <- p + theme_bw()
+p <- p + stat_smooth(col="red", se=FALSE)
+p
+</code></pre>
+---
+
+
+```{r echo=FALSE, warning=FALSE}
+p <- ggplot(data=Survey, aes(x=Price,y=Sales))
+p <- p + geom_point(pch=18,cex=4,col="black")
+p <- p + theme_bw()
+p <- p + stat_smooth(col="red", se=FALSE)
+p
+```
+---
+
+#### Exercise 2
+
+A research assistant suggests calculating the product-moment correlation 
+coefficient, r, between sales and prices. 
+
+Carry out this calculation and test atthe 1% significance level the null hypothesis of zero correlation against an 
+appropriate one-sided alternative. 
+
+```{r}
+cor(Sales,Price)
+```
+
+---
+
+#### Pearson Correlation
+
+
+```{r}
+cor.test(Sales,Price,data=Survey,
+         conf.level=0.99, 
+         alternative="less")
+```
+
+
+---
+
+
+
+#### Exercise 3
+
+A statistician in the market research department suggests calculating instead 
+Spearman's rank correlation coefficient, $r_s$. 
+
+Calculate $r_s$ for these data, and test at the 1% level the null hypothesis of no association between prices and sales 
+against an appropriate two-sided alternative.
+
+---
+
+```{r}
+cor.test(Sales,Price,data=Survey,conf.level=0.99, method="spearman")
+```
+
+---
+
+
+#### Exercise 4
+
+Comment on the tests used in exercises 2 and 3, stating with a reason which 
+you prefer.
+
+#### Comparison of Methods
+
+* In statistics, Spearman's rank correlation coefficient or Spearman's ${\displaystyle \rho }$, named after Charles Spearman and often denoted by the Greek letter ${\displaystyle \rho }$  (rho) or as ${\displaystyle r_{s}}$, is a nonparametric measure of rank correlation (statistical dependence between the rankings of two variables).
+
+* It assesses how well the relationship between two variables can be described using a **monotonic function**.
+
+
+* Monotonic variables increase (or decrease) in the same direction, but not always at the same rate.
+Linear variables increase (or decrease) in the same direction at the same rate.
+
+* The Spearman correlation between two variables is equal to the Pearson correlation between the rank values of those two variables; while Pearson's correlation assesses linear relationships, Spearman's correlation assesses monotonic relationships (whether linear or not). 
+
+---
+
+
+* If there are no repeated data values, a perfect Spearman correlation of +1 or −1 occurs when each of the variables is a perfect monotone function of the other.
+
+---
+
+
+---

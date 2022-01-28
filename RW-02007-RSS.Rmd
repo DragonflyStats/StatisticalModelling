@@ -1,0 +1,130 @@
+---
+title: "Statistics with R"
+subtitle: "Modelling Data with R - Linear Regression"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+
+#Higher Certificate, Paper III, 2002. Question 8
+
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+A herbicide experiment was carried out on oats.  This experiment was laid out in a completely randomised design and involved 4 
+herbicides with 10 plots per herbicide.  
+
+The variable recorded (y) was the number of weeds seen on each plot.  
+A review of the data suggested that the variances were not equal.  
+The data were analysed both in their original form and after being transformed.  
+
+Transformations tried were square root, logarithm and exponential.  
+The following table contains values of the means and variances of the transformed data. 
+ 
+ 
+---
+
+\begin{verbatim} 
+ Transformation Herbicide None √y log10(y) exp(y/100)  
+mean variance mean variance mean variance mean variance 
+A 99.30  477.429.903 1.3572 1.9857 0.01195 2.754 0.3047 
+B 79.20  143.768.877 0.4489 1.8943 0.00425 2.222 0.0726 
+C  139.10 1648.40  11.679 3.0067 2.1260 0.01719 4.3323.2833 
+D  185.00 2819.60  13.472 3.8967 2.2502 0.01693 7.220  15.3664 
+\end{verbatim}
+
+
+---
+
+1. State the assumptions required for the analysis of variance (ANOVA).  
+State, giving reasons, whether the untransformed data appear to satisfy the assumptions. (6) 
+ 
+2.  Assuming that one of these transformations must be chosen, which appears to be the best?  Explain why you selected it.  Is there evidence that a better transformation could be found?  Explain your answer. (5) 
+ 
+3.  Produce the ANOVA table for the transformation chosen. The (corrected) total sums of squares for the various transformations are shown below. 
+\begin{verbatim}  
+ Transformation  None √y log10(y) exp(y/100) 
+Corrected total SS 111329 201.189 1.18743 322.795 
+\end{verbatim} 
+
+---
+
+For the selected transformation, does the analysis suggest the herbicides have different effects?  Explain your answer. (6) 
+ 
+(iv) Alternative methods of checking the validity of an analysis of variance model make use of residuals.  Explain how a residual is calculated, and briefly describe one way in which a plot of residuals can be used to help check the validity of a model. (3) 
+ 
+
+
+*Completely randomised design is analysed according to the linear model
+yij = m+ ti + eij , where i = 1 to 4, j = 1 to 10,
+yij is the number of weeds on the jth plot that received treatment i, ti is the effect
+(departure from overall mean m) due to treatment i, and eij is a random (natural
+variation) term, Normally distributed with mean 0 and variance σ
+2 which is constant
+for all observations.
+
+
+---
+
+The variances in the four treatments do not appear constant in the untransformed data.
+We assume that the model is additive (a sum of terms) but cannot check this without
+computing the values of the residuals.
+*The transformation exp
+100
+ y 
+ 
+ 
+also gives very unequal variances. The range
+of variances in y is largest/smallest ≈ 8.7 whereas for ( ) 10 log y it is ≈ 4.0 ; thus
+we should choose ( ) 10 log y . 
+
+However, a ratio 4:1 among variances is still rather
+high, though not unusual with small samples of data. A better transformation could
+probably be found, provided it made physical sense.
+
+---
+
+*The herbicide totals using ( ) 10 log y are 19.857, 18.943, 21.260, 22.502, each
+based on 10 observations; these add to 82.562. Herbicides SS is therefore
+1 (19.8572 ... 22.5022 ) 1 (82.5622 ) 171.1465302 170.4120961 0.7344341
+10 40
++ + − = − = .
+Analysis of Variance of ( ) 10 log y :
+Source df Sum of Squares Mean Square F value
+Herbicides 3 0.73443 0.2448 19.45 (very highly sig)
+Residual 36 0.45300 0.01258
+Total 39 1.18743
+
+---
+
+*  There is strong evidence of the presence of differences among the herbicide means,
+since the value 19.45 is very highly significant when referred to F3,36.
+*A residual is the difference between an observed yij and its fitted value using
+the linear model. In a completely randomised design, fitted values for each treatment
+are the treatment mean for that treatment.
+
+
+---
+
+If residuals are plotted against fitted values,
+for each observation, the resulting pattern should show a set of values randomly
+scattered about 0, with concentration near 0 and no outliers so that the Normality
+assumption is acceptable. Variability should show no pattern depending on the size of
+yij, or which treatment it received.
+
+

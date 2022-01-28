@@ -1,0 +1,59 @@
+---
+title: "Probability Distributions with R"
+subtitle: "Introduction to R"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+```{r echo=FALSE}
+# - HC Module 3 2012
+# - RSS 2012
+# - EXAMINATIONS OF THE HONG KONG STATISTICAL SOCIETY
+# - HIGHER CERTIFICATE IN STATISTICS, 2012
+# - MODULE 3 : Basic statistical methods
+# - Question 3
+```
+
+
+3. The Managing Director (MD) of a company of auditors has to select a team of five 
+clerical officers for each major audit. He suspects that he may be biased towards lefthanded writers and decides to have this suspicion tested statistically. He knows that 
+20% of his large team of clerical officers are left-handed. His analysis of his last 40 
+team selections shows the following distribution of the numbers of selected lefthanders.
+Number of left-handers 0 1 2 3 4 5
+Frequency 9 13 9 5 2 2
+You are to decide whether or not these figures provide evidence of bias.
+
+---
+#### Exercises 
+
+(i) Assuming no bias towards or against left-handers, confirm that the expected 
+number of times out of 40 that the MD would choose each of 0, 1, 2, 3, 4 or 5 
+left-handers in his team is 13.11, 16.38, 8.19, 2.05, 0.26 and 0.01 respectively.
+(6)
+(ii) Carry out a 2
+goodness-of-fit test at the 5% significance level to test whether 
+or not the observed distribution might reasonably occur if the MD were not 
+biased. State your hypotheses and your conclusions.
+(10)
+(iii) Discuss the implications of your test result and the data with respect to the 
+MD's suspicions.
+(4)

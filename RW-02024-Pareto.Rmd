@@ -1,0 +1,31 @@
+---
+title: "Statistics with R"
+subtitle: "Introduction to R for Actuarial Students"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+For a large portfolio of insurance policies, losses follow a Pareto Type II distribution with shape parameter $\alpha=3.5$ and scale parameter $\theta=5000$. 
+
+An insurance policy covers losses subject to an ordinary deductible of 500. Given that a loss has occurred, determine the average amount paid by the insurer.
+
+---
+
+```{r}
+library(agop)
+```
+
+---
+
+
+%%- https://actuarialmodelingpractice.wordpress.com/2017/10/29/practice-problem-set-4-pareto-distribution/
+
+%%- https://actuarialmodelingpractice.wordpress.com/2017/10/29/pareto-type-i-versus-pareto-type-ii/
+	
+%%Practice Problem 4F
+	
+	

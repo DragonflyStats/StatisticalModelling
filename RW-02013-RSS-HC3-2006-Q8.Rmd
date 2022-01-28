@@ -1,0 +1,95 @@
+---
+title: "Statistics with R"
+subtitle: "Modelling Data with R - Linear Regression"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+
+## Higher Certificate, Paper III, 2006. Question 8
+
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+
+
+
+8.
+In a project designed to see whether testing procedures in different laboratories give
+similar results, fatigue tests at three different strain levels (level 1 lowest, level 
+highest) were carried out on samples from the same batch of a composite material.
+The tests were carried out at 9 different laboratories across Europe. The results
+(cycles to fatigue) from each laboratory and the means of the samples at each strain
+level are shown in the table below.
+
+---
+
+laboratory strain level 1
+results mean
+(1) strain level 
+results mean
+() A 75, 688, 85 75 16, 169 B 51, 4000, 400 97 977, 115 C 8, 5558, 6910 540 1516, 1607, 1650 1740, 185 1796 447, 718, 95 700
+E 48, 69, 890 6517 1488, 1501, 1516 150 674, 681, 781 71
+F 400, 418, 40 41 1095, 105, 190 1197 465, 80, 95 41.
+G 5000, 545, 545 5 101, 1156, 18 114 80, 408, 454 414
+H 510, 604, 811,
+900, 986 76 78, 771, 864,
+88 814 0, 5, 9 19
+J 47, 800, 567 771 957, 1156, 10 1105 5, 487 56
+D
+strain level 
+results mean
+()
+1515 690, 75 71.5
+1065 48, 460, 47 45.7
+1591 60, 675 65.5
+
+---
+Two questions are of interest:
+(1) Are there substantial differences between the measurements obtained at
+different laboratories?
+() Can a model be found to predict the cycles to fatigue at strain levels other than
+those tested?
+
+
+Write a preliminary report on your general conclusions about the questions posed in
+(1) and (), based on the tabulated data, and supported by suitable graphical evidence.
+(You are advised to avoid spending excessive time on detailed statistical analysis or
+repetitive calculations.)
+Express your report in a way that makes it accessible to non-technical readers.
+(0)
+
+---
+
+
+*  It is useful to have a graph showing the measurements made by each laboratory on each strain (laboratories A – J are relabelled 1 – 9). Individual responses are plotted.
+*  The substantial difference in mean levels between the three strains makes it hard to present the graphical results on a convenient scale. However, several points emerge.
+*  (1) Some laboratories have consistently lower readings than others. For example, H has by some way the lowest mean throughout; A, C, E are high; B, J tend to be low. 
+*  Variability within laboratories is also very different; this can be seen especially for strain 1, where C, E, J give very wide ranges while F, G, H do not.
+
+---
+
+*  The basic material used does not appear to have been so variable, because not all within-laboratory variation is large; technical reasons in respect of resources of equipment or people is a more likely reason.
+*  (2) Level 1 is the lowest strain level, and it shows much higher means and much more variation than levels 2 and 3. There is clearly an inverse relationship between cycles to fatigue and strain level. However, a model assuming constant variance would not be suitable; transformations of the y (cycles) variable could be explored, possibly log y. 
+*  Prediction will be more accurate at higher strain levels, and should only be attempted within the range of levels already tested; extrapolation below level 1 or above level 3 would be unwise.
+
+---
+*  Overall, the laboratories lack consistency. If the aim is to have a laboratory-independent prediction, laboratory practice needs to be more consistent. If this cannot be achieved, the model used needs to incorporate a laboratory effect.
+ 
+ 

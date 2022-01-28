@@ -1,0 +1,95 @@
+
+
+---
+title: "Statistics with R"
+subtitle: "Probability Distributions"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+%%Practice Problem 4G
+The claim severity for an auto liability insurance coverage is modeled by a Pareto Type I distribution with shape parameter $\alpha=2.5$ and scale parameter $\theta=1000$. 
+The insurance coverage pays up to a limit of 1200 per claim. Determine the expected insurance payment under this coverage for one claim.
+
+
+---
+
+### R environment and packages
+
+```{r include= FALSE,echo=FALSE,warning=FALSE}
+
+library(tidyverse)
+library(magrittr)
+options(digits=4)
+```
+
+
+<pre><code>
+
+library(tidyverse)
+library(magrittr)
+
+options(digits=4)
+</code></pre>
+
+
+```{r}
+set.seed(1234)
+```
+---
+
+
+### Simulation of 10,000 component lifetimes
+
+```{r}
+
+
+#Number of Simulations
+N <- 10000
+
+Lifetimes <- rlnorm(n = N , meanlog = 1.2, sdlog = 0.5)
+
+head(Lifetimes)
+```
+
+---
+
+### Histogram of the simulated lifetime values
+
+```{r}
+
+hist(Lifetimes,breaks=200)
+
+```
+
+
+---
+
+### Part (a)
+
+#### Estimates based on the simulated data
+
+```{r}
+
+mean(Lifetimes)
+
+var(Lifetimes)
+
+sd(Lifetimes)
+
+
+```
+---
+
+---
+
+%%- https://actuarialmodelingpractice.wordpress.com/2017/10/29/practice-problem-set-4-pareto-distribution/
+%%- https://actuarialmodelingpractice.wordpress.com/2017/10/29/pareto-type-i-versus-pareto-type-ii/
+
+4G	1159.51615
+
+---

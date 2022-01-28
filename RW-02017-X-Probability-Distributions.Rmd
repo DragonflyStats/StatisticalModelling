@@ -1,0 +1,124 @@
+---
+title: "Probability Distributions with R"
+subtitle: "Introduction to R"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+Three per cent of PCB boards purchased over the Internet have some defect.
+
+Consignments are sent in nominal batches of 100 PCB boards, but to account for the inclusion of defective items, there are 105 per consignment.
+
+A consignment is opened and each PCB board is tested.
+What is the probability that:
+
+#### Exercises
+1.  6 or more boards have some defect?
+2.  Exactly 4 boards are defective?
+3.  Exactly 6 boards are defective?
+4.  Between 6 boards and 8 boards are defective?
+4.  Between 2 boards and 4 boards are defective?
+6.  If more than 8 boards from the batch were defective what action would you take, if any? (justify)
+ 
+---
+
+Binomial Probability Distribution
+
+* $X$ is the number of defective components in the batch.
+* $n$ is the number of independent trials. Here $n=105$.
+* $p$ is the probability of a success. Here a success is the event that a selected component is found to be defective. $p=0.03$
+
+
+$$X \sim \mbox{Bin}(n=105,p=0.03)$$
+
+---
+
+ 
+### Exercise 1
+
+$P(X\geq 6) = 1 - P(X\leq 5)$
+
+```{r}
+n <- 105
+p <- 0.03
+
+1 -pbinom(5,size=n,prob=p)
+```
+
+---
+
+### Exercise 2
+
+$P(X=4)$
+
+```{r}
+dbinom(4,size=n,prob=p)
+
+```
+
+---
+
+### Exercise 3
+
+$P( X = 6)$
+
+```{r}
+dbinom(6,size=n,prob=p) 
+
+```
+
+
+---
+### Exercise 4
+
+$P( 6\leq X \leq 8$)
+
+```{r}
+pbinom(8,size=n,prob=p) - pbinom(5,size=n,prob=p)
+
+```
+
+---
+### Exercise 5
+
+$P( 2\leq X \leq 4$)
+
+```{r}
+pbinom(4,size=n,prob=p) - pbinom(1,size=n,prob=p)
+
+```
+
+---
+
+### Exercise 6
+
+$P(X > 8)$
+
+
+```{r}
+pbinom(8,size=n,prob=p,lower.tail = FALSE)
+
+```
+
+---
+
+
+---

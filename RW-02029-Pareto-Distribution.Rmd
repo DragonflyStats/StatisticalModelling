@@ -1,0 +1,61 @@
+---
+title: "Statistics with R"
+subtitle: "Introduction to R for Actuarial Students"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+For a large portfolio of insurance policies, the underlying distribution for losses in the current year has a Pareto Type II distribution with shape parameter $\alpha=2.9$ and scale parameter $\theta=12.5$. 
+
+All losses in the next year are expected to increases by 5\%. For the losses in the next year, determine the tail-value-at-risk at the security level 95\%.
+
+---
+
+### Analytical Solution
+
+---
+
+* set the seed to 1234
+* These two distributions have equal weights, so lets simulate 30000 (thirty thousand) variates for each.
+
+```{r}
+set.seed(1234)
+
+# install.package("agop")
+library(agop)
+
+```
+
+---
+
+```{r}
+N <- 30000
+
+X <- rpareto2(N,k=2.9,s=12.5)
+
+head(X)
+
+```
+
+---
+
+```{r}
+
+
+hist(X,breaks=1000)
+
+```
+
+
+
+
+
+---
+%%- https://actuarialmodelingpractice.wordpress.com/2017/10/29/practice-problem-set-4-pareto-distribution/
+%%- https://actuarialmodelingpractice.wordpress.com/2017/10/29/pareto-type-i-versus-pareto-type-ii/
+---

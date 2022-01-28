@@ -1,0 +1,152 @@
+
+%% Higher Certificate, Paper III, 2006. Question 6
+---  
+%%%%
+
+6.
+In an experiment in which the subject of interest was the effect on weight gain of
+different amounts and types of protein, six groups of 10 male rats each were given
+diets that contained two levels of protein and three different types of protein. The
+mean weight gains (in grams) are shown in the table below.
+Protein level
+Protein type
+A
+B
+100.0
+89.9
+79.
+8.9
+High
+Low
+C
+99.5
+78.7
+---
+
+(i) Explain what is meant by interaction. Draw a suitable plot for the data above
+and comment on whether there appears to be any interaction between the type
+and level of protein used in the animals' diet.
+
+
+
+%%%%
+\begin{enumerate}[(a)]
+*  (i)
+B
+C
+A
+100
+90
+80
+LOW
+HIGH
+Protein
+Interaction is when factors (here, the level and type of protein) do not appear to function independently. Here all the types – A, B, C – give an increase in mean weight gain with increasing level (although the behaviour of B is rather different from A and C). There is unlikely to be a large interaction – if there is any.
+
+
+\newpage
+
+2.  Based on the animals' individual weights, the analysis of variance for this
+experiment is shown below. Complete the table. Explain carefully the
+interpretation of the F ratios. Comment on the relationship between your
+conclusions and the plot in (i).
+Analysis of Variance
+Source
+Level
+Type
+Level*Type
+Error
+Total
+DF
+*
+*
+*
+*
+*
+SS
+776.
+8.5
+70.1
+*
+16174.9
+MS
+*
+*
+*
+*
+F
+*
+*
+*
+
+
+
+*The analysis of variance table is as follows. Entries in italics are given in the question. The others need to be calculated.
+
+SOURCE
+DF
+SS
+MS
+F value
+Level
+1
+3776.3
+3776.30
+17.60 Compare F1,54
+Type
+2
+82.5
+41.25
+0.19 Compare F2,54
+Level * Type (Interaction)
+2
+730.1
+365.05
+1.70 Compare F2,54
+Error (Residual)
+54
+11586.0
+214.56
+= 2ˆσ
+TOTAL
+59
+16174.9
+
+%%% Solution continued on next page
+*  Upper critical points of F1,50 and F2,50 are taken from the Society's statistical tables for use in examinations. Values for (1, 54) and (2, 54) will be very similar.
+5%
+1%
+0.1%
+F1,50
+4.03
+7.17
+12.22
+F2,50
+3.18
+5.06
+7.96
+
+
+*  The F value for level is very highly significant; we have very strong evidence that the two levels of protein do not result in the same overall mean weight gain.
+*  The F value for type is insignificant. We have no evidence to suggest that the three protein types are different in terms of the overall mean weight gain.
+*  Similarly, we have no evidence that there is any interaction, i.e. that any protein type behaves differently as level is increased (even though the B responses are somewhat different from those of A and C). 
+*  The graph in part (i) shows the pattern, and the analysis here confirms which are the significant sources of variation.
+
+%%%%%%%
+\newpage
+
+--- 
+3. 
+Calculate the proportion of overall variation in the data explained by the fitted
+model, and the estimated underlying residual variance. Comment on your
+answers.
+
+
+*  The 5 degrees of freedom for factors and interaction explain only 28.4\% of the total variation (SS total). This is uncomfortably small.
+*  We note also that the estimate of experimental error is 2ˆσ = 214.56 (ˆσ = 14.65), which is quite large compared with the values of the observations themselves (of order 100).
+*  Perhaps it is simply the case that the weight gains are naturally very variable; or perhaps they are influenced by other covariates (e.g. initial weight).
+*  
+The dependence of weight gain on protein level appears strong and is intuitively appealing. But there may be more to learn about the response variable.
+--- 
+ 
+ 

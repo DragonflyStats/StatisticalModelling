@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistics with R</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics with R
+## R for Actuarial Students
+
+---
+
+
+
+```r
+#library(xaringan)
+```
+
+ 
+2. The results of two surveys of public opinion relating to genetically engineered food were published in a popular science magazine.  The magazine article began by claiming that opposition to genetically engineered food was growing in Britain and it also contained a quote from the director of Genewatch who was reported to have said "Opinion has hardened against genetic engineering quite significantly". 
+ 
+--- 
+ 
+The article contained a table which summarised the results of two opinion polls, the first conducted in 1996 and the second in 1998.  Both polls were carried out by a reputable market research organisation which asked 1000 adults the same question on both occasions.  You may assume that the polls were properly conducted and the people questioned on each occasion were randomly sampled from the population.  Note that the people questioned in 1996 were not the same as those questioned in 1998. 
+ 
+--- 
+ 
+The table contained in the article is given below. 
+ 
+What do you think of genetically engineered food?  1996 (\%) 1998 (\%) Support it to a great extent 6.0 6.0 Support it slightly 25.0 16.0 Neither support nor oppose it 16.0 15.0 Oppose it slightly 24.0 21.0 Oppose it to a great extent 27.0 37.0 Don't know 2.0 5.0 
+ 
+ 
+
+
+---
+
+
+[(a)]
+* A Â2-test has to uses exact frequencies, not percentages. It can test the Null Hypothesis
+that the ratios of frequencies between the six categories were the same in both years. On-this
+NH, expected frequencies area given in brackets:
+
+
+\begin{tabular}{|c|c|c|c|c|c|c|c}
+Category &amp; 1 &amp; 2 &amp; 3 &amp; 4 &amp; 5 &amp; 6 \\
+1996 &amp; 60(60) &amp; 250(205)  &amp;160(155)&amp; 240(225) &amp; 270(320)&amp; 20(35)&amp; 1000
+1998 &amp; 60(60) &amp; 160(205) &amp; 150(155) &amp; 210(225) &amp; 370(320)&amp;  50(35) &amp; 1000
+&amp; 120&amp;  410 &amp; 310&amp;  450&amp;  640 &amp; 70&amp;  2000
+\end{tabular}`
+
+
+
+`$$\chi^2_{(5)} &amp;=&amp; 0 +  \frac{(250-205)^2}{205}  + \frac{(160-155)^2}{155} + \frac{(160-155)^2}{155}  +\frac{(270-320)^2}{320} + \frac{(20-35)^2}{35} + \\
+&amp; &amp; 0 + \frac{(160-205)^2}{205} + \frac{(150-155)^2}{155}  + \frac{(160-155)^2}{155}+  \frac{(370-320)^2}{320} +
+ \frac{(50-35)2}{35} \\
+&amp;=&amp; 48.56\\
+$$
+
+There is very strong evidence against the NH.
+
+
+* Looking at the percentages through the categories, the numbers opposing have increased over
+the period, ”slight support ”having dropped substantially and ” great opposition” increased.
+On the face of it, the magazine was justified.
+* But much more information could be extracted by attaching a scoring scale, such as ¡2; ¡1; 0;
+1; 2 to the first five categories, omitting the ”don’t knows” and looking at scores, or some others
+suitable statistic. 
+* If the linear scale is (approximately)valid, this will extract more information
+than simple categorization. 
+* But it may be unwise to assume linearity, and also not easy to
+13
+decide how to score very strong views.
+
+*  n1 = n2 = 1000; 
+*   p1 = 0.51; p2 = 0.58; 
+*   p2 ¡ p1 = 0:07
+*  \[
+V [p2 - p1] =
+\sqrt{\frac{0:58 \times 0:42}{1000}
++
+\frac{0:51 \times 0:49}{1000}
+} = 0:0222\]; 
+*  Standard Error: `\(SE = 0:0222\)`
+
+
+
+
+ 
+ 
+Given the above information carry out a chi-squared test to determine whether the claims made by the magazine are supported by the poll results.  Comment on the limitations of this test.
+ 
+
+
+---
+
+
+ 
+ 
+Determine a 95\% confidence interval for the change between 1996 and 1998 in the proportion of the population who oppose genetically engineered food slightly or to a great extent. (8) 
+
+---
+* 95\% confidence interval for true value of p2¡p1 is 0:07§1:96£0:0222 = 0:07§0:0435 or 0:026 to 0:114
+i.e. with 95\% probability the difference lies between 2:6\% and 11:4\%. The evidence is that
+there has been a shift against, of this extent.
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

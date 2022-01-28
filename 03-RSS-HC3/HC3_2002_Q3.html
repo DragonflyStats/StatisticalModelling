@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistics with R</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics with R
+## R for Actuarial Students
+
+---
+
+
+
+```r
+#library(xaringan)
+```
+
+Higher Certificate, Paper III, 2002. Question 3
+
+
+3. The table below shows the UK Gross Domestic Product (GDP, y) for the years 1989 − 1999, with years also coded as t = year − 1994.  
+The figures are given in units of £bn, and are expressed in 1995 prices. 
+ 
+ 
+Year 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 
+t -5 -4 -3 -2 -1 0 1 2 3 4 5 
+y 655.2 659.5 649.8 650.3 665.4 694.6 714.0 732.2 757.9 777.9 794.4 
+
+
+ Source:  United Kingdom National Accounts, 2000 edn, table 1.1. 
+ Note:    Σy = 7751.2,    Σy2 = 5491108.76,    Σt = 0,    Σt2 = 110,    Σty = 1706.3. 
+ 
+
+---
+ 
+ 
+(i) A model `\(y = \alpha + \beta t + \varepsilon\)` , where ε is a random error term with the usual properties, is proposed for the data. 
+ Obtain least squares estimates of α
+ and β , and calculate r2 (the coefficient of determination).  Also estimate `\(\sigma^2\)`, the variance of ε , and obtain estimates of the standard errors of the coefficients α and β . (6) 
+ 
+ 
+---
+
+(ii) What are "the usual properties" of the errors?  How realistic is the assumption that the errors have these properties?  (You are not expected to describe or conduct any tests.) (2) 
+ (iii) Interpret the value of r2, and the values of your estimates of `\(\alpha\)` and `\(\beta\)` . (3) 
+ 
+(iv) Draw a time chart of the data and superimpose your estimated function on it. (5) 
+ 
+(v) Use your estimated model to predict GDP in 2000 and 2010, and comment on your predictions in the light of your graph. (4) 
+ 
+
+---
+
+n =11, 0 i Σt = , 2 110 i Σt = , 7751.2 i Σy = , 2 5491108.76 i Σy = , 1706.3 i i Σt y = .
+ 
+*  110 tt S = , 1706.3 ty S = (since Σt = 0 ); hence ˆ 1706.3
+110
+β = = 15.5118.
+αˆ = y −βˆt = y = 704.6545 .
+7751.22 5491108.76 29190.4473
+11 yy S = − = .
+2
+2 ty
+tt yy
+S
+r
+S S
+= = 0.9067.
+The sum of squares due to fitting the regression line is
+2
+ty 26467.8154
+tt
+S
+S
+= and the
+residual SS is therefore
+2
+ty 2722.6319
+yy
+tt
+S
+S
+S
+− = .
+
+* This has 11 – 2 = 9 df and so σˆ 2 = 302.5147.
+* Thus estimated variances of `\(\hat{\alpha}}\)` and `\(\hat{\beta}}\)` are given by
+( ) ˆ ˆ 2 Var
+tt S
+β =σ = 2.7501, ( )
+2 2
+2 ˆ ˆ 1 ˆ Var
+11 tt
+t
+n S
+α σ σ
+ 
+=  +  =
+ 
+(since t = 0 ) = 27.5013.
+* Hence SE($\hat{\alpha}}$) = 5.24 and SE($\hat{\beta}}$ ) = 1.658.
+
+---
+
+*  The { ε
+i} in the linear model are usually assumed to be independent, from the
+same Normal distribution, mean 0, variance σ 2. As y increases with t, it is possible
+that the variance also increases (heteroscedasticity); and due to likely trade-cycles
+and also non-linearity of the model, independence may also be doubtful.
+*  The correlation coefficient r = 0.9067 = 0.952 . This shows a strong linear
+relation between y and time. Alternatively, r2 shows that 90.7\% of the variation in the
+annual GDP figures can be explained as a linear trend in time, with positive slope
+(βˆ =15.52 ). 
+
+---
+
+* The slope is the average annual increase in GDP over the period, which
+is £15.52 bn (expressed at 1995 prices); this is over 2\% of the annual figure.
+αˆ = 704.65 was the figure estimated for t = 0 , i.e. 1994, on the basis of all the data
+(the actual figure allowing for the random variation was 694.6).
+Continued on next page
+*  t = −3 ; yˆ = 704.6545 − (3×15.5118) = 658.12 .
+t = +3 ; yˆ = 704.6545 + (3×15.5118) = 751.19 .
+630
+655
+680
+705
+730
+755
+780
+805
+-5 -4 -3 -2 -1 0 1 2 3 4 5
+*  Note that because of the "flat" period in the first 4 years (or the drop back in
+1991, however this is interpreted), the linear relation is forced to have a somewhat
+smaller slope than seems necessary to explain 1991 – 1999 well.
+
+---
+
+For 2000, yˆ = 704.6545 + (6×15.5118) = 797.73. Because of the slope not reflecting
+the years' GDP in late 1990s, this estimate is probably low (but not unreasonable).
+For 2010, yˆ = 704.6545 + (16×15.5118) = 952.84, but this can only be a guess as the
+relationship may become curved, or the slope change, or a discontinuity happen (as in
+1990/1), and extrapolation so far ahead is not really of any use.
+(1989) (1994) (1999)
+GDP in £bn at
+1995 prices
+t
+
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

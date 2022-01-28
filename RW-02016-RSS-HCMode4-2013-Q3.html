@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistics with R</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics with R
+## Modelling Data with R - Correlation
+
+---
+
+
+
+
+
+&lt;style type="text/css"&gt;
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+&lt;/style&gt;
+
+
+A manufacturer of luxury cosmetics has recently put a new product on the market. 
+
+This product is initially being offered at a wide range of prices, and the company has 
+made a survey of its sales y (in 100s) and prices x (in £) across a random sample of 
+stores in which it is sold. 
+
+It wishes to examine whether, on the whole, increased price 
+is associated with reduced sales. The results are shown in the following table.
+
+||||||||||||
+|:---|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Store  |1  |2  |3  |4  |5  |6  |7  |8  |9  |10|
+|Price  x  (£)  |27  |30  |37  |47  |55  |62  |70  |80  |95  |99|
+|Sales  y  (100s)  |110  |79  |69  |48  |51  |44  |29  |32  |26  |30|
+---
+
+#### Exercise 1
+
+Plot the data on a scatter diagram and comment on the relationship, if any, 
+between x and y.
+
+
+
+```r
+Price &lt;- c(27, 30, 37, 47, 55, 62, 70, 80, 95, 99)
+Sales &lt;- c(110, 79, 69, 48, 51, 44, 29, 32, 26, 30)
+
+Survey &lt;- data.frame(Price,Sales)
+head(Survey)
+```
+
+```
+##   Price Sales
+## 1    27   110
+## 2    30    79
+## 3    37    69
+## 4    47    48
+## 5    55    51
+## 6    62    44
+```
+---
+
+&lt;pre&gt;&lt;code&gt;
+library(ggplot2)
+
+p &lt;- ggplot(data=Survey, aes(x=Price,y=Sales))
+p &lt;- p + geom_point(pch=18,cex=4,col="black")
+p &lt;- p + theme_bw()
+p
+&lt;/code&gt;&lt;/pre&gt;
+---
+
+
+![](RW-02014-RSS-HC3-2006-Q8_files/figure-html/unnamed-chunk-3-1.png)&lt;!-- --&gt;
+---
+
+&lt;pre&gt;&lt;code&gt;
+p &lt;- ggplot(data=Survey, aes(x=Price,y=Sales))
+p &lt;- p + geom_point(pch=18,cex=4,col="black")
+p &lt;- p + theme_bw()
+p &lt;- p + stat_smooth(col="red", se=FALSE)
+p
+&lt;/code&gt;&lt;/pre&gt;
+---
+
+
+
+```
+## `geom_smooth()` using method = 'loess' and formula 'y ~ x'
+```
+
+![](RW-02014-RSS-HC3-2006-Q8_files/figure-html/unnamed-chunk-4-1.png)&lt;!-- --&gt;
+---
+
+#### Exercise 2
+
+A research assistant suggests calculating the product-moment correlation 
+coefficient, r, between sales and prices. 
+
+Carry out this calculation and test atthe 1% significance level the null hypothesis of zero correlation against an 
+appropriate one-sided alternative. 
+
+
+```r
+cor(Sales,Price)
+```
+
+```
+## [1] -0.8755062
+```
+
+---
+
+#### Pearson Correlation
+
+
+
+```r
+cor.test(Sales,Price,data=Survey,
+         conf.level=0.99, 
+         alternative="less")
+```
+
+```
+## 
+## 	Pearson's product-moment correlation
+## 
+## data:  Sales and Price
+## t = -5.1247, df = 8, p-value = 0.000451
+## alternative hypothesis: true correlation is less than 0
+## 99 percent confidence interval:
+##  -1.0000000 -0.4437673
+## sample estimates:
+##        cor 
+## -0.8755062
+```
+
+
+---
+
+
+
+#### Exercise 3
+
+A statistician in the market research department suggests calculating instead 
+Spearman's rank correlation coefficient, `\(r_s\)`. 
+
+Calculate `\(r_s\)` for these data, and test at the 1% level the null hypothesis of no association between prices and sales 
+against an appropriate two-sided alternative.
+
+---
+
+
+```r
+cor.test(Sales,Price,data=Survey,conf.level=0.99, method="spearman")
+```
+
+```
+## 
+## 	Spearman's rank correlation rho
+## 
+## data:  Sales and Price
+## S = 318, p-value = 0.0001302
+## alternative hypothesis: true rho is not equal to 0
+## sample estimates:
+##        rho 
+## -0.9272727
+```
+
+---
+
+
+#### Exercise 4
+
+Comment on the tests used in exercises 2 and 3, stating with a reason which 
+you prefer.
+
+#### Comparison of Methods
+
+* In statistics, Spearman's rank correlation coefficient or Spearman's `\({\displaystyle \rho }\)`, named after Charles Spearman and often denoted by the Greek letter `\({\displaystyle \rho }\)`  (rho) or as `\({\displaystyle r_{s}}\)`, is a nonparametric measure of rank correlation (statistical dependence between the rankings of two variables).
+
+* It assesses how well the relationship between two variables can be described using a **monotonic function**.
+
+
+* Monotonic variables increase (or decrease) in the same direction, but not always at the same rate.
+Linear variables increase (or decrease) in the same direction at the same rate.
+
+* The Spearman correlation between two variables is equal to the Pearson correlation between the rank values of those two variables; while Pearson's correlation assesses linear relationships, Spearman's correlation assesses monotonic relationships (whether linear or not). 
+
+---
+
+
+* If there are no repeated data values, a perfect Spearman correlation of +1 or −1 occurs when each of the variables is a perfect monotone function of the other.
+
+---
+
+
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

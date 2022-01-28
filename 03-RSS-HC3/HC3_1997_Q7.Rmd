@@ -1,0 +1,36 @@
+---
+title: "Statistics with R"
+subtitle: "R for Actuarial Students"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+The table below gives the failure times in hours of two makes of equipment. The data weregathered  in  an  attempt  to  answer  the  question  of  whether    the  two  types  differ  in  averagefailure time.
+
+(i)   Draw  box  and  whisker  plots  of  the  two  sets  of  observations  and  describe  briefly  whatthey  indicate  about  the  shape  of  the  underlying  distributions  from  which  the  data  havebeen sampled.
+
+(ii)  When  testing  whether  two  populations  differ  in  location  one  may  use  a  parametric  testsuch as the  t-test or a non-parametric test such as the Mann-Whitney test. Carry out anappropriate test to answer the question of whether the two types of equipment differ inaverage  failure  time  and  explain  your  choice  of  test.  Describe  precisely  the  nullhypothesis that is being tested by the test you choose.
+
+---
+
+Type A Type B
+171, 257, 288, 295, 396,
+397, 431, 435, 554, 568,
+795, 902, 958, 1004, 1104
+1212, 1283, 1378, 1621, 2415
+
+212, 236, 262, 272, 286,
+311, 336, 340, 412, 446,
+449, 670, 686, 786, 811,
+836, 936, 978, 1335, 1678
+
+sum = 16464
+sum of squares = 19648218
+
+sum = 12278
+sum of squares = 1054494
+---

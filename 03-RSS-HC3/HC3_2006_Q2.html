@@ -1,0 +1,274 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistics with R</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics with R
+## R for Actuarial Students
+
+---
+
+
+
+```r
+#library(xaringan)
+```
+
+.
+The tensile strength of a synthetic fibre used to make cloth for men's shirts is of
+interest to a manufacturer. It is suspected that the strength is affected by the
+percentage of cotton in the fibre. Random samples of material with cotton percentage
+15, 0, 5, 0 and 5 were taken and five pieces from each material were strength
+tested. The recorded strengths are shown below.
+15%
+7
+7
+15
+11
+9
+(i)
+0%
+14
+18
+17
+16
+18
+5%
+15
+18
+0
+18
+19
+0%
+1
+17
+1
+18
+18
+5%
+7
+10
+11
+15
+11
+
+---
+
+Complete the analysis of variance table below and state your conclusion about
+the effect of the percentage of cotton on the strength of the material.
+One-way ANOVA:
+Source
+Factor
+Error
+Total
+DF
+*
+*
+*
+15%, 0%, 5%, 0%, 5%
+SS
+6.64
+*
+404.64
+MS
+65.66
+*
+F
+*
+
+---
+
+(ii)
+A standardised residual can be defined as a residual divided by its standard error. Using this definition, the standardised residuals are as shown in the table below. Construct a plot of the standardised residuals versus fitted values, and comment on the assumptions underlying the analysis of variance.
+
+\begin{tabular}{c|c|c|c|c|}
+15\%	&amp;	20\%	&amp;	25\%	&amp;	30\%	&amp;	35\%	\\
+–1.17	&amp;	–1.09	&amp;	–1.26	&amp;	–1.43	&amp;	–1.59	\\
+–1.17	&amp;	0.59	&amp;	0	&amp;	0.67	&amp;	–0.34	\\
+2.18	&amp;	0.17	&amp;	0.84	&amp;	–1.43	&amp;	0.08	\\
+0.5	&amp;	–0.25	&amp;	0	&amp;	1.09	&amp;	1.76	\\
+–0.34	&amp;	0.59	&amp;	0.42	&amp;	1.09	&amp;	0.08	\\
+\end{tabular}`
+
+
+
+
+---
+
+[(a)]
+* The analysis of variance table is as follows. Entries in italics are given in the question. The others need to be calculated.
+
+
+\begin{tabular}{c|c|c|c|c|}
+SOURCE	&amp;	DF	&amp;	SS	&amp;	MS	&amp;	F value	\\
+Percentages	&amp;	4	&amp;	262.64	&amp;	65.66	&amp;	9.25	\\
+Residual	&amp;	20	&amp;	142	&amp;	7.1	&amp;		\\
+TOTAL	&amp;	24	&amp;	404.64	&amp;		&amp;		\\
+\end{tabular}`
+
+
+ Compare F4,20
+
+Upper critical points of F4,20 are as follows:
+5%
+1%
+0.1%
+2.87
+4.43
+7.10
+The F value for percentages is very highly significant; we have very strong evidence that not all the percentages of cotton are the same in terms of mean tensile strength of the synthetic fibre.
+* The fitted values are simply the sample means for the different percentages of cotton: (15\%) 9.8; (20\%) 16.6; (25\%) 18.0; (30\%) 15.4; (35\%) 10.8. The graph suggests that where the mean is lower the variance tends to be slightly higher. The analysis is based on a model in which the residual term has constant variance, but apparent departures from this are not great and there is no reason to doubt the results seriously.
+Scatterplot of standardised residuals against fitted values
+Standardised residuals
+Note. Some points on this graph represent two coincident values.
+Note also the "false origin" on the fitted values axis.
+%%55
+
+\newpage
+
+
+(7)
+(iii) Use the estimate of the error variance to calculate 95\% confidence intervals for
+the mean strength at percentage levels 0, 5 and 0. Present your results
+graphically. What would you recommend as the percentage of cotton required
+to produce maximum strength?
+(5)
+(iv) If there were resources to carry out a few more strength tests, describe briefly
+what you would do.
+()
+
+
+--- 
+
+* A 95\% confidence interval for an individual mean is given by ˆ2.0865/xσ± where 2.086 is the double-tailed 5\% point of t20.
+* Further, , the residual mean square in the above analysis of variance. 
+* Thus the interval for 20\% cotton is given by 2ˆ7.10σ=16.62.0867.105/±, i.e. it is (14.1, 19.1).
+* Similarly, for 25\% the interval is (15.5, 20.5) and for 30\% it is (12.9, 17.9).
+30%
+25%
+20%
+20.0
+16.0
+12.0
+Strength
+
+---
+
+On this evidence, 25% cotton should be used.
+(iv) It is worth exploring just below 25%, and perhaps just above. Depending on how much work can be done, it may be possible to search for a maximum in this region.
+ 
+ 
+ 
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

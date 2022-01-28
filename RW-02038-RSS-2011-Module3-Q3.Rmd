@@ -1,0 +1,58 @@
+---
+title: "Probability Distributions with R"
+subtitle: "Introduction to R"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+```{r echo=FALSE}
+# - HC Module 3 2011
+# - RSS 2011
+# - EXAMINATIONS OF THE HONG KONG STATISTICAL SOCIETY
+# - HIGHER CERTIFICATE IN STATISTICS, 2011
+# - MODULE 3 : Basic statistical methods
+# - Question 3
+```
+
+3. The data below give the daily numbers of homicides in London for the 1095 days from 
+1 April 2004 to 31 March 2007.
+Daily number of homicides Frequency
+0 713
+1 299
+2 66
+3 16
+4 1
+≥ 5 0
+(i) Calculate, to 4 decimal places, the mean number of homicides per day.
+(2)
+(ii) If homicides are assumed to happen as random events, then the daily numbers 
+of homicides should follow a Poisson distribution. Under the hypothesis that 
+the data are a random sample from a Poisson distribution, calculate the 
+expected frequencies that correspond to the observed frequencies in the table 
+above.
+(6)
+(iii) Carry out a formal test at the 5% significance level to investigate whether or 
+not homicides occurred as random events.
+(8)
+(iv) For a random sample of 139 homicides where the method of killing was 
+known, 29 of the homicides were by shooting. Find a 95% confidence interval 
+for the underlying population proportion of homicides that are by shooting.

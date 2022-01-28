@@ -1,0 +1,62 @@
+---
+title: "Probability Distributions with R"
+subtitle: "Introduction to R"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+A machine is used to package bags of potato chips.  Records of the packaging machine indicate that its fill weights are normally distributed with a mean of 455 grams per bag and a standard deviation of 10 grams.
+
+\begin{enumerate}
+What proportion of bags filled by this machine will contain more than 470 grams in the long run?
+What proportion of bags filled by this machine will contain less than 445 grams in the long run?
+ What proportion of bags filled by this machine will be between 465 grams and 475 grams in the long run?
+\end{enumerate}
+
+---
+
+### Exercise 1
+
+
+```{r}
+
+
+```
+
+---
+
+### Exercise 2
+
+
+```{r}
+
+
+```
+
+---
+
+### Exercise 3
+
+
+```{r}
+
+
+```

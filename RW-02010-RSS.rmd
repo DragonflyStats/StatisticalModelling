@@ -1,0 +1,139 @@
+---
+title: "Statistics with R"
+subtitle: "Modelling Data with R - Linear Models"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+library(knitr)
+
+
+#Higher Certificate, Paper III, 2006. Question 4
+
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+---
+
+4.
+The following data refer to the sheep population in millions, y, of a certain country
+over 0 consecutive years, x, together with some of the values for MA, the 5-point
+moving average of y.
+x
+1
+
+
+4
+5
+6
+7
+8
+9
+10
+(i)
+y
+0
+19
+18
+17
+17
+18
+18
+17
+16
+15
+MA
+–
+–
+18.
+17.8
+17.6
+17.4
+17.
+16.8
+15.8
+15.0
+x
+11
+1
+1
+14
+15
+16
+17
+18
+19
+0
+y
+1
+14
+1
+14
+15
+16
+17
+17
+16
+16
+MA
+14.
+1.8
+–
+–
+Estimate the trend in the data using
+(a) MA (complete as appropriate the values for MA in the table),
+(b) linear regression (summary statistics are given below).
+∑ x
+i
+= 10
+∑ y
+i
+= 6
+∑ x
+i
+
+= 870
+∑ x y
+i
+i
+= 05
+
+---
+
+2.  Plot a graph of the data and the regression and MA estimated trends. Comment
+on how well each fits the data. Comment on the use of an unweighted, as
+opposed to a weighted, moving average.
+(10)
+3.  State the assumptions made about the error terms in simple linear regression.
+Comment on how well the data support these assumptions.
+
+---
+
+
+\begin{enumerate}[(a)]
+*  
+(a) Remaining MA values are: at 13, ()1131413141513.8;5++++= at 14, (1141314151614.4;5++++= at 15, 15.0; at 16, 15.8; at 17, 16.2; and at 18, 16.4.
+* (b) Slope = ()222210326330511820200.177421066528702020iiiixyxxiixyxySSxx×−−−===−−ΣΣΣΣΣ.
+Intercept = ˆ16.3((0.1774)10.5)18.163ybx−=−−×=.
+Thus the regression equation is sheep = 18.163 – 0.177 year.
+*  The graph shows that the 5-point moving average (AVER1) best reflects the sharp changes in sheep population in years 10 to 15 while the regression (FITS1) line reflects the overall downward trend.
+An unweighted MA is appropriate in the absence of periodic or cyclic effects.
+*  The residual (error) terms have zero mean, constant variance and are uncorrelated. An assumption of Normality (so that the uncorrelatedness would imply independence) would also be needed it formal tests were to be carried out rather than only estimating the parameters. There does appear to be some sort of serial pattern in the data, rather than purely random variation from year to year. This makes the assumption of uncorrelatedness doubtful.
+--- 
+ 
+ 

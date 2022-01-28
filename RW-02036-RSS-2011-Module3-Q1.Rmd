@@ -1,0 +1,57 @@
+---
+title: "Probability Distributions with R"
+subtitle: "Introduction to R"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+```{r echo=FALSE}
+# - HC Module 3 2011
+# - RSS 2011
+# - EXAMINATIONS OF THE HONG KONG STATISTICAL SOCIETY
+# - HIGHER CERTIFICATE IN STATISTICS, 2011
+# - MODULE 3 : Basic statistical methods
+# - Question 1
+```
+
+1. Ten plants of a certain type, grown under standard conditions and treated with a new 
+brand of fertiliser, attain the following heights (in cm).
+25 28 24 23 27 30 24 21 28 30
+The sample mean is 26.0 and the sample variance is 9.33. From extensive previous 
+experiments, it is known that plants of the same type, grown under similar conditions 
+but treated with a standard fertiliser, attain a mean height of 25.0 cm.
+(i) Write down a statistical model for the distribution of plant heights in the 
+population from which the sample is assumed to be drawn, including the 
+definition of any unknown parameters.
+(3)
+(ii) Obtain a 99% confidence interval for the population mean height of plants 
+treated with the new fertiliser.
+(4)
+(iii) Carefully specifying your hypotheses, conduct a test at the 10% significance 
+level to decide whether there is evidence to suggest that the new fertiliser 
+produces plants of greater mean height than the standard fertiliser. State your 
+conclusions.
+(10)
+(iv) Provide a 95% confidence interval for the population variance of the heights of 
+plants treated with the new brand of fertiliser.
+(3)
+3

@@ -1,0 +1,59 @@
+
+---
+title: "Probability Distributions with R"
+subtitle: "Introduction to R"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+```{r echo=FALSE}
+# - HC Module 3 2011
+# - RSS 2011
+# - EXAMINATIONS OF THE HONG KONG STATISTICAL SOCIETY
+# - HIGHER CERTIFICATE IN STATISTICS, 2011
+# - MODULE 3 : Basic statistical methods
+# - Question 2
+```
+
+2. Twenty cows were used in an experiment to compare two types of feed, Feed A and 
+Feed B. Half of the cows, chosen at random, were fed with Feed A over a certain 
+period of time and the other half with Feed B. In fact two of the cows on Feed B were 
+wrongly fed for part of the period and they had to be removed from the experiment. 
+The gains in weight, in pounds, of the remaining cows over the period of the 
+experiment are listed below. The corresponding sample means and variances are also 
+given.
+Feed A 30 26 30 19 25 37 27 38 26 31
+Feed B 40 34 28 29 26 36 28 37
+sample mean sample variance
+Feed A 28.9 32.1
+Feed B 32.3 26.5
+(i) Defining any unknown parameters, write down a statistical model for the 
+distributions of weight gains in the two populations of cows given the two 
+feeds, assuming that the variances of these two distributions are equal.
+(3)
+(ii) Carefully specifying your hypotheses, test at the 5% significance level whether 
+there is a difference between the mean weight increases for the two feeds.
+(10)
+(iii) It is now required to test at the 5% significance level the assumption that the 
+variances of the two weight gain distributions are equal. State any adjustments 
+that are needed to the model in part (i), carefully specify the hypotheses to be 
+tested, carry out the test and give your conclusions.

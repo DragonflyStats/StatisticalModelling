@@ -1,0 +1,212 @@
+---
+title: "Statistics with R"
+subtitle: "Probability Distributions"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+The life-time (in days) of a certain electronic component that operates in a high-temperature environment is log-normally distributed with $\mu=1.2$ and $\sigma=0.5$.
+
+Using a seed of 1234, simulate the lifetimes of 10,000 such components. Based on this sample, answer the following questions. 
+
+#### Questions 
+
+a. Estimate the mean and variance of the lifetimes of the electronic component.
+
+b. Estimate the probability that the component works no more than 4 days.
+
+c. Estimate the probability that the component works more than 5 days.
+
+d. Estimate the probability that the component works between 3 and 5 days.
+
+---
+
+## The Log Normal Distribution
+
+####Description
+
+Density, distribution function, quantile function and random generation for the log normal distribution whose logarithm has mean equal to meanlog and standard deviation equal to sdlog.
+
+#### Usage
+<pre><code>
+dlnorm(x, meanlog = 0, sdlog = 1, log = FALSE)
+plnorm(q, meanlog = 0, sdlog = 1, lower.tail = TRUE, log.p = FALSE)
+qlnorm(p, meanlog = 0, sdlog = 1, lower.tail = TRUE, log.p = FALSE)
+rlnorm(n, meanlog = 0, sdlog = 1)
+</code></pre>
+
+---
+
+### R environment and packages
+
+```{r include= FALSE,echo=FALSE,warning=FALSE}
+
+library(tidyverse)
+library(magrittr)
+options(digits=4)
+```
+
+
+<pre><code>
+
+library(tidyverse)
+library(magrittr)
+
+options(digits=4)
+</code></pre>
+
+
+```{r}
+set.seed(1234)
+```
+---
+
+
+### Simulation of 10,000 component lifetimes
+
+```{r}
+
+
+#Number of Simulations
+N <- 10000
+
+Lifetimes <- rlnorm(n = N , meanlog = 1.2, sdlog = 0.5)
+
+head(Lifetimes)
+```
+
+---
+
+### Histogram of the simulated lifetime values
+
+```{r}
+
+hist(Lifetimes,breaks=200)
+
+```
+
+
+---
+
+### Part (a)
+
+#### Estimates based on the simulated data
+
+```{r}
+
+mean(Lifetimes)
+
+var(Lifetimes)
+
+sd(Lifetimes)
+
+
+```
+
+---
+
+### Population Mean and Variance
+
+\begin{eqnarray*}
+E(X)&=&e^{\mu+\sigma^2/2}\\
+& & \\
+&=&e^{1.2+(0.5^2)/2} = e^{1.325}\\
+& & \\
+&=&3.7622\\
+& & \\
+& & \\
+\operatorname{Var}(X)&=&e^{2\mu+\sigma^2}(e^{\sigma^2−1})\\& & \\
+&=&e^{(2\times 1.2)+0.5^2}\cdot(e^{0.5^2−1})\\& & \\
+&=&e^{2.65}\cdot (e^{0.25−1}) = 14.154\cdot (0.284)\\& & \\
+&=&4.0197\\& & \\
+\end{eqnarray*}
+---
+
+
+```{r}
+median(Lifetimes)
+```
+
+
+```{r}
+qlnorm(0.5,meanlog = 1.2,sdlog = 0.5)
+```
+
+
+
+
+---
+
+### Part (b)
+
+Estimate the probability that the component works no more than 4 days, $P(X \leq 4)$
+
+#### Using the simulated data
+
+```{r}
+
+mean(Lifetimes <4)
+
+```
+
+
+
+#### Using the cumulative distribution function
+
+```{r}
+
+plnorm(4 , meanlog = 1.2, sdlog = 0.5)
+```
+
+---
+
+
+### Part (c)
+
+Estimate the probability that the component works more than 5 days, $P(X \geq 5)$
+
+#### Using the simulated data
+
+```{r}
+
+mean(Lifetimes >5)
+
+```
+
+#### Using the cumulative distribution function
+
+```{r}
+
+plnorm(5 , meanlog = 1.2, sdlog = 0.5, lower.tail = FALSE)
+```
+
+
+---
+
+
+### Part (d)
+
+Estimate the probability that the component works between 3 and 5 days, $P(3 \leq X \leq 5)$
+
+
+```{r}
+# using dplyr::between
+
+mean( between(Lifetimes, 3, 5) )
+        
+        
+```        
+
+#### Using the cumulative distribution function
+
+```{r}
+
+plnorm(5 , meanlog = 1.2, sdlog = 0.5) - 
+  plnorm(3 , meanlog = 1.2, sdlog = 0.5)
+```
+

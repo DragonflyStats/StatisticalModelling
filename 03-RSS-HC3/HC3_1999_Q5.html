@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistics with R</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.7/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics with R
+## R for Actuarial Students
+
+---
+
+
+The infant mortality rate per 1000 live births and the percentage adult female literacy rate for a sample of countries are given in the table below. 
+ 
+ 
+\begin{tabular}{|c|c|c|}
+Country &amp;  Infant mortality rate  &amp; Percentage adult \\
+        &amp; per 1000 live births    &amp; female literacy rate \\ 
+        A	&amp;	160	&amp;	71	
+B	&amp;	116	&amp;	79	
+C	&amp;	94	&amp;	47	
+D	&amp;	87	&amp;	70	
+E	&amp;	84	&amp;	71	
+F	&amp;	83	&amp;	84	
+G	&amp;	83	&amp;	80	
+H	&amp;	60	&amp;	88	
+J	&amp;	50	&amp;	86	
+K	&amp;	43	&amp;	90	
+L	&amp;	35	&amp;	95	
+M	&amp;	31	&amp;	88	
+N	&amp;	27	&amp;	93	
+P	&amp;	25	&amp;	96	
+R	&amp;	22	&amp;	93	
+\end{tabular}`
+
+---
+
+
+* Sum 1000 1231 
+* Sum of squares 88268 103411 
+* Sum of products 77068 
+
+
+ 
+(i) Make a scatter plot of these data using the vertical axis for infant mortality rate. (4) 
+ 
+(ii) Use the additional information contained in the table to fit a linear relation which could be used to predict infant mortality rate from adult female literacy rate. (4) 
+ 
+
+---
+
+* (i) (i)(iii)(v) See next sheet.
+* n = 15; ¯y = 1000=15 = 66:67; ¯x = 1231=15 = 82:07;
+P
+y2 = 88268;
+P
+xy =
+77068;
+P
+x2 = 103411 Therefore \hat{y} = 378:81 ¡ 3:714x.
+ˆb
+= (1706:5 ¡
+12310:00
+15
+) ¥ (103411 ¡
+1231
+15
+) = ¡
+4987:67
+2386:93
+= ¡2:094
+ˆa = 66:667 + 2:094 £ 82:007 = 238:51 Therefore `\(\hat{y} = 238:51 - 2:094x\)`. Line A:
+* `\(\hat{y} = 378:81 ¡ 3:714x\)` Line B:
+
+---
+
+
+ 
+ 
+(iii) Plot the fitted line on the scatter plot. 
+(2) 
+ 
+(iv) Modify your calculations to exclude country C from the fitted relation. 
+(4) 
+
+---
+
+
+
+ 
+ 
+(v) Plot the new fitted line on the scatter plot. 
+
+ 
+(vi) What do you conclude about the effect of country C?  
+
+What would be your recommendations about which equation should be used to predict infant mortality rate? (4) 
+
+
+---
+
+* Country C is out of step with the others, and is very influential in determining the fitted
+line. In fact neither line fits the lower literacy rate values at all well, although line B does
+rather better than A for the upper values.
+
+The variability in y as x decreases suggests
+that a linear regression assuming constant variance is not lively to do well; a weighted
+regression might be considered if suitable data is variable.
+
+
+
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>

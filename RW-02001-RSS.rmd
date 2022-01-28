@@ -1,0 +1,280 @@
+---
+title: "Statistics with R"
+subtitle: "Modelling Data with R - Linear Regression"
+output:
+  xaringan::moon_reader:
+    lib_dir: libs
+    nature:
+      highlightStyle: github
+      countIncrementalSlides: false
+---
+
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+library(magrittr)
+
+#Higher Certificate, Paper II, 2006.  Question 3
+
+```
+
+```{css, echo=FALSE}
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+```
+
+
+A sample of 10 sea bass was caught by a fisheries scientist who then measured their length x (in millimetres) and their weight y (in grams).  
+
+The data are given in the table below. 
+
+
+
+
+|  | 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10 |  
+|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|:---:|
+|Length (x) |387|366|329|293|273|268|294|198 |185|169 |
+|Weight (y)|720|680|480|330|270|220|380|108 |89| 68 |
+
+
+
+
+```{r}
+Length<- c(387 , 366, 329, 293, 273, 268, 294, 198 ,185 , 169 )
+Weight<- c(720, 680, 480, 330, 270, 220, 380, 108  , 89 ,  68 )
+
+myDF <- data.frame(Length, Weight)
+
+```
+
+---
+
+#### Exercises
+
+1. Plot the weights of the 10 sea bass (on the y or vertical axis) against the corresponding lengths (on the x or horizontal axis). Does it appear appropriate to fit a straight line to these data? 
+ 
+2. Calculate the least-squares estimates of the parameters $\beta_0$ and $\beta_1$ of the regression line $y  = \beta_0 + \beta_1 x$. 
+
+3. Comment on the appropriateness of the regression line estimated in part 1 as a model for the relationship between the weights and lengths of sea bass. 
+
+
+---
+
+
+```{r}
+lm.model <- lm(Weight~Length,data=myDF)
+```
+
+
+```{r}
+coef(lm.model)
+
+```
+---
+ 
+<pre><code>
+library(ggplot2)
+
+p <- ggplot(data = myDF, aes(x=Length,y=Weight)) 
+p <- p + geom_point( col="blue", size=2.4 )
+p <- p + stat_smooth(method="lm", col="red")
+p <- p + theme_bw()
+p
+</code></pre>
+
+---
+ 
+```{r echo=FALSE,warning=FALSE}
+library(ggplot2)
+
+p <- ggplot(data = myDF, aes(x=Length,y=Weight)) 
+p <- p + geom_point( col="blue", size=2.4 )
+p <- p + stat_smooth(method="lm", col="red")
+p <- p + theme_bw()
+p
+```
+
+
+---
+
+#### Conclusion
+
+* The graph suggests that a linear fit will be reasonable, at least as a first approximation. 
+
+* There may be curvature in the relation of weight and length. 
+
+* The first three points are not fitted at all well. 
+ 
+---
+ 
+<pre><code>
+library(ggplot2)
+
+p <- ggplot(data = myDF, aes(x=Length,y=Weight)) 
+p <- p + geom_point( col="blue", size=2.4 )
+p <- p + stat_smooth(method="lm", col="red")
+
+## loess fit
+p <- p + stat_smooth(col="blue",se=FALSE)
+
+p <- p + theme_bw()
+p
+</code></pre>
+
+ 
+---
+ 
+```{r echo=FALSE,warning=FALSE}
+library(ggplot2)
+
+p <- ggplot(data = myDF, aes(x=Length,y=Weight)) 
+p <- p + geom_point( col="blue", size=2.4 )
+p <- p + stat_smooth(method="lm", col="red")
+p <- p + stat_smooth(col="blue",se=FALSE)
+p <- p + theme_bw()
+p
+``` 
+
+---
+
+### Sums of Squares Identities
+
+
+
+$$\begin{aligned}
+S_{xx} &= { \displaystyle \sum (x_i^2) - \frac{ \left(\sum(x_i) \right)^2 }{n} } \\
+&= 812,594 - \frac{(2,761)^2}{10} \\
+&= 49,729.6
+\\
+\end{aligned}$$
+
+
+
+```{r}
+X <- Length
+sum( (X - mean(X) )^2)
+```
+
+```{r}
+Y <- Weight
+sum((Y - mean(Y) )^2)
+```
+
+---
+
+*  The slope estimate $\hat{\beta}_1$ is
+$$\hat{\beta}_1 = \frac{ S_{xy} }{S_{xx}}$$
+
+$$\begin{aligned} S_{xy} &= \sum (x_i y_i) - \frac{ \sum(x_i) \sum(y_i)}{n} \\
+&= 1,075,861 - \frac{2,762\times 3,345}{10} \\
+&= 151,972.0\\
+\end{aligned}$$
+
+```{r}
+# Number of Observations
+n <- nrow(myDF)
+
+sum(X*Y) - ( sum(X)*sum(Y))/n
+```
+
+---
+
+```{r}
+summary(myDF)
+```
+
+```{r}
+Xbar <- mean(X)
+Xbar
+```
+
+```{r}
+Ybar <- mean(Y)
+Ybar
+```
+
+---
+
+   
+        
+*  The slope estimate $\hat{\beta}_1$ is therefore
+$$ \hat{\beta}_1= \frac{151,972.0}{49,729.6} = 3.056$$
+
+
+*  The intercept estimate $\hat{\beta}_0$ 
+$$\hat{\beta}_0 = \bar{y} - \hat{\beta}_1 \bar{x}  = 334.5 - (3.056\times 276.2) = -509.56$$
+
+---
+
+```{r}
+lm.model <- lm(Weight~Length,data=myDF)
+summary(lm.model)
+
+```
+
+---
+
+```{r}
+coef(lm.model)
+
+```
+
+
+
+
+
+---
+
+### Exercise 3
+
+Calculate and interpret the coefficient of determination. 
+ 
+The coefficient of determination is given by 
+$$R^2 = \frac{S_{xy}^2}{S_{xx}\times S_{yy}}.$$ 
+
+
+$$  S_{yy} = 1610009 - \frac{23345^2}{10} =  491,106.5 $$
+ 
+$$  R^2 = \frac{151972.0}{49729.6 \times 491106.5} =  0.9457  $$
+ 
+Thus 94.6% of the total variation in the weights of the sea bass is explained by a linear relationship with their lengths. 
+
+
+---
+
+#### Correlation Coefficient
+
+```{r}
+
+cor(Length,Weight)
+
+
+cor(Length,Weight)^2
+```
+
+#### R-Square (unadjusted)
+
+```{r}
+library(modelr)
+
+rsquare(lm.model,data = myDF)
+
+```
+
+---
+
+### Exercise 3
+
+*  Note that the intercept is $–509.56$, whereas it looks as if it should be much nearer 0 if these are to be fitted.  
+*  But the remaining points are fitted reasonably well. 
+*  It would however be sensible to examine also a quadratic relationship. 
+ 
+---
+
+---
+
+---
+ 
