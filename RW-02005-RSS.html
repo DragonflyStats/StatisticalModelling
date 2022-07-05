@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="" xml:lang="">
+  <head>
+    <title>Statistics with R</title>
+    <meta charset="utf-8" />
+    <script src="libs/header-attrs-2.11/header-attrs.js"></script>
+    <link href="libs/remark-css-0.0.1/default.css" rel="stylesheet" />
+    <link href="libs/remark-css-0.0.1/default-fonts.css" rel="stylesheet" />
+  </head>
+  <body>
+    <textarea id="source">
+class: center, middle, inverse, title-slide
+
+# Statistics with R
+## Introduction to R for Actuarial Students
+
+---
+
+
+* Introduction to R for Actuarial Students
+
+* CS1B Curriculum
+
+* Introduction to R programming
+* Fundamentals of Statistical Analysis
+* Probability Distributions
+
+* Question 3
+
+---
+
+
+
+&lt;style type="text/css"&gt;
+pre {
+  background: #ADD8E6;
+  max-width: 100%;
+  overflow-x: scroll;
+}
+&lt;/style&gt;
+
+---
+
+3. The table below shows the UK Gross Domestic Product (GDP, y) for the years 1989 − 1999, with years also coded as t = year − 1994.  
+The figures are given in units of £bn, and are expressed in 1995 prices. 
+ 
+ 
+Year 1989 1990 1991 1992 1993 1994 1995 1996 1997 1998 1999 
+t -5 -4 -3 -2 -1 0 1 2 3 4 5 
+y 655.2 659.5 649.8 650.3 665.4 694.6 714.0 732.2 757.9 777.9 794.4 
+
+
+( Source:  United Kingdom National Accounts, 2000 edn, table 1.1. )
+
+---
+
+
+
+```r
+t &lt;- -5:5
+
+y &lt;- c(655.2, 659.5, 649.8, 650.3, 665.4, 694.6, 
+       714, 732.2, 757.9, 777.9, 794.4)
+```
+
+--- 
+ 
+(i) A model `\(y = \alpha + \beta t + \varepsilon\)` , where `\(\epsilon\)` is a random error term with the usual properties, is proposed for the data. 
+ 
+ 
+* Obtain least squares estimates of `\(\alpha\)` and `\(\beta\)` , and calculate `\(r^2\)` (the coefficient of determination). 
+ 
+ 
+ * Also estimate `\(\sigma^2\)`, the variance of  `\(\epsilon\)`  , and obtain estimates of the standard errors of the coefficients `\(\alpha\)` and `\(\beta\)` . (6) 
+---
+
+
+```r
+fit &lt;- lm(y~t)
+summary(fit)
+```
+
+```
+## 
+## Call:
+## lm(formula = y ~ t)
+## 
+## Residuals:
+##     Min      1Q  Median      3Q     Max 
+## -23.743  -9.187  -3.478  11.692  28.105 
+## 
+## Coefficients:
+##             Estimate Std. Error t value Pr(&gt;|t|)    
+## (Intercept)  704.655      5.244 134.369 3.56e-16 ***
+## t             15.512      1.658   9.354 6.22e-06 ***
+## ---
+## Signif. codes:  0 '***' 0.001 '**' 0.01 '*' 0.05 '.' 0.1 ' ' 1
+## 
+## Residual standard error: 17.39 on 9 degrees of freedom
+## Multiple R-squared:  0.9067,	Adjusted R-squared:  0.8964 
+## F-statistic: 87.49 on 1 and 9 DF,  p-value: 6.222e-06
+```
+
+
+```r
+coef(fit)
+```
+
+```
+## (Intercept)           t 
+##   704.65455    15.51182
+```
+
+
+
+```r
+cor(y,t)^2
+```
+
+```
+## [1] 0.9067287
+```
+---
+
+
+
+
+ 
+--- 
+2.  What are "the usual properties" of the errors?  How realistic is the assumption that the errors have these properties?  (You are not expected to describe or conduct any tests.) (2) 
+
+
+---
+ 3.  Interpret the value of r2, and the values of your estimates of `\(\alpha\)` and `\(\beta\)` .
+ 
+ 
+---
+
+(iv) Draw a time chart of the data and superimpose your estimated function on it. (5) 
+ 
+(v) Use your estimated model to predict GDP in 2000 and 2010, and comment on your predictions in the light of your graph. (4) 
+ 
+ 
+---
+    </textarea>
+<style data-target="print-only">@media screen {.remark-slide-container{display:block;}.remark-slide-scaler{box-shadow:none;}}</style>
+<script src="https://remarkjs.com/downloads/remark-latest.min.js"></script>
+<script>var slideshow = remark.create({
+"highlightStyle": "github",
+"countIncrementalSlides": false
+});
+if (window.HTMLWidgets) slideshow.on('afterShowSlide', function (slide) {
+  window.dispatchEvent(new Event('resize'));
+});
+(function(d) {
+  var s = d.createElement("style"), r = d.querySelector(".remark-slide-scaler");
+  if (!r) return;
+  s.type = "text/css"; s.innerHTML = "@page {size: " + r.style.width + " " + r.style.height +"; }";
+  d.head.appendChild(s);
+})(document);
+
+(function(d) {
+  var el = d.getElementsByClassName("remark-slides-area");
+  if (!el) return;
+  var slide, slides = slideshow.getSlides(), els = el[0].children;
+  for (var i = 1; i < slides.length; i++) {
+    slide = slides[i];
+    if (slide.properties.continued === "true" || slide.properties.count === "false") {
+      els[i - 1].className += ' has-continuation';
+    }
+  }
+  var s = d.createElement("style");
+  s.type = "text/css"; s.innerHTML = "@media print { .has-continuation { display: none; } }";
+  d.head.appendChild(s);
+})(document);
+// delete the temporary CSS (for displaying all slides initially) when the user
+// starts to view slides
+(function() {
+  var deleted = false;
+  slideshow.on('beforeShowSlide', function(slide) {
+    if (deleted) return;
+    var sheets = document.styleSheets, node;
+    for (var i = 0; i < sheets.length; i++) {
+      node = sheets[i].ownerNode;
+      if (node.dataset["target"] !== "print-only") continue;
+      node.parentNode.removeChild(node);
+    }
+    deleted = true;
+  });
+})();
+(function() {
+  "use strict"
+  // Replace <script> tags in slides area to make them executable
+  var scripts = document.querySelectorAll(
+    '.remark-slides-area .remark-slide-container script'
+  );
+  if (!scripts.length) return;
+  for (var i = 0; i < scripts.length; i++) {
+    var s = document.createElement('script');
+    var code = document.createTextNode(scripts[i].textContent);
+    s.appendChild(code);
+    var scriptAttrs = scripts[i].attributes;
+    for (var j = 0; j < scriptAttrs.length; j++) {
+      s.setAttribute(scriptAttrs[j].name, scriptAttrs[j].value);
+    }
+    scripts[i].parentElement.replaceChild(s, scripts[i]);
+  }
+})();
+(function() {
+  var links = document.getElementsByTagName('a');
+  for (var i = 0; i < links.length; i++) {
+    if (/^(https?:)?\/\//.test(links[i].getAttribute('href'))) {
+      links[i].target = '_blank';
+    }
+  }
+})();</script>
+
+<script>
+slideshow._releaseMath = function(el) {
+  var i, text, code, codes = el.getElementsByTagName('code');
+  for (i = 0; i < codes.length;) {
+    code = codes[i];
+    if (code.parentNode.tagName !== 'PRE' && code.childElementCount === 0) {
+      text = code.textContent;
+      if (/^\\\((.|\s)+\\\)$/.test(text) || /^\\\[(.|\s)+\\\]$/.test(text) ||
+          /^\$\$(.|\s)+\$\$$/.test(text) ||
+          /^\\begin\{([^}]+)\}(.|\s)+\\end\{[^}]+\}$/.test(text)) {
+        code.outerHTML = code.innerHTML;  // remove <code></code>
+        continue;
+      }
+    }
+    i++;
+  }
+};
+slideshow._releaseMath(document);
+</script>
+<!-- dynamically load mathjax for compatibility with self-contained -->
+<script>
+(function () {
+  var script = document.createElement('script');
+  script.type = 'text/javascript';
+  script.src  = 'https://mathjax.rstudio.com/latest/MathJax.js?config=TeX-MML-AM_CHTML';
+  if (location.protocol !== 'file:' && /^https?:/.test(script.src))
+    script.src  = script.src.replace(/^https?:/, '');
+  document.getElementsByTagName('head')[0].appendChild(script);
+})();
+</script>
+  </body>
+</html>
