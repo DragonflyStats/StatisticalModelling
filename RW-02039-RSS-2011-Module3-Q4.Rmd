@@ -62,16 +62,19 @@ MtSim LkSim
 0.772 0.483
 0.408 0.314
 0.337 0.293
+
+---
 (i) Explain why it may be deemed appropriate to use the Wilcoxon signed-rank 
 test for these data and state what null and alternative hypotheses are being 
 tested.
-(4)
+
 (ii) Carry out the Wilcoxon signed-rank test at the 5% significance level and state 
 your conclusions.
-(8)
+
 (iii) As an alternative to the signed-rank test, carry out the sign test at the 5% 
 significance level and state your conclusions.
-(5)
+
 (iv) Comment briefly on why the conclusions differ when the sign test is used 
 instead of the signed-rank test.
-(3)
+
+---
